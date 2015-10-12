@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>Scratchpad</title>
+  <meta name="description" content="eXtensible Component Definition Language.">
+
+  <meta property="og:title" content="Scratchpad" />
+  <meta property="og:site_name" content="XCDL" />
+
+  <link rel="alternate" type="application/rss+xml" title="XCDL" href="/feed.xml" />
+
+
+
+
+
+
+
+
+  <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?201510121951" media="screen">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?201510121951" media="print">
+
+  <link rel="canonical" href="http://ilg-ul.github.io/work/scratchpad/">
+
+
+
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-16767008-13', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+  <div class="site-header">
+  <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
+  <div class="site-title">
+    <h1><a href="/">XCDL</a></h1>
+    <p>eXtensible Component Definition Language.</p>
+  </div>
+</div>
+
+
+</div>
+
+<div class="container">
+
+  <div class="wrapper">
+    <div class="site-body">
+
+      <div class="site-sidebar">
+
+
+  <div class="custom-sidebar">
+    <div class="boxed-group-inner">
+      <h4><a href="/blog/">XCDL News</a></h4>
+
+<ul>
+<li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
+<li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
+</ul>
+
+    </div>
+  </div>
+
+
+  <div class="custom-sidebar">
+    <div class="boxed-group-inner">
+      <h4><a href="/">XCDL Home</a></h4>
+
+<h4>Component Writer&#39;s Guide</h4>
+
+<ul>
+<li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+<li><a href="/guide/packages/">XCDL Packages</a></li>
+<li><a href="/guide/language/">The XCDL Language</a></li>
+<li><a href="/guide/build-process/">The build process</a></li>
+</ul>
+
+<h4>Reference</h4>
+
+<ul>
+<li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+</ul>
+
+<h4><a href="/about/">About</a></h4>
+
+    </div>
+  </div>
+
+  <div class="site-theme">
+    This site uses the <a href="https://github.com/ilg-ul/github-jekyll-theme">GitHub Wiki-like</a> theme by <a href="https://github.com/ilg-ul">Liviu Ionescu</a>.
+  </div>
+
+</div>
+
+
+      <div class="site-content">
+
+        
+<h1 class="page-title">Scratchpad</h1>
+<p class="last-modified">Last modified on Mon Oct 12 17:37:31 2015 UTC.</p>
+
+
+<div id="toc-container">
+<table class="toc" id="toc">
+<tbody>
+<tr>
+<td>
+<div id="toctitle">
+<h2>Contents</h2>
+</div>
+<ul>
+<li class="toc_level-1 toc_section-1">
+<a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">make vs. Python</span></a>
+</li>
+<li class="toc_level-1 toc_section-2">
+<a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">Python2 vs Python3</span></a>
+</li>
+<li class="toc_level-1 toc_section-3">
+<a href="#tocAnchor-1-3"><span class="tocnumber">3</span> <span class="toctext">Self contained packages vs. recipes</span></a>
+</li>
+<li class="toc_level-1 toc_section-4">
+<a href="#tocAnchor-1-4"><span class="tocnumber">4</span> <span class="toctext">Package content &amp; build scenarios</span></a>
+</li>
+<li class="toc_level-1 toc_section-5">
+<a href="#tocAnchor-1-5"><span class="tocnumber">5</span> <span class="toctext">Recipes moments in time</span></a>
+</li>
+<li class="toc_level-1 toc_section-6">
+<a href="#tocAnchor-1-6"><span class="tocnumber">6</span> <span class="toctext">Packs Manager vs. scriptable environment</span></a>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div><p>These are notes on various decisions that need to be made, with the available choices, with pros and cons.</p>
+
+<h2 id="tocAnchor-1-1">make vs. Python</h2>
+
+<p>Two candidates for the build systems are considered:</p>
+
+<ul>
+<li>  make</li>
+<li>  something based on Python, like SCons</li>
+</ul>
+
+<p><strong>make</strong> pros:</p>
+
+<ul>
+<li>  well-known</li>
+<li>  available on all platforms (separate install on Windows, but available)</li>
+</ul>
+
+<p><strong>make</strong> cons:</p>
+
+<ul>
+<li>  considered not very efficient by some</li>
+</ul>
+
+<p>Python pros:</p>
+
+<ul>
+<li>  extending the build process is very powerful</li>
+</ul>
+
+<p>Python cons:</p>
+
+<ul>
+<li>  may face acceptance problems, like SCons</li>
+</ul>
+
+<p>When used only as an internal builder, probably it does not matter how the build is performed. It was easier to start pyXCDL with make files, and performance was not a problem.</p>
+
+<p>However, for writing recipes, like for BitBake, an object oriented approach in Python might have advantages.</p>
+
+<h2 id="tocAnchor-1-2">Python2 vs Python3</h2>
+
+<p>This is no longer an issue, there are no reasons for not using it.</p>
+
+<ul>
+<li>  the project is new, there is no legacy code (pyXCDL need not be used as is, it can be ported)</li>
+<li>  python3 is available on all platforms</li>
+</ul>
+
+<h2 id="tocAnchor-1-3">Self contained packages vs. recipes</h2>
+
+<p>It looks like there are two ways of handling dependencies on external packages:</p>
+
+<ol>
+<li> when xcdl packages are created</li>
+<li> when the user downloads the packages</li>
+</ol>
+
+<p>The initial approach considered that packages contain original code, and their content should be self contained.</p>
+
+<p>Experience proved that many packages contain code from other sources, like vendor libraries, and sometimes these libraries need patches.</p>
+
+<p>Maintaining these patches requires a separate branch in the repository, and periodic merges into the master branch.</p>
+
+<p>For libraries distributed as archives, an automated procedure to update this separate branch would be useful.</p>
+
+<p>The BitBake alternative is to delay the original archive fetch to the moment when the XCDL package is installed on the user machine, and to run a procedure there to prepare the actual package content.</p>
+
+<p>This might save some space in the package repository, which need not include huge vendor libraries, but keep only recipes, but has the disadvantages that forwards the responsibility of a correct fetch to the user (the archive server must be available, the user computer needs to have enough space to store all initial archives, as the patched ones).</p>
+
+<p>The recommended way is 1, to process the archive when the package is created, but the specifications should also allow 2, even if not implemented in the first version.</p>
+
+<h2 id="tocAnchor-1-4">Package content &amp; build scenarios</h2>
+
+<p>There are several possibilities to create a package:</p>
+
+<ol>
+<li> original local code: the entire code resides in the project;</li>
+<li> original external code: some code is downloaded from an archive, a repository, in BitBake style; no patches;</li>
+<li> patched external code: the original code resides in a separate branch, merged to the master.</li>
+</ol>
+
+<p>In all cases, only a selection of the files are packed in the final package, based on a MANIFEST file.</p>
+
+<p>For 2 &amp; 3, it is possible to pack only the recipe and ask the package manager to prepare the actual package.</p>
+
+<h2 id="tocAnchor-1-5">Recipes moments in time</h2>
+
+<p>There are 3 different moments when recipes are important:</p>
+
+<ul>
+<li>  when the XCDL package is created;</li>
+<li>  when the XCDL package is installed on the user machine;</li>
+<li>  when components are used to build a library or to be compiled in an application.</li>
+</ul>
+
+<p>The package can be create with a simple zip selecting the required files, but can also mean downloading archives or source code, applying patches or generating dynamic content. This mechanism, together with the recipe to put together a collection of packages in a repository, will probably use Maven and be integrated into Eclipse.</p>
+
+<p>Installing the package in the user development machine usually means unzip-ing the package, but can also mean downloading archives or source code, applying patches or generating dynamic content, so an advanced mechanism should also be available on the user development machine. These recipes should be integrated into the Packs Manager, but should also be available from a scriptable environment.</p>
+
+<h2 id="tocAnchor-1-6">Packs Manager vs. scriptable environment</h2>
+
+<p>Installing the packs is normally done by a GUI based Packs Manager (currently part of GNU ARM Eclipse plug-ins).</p>
+
+<p>However it should be possible to build project in a headless environment, and in this case the projects should include enough information to allow the build tools to also identify and download the required packages, in similar to BitBake.</p>
+
+
+
+
+
+
+
+
+<ul class="share-buttons">
+  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/work/scratchpad/" data-layout="button"></div></li>
+  <li><div class="tw-share-button"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div></li>
+</ul>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="container">
+
+  <div class="site-footer">
+  <div class="site-footer-links left">
+    <ul>
+<li>© 2015 Liviu Ionescu</li>
+<li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
+<li>Hosted on GitHub</li>
+</ul>
+
+  </div>
+  <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+  </a>
+  <div class="site-footer-links right">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog/">News</a></li>
+<li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
+<li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+<li><a href="/about/">About</a></li>
+</ul>
+
+  </div>
+</div>
+
+
+</div>
+
+</body>
+</html>

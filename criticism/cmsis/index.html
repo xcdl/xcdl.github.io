@@ -1,0 +1,422 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>CMSIS Pack remarks and criticism</title>
+  <meta name="description" content="eXtensible Component Definition Language.">
+
+  <meta property="og:title" content="CMSIS Pack remarks and criticism" />
+  <meta property="og:site_name" content="XCDL" />
+
+  <link rel="alternate" type="application/rss+xml" title="XCDL" href="/feed.xml" />
+
+
+
+
+
+
+
+
+  <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?201510121951" media="screen">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?201510121951" media="print">
+
+  <link rel="canonical" href="http://ilg-ul.github.io/criticism/cmsis/">
+
+
+
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-16767008-13', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+  <div class="site-header">
+  <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
+  <div class="site-title">
+    <h1><a href="/">XCDL</a></h1>
+    <p>eXtensible Component Definition Language.</p>
+  </div>
+</div>
+
+
+</div>
+
+<div class="container">
+
+  <div class="wrapper">
+    <div class="site-body">
+
+      <div class="site-sidebar">
+
+
+  <div class="custom-sidebar">
+    <div class="boxed-group-inner">
+      <h4><a href="/blog/">XCDL News</a></h4>
+
+<ul>
+<li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
+<li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
+</ul>
+
+    </div>
+  </div>
+
+
+  <div class="custom-sidebar">
+    <div class="boxed-group-inner">
+      <h4><a href="/">XCDL Home</a></h4>
+
+<h4>Component Writer&#39;s Guide</h4>
+
+<ul>
+<li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+<li><a href="/guide/packages/">XCDL Packages</a></li>
+<li><a href="/guide/language/">The XCDL Language</a></li>
+<li><a href="/guide/build-process/">The build process</a></li>
+</ul>
+
+<h4>Reference</h4>
+
+<ul>
+<li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+</ul>
+
+<h4><a href="/about/">About</a></h4>
+
+    </div>
+  </div>
+
+  <div class="site-theme">
+    This site uses the <a href="https://github.com/ilg-ul/github-jekyll-theme">GitHub Wiki-like</a> theme by <a href="https://github.com/ilg-ul">Liviu Ionescu</a>.
+  </div>
+
+</div>
+
+
+      <div class="site-content">
+
+        
+<h1 class="page-title">CMSIS Pack remarks and criticism</h1>
+<p class="last-modified">Last modified on Mon Oct 12 17:37:31 2015 UTC.</p>
+
+
+<div id="toc-container">
+<table class="toc" id="toc">
+<tbody>
+<tr>
+<td>
+<div id="toctitle">
+<h2>Contents</h2>
+</div>
+<ul>
+<li class="toc_level-1 toc_section-1">
+<a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">The good parts</span></a>
+</li>
+<li class="toc_level-1 toc_section-2">
+<a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">The bad parts</span></a>
+<ul>
+<li class="toc_level-2 toc_section-3">
+<a href="#tocAnchor-1-2-1"><span class="tocnumber">2.1</span> <span class="toctext">Excessively complicated design</span></a>
+</li>
+<li class="toc_level-2 toc_section-4">
+<a href="#tocAnchor-1-2-2"><span class="tocnumber">2.2</span> <span class="toctext">Non-portable examples</span></a>
+</li>
+<li class="toc_level-2 toc_section-5">
+<a href="#tocAnchor-1-2-3"><span class="tocnumber">2.3</span> <span class="toctext">Lack of GCC assembly files</span></a>
+</li>
+<li class="toc_level-2 toc_section-6">
+<a href="#tocAnchor-1-2-4"><span class="tocnumber">2.4</span> <span class="toctext">Lack of linker scripts</span></a>
+</li>
+<li class="toc_level-2 toc_section-7">
+<a href="#tocAnchor-1-2-5"><span class="tocnumber">2.5</span> <span class="toctext">Simplistic repository index</span></a>
+</li>
+<li class="toc_level-2 toc_section-8">
+<a href="#tocAnchor-1-2-6"><span class="tocnumber">2.6</span> <span class="toctext">Low configurability features</span></a>
+</li>
+<li class="toc_level-2 toc_section-9">
+<a href="#tocAnchor-1-2-7"><span class="tocnumber">2.7</span> <span class="toctext">Fixed file naming schemes</span></a>
+</li>
+<li class="toc_level-2 toc_section-10">
+<a href="#tocAnchor-1-2-8"><span class="tocnumber">2.8</span> <span class="toctext">Fixed object hierarchies</span></a>
+</li>
+<li class="toc_level-2 toc_section-11">
+<a href="#tocAnchor-1-2-9"><span class="tocnumber">2.9</span> <span class="toctext">No package dependencies</span></a>
+</li>
+<li class="toc_level-2 toc_section-12">
+<a href="#tocAnchor-1-2-10"><span class="tocnumber">2.10</span> <span class="toctext">Windows only tools</span></a>
+</li>
+<li class="toc_level-2 toc_section-13">
+<a href="#tocAnchor-1-2-11"><span class="tocnumber">2.11</span> <span class="toctext">No special support for tests</span></a>
+</li>
+</ul>
+</li>
+<li class="toc_level-1 toc_section-14">
+<a href="#tocAnchor-1-14"><span class="tocnumber">3</span> <span class="toctext">PDSC schema oddities</span></a>
+<ul>
+<li class="toc_level-2 toc_section-15">
+<a href="#tocAnchor-1-14-1"><span class="tocnumber">3.1</span> <span class="toctext">Non-POSIX paths</span></a>
+</li>
+<li class="toc_level-2 toc_section-16">
+<a href="#tocAnchor-1-14-2"><span class="tocnumber">3.2</span> <span class="toctext"></span></a>
+</li>
+<li class="toc_level-2 toc_section-17">
+<a href="#tocAnchor-1-14-3"><span class="tocnumber">3.3</span> <span class="toctext"></span></a>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="tocAnchor-1-1">The good parts</h2>
+
+<p>CMSIS Pack is an important step forward towards the standardisation of ARM Cortex-M system software, hardware description and documentation.</p>
+
+<p>It provides silicon vendors with a great method to describe their chips in a structured way, from the full list of device names down to register level. These are all very useful information, since they are the basis for advanced tools, like project creation wizards (requiring the actual list of available devices and their associated header files and build details) and debugger register viewers (requiring detailed knowledge on the actual peripherals available in a chip variant and their full register definitions, down to bit level).</p>
+
+<h2 id="tocAnchor-1-2">The bad parts</h2>
+
+<p>The advantage of being a great tool for silicon vendors is probably its worse disadvantage, since (at least the current version, v1.3) CMSIS Pack seems intended mainly to silicon vendors, and not to general software distribution (like eCos CDL).</p>
+
+<p>The second major disadvantage (partly understandable by its origins) is the deep bias towards µVision, a proprietary tool by Keil, which limits (and sometime even voids) its usefulness in open environments, like GCC and Eclipse.</p>
+
+<h3 id="tocAnchor-1-2-1">Excessively complicated design</h3>
+
+<p>Apparently started as a µVision feature, and, as such, inheriting µVision oddities, the CMSIS Pack design evolved unevenly in different directions, and lacking the elegance of a consistent design, up to a point where it can even be considered overengineered.</p>
+
+<h3 id="tocAnchor-1-2-2">Non-portable examples</h3>
+
+<p>Apart for µVision users, which do not use Eclipse anyway, with the current version of the CMSIS Packs, the many existing CMSIS examples are... useless, at large. :-(</p>
+
+<p>The provided examples cannot be used to automatically create ready to build new C/C++ Eclipse projects, requiring many manual configuration changes, usually out of reach for beginners.</p>
+
+<p>For this to be possible, the following (portable) details are required in the definition of an example:</p>
+
+<ul>
+<li>  the list of source files</li>
+<li>  the list of header files</li>
+<li>  the list of include holders</li>
+<li>  an optional list of preprocessor definitions</li>
+</ul>
+
+<p>One possible solution would be to define the content of an example as one or more components, with full details regarding the files and include folders, and, instead of mandating the presence of a proprietary project definition, allow each tool to create the project required to build the example.</p>
+
+<p>Hopefully future CMSIS Pack versions will be improved, to make the examples more portable and available for Eclipse/GCC based tools.</p>
+
+<h3 id="tocAnchor-1-2-3">Lack of GCC assembly files</h3>
+
+<p>At the date of writing this, only a very few packages were updated to include the GCC assembly startup files (.S), so most of the packages are not yet ready for inclusion in projects built with GCC.</p>
+
+<h3 id="tocAnchor-1-2-4">Lack of linker scripts</h3>
+
+<p>Not only that GCC support in the CMSIS Packs is scarce, but the linker scripts are completely missing.</p>
+
+<h3 id="tocAnchor-1-2-5">Simplistic repository index</h3>
+
+<p>The recommended method to access the packages from a web site is via a very simple index, plus the full package description. This method generates a lot of network traffic, and parsing the very large xml files, containing full device descriptions only to get a summary of the package is wasteful.</p>
+
+<h3 id="tocAnchor-1-2-6">Low configurability features</h3>
+
+<p>Compared to eCos, CMSIS Pack addresses only a very limited range of configurability options, generating a single, fixed name, header file (RTE_Config.h) generally intended to inform the source code only if a package is present or not, and does not go deeper, at component level.</p>
+
+<p>The CMSIS alternative is a mechanism to allow a controlled edit of header files, using additional definitions embedded as comments.</p>
+
+<p>Although functional, these additional definitions may interfere with embedded documentation, like Doxygen, further reducing the files readability.</p>
+
+<h3 id="tocAnchor-1-2-7">Fixed file naming schemes</h3>
+
+<p>CMSIS Pack requires the package files to follow a very rigid naming scheme: VENDOR.PACKNAME.VERSION.pack, and also requires the presence of a description file, named VENDOR.PACKNAME.pdsc to be present both inside the archive and on the server where the package is published.</p>
+
+<h3 id="tocAnchor-1-2-8">Fixed object hierarchies</h3>
+
+<p>Actually the CMSIS components are not really organised hierarchically, they are just tagged with various attributes, like class, group, subgroup, variant, version, and referring to them requires all relevant attributes.</p>
+
+<p>Also packages have a flat structure, there are no methods to define hierarchies of packages.</p>
+
+<h3 id="tocAnchor-1-2-9">No package dependencies</h3>
+
+<p>Packages are currently fully independent, and there are no dependencies between them, so if a package requires another package, the second one also needs to be manually installed, there is no way to chain install all required packages.</p>
+
+<h3 id="tocAnchor-1-2-10">Windows only tools</h3>
+
+<p>The package validation tool, and all other provided tools are non portable, and run only on Windows.</p>
+
+<h3 id="tocAnchor-1-2-11">No special support for tests</h3>
+
+<p>Although tests might be considered a special genre of examples, building and running tests usually requires more details to be configured.</p>
+
+<p>eCos CDL encourages to define tests for each package, and provides an automated mechanism to build and run all available tests at once.</p>
+
+<h2 id="tocAnchor-1-14">PDSC schema oddities</h2>
+
+<h3 id="tocAnchor-1-14-1">Non-POSIX paths</h3>
+
+<p>Although the specs allow the use of standard POSIX paths (and, as far as I was told, MDK accepts them), all Keil packages, and all Keil documentation pages, do not miss the opportunity to show their Microsoft-ish origin, and represent all paths using the Windows back-slash separator:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
+</code></pre>
+</div>
+<p>Perhaps a more visually pleasant solution would have been to use the standard POSIX slash separator:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;compile header="Device/Include/stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
+</code></pre>
+</div>
+<h3 id="tocAnchor-1-14-2">
+<books></books>
+</h3>
+
+<p>Here is an unfortunate example from the STM32F4-Discovery board:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;book category="overview"  name="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419" title="STM32F4-Discovery Web Page"/&gt;
+&lt;book category="setup"     name="Documents\DM00037368.pdf" title="Getting Started"/&gt;
+&lt;book category="schematic" name="Documents\stm32f4discovery_sch.zip" title="Schematics"/&gt;
+&lt;book category="manual"    name="Documents\DM00039084.pdf" title="User Manual"/&gt;
+&lt;book category="other"     name="Documents\stm32f4discovery_gerber.zip" title="Gerber Files"/&gt;
+</code></pre>
+</div>
+<p>First, none of the above is actually a book, all are various documentation files (web page, manuals, schematics, etc), so the name <strong><books></books></strong> is poorly chosen.</p>
+
+<p>Second, the <strong>name</strong> attribute refers to anything else but the document name, which is eventually defined as <strong>title</strong>.</p>
+
+<p>And third, the document location makes no difference between local and remote documents, requiring the inspection of the attribute value to better identify the document.</p>
+
+<p>Perhaps a more appropriate definitions would have been:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;document category="overview"  title="STM32F4-Discovery Web Page" url="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419"/&gt;
+&lt;document category="setup"     title="Getting Started" file="Documents/DM00037368.pdf"/&gt;
+&lt;document category="schematic" title="Schematics" file="Documents/stm32f4discovery_sch.zip"/&gt;
+&lt;document category="manual"    title="User Manual" file="Documents/DM00039084.pdf"/&gt;
+&lt;document category="other"     title="Gerber Files" file="Documents/stm32f4discovery_gerber.zip"/&gt;
+</code></pre>
+</div>
+<h3 id="tocAnchor-1-14-3">
+<algorithm></algorithm>
+</h3>
+
+<p>The <strong>name</strong> attribute does not define any name, but a special .FLM file:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
+</code></pre>
+</div>
+<p>To be consistent with <debug>:</debug></p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;debug      svd="SVD\STM32F41x.svd"/&gt;
+</code></pre>
+</div>
+<p>perhaps a <strong>flm</strong> attribute would have been more appropriate, or at least a generic <strong>file</strong> attribute.</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;algorithm  flm="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
+</code></pre>
+</div>
+
+
+
+
+
+
+
+<ul class="share-buttons">
+  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/criticism/cmsis/" data-layout="button"></div></li>
+  <li><div class="tw-share-button"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div></li>
+</ul>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="container">
+
+  <div class="site-footer">
+  <div class="site-footer-links left">
+    <ul>
+<li>© 2015 Liviu Ionescu</li>
+<li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
+<li>Hosted on GitHub</li>
+</ul>
+
+  </div>
+  <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+  </a>
+  <div class="site-footer-links right">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog/">News</a></li>
+<li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
+<li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+<li><a href="/about/">About</a></li>
+</ul>
+
+  </div>
+</div>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1826 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>The XCDL definitions reference</title>
+  <meta name="description" content="eXtensible Component Definition Language.">
+
+  <meta property="og:title" content="The XCDL definitions reference" />
+  <meta property="og:site_name" content="XCDL" />
+
+  <link rel="alternate" type="application/rss+xml" title="XCDL" href="/feed.xml" />
+
+
+
+
+
+
+
+
+  <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?201510121951" media="screen">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?201510121951" media="print">
+
+  <link rel="canonical" href="http://ilg-ul.github.io/guide/definitions-reference/">
+
+
+
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-16767008-13', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+  <div class="site-header">
+  <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
+  <div class="site-title">
+    <h1><a href="/">XCDL</a></h1>
+    <p>eXtensible Component Definition Language.</p>
+  </div>
+</div>
+
+
+</div>
+
+<div class="container">
+
+  <div class="wrapper">
+    <div class="site-body">
+
+      <div class="site-sidebar">
+
+
+  <div class="custom-sidebar">
+    <div class="boxed-group-inner">
+      <h4><a href="/blog/">XCDL News</a></h4>
+
+<ul>
+<li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
+<li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
+</ul>
+
+    </div>
+  </div>
+
+
+  <div class="custom-sidebar">
+    <div class="boxed-group-inner">
+      <h4><a href="/">XCDL Home</a></h4>
+
+<h4>Component Writer&#39;s Guide</h4>
+
+<ul>
+<li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+<li><a href="/guide/packages/">XCDL Packages</a></li>
+<li><a href="/guide/language/">The XCDL Language</a></li>
+<li><a href="/guide/build-process/">The build process</a></li>
+</ul>
+
+<h4>Reference</h4>
+
+<ul>
+<li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+</ul>
+
+<h4><a href="/about/">About</a></h4>
+
+    </div>
+  </div>
+
+  <div class="site-theme">
+    This site uses the <a href="https://github.com/ilg-ul/github-jekyll-theme">GitHub Wiki-like</a> theme by <a href="https://github.com/ilg-ul">Liviu Ionescu</a>.
+  </div>
+
+</div>
+
+
+      <div class="site-content">
+
+        
+<h1 class="page-title">The XCDL definitions reference</h1>
+<p class="last-modified">Last modified on Mon Oct 12 17:37:31 2015 UTC.</p>
+
+
+<div id="toc-container">
+<table class="toc" id="toc">
+<tbody>
+<tr>
+<td>
+<div id="toctitle">
+<h2>Contents</h2>
+</div>
+<ul>
+<li class="toc_level-1 toc_section-1">
+<a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a>
+</li>
+<li class="toc_level-1 toc_section-2">
+<a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">Mandatory properties</span></a>
+</li>
+<li class="toc_level-1 toc_section-3">
+<a href="#tocAnchor-1-3"><span class="tocnumber">3</span> <span class="toctext">The &lt;option&gt; object</span></a>
+</li>
+<li class="toc_level-1 toc_section-4">
+<a href="#tocAnchor-1-4"><span class="tocnumber">4</span> <span class="toctext">The &lt;component&gt; object</span></a>
+</li>
+<li class="toc_level-1 toc_section-5">
+<a href="#tocAnchor-1-5"><span class="tocnumber">5</span> <span class="toctext">The &lt;package&gt; object</span></a>
+</li>
+<li class="toc_level-1 toc_section-6">
+<a href="#tocAnchor-1-6"><span class="tocnumber">6</span> <span class="toctext">The &lt;repository&gt; object</span></a>
+</li>
+<li class="toc_level-1 toc_section-7">
+<a href="#tocAnchor-1-7"><span class="tocnumber">7</span> <span class="toctext">The &lt;interface&gt; object</span></a>
+</li>
+<li class="toc_level-1 toc_section-8">
+<a href="#tocAnchor-1-8"><span class="tocnumber">8</span> <span class="toctext">The &lt;toolchain&gt; object</span></a>
+</li>
+<li class="toc_level-1 toc_section-9">
+<a href="#tocAnchor-1-9"><span class="tocnumber">9</span> <span class="toctext">The &lt;configuration&gt; object</span></a>
+</li>
+<li class="toc_level-1 toc_section-10">
+<a href="#tocAnchor-1-10"><span class="tocnumber">10</span> <span class="toctext">The &lt;activeIf&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-11">
+<a href="#tocAnchor-1-11"><span class="tocnumber">11</span> <span class="toctext">The &lt;category&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-12">
+<a href="#tocAnchor-1-12"><span class="tocnumber">12</span> <span class="toctext">The &lt;childrenGeneratedFile&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-13">
+<a href="#tocAnchor-1-13"><span class="tocnumber">13</span> <span class="toctext">The &lt;computed&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-14">
+<a href="#tocAnchor-1-14"><span class="tocnumber">14</span> <span class="toctext">The &lt;configurable&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-15">
+<a href="#tocAnchor-1-15"><span class="tocnumber">15</span> <span class="toctext">The &lt;defaultEnable&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-16">
+<a href="#tocAnchor-1-16"><span class="tocnumber">16</span> <span class="toctext">The &lt;defaultValue&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-17">
+<a href="#tocAnchor-1-17"><span class="tocnumber">17</span> <span class="toctext">The &lt;generatedDefinition&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-18">
+<a href="#tocAnchor-1-18"><span class="tocnumber">18</span> <span class="toctext">The &lt;generatedFile&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-19">
+<a href="#tocAnchor-1-19"><span class="tocnumber">19</span> <span class="toctext">The &lt;implements&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-20">
+<a href="#tocAnchor-1-20"><span class="tocnumber">20</span> <span class="toctext">The &lt;includeXcdl&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-21">
+<a href="#tocAnchor-1-21"><span class="tocnumber">21</span> <span class="toctext">The &lt;legalValues&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-22">
+<a href="#tocAnchor-1-22"><span class="tocnumber">22</span> <span class="toctext">The &lt;parent&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-23">
+<a href="#tocAnchor-1-23"><span class="tocnumber">23</span> <span class="toctext">The &lt;requires&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-24">
+<a href="#tocAnchor-1-24"><span class="tocnumber">24</span> <span class="toctext">The &lt;sourceFile&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-25">
+<a href="#tocAnchor-1-25"><span class="tocnumber">25</span> <span class="toctext">The &lt;valueType&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-26">
+<a href="#tocAnchor-1-26"><span class="tocnumber">26</span> <span class="toctext">The &lt;valueFormat&gt; property</span></a>
+</li>
+<li class="toc_level-1 toc_section-27">
+<a href="#tocAnchor-1-27"><span class="tocnumber">27</span> <span class="toctext">Credits</span></a>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="tocAnchor-1-1">Introduction</h2>
+
+<p>This chapter contains reference information for the main XCDL objects <code>&lt;option&gt;</code>, <code>&lt;component&gt;</code>, <code>&lt;package&gt;</code>; and <code>&lt;interface&gt;</code>, followed by the various properties such as <code>&lt;activeIf&gt;</code> and <code>&lt;sourceFile&gt;</code> in alphabetical order.</p>
+
+<h2 id="tocAnchor-1-2">Mandatory properties</h2>
+
+<p>All hierarchical objects must have the following properties defined:</p>
+
+<ul>
+<li>  <code>&lt;object name="..."&gt;</code> - the internal identifier of the object, unique within the set of all configuration trees used together; passed as an XML attribute</li>
+</ul>
+
+<p>Although not mandatory, it is strongly recommended to also define the following object properties:</p>
+
+<ul>
+<li>  <code>&lt;display&gt;...&lt;/display&gt;</code> - a short, human readable, descriptive name (a few words) of the object, to be used in the user interface during the configuration process</li>
+<li>  <code>&lt;description&gt;...&lt;/description&gt;</code> - a long, comprehensive description of the object, to be used as reference by the user during the configuration process.</li>
+</ul>
+
+<h2 id="tocAnchor-1-3">The <code>&lt;option&gt;</code> object</h2>
+
+<h3>Purpose</h3>
+
+<p>Define a single configuration option.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+    &lt;display&gt;...&lt;/display&gt;
+    &lt;description&gt;...&lt;/description&gt;
+
+    ... other properties ...
+    ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<h3>Description</h3>
+
+<p>The <code>&lt;option&gt;</code> object is the basic unit of configurability. Generally each option corresponds to a single user choice. Typically there is a certain amount of information associated with an option to assist the user in manipulating that option, for example a textual description. There will also be some limits on the possible values that the user can choose, so an option may be a simple yes-or-no choice or it may be something more complicated such as an array size or a device name. Options may have associated constraints, so if that option is enabled then certain conditions have to satisfied elsewhere in the configuration. Options usually have direct consequences such as preprocessor <code>#define</code> symbols in a configuration header file.</p>
+
+<p><code>&lt;option&gt;</code> is defined as a XML element that has one name attribute and a body. Within a single configuration, names must be unique. If a configuration contained two packages which defined the same entity, any references to that entity in a <code>&lt;requires&gt;</code> property or any other expression would be ambiguous. It is possible for a given name to be used by two different packages if those packages should never be loaded into a single configuration. For example, architectural HAL packages are allowed to reuse names because a single configuration cannot target two different architectures. For a recommended naming convention see the Section called Package Contents and Layout in <a href="/XCDL_packages">XCDL packages</a>.</p>
+
+<p>The user choice is expressed during the configuration process and is reflected in the enabled/disabled statues of the option. For options with associated values, it is also possible for the user to define a value (if missing, a default value, either implicit or defined as the property <code>&lt;defaultValue&gt;</code>, is applied). For these options it is also possible to define some limits on the possible values that the user can choose.</p>
+
+<p>A separate class of options are the <code>&lt;computed&gt;</code> options, whose values cannot be set by the user, but are computed according to a given expression.</p>
+
+<p>Options may have associated constraints, so if this option is enabled then certain conditions have to be satisfied elsewhere in the configuration for it to be active (the <code>&lt;activeIf&gt;</code> property) or it may mandate for some objects to be enabled or disabled (the <code>&lt;requires&gt;</code> property).</p>
+
+<p>If active and enabled, <code>&lt;option&gt;</code> can generate preprocessor <code>#define</code> lines in a configuration header file (if the <code>&lt;generatedDefinition&gt;</code> property is also defined), and decide if a set of source files are included in the build process (if the <code>&lt;sourceFile&gt;</code> property is also defined).</p>
+
+<h3>Containers</h3>
+
+<p><em>Options</em> are not containers, so they cannot hold other objects (like <code>&lt;option&gt;</code> or <code>&lt;component&gt;</code>).</p>
+
+<h3>Optional properties</h3>
+
+<ul>
+<li>  <code>&lt;activeIf&gt;</code> - a list of expressions to be evaluated; if all are true, the active state of this option remains true</li>
+<li>  <code>&lt;category&gt;</code> - provides additional grouping information, to allow a configuration tool to provide appropriate selection (board | synthetic | root | architecture | family)</li>
+<li>  <code>&lt;computed&gt;</code> - the option’s value is not directly user-modifiable, it is calculated using a suitable expression</li>
+<li>  <code>&lt;configurable&gt;</code> - a boolean expression that provides additional information to a configuration tool, to control if this option can be enabled/disabled by the user during the configuration process</li>
+<li>  <code>&lt;defaultEnabled&gt;</code> - a boolean expression that provides an initial value for the option enabled/disabled state</li>
+<li>  <code>&lt;defaultValue&gt;</code> - an expression to be used as a default value for this option, when the user does not define it explicitly during the configuration process</li>
+<li>  <code>&lt;generatedDefinition&gt;</code> - a valid C preprocessor identifier to be defined in the header file if the option is active and enabled</li>
+<li>  <code>&lt;generatedFile&gt;</code> - the full path file name of the header where the option will generate a definition (if missing, inherited from the parent node)</li>
+<li>  <code>&lt;implements&gt;</code> - a list of ids of the interfaces implemented by this option</li>
+<li>  <code>&lt;legalValues&gt;</code> - a list of restrictions the value of this options must satisfy</li>
+<li>  <code>&lt;parent&gt;</code> - provides a method to break the default hierarchy and directly specify the id of the parent of this option</li>
+<li>  <code>&lt;requires&gt;</code> - a list of ids of other objects to be enabled when this option is enabled</li>
+<li>  <code>&lt;sourceFile&gt;</code> - a list of source files that should be built if this option is active and enabled</li>
+<li>  <code>&lt;valueType&gt;</code> - specify the type of the variable associated with this option (none | bool | int | float | string)</li>
+<li>  <code>&lt;valueFormat&gt;</code> - control how the option’s value will appear in the configuration header file</li>
+</ul>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="preconditions"&gt;
+
+  &lt;parent&gt;infra/debug&lt;/parent&gt;
+  &lt;display&gt;Preconditions&lt;/display&gt;
+  &lt;description&gt;This option allows individual control of preconditions.
+  A precondition is one type of assert, which it is
+  useful to control separately from more general asserts.
+  The function is OS_PRECONDITION(condition,msg).&lt;/description&gt;
+
+  &lt;generatedDefinition&gt;OS_DEBUG_INFRA_DEBUG_PRECONDITIONS&lt;/generatedDefinition&gt;
+  &lt;defaultEnable&gt;true&lt;/defaultEnable&gt;
+&lt;/option&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-4">The <code>&lt;component&gt;</code> object</h2>
+
+<h3>Purpose</h3>
+
+<p>Define a component, a collection of configuration objects.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;component name="..."&gt;
+
+    &lt;display&gt;...&lt;/display&gt;
+    &lt;description&gt;...&lt;/description&gt;
+
+    ... other properties ...
+    ... children objects ...
+
+&lt;/component&gt;
+</code></pre>
+</div>
+<h3>Description</h3>
+
+<p>The <code>&lt;component&gt;</code> object is a configuration element that can contain additional options and subcomponents. A <code>&lt;component&gt;</code> can have the same properties as an <code>&lt;option&gt;</code>. There is an additional property, <code>&lt;includeXcdl&gt;</code> which allows configuration data to be split into multiple files, included below the current object in the configuration hierarchy.</p>
+
+<p>The <code>&lt;component&gt;</code> object is implemented as a XML element that has one name attribute and a body. Within a single configuration, names must be unique. If a configuration contained two packages which defined the same entity, any references to that entity in a <code>&lt;requires&gt;</code> property or any other expression would be ambiguous. It is possible for a given name to be used by two different packages if those packages should never be loaded into a single configuration. For example, architectural HAL packages are allowed to reuse certain names because a single configuration cannot target two different architectures. For a recommended naming convention see the Section called Package Contents and Layout in <a href="/XCDL_packages">XCDL packages</a>.</p>
+
+<p>Similarly to <code>&lt;option&gt;</code> objects, if active and enabled, <code>&lt;component&gt;</code> objects can generate preprocessor <code>#define</code> lines in a configuration header file, and decide if a set of source files are included in the build process.</p>
+
+<h3>Containers</h3>
+
+<p><em>Components</em> are containers, so it is possible for a component to include <code>&lt;component&gt;</code>, <code>&lt;option&gt;</code>, <code>&lt;interface&gt;</code> and <code>&lt;configuration&gt;</code> objects that should go below this object in the configuration hierarchy. These objects can be defined either as embedded children, or can be read from included files.</p>
+
+<h3>Optional properties</h3>
+
+<ul>
+<li>  <code>&lt;activeIf&gt;</code> - a list of expressions to be evaluated; if all are true, the active state of this component remains true</li>
+<li>  <code>&lt;category&gt;</code> - provides additional grouping information, to allow a configuration tool to provide appropriate selections (board | synthetic | root | architecture | family)</li>
+<li>  <code>&lt;childrenGeneratedFile&gt;</code> - the full path file name of the header where the children nodes will generate a definition (if missing, inherited from the parent node)</li>
+<li>  <code>&lt;computed&gt;</code> - the component’s value is not directly user-modifiable, it is calculated using a suitable expression</li>
+<li>  <code>&lt;configurable&gt;</code> - a boolean expression that provides additional information to a configuration tool, to control if this component can be enabled/disabled by the user during the configuration process</li>
+<li>  <code>&lt;defaultEnabled&gt;</code> - a boolean expression that provides an initial value for the component enabled/disabled state</li>
+<li>  <code>&lt;defaultValue&gt;</code> - an expression to be used as a default value for this component, when the user does not define it explicitly during the configuration process</li>
+<li>  <code>&lt;generatedDefinition&gt;</code> - a valid C preprocessor identifier to be defined in the header file if the component is active and enabled</li>
+<li>  <code>&lt;generatedFile&gt;</code> - the full path file name of the header where the component will generate a definition (if missing, inherited from the parent node)</li>
+<li>  <code>&lt;implements&gt;</code> - a list of ids of the interfaces implemented by this component</li>
+<li>  <code>&lt;includeXcdl&gt;</code> - a list of XCDL metadata files to be parsed and whose objects to be included as children of the current node</li>
+<li>  <code>&lt;legalValues&gt;</code> - a list of restrictions the value of this component must satisfy</li>
+<li>  <code>&lt;parent&gt;</code> - provides a method to break the default hierarchy and directly specify the id of the parent of this component</li>
+<li>  <code>&lt;requires&gt;</code> - a list of ids of other objects to be enabled when this component is enabled</li>
+<li>  <code>&lt;sourceFile&gt;</code> - a list of source files that should be built if this component is active and enabled</li>
+<li>  <code>&lt;valueType&gt;</code> - specify the type of the variable associated with this component (none | bool | int | float | string)</li>
+<li>  <code>&lt;valueFormat&gt;</code> - control how the component's value will appear in the configuration header file</li>
+</ul>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;component name="useAsserts"&gt;
+
+  &lt;display&gt;Use asserts&lt;/display&gt;
+  &lt;description&gt;If this component is enabled, assertions in the code are
+  tested at run-time. Assert functions (OS_ASSERT()) are
+  defined in ’include/os/infra/os_ass.h’ within the ’install’
+  tree. If the component is disabled, these result in no
+  additional object code and no checking of the asserted
+  conditions.&lt;/description&gt;
+
+  &lt;defaultEnable&gt;true&lt;/defaultEnable&gt;
+  &lt;includeXcdl&gt;assert.xml&lt;/includeXcdl&gt;
+&lt;/component&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-5">The <code>&lt;package&gt;</code> object</h2>
+
+<h3>Purpose</h3>
+
+<p>Define a package, a special component, that can be distributed separately.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;package name="..."&gt;
+
+    &lt;display&gt;...&lt;/display&gt;
+    &lt;description&gt;...&lt;/description&gt;
+
+    ... other properties ...
+    ... children objects ...
+
+&lt;/package &gt;
+</code></pre>
+</div>
+<h3>Description</h3>
+
+<p>A <code>&lt;package&gt;</code> is a unit of software distribution. It is also a configuration option in that users can choose whether or not a particular package is loaded into the configuration, and which version of that package should be loaded. It is also a component in that it can contain additional components and options in a hierarchy.</p>
+
+<p>A <code>&lt;package&gt;</code> can have most of the properties and behaviour of a <code>&lt;component&gt;</code>, but with some limitations (see the Unavailable properties below)</p>
+
+<p>The top-level XCDL script for a package should begin with a <code>&lt;package&gt;</code> object.</p>
+
+<h3>Containers</h3>
+
+<p><em>Packages</em> are inherently containers, so they include <code>&lt;component&gt;</code>, <code>&lt;option&gt;</code>, <code>&lt;interface&gt;</code>, <code>&lt;toolchain&gt;</code> objects that should go below this object in the configuration hierarchy.</p>
+
+<h3>Optional properties</h3>
+
+<ul>
+<li>  <code>&lt;activeIf&gt;</code> - a list of expressions to be evaluated; if all are true, the active state of this package remains true</li>
+<li>  <code>&lt;category&gt;</code> - provides additional grouping information, to allow a configuration tool to provide appropriate selections (board | synthetic | root | architecture | family)</li>
+<li>  <code>&lt;childrenGeneratedFile&gt;</code> - the full path file name of the header where the children nodes will generate a definition (if missing, inherited from the parent node)</li>
+<li>  <code>&lt;defaultEnabled&gt;</code> - a boolean expression that provides an initial value for the package enabled/disabled state</li>
+<li>  <code>&lt;defaultValue&gt;</code> - an expression to be used as a default value for this package, when the user does not define it explicitly during the configuration process</li>
+<li>  <code>&lt;generatedDefinition&gt;</code> - a valid C preprocessor identifier to be defined in the header file if the package is active and enabled</li>
+<li>  <code>&lt;generatedFile&gt;</code> - the full path file name of the header where the package will generate a definition (if missing, inherited from the parent node)</li>
+<li>  <code>&lt;implements&gt;</code> - a list of ids of the interfaces implemented by this package</li>
+<li>  <code>&lt;includeXcdl&gt;</code> - a list of XCDL metadata files to be parsed and whose objects to be included as children of the current node</li>
+<li>  <code>&lt;parent&gt;</code> - provides a method to break the default hierarchy and directly specify the id of the parent of this package</li>
+<li>  <code>&lt;requires&gt;</code> - a list of ids of other objects to be enabled when this package is enabled</li>
+<li>  <code>&lt;sourceFile&gt;</code> - a list of source files that should be built if this package is active and enabled</li>
+</ul>
+
+<h3>Unavailable properties</h3>
+
+<ul>
+<li>  <code>&lt;computed&gt;</code> - the package's value cannot be computed</li>
+<li>  <code>&lt;configurable&gt;true&lt;/configurable&gt;</code> - packages can always be enabled/disabled by the user during the configuration process</li>
+<li>  <code>&lt;valueType&gt;none&lt;/valueType&gt;</code> - packages do not have an associated value (might be changed to return the package version, when implemented)</li>
+<li>  <code>&lt;valueFormat&gt;</code> - if the header definition is generated, the value will always be (1)</li>
+<li>  <code>&lt;legalValues&gt;</code> - no restrictions can apply to package values</li>
+</ul>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;package name="infra"&gt;
+
+  &lt;display&gt;Infrastructure&lt;/display&gt;
+  &lt;description&gt;Common types and useful macros.
+  Tracing and assertion facilities.
+  Package startup options.&lt;/description&gt;
+
+  &lt;generatedFile&gt;os/infra/infra.h&lt;/generatedFile&gt;
+  &lt;generatedDefinition&gt;OS_PACKAGE_INFRA&lt;/generatedDefinition&gt;
+  &lt;sourceFile&gt;startup.cpp&lt;/sourceFile&gt;
+  &lt;sourceFile&gt;prestart.cpp&lt;/sourceFile&gt;
+  &lt;sourceFile&gt;pkgstart.cpp&lt;/sourceFile&gt;
+  &lt;sourceFile&gt;userstart.cpp&lt;/sourceFile&gt;
+
+&lt;/package&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-6">The <code>&lt;repository&gt;</code> object</h2>
+
+<h3>Purpose</h3>
+
+<p>Define a repository, a special package.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;repository name="..."&gt;
+
+    &lt;display&gt;...&lt;/display&gt;
+    &lt;description&gt;...&lt;/description&gt;
+
+    ... other properties ...
+    ... children objects ...
+
+&lt;/repository&gt;
+</code></pre>
+</div>
+<h3>Description</h3>
+
+<p>The <code>&lt;repository&gt;</code> object is the root node of a component repository. A <code>&lt;repository&gt;</code> can have all the properties and behaviour of a <code>&lt;package&gt;</code>.</p>
+
+<h3>Containers</h3>
+
+<p><code>&lt;repository&gt;</code> are inherently containers, so they include <code>&lt;package&gt;</code>, <code>&lt;component&gt;</code>, <code>&lt;option&gt;</code> and <code>&lt;interface&gt;</code> objects that should go below this object in the configuration hierarchy.</p>
+
+<h3>Optional properties</h3>
+
+<ul>
+<li>  <code>&lt;activeIf&gt;</code> - a list of expressions to be evaluated; if all are true, the active state of this repository remains true</li>
+<li>  <code>&lt;buildSubFolder&gt;</code> - a subfolder below the build folder where the files related to this repository will be stored</li>
+<li>  <code>&lt;category&gt;root&lt;/category&gt;</code> - provides additional grouping information, to allow a configuration tool to provide appropriate selections</li>
+<li>  <code>&lt;childrenGeneratedFile&gt;</code> - the full path file name of the header where the children nodes will generate a definition (if missing, inherited from the parent node)</li>
+<li>  <code>&lt;defaultEnabled&gt;</code> - a boolean expression that provides an initial value for the repository enabled/disabled state</li>
+<li>  <code>&lt;defaultValue&gt;</code> - an expression to be used as a default value for this repository, when the user does not define it explicitly during the configuration process</li>
+<li>  <code>&lt;generatedDefinition&gt;</code> - a valid C preprocessor identifier to be defined in the header file if the repository is active and enabled</li>
+<li>  <code>&lt;generatedFile&gt;</code> - the full path file name of the header where the repository will generate a definition (if missing, inherited from the parent node)</li>
+<li>  <code>&lt;implements&gt;</code> - a list of ids of the interfaces implemented by this package</li>
+<li>  <code>&lt;includeXcdl&gt;</code> - a list of XCDL metadata files to be parsed and whose objects to be included as children of the current node</li>
+<li>  <code>&lt;requires&gt;</code> - a list of ids of other objects to be enabled when this package is enabled</li>
+<li>  <code>&lt;sourceFile&gt;</code> - a list of source files that should be built if this package is active and enabled</li>
+<li>  <code>&lt;sourcesPaths&gt;</code> - a list of paths where to search for the sources files</li>
+</ul>
+
+<h3>Unavailable properties</h3>
+
+<ul>
+<li>  <code>&lt;computed&gt;</code> - the repository's value cannot be computed</li>
+<li>  <code>&lt;configurable&gt;true&lt;/configurable&gt;</code> - repository can always be enabled/disabled by the user during the configuration process</li>
+<li>  <code>&lt;legalValues&gt;</code> - no restrictions can apply to repository values</li>
+<li>  <code>&lt;parent&gt;</code> - root nodes have no parents</li>
+<li>  <code>&lt;valueType&gt;none&lt;/valueType&gt;</code> - repository do not have an associated value (might be changed to return the package version, when implemented)</li>
+<li>  <code>&lt;valueFormat&gt;</code> - if the header definition is generated, the value will always be (1)</li>
+</ul>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;repository name="µOS++"&gt;
+
+    &lt;display&gt;The µOS++ SE repository&lt;/display&gt;
+    &lt;description&gt;All µOS++ Second Edition components are below this node.&lt;/description&gt;
+
+    &lt;!-- Mark this as the root of the component repository (informative) --&gt;
+    &lt;category&gt;root&lt;/category&gt;
+
+    &lt;!-- The list of possible relative paths where the sources can be located,
+    starting from package root folder.
+    This value is inherited by all children. --&gt;
+    &lt;sourcesPath&gt;src&lt;/sourcePath&gt;
+    &lt;sourcesPath&gt;.&lt;/sourcePath&gt;
+
+    &lt;!-- Each component tree will generate a subfolder below the build folder. --&gt;
+    &lt;buildSubFolder&gt;micro-os-plus&lt;/buildSubFolder&gt;
+
+    &lt;!-- The default dynamically generated header file, where all definitions that
+    call for inclusions must be created. --&gt;
+    &lt;generatedFile&gt;include/portable/core/include/XCDL_Build_Defines.h&lt;/generatedFile&gt;
+
+    &lt;!-- The folders where to search for include files during build --&gt;
+
+    &lt;!-- Each repository must contribute an include path to it's root. --&gt;
+    &lt;buildIncludeFolder&gt;$(REPO_DIR)&lt;/buildIncludeFolder&gt;
+    &lt;!-- In addition, the folder where the dynamically generated header files
+     are stored is also used as include folder. --&gt;
+    &lt;buildIncludeFolder&gt;$(BUILD_DIR)/include&lt;/buildIncludeFolder&gt;
+
+&lt;/repository&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-7">The <code>&lt;interface&gt;</code> object</h2>
+
+<h3>Purpose</h3>
+
+<p>Define an interface, a functionality that can be provided by a number of different implementations.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;interface name="..."&gt;
+
+    &lt;display&gt;...&lt;/display&gt;
+    &lt;description&gt;...&lt;/description&gt;
+
+    ... other properties ...
+    ... children objects ...
+
+&lt;/interface&gt;
+</code></pre>
+</div>
+<h3>Description</h3>
+
+<p>An <code>&lt;interface&gt;</code> is a special type of computed <code>&lt;option&gt;</code> object. It provides an abstraction mechanism that can be used to simplify XCDL expressions. An <code>&lt;interface&gt;</code> can have most of the properties and behaviour of an <code>&lt;object&gt;</code>, but with some limitations (see the Unavailable properties below)</p>
+
+<p>As an example, suppose that some package relies on the presence of code that implements the standard kernel scheduling interface. However the requirement is no more stringent than this, so the constraint can be satisfied by the mlqueue scheduler, the bitmap scheduler, or any additional schedulers that may get implemented in the future. A first attempt at expressing the dependency might be:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;requires&gt;isEnabled('kernel/schedMlqueue') || isEnabled('kernel/schedBitmap')&lt;/requires&gt;
+</code></pre>
+</div>
+<p>This constraint is limited, it may need to be changed if a new scheduler were to be added to the system. Interfaces provide a way of expressing more general relationships:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;requires&gt;implementationsOf('kernel/scheduler') == 1&lt;/requires&gt;
+</code></pre>
+</div>
+<p>The interface <em>kernel/scheduler</em> is implemented by both the mlqueue and bitmap schedulers, and may be implemented by future schedulers as well. The value of an interface is the number of implementors that are active and enabled, so in a typical configuration only one scheduler will be in use and the value of the interface will be 1. If all schedulers are disabled then the interface will have a value 0 and the <code>&lt;requires&gt;</code> constraint will not be satisfied.</p>
+
+<p>Some component writers may prefer to use the first <code>&lt;requires&gt;</code> constraint on the grounds that the code will only have been tested with the mlqueue and bitmap schedulers and cannot be guaranteed to work with any new schedulers. Other component writers may take a more optimistic view and assume that their code will work with any scheduler until proven otherwise.</p>
+
+<p>
+<interface> is defined a XML element that has one name attribute and a body. Within a single configuration, names must be unique. If a configuration contained two packages which defined the same entity, any references to that entity in a <code>&lt;requires&gt;</code> property or any other expression would be ambiguous. It is possible for a given name to be used by two different packages if those packages should never be loaded into a single configuration. For example, architectural HAL packages are allowed to reuse names because a single configuration cannot target two different architectures. For a recommended naming convention see the Section called Package Contents and Layout in <a href="/XCDL_packages">XCDL packages</a>.</interface>
+</p>
+
+<p>A commonly used constraint on interface values takes the form:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;requires&gt;implementationsOf('kernel/scheduler') == 1&lt;/requires&gt;
+</code></pre>
+</div>
+<p>This constraint specifies that there can be only one scheduler in the system. In some circumstances it is possible for the configuration tools to detect this pattern and act accordingly, so for example enabling the bitmap scheduler would automatically disable the mlqueue scheduler.</p>
+
+<h3>Containers</h3>
+
+<p><em>Interfaces</em> are not containers, so they cannot hold other objects such as <code>&lt;option&gt;</code> or <code>&lt;component&gt;</code> objects.</p>
+
+<h3>Optional properties</h3>
+
+<ul>
+<li>  <code>&lt;activeIf&gt;</code> - a list of expressions to be evaluated; if all are true, the active state of this interface remains true</li>
+<li>  <code>&lt;category&gt;</code> - provides additional grouping information, to allow a configuration tool to provide appropriate selections (board | synthetic | root | architecture | family)</li>
+<li>  <code>&lt;defaultEnabled&gt;</code> - a boolean expression that provides an initial value for the interface enabled/disabled state</li>
+<li>  <code>&lt;generatedDefinition&gt;</code> - a valid C preprocessor identifier to be defined in the header file if the interface is active and enabled</li>
+<li>  <code>&lt;generatedFile&gt;</code> - the full path file name of the header where the interface will generate a definition (if missing, inherited from the parent node)</li>
+<li>  <code>&lt;legalValues&gt;</code> - interfaces always have a small numerical value; the legalValues can be used to apply additional constraints such as an upper limit</li>
+<li>  <code>&lt;parent&gt;</code> - provides a method to break the default hierarchy and directly specify the id of the parent of this interface</li>
+<li>  <code>&lt;requires&gt;</code> - a list of ids of other objects to be enabled when this interface is enabled</li>
+<li>  <code>&lt;sourceFile&gt;</code> - a list of source files that should be built if this interface is active and enabled</li>
+<li>  <code>&lt;valueFormat&gt;</code> - control how the interface's value will appear in the configuration header file</li>
+</ul>
+
+<h3>Unavailable properties</h3>
+
+<ul>
+<li>  <code>&lt;computed&gt;</code> - the interface's value is always computed from the number of enable and active implementators</li>
+<li>  <code>&lt;configurable&gt;</code> - interfaces are always enabled and this cannot be changed</li>
+<li>  <code>&lt;defaultValue&gt;</code> - meaningless since the interface's value is always computed</li>
+<li>  <code>&lt;implements&gt;</code> - interfaces cannot implemented other interfaces</li>
+<li>  <code>&lt;valueType&gt;int&lt;/valueType&gt;</code> - interfaces always have integer values</li>
+</ul>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;interface name="scheduler"&gt;
+  &lt;display&gt;Number of schedulers in this configuration&lt;/display&gt;
+
+  &lt;parent&gt;kernel&lt;/parent&gt;
+  &lt;requires&gt;1 == implementationsOf('kernel/scheduler')&lt;/requires&gt;
+&lt;/interface&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-8">The <code>&lt;toolchain&gt;</code> object</h2>
+
+<h3>Purpose</h3>
+
+<p>TBD.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;toolchain name="..."&gt;
+
+    &lt;display&gt;...&lt;/display&gt;
+    &lt;description&gt;...&lt;/description&gt;
+
+    ... other properties ...
+    ... children objects ...
+
+&lt;/toolchain&gt;
+</code></pre>
+</div>
+<h3>Description</h3>
+
+<p>TBD</p>
+
+<h3>Containers</h3>
+
+<p><em>Toolchains</em> are containers, so they can hold other <code>&lt;toolchain&gt;</code> objects. <em>Toolchains</em> are generally hierarchical, and are placed below a <code>&lt;package&gt;</code> object.</p>
+
+<h3>Optional properties</h3>
+
+<ul>
+<li>  compilerObjectsExtension</li>
+<li>  compilerDepsOptions</li>
+<li>  compilerOutputOptions</li>
+<li>  compilerInputOptions</li>
+<li>  compilerWarningOptions</li>
+<li>  compilerMiscOptions</li>
+<li>  compilerDebugOptions</li>
+<li>  compilerOptimisationOptions</li>
+<li>  compilerCpu</li>
+<li>  compilerPreprocessorOptions</li>
+<li>  linkerMiscOptions</li>
+<li>  programNamePrefix</li>
+<li>  programNameSuffix</li>
+<li>  makeObjectsVariable</li>
+<li>  children</li>
+<li>  includeXcdl</li>
+<li>  platformSystem</li>
+<li>  parent</li>
+<li>  category</li>
+</ul>
+
+<h3>Tools</h3>
+
+<ul>
+<li>  cc</li>
+<li>  cpp</li>
+<li>  ld</li>
+<li>  asm</li>
+</ul>
+
+<h3>Example</h3>
+
+<p>TBD</p>
+
+<h2 id="tocAnchor-1-9">The <code>&lt;configuration&gt;</code> object</h2>
+
+<h3>Purpose</h3>
+
+<p>TBD.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;configuration name="..."&gt;
+
+    &lt;display&gt;...&lt;/display&gt;
+    &lt;description&gt;...&lt;/description&gt;
+
+    ... other properties ...
+    ... children objects ...
+
+&lt;/configuration&gt;
+</code></pre>
+</div>
+<h3>Description</h3>
+
+<p>TBD</p>
+
+<h3>Containers</h3>
+
+<p><em>Configurations</em> are containers, so they can hold other <code>&lt;configuration&gt;</code>. <code>&lt;configuration&gt;</code> are generally hierarchical, and they are placed below a <code>&lt;component&gt;</code> related to the source files where the main() artefact code is located.</p>
+
+<h3>Optional properties</h3>
+
+<ul>
+<li>  artifactFileName</li>
+<li>  buildConfigurationName</li>
+<li>  buildFolder</li>
+<li>  children</li>
+<li>  loadPackages</li>
+<li>  options</li>
+<li>  preprocessorSymbols</li>
+<li>  requires</li>
+<li>  toolchain</li>
+</ul>
+
+<h3>Example</h3>
+
+<p>TBD</p>
+
+<h2 id="tocAnchor-1-10">The <code>&lt;activeIf&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Allow additional control over the active state of a configuration object.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;activeIf&gt;condition 1&lt;/activeIf&gt;
+  &lt;activeIf&gt;condition 2&lt;/activeIf&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;activeIf&gt;</code> property is a condition to be evaluated, usually to check hardware properties; if all these expressions are true, the active state of this object is true. Multiple instances of this property are allowed.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, no additional constraints are considered, the object is active.</p>
+
+<h3>Description</h3>
+
+<p>Configuration options or other objects may be either active or inactive. Typically this is controlled by the object's location in the overall hierarchy. Consider the option OS_DEBUG_INFRA_DEBUG_PRECONDITIONS, which exists below the component OS_DEBUG_USE_ASSERT. If the whole component is disabled then all options it contains are inactive: there is no point in enabling preconditions unless there is generic assertion support; any requirements constraints associated with preconditions are irrelevant; any <code>&lt;sourceFile&gt;</code> property or other build-related property is ignored.</p>
+
+<p>In some cases the hierarchy does not provide sufficient control over whether or not a particular object should be active. For example, the math library could have support for floating point exceptions which is only worthwhile if the hardware implements appropriate functionality, as specified by the architectural HAL. The relevant math library configuration options should remain below the OS_PACKAGE_LIBM package in the overall hierarchy, but should be inactive unless there is appropriate hardware support. In cases like this an <code>&lt;activeIf&gt;</code> property is appropriate.</p>
+
+<p>Another common use of <code>&lt;activeIf&gt;</code> properties is to avoid excessive nesting in the configuration hierarchy. If some option B is only relevant if option A is enabled, it is possible to turn A into a component that contains B. However adding another level to the hierarchy for a component which will contain just one entry may be considered excessive. In such cases it is possible for B to have an <code>&lt;activeIf&gt;</code> dependency on A.</p>
+
+<p><code>&lt;activeIf&gt;</code> takes a list of goal expressions as argument and all of the conditions have to be satisfied for the object to be active. For details of goal expression syntax see see the Section called Goal Expressions in <a href="/XCDL_packages">XCDL packages</a>. In most cases the goal expressions will be very simple, often involving just one other object, but more complicated expressions can be used when appropriate.</p>
+
+<p>The <code>&lt;activeIf&gt;</code> and <code>&lt;requires&gt;</code> properties have certain similarities, but they serve a different purpose. Suppose there are two options A and B, and option B relies on functionality provided by A. This could be expressed as either <em>B activeIf A</em> or as <em>B requires A</em>. The points to note are:</p>
+
+<ul>
+<li>  If <em>B activeIf A</em> is used and A is disabled or inactive, then configuration (graphical) tools will generally prevent any attempt at modifying B. For example the text for B could be grayed out, and the associated checkbutton (if B is a boolean option) would be disabled. If the user needs the functionality provided by option B then it is necessary to go to option A first and manipulate it appropriately.</li>
+<li>  If <em>B requires A</em> is used and A is disabled or inactive, graphical tools will still allow B to be manipulated and enabled. This would result in a new conflict which may get resolved automatically or which may need user intervention.</li>
+<li>  If there are hardware dependencies then an <code>&lt;activeIf&gt;</code> condition is usually the preferred approach. There is no point in allowing the user to manipulate a configuration option if the corresponding functionality cannot possibly work on the currently selected hardware. Much the same argument applies to coarse-grained dependencies, for example if an option depends on the presence of a TCP/IP stack then an activeIf OS_PACKAGE_NET condition is appropriate: it may be possible to satisfy the condition, but it requires the fairly drastic step of loading another package; further more, if the user wanted a TCP/IP stack in the configuration then it would probably have been loaded already.</li>
+<li>  If option B exists to provide additional debugging information about the functionality provided by A then again an <code>&lt;activeIf&gt;</code> constraint is appropriate. There is no point in letting users enable extra debugging facilities for a feature that is not actually present.</li>
+<li>  The configuration system’s inference engine will cope equally well with <code>&lt;activeIf&gt;</code> and <code>&lt;requires&gt;</code> properties. Suppose there is a conflict because some third option depends on B. If <em>B activeIf A</em> then the inference engine will attempt to make A active and enabled, and then to enable B if necessary. If B requires A then the inference engine will attempt to enable B and resolve the resulting conflict by causing A to be both active and enabled. Although the inference occurs in a different order, in most cases the effect will be the same.</li>
+</ul>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;!-- Do not provide extra semaphore debugging if there are no semaphores --&gt;
+&lt;option name="binsem"&gt;
+
+  &lt;parent&gt;kernel/instrument&lt;/parent&gt;
+  &lt;activeIf&gt;isEnabled('kernel/synch')&lt;/activeIf&gt;
+  &lt;generatedDefinition&gt;OS_DEBUG_KERNEL_INSTRUMENT_BINSEM&lt;/generatedDefinition&gt;
+  ...
+&lt;/option&gt;
+
+&lt;!-- Avoid another level in the configuration hierarchy --&gt;
+&lt;option name="relay"&gt;
+
+  &lt;parent&gt;kernel/synch/mutex/priorityInheritance/simple&lt;/parent&gt;
+  &lt;activeIf&gt;isEnabled('kernel/synch/mutex/priorityInheritance/simple')&lt;/activeIf&gt;
+  &lt;generatedDefinition&gt;OS_PACKAGE_KERNEL_SYNCH_MUTEX_PRIORITY_INHERITANCE_SIMPLE_RELAY&lt;/generatedDefinition&gt;
+  ...
+&lt;/option&gt;
+
+&lt;!-- Functionality that is only relevant if another package is loaded --&gt;
+&lt;option name="uitron compatibility"&gt;
+
+  &lt;parent&gt;start&lt;/parent&gt;
+  &lt;generatedDefinition&gt;OS_PACKAGE_START_UITRON_COMPATIBILITY&lt;/generatedDefinition&gt;
+  &lt;activeIf&gt;isLoaded('uitron')&lt;/activeIf&gt;
+  ...
+&lt;/option&gt;
+
+&lt;!-- Check that the hardware or HAL provide the appropriate functionality --&gt;
+&lt;option name="break support"&gt;
+
+  &lt;parent&gt;hal/debug/gdb/breakSupport&lt;/parent&gt;
+  &lt;generatedDefinition&gt;OS_DEBUG_HAL_DEBUG_GDB_BREAK_SUPPORT&lt;/generatedDefinition&gt;
+  &lt;activeIf&gt;isEnabled('hal/debug/gdb/stubsBreak')&lt;/activeIf&gt;
+  ...
+&lt;/option&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-11">The <code>&lt;category&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Define additional grouping information, to allow a configuration tool to provide appropriate selections.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;category&gt;string&lt;/category&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;category&gt;</code> property is a string.</p>
+
+<h3>Default value</h3>
+
+<p>If missing no category is assigned to the current object.</p>
+
+<h3>Description</h3>
+
+<p>Configuration tools usually should be able to provide some choices to various selections, for example to choose from the hardware platform the build is intended for. For this to work, specific packages should be marked with additional metadata, recognised by the configuration tools.</p>
+
+<p>Examples of such metadata are:</p>
+
+<ul>
+<li>  'board' - for hardware boards</li>
+<li>  'synthetic' - for synthetic platforms</li>
+</ul>
+
+<p>Other metadata can be purely informative, like the kind of the object:</p>
+
+<ul>
+<li>  'root'</li>
+<li>  'architecture'</li>
+<li>  'family'</li>
+</ul>
+
+<p>It is recommended to use this extra metadata for <code>&lt;package&gt;</code> objects.</p>
+
+<h3>Example</h3>
+
+<p>TBD</p>
+
+<h2 id="tocAnchor-1-12">The <code>&lt;childrenGeneratedFile&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Specify the configuration header file that will be generated for the children of a given component.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;component name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;childrenGeneratedFile&gt;file name&lt;/childrenGeneratedFile&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/component&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;childrenGeneratedFile&gt;</code> property is a string containing a file name.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, the definition from the parent node is used, first the <code>&lt;childrenGeneratedFile&gt;</code> then <code>&lt;generatedFile&gt;</code>.</p>
+
+<h3>Description</h3>
+
+<p>When the configuration tools generate a build tree, one of the steps is to output each objects’s configuration data to a header file. Instead of defining a <code>&lt;generatedFile&gt;</code> for each individual <em>Option</em> of a <em>Component</em>, it is recommended to define the file once, in the parent <em>Component</em>, and this definition will be used for all children nodes without a <code>&lt;generatedFile&gt;</code>.</p>
+
+<p>The name specified in a <code>&lt;childrenGeneratedFile&gt;</code> property will always be interpreted as relative to the build folder.</p>
+
+<h3>Example</h3>
+
+<p>TBD</p>
+
+<h2 id="tocAnchor-1-13">The <code>&lt;computed&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Used if the current option’s value is not user-modifiable, but is computed using a suitable XCDL expression.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;computed&gt;expression&lt;/computed&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;computed&gt;</code> property is an expression to be evaluated each time the object is refered.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, no computed value is used.</p>
+
+<h3>Description</h3>
+
+<p>In some cases it is useful to have a configuration option whose value cannot be modified directly by the user. This can be achieved using a <code>&lt;computed&gt;</code> property, which takes an XCDL expression as argument (see the Section called Ordinary Expressions in <a href="/XCDL_packages">XCDL packages</a> for a description of expression syntax). The configuration system evaluates the expression whenever needed to generate the header line or when referred from another expression. The result depends on the object’s <code>&lt;valueType&gt;</code>:</p>
+
+<ul>
+<li>  <code>&lt;valueType&gt;none&lt;/valueType&gt;</code> - objects with this type have no value, so the computed property is not applicable</li>
+<li>  <code>&lt;valueType&gt;bool&lt;/valueType&gt;</code> - the expression should evaluate to a boolean value</li>
+<li>  <code>&lt;valueType&gt;number&lt;/valueType&gt;</code> - the expression should evaluate to a number, integer or float</li>
+<li>  <code>&lt;valueType&gt;string&lt;/valueType&gt;</code> - the expression should evaluate to a string</li>
+</ul>
+
+<p>There are a number of valid uses for calculated options, and there are also many cases where some other XCDL facility would be more appropriate.</p>
+
+<p>Valid uses of computed objects include the following:</p>
+
+<ul>
+<li><p>On some target hardware a particular feature may be user-configurable, while on other targets it is fixed. For example some processors can operate in either big-endian or little-endian mode, while other processors do not provide any choice. It is possible to have an option OS_BOOL_BIGENDIAN which is calculated in some architectural HAL packages but user-modifiable in others.</p></li>
+<li><p>Computed objects can provide an alternative way for one package to affect the behavior of another one. Suppose a package may provide two possible implementations, a preferred one involving self-modifying code and a slower alternative. If the system involves a ROM bootstrap then the slower alternative must be used, but it would be inappropriate to modify the startup option in every HAL to impose constraints on this package. Instead it is possible to have a calculated option whose value is <code>{ OS_HAL_STARTUP == "ROM" }</code>, and which has appropriate consequences. Arguably this is a spurious example, and it should be a user choice whether or not to use self-modifying code with a defaultValue based on OS_HAL_STARTUP, but that is for the component writer to decide.</p></li>
+<li><p>Sometimes it should be possible to perform a particular test at compile-time, for example by using a C/C++ preprocessor <code>#if</code> construct. However the preprocessor has only limited functionality, for example it cannot perform string comparisons. XCDL expressions are more powerful.</p></li>
+<li><p>Occasionally a particular sub-expression may occur multiple times in a XCDL script. If the sub-expression is sufficiently complex then it may be worthwhile to have a calculated option whose value is the sub-expression, and then reference that calculated option in the appropriate places.</p></li>
+</ul>
+
+<p>Alternatives to using calculated options include the following:</p>
+
+<ul>
+<li>  XCDL <em>Interfaces</em> are a form of computed objects intended as an abstraction mechanism. For example, an interface can be used to express the concept of any scheduler, as opposed to a specific one such as the bitmap scheduler.</li>
+</ul>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;!-- A constant on some target hardware, perhaps user-modifiable on other targets. --&gt;
+&lt;option name="period"&gt;
+
+  &lt;parent&gt;hal/rtc&lt;/parent&gt;
+  &lt;display&gt;Real-time clock period&lt;/display&gt;
+  &lt;valueType&gt;int&lt;/valueType&gt;
+  &lt;computed&gt;12500&lt;/computed&gt;
+&lt;/option&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-14">The <code>&lt;configurable&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Define whether the current object can be manually changed by the user during the configuration process.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;configurable&gt;true | false | expression&lt;/configurable&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;configurable&gt;</code> property is the <em>true/false</em> constant or an expression evaluating to a boolean value.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, the default is <em>true</em>, all objects are configurable.</p>
+
+<h3>Description</h3>
+
+<p>Most of the objects can be individually configured using the configuration (graphical) tools, but some are automatically computed and the user shouldn't be allowed to change them.</p>
+
+<p>Setting <code>&lt;configurable&gt;false&lt;/configurable&gt;</code> will instruct the configuration tools to no longer allow the user to enable/disable the object. For graphical tools, the object will be greyed.</p>
+
+<p>Objects marked as non-configurable can still be active or inactive, this property does not affect the functional behaviour during builds, but only the behaviour of the configuration tools.</p>
+
+<h3>Example</h3>
+
+<p>TBD</p>
+
+<h2 id="tocAnchor-1-15">The <code>&lt;defaultEnable&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Define whether the current object is initially enabled or not.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;defaultEnable&gt;true | false | expression&lt;/defaultEnable&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;defaultEnable&gt;</code> property is the <em>true/false</em> constant or an expression evaluating to a boolean value.</p>
+
+<p>If the value is constant, it is evaluated when parsing the file, if the value is a string, it is evaluated in a separate step that process the entire configurations trees, before processing the requirements.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, the default is <em>true</em>, all objects are enabled.</p>
+
+<h3>Description</h3>
+
+<p>The configuration trees are usually large, and not all objects are required in a specific configuration, so the need to individually enable/disable them.</p>
+
+<p>This property controls the initial state of the object, since goal expressions can enable individual objects to satisfy requirements. Objects marked as enabled can still be active or inactive.</p>
+
+<p>Disabling a component or package automatically disables all children objects.</p>
+
+<h3>Example</h3>
+
+<p>TBD</p>
+
+<h2 id="tocAnchor-1-16">The <code>&lt;defaultValue&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Provide a default value for this option using an XCDL expression.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;defaultValue&gt;expression&lt;/defaultValue&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;defaultValue&gt;</code> property is a string containing an expression to be evaluated each time the object is referred.</p>
+
+<h3>Default value</h3>
+
+<p>If missing the default object value depends on the object state, active objects have the value 1/true and non active objects have the value 0/false.</p>
+
+<h3>Description</h3>
+
+<p>The <code>&lt;defaultValue&gt;</code> property usually allows to define the default value for the object, in case no other value is set during configuration.</p>
+
+<p>The arguments to the <code>&lt;defaultValue&gt;</code> property should be an XCDL expression, see the Section called Ordinary Expressions in <a href="/XCDL_packages">XCDL packages</a> for the syntactic details. In many cases a simple constant value will suffice.</p>
+
+<p>However it is also possible for an object’s default value to depend on other objects. For example the common HAL package provides some support functions that are needed by the kernel, but are unlikely to be useful if the kernel is not being used.</p>
+
+<p>If the kernel is loaded then this HAL option is automatically enabled, although the user can still disable it explicitly should this prove necessary. If the kernel is not loaded then the option is disabled, although it can still be enabled by the user if desired. <code>&lt;defaultValue&gt;</code> expressions can be more complicated than this if appropriate, and provide a very powerful facility for component writers who want their code to “just do the right thing” in a wide variety of configurations.</p>
+
+<p>An object can have at most one <code>&lt;defaultValue&gt;</code> property, and it is illegal to have both a <code>&lt;computed&gt;</code> and a <code>&lt;defaultValue&gt;</code> property in one body. If an object does not have either a <code>&lt;defaultValue&gt;</code> or a <code>&lt;computed&gt;</code> property and it does not have the <code>&lt;valueType&gt;</code> none then the configuration tools will assume a default value expression of 1/true if the object is active and 0/false otherwise.</p>
+
+<p>On occasion it is useful to have a configuration object A which has both a <code>&lt;requires&gt;</code> constraint on some other object B and a <code>&lt;defaultValue&gt;</code> expression of B. If option B is not enabled then A will also be disabled by default and no conflict arises. If B is enabled then A also becomes enabled and again no conflict arises. If a user attempts to enable B but not A then there will be a conflict. Users should be able to deduce that the two options are closely interlinked and should not be manipulated independently except in very unusual circumstances.</p>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="threadSupport"&gt;
+
+  &lt;parent&gt;hal/debug/gdb&lt;/parent&gt;
+  &lt;display&gt;Include GDB multi-threading debug support&lt;/display&gt;
+  &lt;description&gt;This option enables some extra HAL code which is needed
+  to support multi-threaded source level debugging.&lt;/description&gt;
+
+  &lt;generatedDefinition&gt;OS_DEBUG_HAL_DEBUG_GDB_THREAD_SUPPORT&lt;/generatedDefinition&gt;
+  &lt;requires&gt;isEnabled('kernel/debug/gdb/threadSupport')&lt;/requires&gt;
+  &lt;defaultValue&gt;valueOf('kernel/debug/gdb/threadSupport')&lt;/defaultValue&gt;
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-17">The <code>&lt;generatedDefinition&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Define the name of the header variable to be generated.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;generatedDefinition&gt;name&lt;/generatedDefinition&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;generatedDefinition&gt;</code> property is a string containing a C/C++ preprocessor identifier.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, no header definition is generated for this object.</p>
+
+<h3>Description</h3>
+
+<p>In order for a header definition to be generated, the full path of the include file where it will be added and the name of the preprocessor symbol is needed. The file name is provided by <code>&lt;generatedFile&gt;</code> and the preprocessor symbol by <code>&lt;generatedDefinition&gt;</code>.</p>
+
+<p>The name must be a valid C/C++ preprocessor identifier: a sequence of upper or lower case letters, digits or underscores, starting with a non-digit character; identifiers beginning with an underscore should normally be avoided because they may clash with system packages or with identifiers reserved for use by the compiler.</p>
+
+<p>Within a single configuration, names must be unique. If a configuration contained two packages which defined the same entity <code>OS_INTEGER_SOME_OPTION</code>, any references to that entity in a <code>&lt;requires&gt;</code> property or any other expression would be ambiguous. It is possible for a given name to be used by two different packages if those packages should never be loaded into a single configuration. For example, architectural HAL packages are allowed to reuse certain names because a single configuration cannot target two different architectures. For a recommended naming convention see the Section called Package Contents and Layout in <a href="/XCDL_packages">XCDL packages</a>.</p>
+
+<p>For active and enabled objects, if the <code>&lt;generatedDefinition&gt;</code> property is defined, a line with the following structure will be generated in the file pointed by the <code>&lt;generatedFile&gt;</code> property:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text"> #define &lt;name&gt; &lt;value&gt;
+</code></pre>
+</div>
+<p>The format of the value is defined by the <code>&lt;valueFormat&gt;</code> property.</p>
+
+<p>For objects with type string, a second line should be generated, with the value concatenated to the name (if the resulting string can somehow be represented as a C/C++ preprocessor identifier):</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text"> #define &lt;name&gt;_&lt;value&gt;
+</code></pre>
+</div>
+<h3>Example</h3>
+
+<p>TBD</p>
+
+<h2 id="tocAnchor-1-18">The <code>&lt;generatedFile&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Specify the configuration header file that will be generated for a given component, usually a package.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;generatedFile&gt;file name&lt;/generatedFile&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the generatedFile property is a string containing a file name.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, the definition from the parent node is used, first the <code>&lt;childrenGeneratedFile&gt;</code>, then the <code>&lt;generatedFile&gt;</code>.</p>
+
+<h3>Description</h3>
+
+<p>When the configuration tools generate a build tree, one of the steps is to output each objects’s configuration data to a header file. For example the kernel’s configuration data gets output to <em>include/xcdl/kernel.h</em>. This allows each package’s source code to <code>#include</code> the appropriate header file and adapt to the choices made by the user.</p>
+
+<p>If multiple nodes use the same file, it is recommended to define the file only once, in the parent node, using <code>&lt;childrenGeneratedFile&gt;</code>.</p>
+
+<p>The name specified in a <code>&lt;generatedFile&gt;</code> property will always be interpreted as relative to the build folder.</p>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;package name="arm"&gt;
+
+  &lt;display&gt;ARM architecture&lt;/display&gt;
+  &lt;parent&gt;hal&lt;/parent&gt;
+  &lt;hardware/&gt;
+  &lt;generatedFile&gt;os/hal/hal_arm.h&lt;/generatedFile&gt;
+   ...
+&lt;/package&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-19">The <code>&lt;implements&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Inform the framework that one or more general interfaces are implemented.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;implements&gt;interface 1&lt;/implements&gt;
+  &lt;implements&gt;interface 2&lt;/implements&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;implements&gt;</code> property is a list of ids of interfaces the object implements. Multiple instances of this property are allowed.</p>
+
+<h3>Default value</h3>
+
+<p>If missing it is assumed that the current object does not implement any interface.</p>
+
+<h3>Description</h3>
+
+<p>The XCDL interface concept provides an abstraction mechanism that can be useful in many different circumstances. Essentially an interface is a computed option whose value is the number of active and enabled objects which implement that interface. For example the <code>interface('kernel/scheduler')</code> has a value corresponding to the number of schedulers in the system, typically just one.</p>
+
+<p>The implements property takes a single argument, which should be a list of ids of the implemented interfaces (an object may implement multiple interfaces). These interface may be defined in the same package as the implementor or in some other package. In the latter case it may sometimes be appropriate for the implementor or the implementor’s package to have a <code>&lt;requires&gt;</code> property for the package containing the interface.</p>
+
+<p>It is possible for an object to implement a given interface multiple times, but only distinct implementor ids are counted.</p>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="schedMlqueue"&gt;
+
+  &lt;parent&gt;kernel&lt;/parent&gt;
+  &lt;display&gt;Multi-level queue scheduler&lt;/display&gt;
+
+  &lt;generatedDefinition&gt;OS_PACKEGE_KERNEL_SCHED_MLQUEUE&lt;/generatedDefinition&gt;
+  &lt;defaultEnable&gt;true&lt;/defaultEnable&gt;
+  &lt;implements&gt;kernel/scheduler&lt;/implements&gt;
+  ...
+&lt;/option&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-20">The <code>&lt;includeXcdl&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Include additional configuration information from another XCDL definitions file.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;includeXcdl&gt;file 1&lt;/includeXcdl&gt;
+  &lt;includeXcdl&gt;file 2&lt;/includeXcdl&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;includeXcdl&gt;</code> property is a file name containing other XCDL definitions. Multiple properties are allowed.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, no additional XCDL files are parsed as children of the current object.</p>
+
+<h3>Description</h3>
+
+<p>It is possible to define all the configuration options and sub-components for a given package in a single CDL script, either by nesting them in the appropriate command bodies, by extensive use of the parent property, or by some combination of these two. However for large packages this is inconvenient and it is better to split the raw configuration data over several different files. The <code>&lt;includeXcdl&gt;</code> property can be used to achieve this. It takes a list of filenames as argument. If the package follows the directory layout conventions then the configuration tools will look for the specified file in the meta sub-directory of the package, otherwise it will look for the file relative to the package’s top-level directory.</p>
+
+<p>The <code>&lt;includeXcdl&gt;</code> property can only occur in the body of an <code>&lt;component&gt;</code> or <code>&lt;package&gt;</code> object.</p>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;component name="OS_PACKAGE_UITRON_TASKS"&gt;
+
+  &lt;display&gt;Tasks&lt;/display&gt;
+  &lt;description&gt;uITRON Tasks are the basic blocks of multi-tasking
+  in the uITRON world; they are threads or lightweight
+  processes, sharing the address space and the CPU.
+  They communicate using the primitives outlined above.
+  Each has a stack, an entry point (a C or C++ function),
+  and (where appropriate) a scheduling priority.&lt;description&gt;
+
+  &lt;valueType&gt;none&lt;/valueType&gt;
+  &lt;includeXcdl&gt;tasks.xml&lt;/includeXcdl&gt;
+&lt;/component&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-21">The <code>&lt;legalValues&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Impose constraints on the possible values for an option.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;legalValues&gt;...&lt;/legalValues&gt;
+  &lt;legalValues&gt;...&lt;/legalValues&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;legalValues&gt;</code> property is a string containing the restrictions. Multiple instances of this property are allowed.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, no value based constraints are imposed.</p>
+
+<h3>Description</h3>
+
+<p>Options with the number or string valueType can have an arbitrary sequence of characters as their data. In nearly all cases some restrictions have to be imposed, for example the data should correspond to a number within a certain range, or it should be one of a small number of constants. The legalValues property can be used to impose such constraints. The arguments to the property should be an XCDL list expression, see the Section called List Expressions in <a href="/XCDL_packages">XCDL packages</a> for the syntactic details. Common examples include:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;legalValues&gt;0 to 0x7fff&lt;/legalValues&gt;
+&lt;legalValues&gt;9600, 19200, 38400&lt;/legalValues&gt;
+&lt;legalValues&gt;"RAM", "ROM"&lt;/legalValues&gt;
+</code></pre>
+</div>
+<p>The <code>&lt;legalValues&gt;</code> property can only be used for objects with the number or string types, since it makes little sense to further constrain a boolean object.</p>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name=stdDefaultOffset"&gt;
+
+  &lt;parent&gt;libc/time&lt;/parent&gt;
+  &lt;display&gt;Default Standard Time offset&lt;/display&gt;
+  &lt;description&gt;This option controls the offset from UTC in
+                 seconds when in local Standard Time. This
+                 value can be positive or negative. It
+                 can also be set at run time using the
+                 os_libc_time_setzoneoffsets() function.&lt;/description&gt;
+
+  &lt;generatedDefinition&gt;OS_INTEGER_LIBC_TIME_STD_DEFAULT_OFFSET&lt;/generatedDefinition&gt;
+  &lt;valueType&gt;int&lt;/valueType&gt;
+  &lt;legalValues&gt;-90000 to 90000&lt;/legalValues&gt;
+  &lt;defaultValue&gt;0&lt;/defaultValue&gt;
+&lt;/option&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-22">The <code>&lt;parent&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Control the location of an option in the configuration hierarchy.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;parent&gt;...&lt;/parent&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;parent&gt;</code> property is a string containing the id of the parent object.</p>
+
+<h3>Default value</h3>
+
+<p>If missing (the usual case), the surrounding object is considered the natural parent of this object. If none, the package object in the parent folder is used.</p>
+
+<h3>Description</h3>
+
+<p>Configuration objects live in a hierarchy of packages and components. By default a given object’s position in the hierarchy is a simple consequence of its position within the XCDL scripts, based on its position in the folder's hierarchy. Packages are generally placed at the top-level of the configuration. Any <code>&lt;component&gt;</code> or <code>&lt;option&gt;</code> objects that are defined at the same level as the <code>&lt;package&gt;</code> object in a package’s top-level XCDL script are placed immediately below that package in the hierarchy (TBI). Any <code>&lt;option&gt;</code> or <code>&lt;component&gt;</code> objects that are defined in the body of a <code>&lt;package&gt;</code> or <code>&lt;component&gt;</code> command, or that are read in as a result of processing a component’s <code>&lt;includeXcdl&gt;</code> property, will be placed immediately below that <code>&lt;package&gt;</code> or <code>&lt;component&gt;</code> in the hierarchy.</p>
+
+<p>In some circumstances it is useful to specify an alternative position in the hierarchy for a given object. For example it is often convenient to re-parent device driver packages below <code>OS_PACKAGE_IO</code> in the configuration hierarchy, thus reducing the number of packages at the top level of the hierarchy and making navigation easier. The parent property can be used to achieve this.</p>
+
+<p>The parent property takes a single argument, which should be the id of a <code>&lt;package&gt;</code> or <code>&lt;component&gt;</code>.</p>
+
+<p>Although the <code>&lt;parent&gt;</code> property affects an object's position in the overall hierarchy and hence whether or not that object is active, a re-parented object still belongs to the package that defines it (?!?!?!). By default any <code>#define</code>’s will be exported to that package’s configuration header file. Any <code>&lt;sourceFile&gt;</code> properties can only reference source files present in that package, and it is not directly possible to cause some file in another package to be built by re-parenting (???).</p>
+
+<p>As a special case, if an empty string is specified for the parent then the object is placed at the top of the hierarchy, ahead of any packages which are not explicitly re-parented in this way. This facility is useful for configuration options such as global preferences and default compiler flags.</p>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;component name="trace"&gt;
+
+  ...
+
+  &lt;component name="assert buffer"&gt;
+
+    &lt;display&gt;Buffered tracing&lt;/display&gt;
+    &lt;description&gt;An output module which buffers output from tracing and
+    assertion events. The stored messages are output when an
+    assert fires, or OS_TRACE_PRINT() (defined in
+    &lt;os/infra/os_trac.h&gt;) is called. Of course, there will
+    only be stored messages if tracing per se (OS_DEBUG_USE_TRACING) is enabled above.&lt;/description&gt;
+
+    &lt;generatedDefinition&gt;OS_DEBUG_INFRA_DEBUG_TRACE_ASSERT_BUFFER&lt;/generatedDefinition&gt;
+    &lt;defaultEnable&gt;true&lt;/defaultEnable&gt;
+    &lt;activeIf&gt;isEnabled('use tracing')&lt;/activeIf&gt;
+    ...
+  &lt;/component&gt;
+
+  &lt;option name="size"&gt;
+
+    &lt;display&gt;Trace buffer size&lt;/display&gt;
+    &lt;description&gt;The size of the trace buffer. This counts the number of
+    trace records stored. When the buffer fills it either
+    wraps, stops recording, or generates output.&lt;/description&gt;
+
+    &lt;parent&gt;trace/assert buffer&lt;/parent&gt;
+    &lt;valueType&gt;int&lt;/valueType&gt;
+    &lt;defaultValue&gt;32&lt;/defaultValue&gt;
+    &lt;legalValues&gt;5 to 65535&lt;/legalValues&gt;
+  &lt;/option&gt;
+
+&lt;component&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-23">The <code>&lt;requires&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>List constraints that the configuration should enforce/satisfy if a given option is active and enabled.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;requires&gt;expression 1&lt;/requires&gt;
+  &lt;requires&gt;expression 2&lt;/requires&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;requires&gt;</code> property is a string containing expressions to be evaluated as boolean. Multiple instances of this property are allowed.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, no additional requirements will be enforced/checked.</p>
+
+<h3>Description</h3>
+
+<p>Configuration objects are not independent. For example the C library can provide thread-safe implementations of certain functions, but only if the kernel is present, if the kernel provides multi-threading, and if the kernel options related to per-thread data are enabled. It is possible to express such constraints using <code>&lt;requires&gt;</code> properties.</p>
+
+<p>The arguments to a <code>&lt;requires&gt;</code> property should constitute a list of goal expressions, as described in the Section called List Expressions in <a href="/XCDL_packages">XCDL packages</a>. Most goal expressions are relatively simple because the constraints being described are simple, but complicated expressions can be used when necessary. If the object is active and enabled then all these constraints should be satisfied, and any goal expressions which evaluate to 0/false will result in conflicts being raised. It is possible for users to ignore such conflicts and attempt to build the current configuration anyway, but there is no guarantee that anything will work. If an object is inactive or disabled then its <code>&lt;requires&gt;</code> constraints will be ignored.</p>
+
+<p>The configuration system contains an inference engine which can resolve many types of conflicts automatically. For example, if option A is enabled and requires an option B that is currently disabled then the inference engine may attempt to resolve the conflict by enabling B. However this will not always be possible, for example there may be other constraints in the configuration which force B to be disabled at present, in which case user intervention is required.</p>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;component name="serialA"&gt;
+
+  &lt;parent&gt;powerpc/cogent&lt;/parent&gt;
+  &lt;display&gt;Cogent PowerPC serial port A driver&lt;/display&gt;
+
+  &lt;generatedDefinition&gt;OS_PACKAGE_IO_SERIAL_POWERPC_COGENT_SERIAL_A&lt;/generatedDefinition&gt;
+  &lt;valueType&gt;none&lt;/valueType&gt;
+  &lt;defaultEnable&gt;false&lt;/defaultEnable&gt;
+  &lt;requires&gt;(isEnabled('kernel/interruptsChain') || !isEnabled('io/serial/powerpc/cogent/serialB'))&lt;/requires&gt;
+  ...
+&lt;/component&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-24">The <code>&lt;sourceFile&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>List the source files that should be built if this option is active and enabled.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;sourceFile&gt;file 1&lt;/sourceFile&gt;
+  &lt;sourceFile&gt;file 2&lt;/sourceFile&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;sourceFile&gt;</code> property is a file name containing source code to be included in the build. Multiple instances of this property are allowed.</p>
+
+<h3>Default value</h3>
+
+<p>If missing, no source files will be added to the build.</p>
+
+<h3>Description</h3>
+
+<p>The <code>&lt;sourceFile&gt;</code> property allows component developers to specify source files which should be compiled.</p>
+
+<p>Details of the build process including such issues as compiler flags and the order in which things happen can be found in <a href="/The_build_process">The build process</a>.</p>
+
+<p>The <code>&lt;sourceFile&gt;</code> properties can occur in any of <code>&lt;option&gt;</code>, <code>&lt;component&gt;</code>, <code>&lt;package&gt;</code> or <code>&lt;interface&gt;</code> objects. A <code>&lt;sourceFile&gt;</code> property has effect if and only if the object that contains it is active and enabled. Typically the body of a package will define any source files that need to be built irrespective of individual options, and each component, option, and interface will define source files that are more specific. The <code>&lt;sourceFile&gt;</code> property can list any number of source files. It is possible for a given source file to be specified in <code>&lt;sourceFile&gt;</code> properties for several different objects, in which case the source file will get built if any of these objects are active and enabled.</p>
+
+<p>If the package follows the directory layout conventions then the configuration tools will search for the specified source files first in the src subdirectory of the package, then relative to the package directory itself.</p>
+
+<p>Note: A shortcoming of the current specification of <code>&lt;sourceFile&gt;</code> properties is that there is no easy way to specify source files that should be built unless an option is enabled. It would sometimes be useful to be able to say: “if option A is enabled then compile file x.c, otherwise compile file y.c. There are two simple ways of achieving this:</p>
+
+<ul>
+<li><p>Always compile y.c, typically by listing it in the body of the <code>&lt;package&gt;</code>, but use <code>#ifndef A</code> to produce an empty object file if option A is not enabled. This has the disadvantage that the file always gets compiled and hence for some configurations builds will take longer than necessary.</p></li>
+<li><p>Use a computed option whose value is !A, and have a <code>&lt;sourceFile&gt;</code> y.c property in its body. This has the disadvantage of adding another calculated option to the configuration.</p></li>
+</ul>
+
+<p>Note: Currently it is not possible to control the priority of a <code>&lt;sourceFile&gt;</code> property, in other words the order in which a file gets compiled relative to other build steps. This functionality might prove useful for complicated packages and should be added.</p>
+
+<h3>Example</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;package name="infra"&gt;
+
+  &lt;display&gt;Infrastructure&lt;/display&gt;
+  &lt;description&gt;Common types and useful macros.
+        Tracing and assertion facilities.
+        Package startup options.&lt;/description&gt;
+
+  &lt;generatedDefinition&gt;OS_PACKAGE_INFRA&lt;/generatedDefinition&gt;
+  &lt;sourceFile&gt;startup.cpp&lt;/sourceFile&gt;
+  &lt;sourceFile&gt;prestart.cpp&lt;/sourceFile&gt;
+  &lt;sourceFile&gt;pkgstart.cpp&lt;/sourceFile&gt;
+&lt;/package&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-25">The <code>&lt;valueType&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Specify the type of the value associated with a configuration object.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;valueType&gt;type&lt;/valueType&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;valueType&gt;</code> property can be one of the following strings:</p>
+
+<ul>
+<li>  'enabled'</li>
+<li>  'none'</li>
+<li>  'bool'</li>
+<li>  'int'</li>
+<li>  'float'</li>
+<li>  'string'</li>
+</ul>
+
+<h3>Default value</h3>
+
+<p>If missing, the default is <em>none</em>, except for interfaces (where the type is always a non-modifiable <em>int</em>) and for packages (where the type is <em>string</em>, and corresponds to the version of the package).</p>
+
+<h3>Description</h3>
+
+<p>The state of an XCDL configuration option is a somewhat complicated concept. This state determines what happens when a build tree is generated: it controls what files get built and what <code>#define</code>’s end up in configuration header files. The state also controls the values used during expression evaluation. The key concepts are:</p>
+
+<ul>
+<li><p>An object may or may not be loaded into the current configuration. However it is still possible for packages to reference objects which are not loaded, in a <code>&lt;requires&gt;</code> constraint or other expression. If an object is not loaded then it will have no direct effect on the build process, and 0/false will be used for expression evaluation.</p></li>
+<li><p>Even if an object is loaded it may still be inactive. Usually this is controlled by the object's location in the configuration hierarchy. If an object's parent is active and enabled then the option will normally be active. If the parent is either inactive or disabled then the object will be inactive. For example, if kernel timeslicing is disabled then <code>isEnabled('kernel/sched/timeslice/ticks')</code> is false and must have no effect. The <code>&lt;activeIf&gt;</code> property can be used to specify additional constraints. If an object is inactive then it will have no direct effect on the build process, in other words it will not cause any files to get built or <code>#define</code>’s to be generated. For the purposes of expression evaluation an inactive object has <code>isActive('...') == false</code>, <code>isEnabled('...') == false</code> and <code>valueOf(...)</code> returns 0/false.</p></li>
+<li><p>An object may be enabled or disabled. Most object are simple selections, for example a particular function may get inlined or it may involve a full procedure call. If an object is disabled then it has no direct effect on the build process, and for the purposes of expression evaluation <code>isEnabled('...') == false</code> and it has a <code>valueOf('...')</code> 0/false.</p></li>
+<li><p>An object may also have additional data associated with it, for example a numerical value used to control the size of an array, or a string used to define a greeting message.</p></li>
+</ul>
+
+<p>Most objects are simple selections and do not have any additional data associated to them. For certain objects it makes sense to have the ability to disable that object or to enable it and associate data as well. Finally, when constructing an option hierarchy it is occasionally useful to have objects which serve only as placeholders. The <code>&lt;valueType&gt;</code> property can be used to control all this. There are several possible values. It should be noted that the inactive state of an option takes priority over the enabled state: if an object is inactive then it is automatically not enabled, so no <code>#define</code>’s will be generated and any build-related properties such as <code>&lt;sourceFile&gt;</code> will be ignored.</p>
+
+<p>Object with the <code>&lt;configurable&gt;</code> property set to <em>false</em> are not configurable (or not writable), which means that the user cannot change neither the boolean part nor the data part in the configuration tools.</p>
+
+<ul>
+<li><p>enabled - is intended mainly for completeness, and is rarely needed. Objects with this type do not have any additional data associated with them, so there is no way for users to modify the option. For the purposes of expression evaluation an active object with type <em>enabled</em> has the value <em>true</em>. For active objects, normal <code>#define</code> processing will take place, so typically a single <code>#define</code> will be generated using the object <code>&lt;generatedDefinition&gt;</code> and a value of (1). Similarly build-related properties such as <code>&lt;sourceFile&gt;</code> will take effect.</p></li>
+<li><p>none - is intended primarily for placeholder components in the hierarchy, although it can be used for other purposes. Objects with this type do not have any additional data associated with them. If active, such options can be manually enabled/disabled by the user (using the graphical or command line tools). For the purposes of expression evaluation an enabled object with type <em>none</em> has the value <em>true</em>. For enabled objects, normal <code>#define</code> processing will take place, so typically a single <code>#define</code> will be generated using the object <code>&lt;generatedDefinition&gt;</code> and a value of (1). Similarly build-related properties such as <code>&lt;sourceFile&gt;</code> will take effect.</p></li>
+<li><p>bool - have a boolean data associated with them which can be edited by the user. For the purposes of expression evaluation an enabled object with type <em>bool</em> has the value <em>true</em> or <em>false</em>. For enabled objects, normal <code>#define</code> processing will take place, so typically a single <code>#define</code> will be generated using the object <code>&lt;generatedDefinition&gt;</code> and a value of <em>true/false</em>. Similarly build-related properties such as <code>&lt;sourceFile&gt;</code> will take effect.</p></li>
+<li><p>int - have an integer data associated with them. For the purposes of expression evaluation an enabled object with type int has the value of the integer number associated. For enabled objects, normal <code>#define</code> processing will take place, so typically a single <code>#define</code> will be generated using the object <code>&lt;generatedDefinition&gt;</code> and an integer value. Similarly build-related properties such as <code>&lt;sourceFile&gt;</code> will take effect.</p></li>
+<li><p>float - have a float data associated with them. For the purposes of expression evaluation an enabled object with type float has the value of the float number associated. For enabled objects, normal <code>#define</code> processing will take place, so typically a single <code>#define</code> will be generated using the object <code>&lt;generatedDefinition&gt;</code> and a float value. Similarly build-related properties such as <code>&lt;sourceFile&gt;</code> will take effect.</p></li>
+<li><p>string - have a string associated with them. For the purposes of expression evaluation an enabled object with type string has the value of the associated string. For enabled objects, normal <code>#define</code> processing will take place, and two <code>#define</code> lines will be generated using the object <code>&lt;generatedDefinition&gt;</code> and the string value (if the string is empty the symbol name will be extended with <em>EMPTY</em> instead of the value). Similarly build-related properties such as <code>&lt;sourceFile&gt;</code> will take effect.</p></li>
+</ul>
+
+<p>Regular objects (<code>&lt;option&gt;</code>, <code>&lt;component&gt;</code>, <code>&lt;package&gt;</code>) have the <em>none</em> type by default, but this can be changed as desired. Interfaces have the <em>int</em> type, and this cannot be changed, since the value of an interface is a count of the number of active and enabled interfaces. Packages have the <em>string</em> type, and this cannot be changed, since the value of a package is the version.</p>
+
+<h3>Example</h3>
+
+<p>TBD</p>
+
+<h2 id="tocAnchor-1-26">The <code>&lt;valueFormat&gt;</code> property</h2>
+
+<h3>Purpose</h3>
+
+<p>Control how an option’s value will appear in the configuration header file.</p>
+
+<h3>Syntax</h3>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;option name="..."&gt;
+
+  &lt;display&gt;...&lt;/display&gt;
+  &lt;description&gt;...&lt;/description&gt;
+
+  &lt;valueFormat&gt;format&lt;/valueFormat&gt;
+
+  ... other properties ...
+  ... children objects ...
+
+&lt;/option&gt;
+</code></pre>
+</div>
+<p>The value of the <code>&lt;valueFormat&gt;</code> property is a string containing a format specification.</p>
+
+<h3>Default value</h3>
+
+<p>The defaults, according to <code>&lt;valueType&gt;</code>, are intended to surround the value by parenthesis or double quotes:</p>
+
+<ul>
+<li>  none - '(%s)'</li>
+<li>  bool - '(%s)'</li>
+<li>  int - '(%d)'</li>
+<li>  float - '(%f)'</li>
+<li>  string - '"%s"'</li>
+</ul>
+
+<h3>Description</h3>
+
+<p>For active and enabled objects, the configuration tools will normally generate one or two <code>#define</code> lines in the package’s configuration header file. These take the following forms:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text"> #define &lt;name&gt; &lt;value&gt;
+ #define &lt;name&gt;_&lt;value&gt;
+</code></pre>
+</div>
+<p>The <code>&lt;valueFormat&gt;</code> property can be used to control exactly what appears as the value for the first of these <code>#define</code> lines.</p>
+
+<p>The second <code>#define</code> will be generated only if is a valid C/C++ preprocessor symbol results, and is not affected by the <code>&lt;valueFormat&gt;</code> property.</p>
+
+<p>The C formatting syntax is used.</p>
+
+<h3>Example</h3>
+
+<p>To format a 32bit hex value, use:</p>
+<div class="highlight">
+<pre>
+<code class="language-text" data-lang="text">&lt;valueFormat&gt;(0x%08X)&lt;/valueFormat&gt;
+</code></pre>
+</div>
+<h2 id="tocAnchor-1-27">Credits</h2>
+
+<p>The initial content of this page was based on <em>Chapter 5. CDL Language Specification</em> of <em>The eCos Component Writer’s Guide</em>, by Bart Veer and John Dallaway, published in 2001.</p>
+
+
+
+
+
+
+
+
+<ul class="share-buttons">
+  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/guide/definitions-reference/" data-layout="button"></div></li>
+  <li><div class="tw-share-button"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div></li>
+</ul>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="container">
+
+  <div class="site-footer">
+  <div class="site-footer-links left">
+    <ul>
+<li>© 2015 Liviu Ionescu</li>
+<li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
+<li>Hosted on GitHub</li>
+</ul>
+
+  </div>
+  <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+  </a>
+  <div class="site-footer-links right">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog/">News</a></li>
+<li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
+<li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+<li><a href="/about/">About</a></li>
+</ul>
+
+  </div>
+</div>
+
+
+</div>
+
+</body>
+</html>
