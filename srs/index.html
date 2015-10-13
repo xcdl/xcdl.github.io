@@ -103,12 +103,13 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/blog/">XCDL News</a></h4>
+      <h4 id="xcdl-newsblog"><a href="/blog/">XCDL News</a></h4>
 
 <ul>
-<li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
-<li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
+  <li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
+  <li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
 </ul>
+
 
     </div>
   </div>
@@ -116,30 +117,28 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/">XCDL Home</a></h4>
+      <h4 id="xcdl-home"><a href="/">XCDL Home</a></h4>
 
-<h4>Component Writer&#39;s Guide</h4>
-
+<h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-<li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
-<li><a href="/guide/packages/">XCDL Packages</a></li>
-<li><a href="/guide/language/">The XCDL Language</a></li>
-<li><a href="/guide/build-process/">The build process</a></li>
+  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/packages/">XCDL Packages</a></li>
+  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
-<h4>Reference</h4>
-
+<h4 id="reference">Reference</h4>
 <ul>
-<li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
 </ul>
 
-<h4>License</h4>
+<h4 id="license">License</h4>
 
 <ul>
-<li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
+  <li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
 </ul>
 
-<h4><a href="/about/">About</a></h4>
+<h4 id="aboutabout"><a href="/about/">About</a></h4>
 
     </div>
   </div>
@@ -255,19 +254,19 @@
 <p>By multi-variant it should be understood:</p>
 
 <ul>
-<li>  multiple processor architectures (like ARM Cortex-M), with multiple sub-architectures (like M3, M4, M0), multiple manufacturer families (like STM32F1, STM32F4), multiple sub-families (like STM32F10x Connectivity Line) and multiple devices (like ST STM32F107VG)</li>
-<li>  as an extension to architectures, synthetic architectures, like POSIX, should be supported</li>
-<li>  multiple hardware platforms (boards, board revisions)</li>
-<li>  multiple synthetic run platforms (like OS X, GNU/Linux)</li>
-<li>  multiple toolchains (like GCC, LLVM clang)</li>
-<li>  multiple build platforms (like OS X, GNU/Linux, Windows)</li>
+  <li>multiple processor architectures (like ARM Cortex-M), with multiple sub-architectures (like M3, M4, M0), multiple manufacturer families (like STM32F1, STM32F4), multiple sub-families (like STM32F10x Connectivity Line) and multiple devices (like ST STM32F107VG)</li>
+  <li>as an extension to architectures, synthetic architectures, like POSIX, should be supported</li>
+  <li>multiple hardware platforms (boards, board revisions)</li>
+  <li>multiple synthetic run platforms (like OS X, GNU/Linux)</li>
+  <li>multiple toolchains (like GCC, LLVM clang)</li>
+  <li>multiple build platforms (like OS X, GNU/Linux, Windows)</li>
 </ul>
 
 <p>The XCDL framework will include several tools to:</p>
 
 <ul>
-<li>  generate the artefacts defined by various build configurations</li>
-<li>  manage the specific metadata</li>
+  <li>generate the artefacts defined by various build configurations</li>
+  <li>manage the specific metadata</li>
 </ul>
 
 <p>The toolchains and other general purpose tools used by XCDL during the build process are not considered part of the XCDL framework.</p>
@@ -275,25 +274,25 @@
 <h3 id="tocAnchor-1-1-3">Definitions and acronyms</h3>
 
 <ul>
-<li>  CDL - the Configuration Definition Language, as the configuration mechanism used by eCos</li>
-<li>  XCDL - the eXtensible Configuration Definition Language and framework, inspired by CDL</li>
-<li>  XCDL software component - a set of source files that perform a given function, standalone or depending on other components, together with some metadata</li>
-<li>  XCDL component metadata - additional informations added to software components to describe dependencies, requirements and constraints</li>
-<li>  XCDL configuration tools - tools running on development machines to create and manage XCDL configurations and component metadata</li>
-<li>  XCDL configurations - specific metadata definitions, that describe the requirements of an application, like which components are used, the values for preprocessor definitions, toolchain selection, build details, etc</li>
-<li>  XCDL build configurations - the result of processing an XCDL configuration, usually a build folder with associated build related files (like GNU Make files); when IDEs (like Eclipse) are used, it translates to an IDE build configuration</li>
-<li>  XCDL requirements - direct requirements, generally components that are mandatory for the build to succeed, like base classes</li>
-<li>  XCDL constraints - in general hardware dependencies, like the presence of a certain peripheral, but dependencies to software options can also be used</li>
+  <li>CDL - the Configuration Definition Language, as the configuration mechanism used by eCos</li>
+  <li>XCDL - the eXtensible Configuration Definition Language and framework, inspired by CDL</li>
+  <li>XCDL software component - a set of source files that perform a given function, standalone or depending on other components, together with some metadata</li>
+  <li>XCDL component metadata - additional informations added to software components to describe dependencies, requirements and constraints</li>
+  <li>XCDL configuration tools - tools running on development machines to create and manage XCDL configurations and component metadata</li>
+  <li>XCDL configurations - specific metadata definitions, that describe the requirements of an application, like which components are used, the values for preprocessor definitions, toolchain selection, build details, etc</li>
+  <li>XCDL build configurations - the result of processing an XCDL configuration, usually a build folder with associated build related files (like GNU Make files); when IDEs (like Eclipse) are used, it translates to an IDE build configuration</li>
+  <li>XCDL requirements - direct requirements, generally components that are mandatory for the build to succeed, like base classes</li>
+  <li>XCDL constraints - in general hardware dependencies, like the presence of a certain peripheral, but dependencies to software options can also be used</li>
 </ul>
 
 <h3 id="tocAnchor-1-1-4">References</h3>
 
 <ul>
-<li>  <a href="http://ecos.sourceware.org/">eCos</a> - <em>The embedded configurable operating system</em> by Cygnus Solutions (<a href="http://en.wikipedia.org/wiki/ECos">Wikipedia</a>)</li>
-<li>  Manual: <em>The eCos Component Writer’s Guide</em>, by Bart Veer and John Dallaway, published in 2001, available from <a href="http://ecos.sourceware.org/docs-3.0/">eCos Documentation</a>.</li>
-<li>  Book: <em>Embedded software development with eCos</em>, by Anthony J. Massa, published in 2003 at Prentice Hall, available from <a href="http://www.amazon.com/Embedded-Software-Development-Anthony-Massa/dp/0130354732">Amazon</a></li>
-<li>  Book: <em>Software Build Systems: Principles and Experience</em>, by Peter Smith, published in 2011 at Addison Wesley, available from <a href="http://www.amazon.com/Software-Build-Systems-Principles-Experience/dp/0321717287">Amazon</a></li>
-<li>  IEEE Std 830-1998: <em>IEEE Recommended Practice for Software Requirements Specifications</em>, published in 1998</li>
+  <li><a href="http://ecos.sourceware.org/">eCos</a> - <em>The embedded configurable operating system</em> by Cygnus Solutions (<a href="http://en.wikipedia.org/wiki/ECos">Wikipedia</a>)</li>
+  <li>Manual: <em>The eCos Component Writer’s Guide</em>, by Bart Veer and John Dallaway, published in 2001, available from <a href="http://ecos.sourceware.org/docs-3.0/">eCos Documentation</a>.</li>
+  <li>Book: <em>Embedded software development with eCos</em>, by Anthony J. Massa, published in 2003 at Prentice Hall, available from <a href="http://www.amazon.com/Embedded-Software-Development-Anthony-Massa/dp/0130354732">Amazon</a></li>
+  <li>Book: <em>Software Build Systems: Principles and Experience</em>, by Peter Smith, published in 2011 at Addison Wesley, available from <a href="http://www.amazon.com/Software-Build-Systems-Principles-Experience/dp/0321717287">Amazon</a></li>
+  <li>IEEE Std 830-1998: <em>IEEE Recommended Practice for Software Requirements Specifications</em>, published in 1998</li>
 </ul>
 
 <h3 id="tocAnchor-1-1-5">Overview</h3>
@@ -304,17 +303,17 @@
 
 <h3 id="tocAnchor-1-7-1">Product perspective</h3>
 
-<h4>Credits</h4>
+<h4 id="credits">Credits</h4>
 
 <p>The XCDL definition language is functionally inspired by eCos CDL, but has a different syntax and supports a slightly different functionality. The first version was based on Python definitions and served as an excellent prototyping platform. The final version will be XML based, and will be integrated in Eclipse.</p>
 
 <p>The package management features were inspired by CMSIS Pack, and the implementation should be able to handle both CMSIS and XCDL packs.</p>
 
-<h4>Goals</h4>
+<h4 id="goals">Goals</h4>
 
 <p>The goal is to integrate XCDL and CMSIS packs in GNU ARM Eclipse plug-ins.</p>
 
-<h4>Steps</h4>
+<h4 id="steps">Steps</h4>
 
 <p>The initial versions of the XCDL framework was fully written in Python and runs on OS X and GNU/Linux.</p>
 
@@ -323,8 +322,8 @@
 <p>The first priority is to extend the Eclipse plug-in to:</p>
 
 <ul>
-<li>  add a wizard to create new projects, based on existing CMSIS Pack definitions</li>
-<li>  add support to manage the CMSIS Real Time Environment, i.e. change the referred components at any time during the lifetime of the project</li>
+  <li>add a wizard to create new projects, based on existing CMSIS Pack definitions</li>
+  <li>add support to manage the CMSIS Real Time Environment, i.e. change the referred components at any time during the lifetime of the project</li>
 </ul>
 
 <p>The second priority is to add XCDL support to the Eclipse plug-in.</p>
@@ -340,9 +339,9 @@
 <p>The XCDL definitions should be able to describe the dependencies between various software components in order to:</p>
 
 <ul>
-<li>  minimize the number of source files processed during the build</li>
-<li>  generate a consistent set of preprocessor definitions</li>
-<li>  assist XCDL tools in creating and managing configurations</li>
+  <li>minimize the number of source files processed during the build</li>
+  <li>generate a consistent set of preprocessor definitions</li>
+  <li>assist XCDL tools in creating and managing configurations</li>
 </ul>
 
 <h3 id="tocAnchor-1-7-3">User characteristics</h3>
@@ -350,10 +349,10 @@
 <p>There are several roles for XCDL users:</p>
 
 <ul>
-<li>  application software developer, who contributes application code to a given project</li>
-<li>  application project manager, who creates and manages application configurations</li>
-<li>  enterprise component developers, who create and manage private XCDL components (the equivalent of enterprise libraries) to be used in multiple applications</li>
-<li>  open source component developers, who create and manage public XCDL component repositories, like µOS++ III.</li>
+  <li>application software developer, who contributes application code to a given project</li>
+  <li>application project manager, who creates and manages application configurations</li>
+  <li>enterprise component developers, who create and manage private XCDL components (the equivalent of enterprise libraries) to be used in multiple applications</li>
+  <li>open source component developers, who create and manage public XCDL component repositories, like µOS++ III.</li>
 </ul>
 
 <h3 id="tocAnchor-1-7-4">Constraints</h3>
@@ -391,61 +390,61 @@
 <p>Future versions might also interact with:</p>
 
 <ul>
-<li>  Maven</li>
+  <li>Maven</li>
 </ul>
 
-<h4>Interactions with the application developer(s)</h4>
+<h4 id="interactions-with-the-application-developers">Interactions with the application developer(s)</h4>
 
 <p>During application development, the most often performed operation by the application developer is the build process.</p>
 
 <p>The input is:</p>
 
 <ul>
-<li>  the XCDL configuration</li>
+  <li>the XCDL configuration</li>
 </ul>
 
 <p>The output is:</p>
 
 <ul>
-<li>  the final application image, usually a binary file.</li>
+  <li>the final application image, usually a binary file.</li>
 </ul>
 
-<h4>Interactions with the application project manager</h4>
+<h4 id="interactions-with-the-application-project-manager">Interactions with the application project manager</h4>
 
 <p>The next interaction with people is the creation of the XCDL configurations.</p>
 
 <p>The input is:</p>
 
 <ul>
-<li>  one or several enterprise component repositories</li>
-<li>  one or several open source component repositories</li>
-<li>  the user selection.</li>
+  <li>one or several enterprise component repositories</li>
+  <li>one or several open source component repositories</li>
+  <li>the user selection.</li>
 </ul>
 
 <p>Using the XCDL configuration tool, the project manager selects:</p>
 
 <ul>
-<li>  the board where the application is intended to run</li>
-<li>  one or more configuration templates referring to the components needed by the application (like minimal, network, usb, etc)</li>
-<li>  the toolchain to be used</li>
+  <li>the board where the application is intended to run</li>
+  <li>one or more configuration templates referring to the components needed by the application (like minimal, network, usb, etc)</li>
+  <li>the toolchain to be used</li>
 </ul>
 
 <p>The project manager then:</p>
 
 <ul>
-<li>  enables/disables various components</li>
-<li>  sets different values to various options, like number of threads, stack sizes, etc</li>
+  <li>enables/disables various components</li>
+  <li>sets different values to various options, like number of threads, stack sizes, etc</li>
 </ul>
 
 <p>The output of this process is:</p>
 
 <ul>
-<li>  the XCDL configuration.</li>
+  <li>the XCDL configuration.</li>
 </ul>
 
 <p>The XCDL configuration can be later edited, either manually with a text editor, or with the XCDL configuration tools.</p>
 
-<h4>Interaction with the component developers</h4>
+<h4 id="interaction-with-the-component-developers">Interaction with the component developers</h4>
 
 <p>The component developers, who create and manage XCDL components (the equivalent of libraries), need to create, in addition to the usual source files, some XCDL component metadata to describe dependencies, requirements and constraints.</p>
 
@@ -461,27 +460,27 @@
 
 <p>The next version of the Eclipse plug-in should add a wizard, to allow the creation of new C/C++ projects based on the definitions found in CMSIS packages and an editor page to change various settings related to components.</p>
 
-<h4>The XCDL metadata trees</h4>
+<h4 id="the-xcdl-metadata-trees">The XCDL metadata trees</h4>
 
 <p>By default, the metadata associated to various software components shall follow the same hierarchy as the folders where the components are stored. Custom hierarchies should be possible, by defining explicit parent nodes.</p>
 
 <p>The tree nodes are XCDL objects, each with specific properties:</p>
 
 <ul>
-<li>  package</li>
-<li>  component</li>
-<li>  option</li>
-<li>  interface</li>
-<li>  configuration</li>
+  <li>package</li>
+  <li>component</li>
+  <li>option</li>
+  <li>interface</li>
+  <li>configuration</li>
 </ul>
 
 <p>Nodes can have distinct status attributes:</p>
 
 <ul>
-<li>  isLoaded</li>
-<li>  isActive</li>
-<li>  isEnabled</li>
-<li>  isConfigurable</li>
+  <li>isLoaded</li>
+  <li>isActive</li>
+  <li>isEnabled</li>
+  <li>isConfigurable</li>
 </ul>
 
 <p>Since multiple boards can be supported by an XCDL component repository, it makes no sense to have all existing boards in use during the configuration process, but only the board required for the application. Loading a package automatically loads all parent packages, recursively. Packages not loaded are not presented in the XCDL configuration tools.</p>
@@ -525,19 +524,19 @@
 </p>
 
 <ul>
-<li>  the XCDL framework shall not be specific to a revision control system, svn/git/hg/etc shall be accepted</li>
-<li>  the build configs may run on identical or different hardware (different boards, different processors, different amounts of ram/flash, etc); an example of such a config was used for the Metrilog SDI-12 sensors, where the Debug config used a larger AVR than the Release.</li>
-<li>  shall allow multiple toolchains</li>
-<li>  shall be C/C++ centric and shall handle C/C++ dependencies automatically (obviously)</li>
-<li>  shall provide support for testing (continuous integration)</li>
-<li>  shall provide support for custom build steps, using external tools (for example for adding a binary checksum, custom metadata, etc)</li>
+  <li>the XCDL framework shall not be specific to a revision control system, svn/git/hg/etc shall be accepted</li>
+  <li>the build configs may run on identical or different hardware (different boards, different processors, different amounts of ram/flash, etc); an example of such a config was used for the Metrilog SDI-12 sensors, where the Debug config used a larger AVR than the Release.</li>
+  <li>shall allow multiple toolchains</li>
+  <li>shall be C/C++ centric and shall handle C/C++ dependencies automatically (obviously)</li>
+  <li>shall provide support for testing (continuous integration)</li>
+  <li>shall provide support for custom build steps, using external tools (for example for adding a binary checksum, custom metadata, etc)</li>
 </ul>
 
 <p>Future versions:</p>
 
 <ul>
-<li>  should provide as much help as possible to specific steps like flash programming, debug, profiling</li>
-<li>  might provide support for documentation generating tools (Doxygen)</li>
+  <li>should provide as much help as possible to specific steps like flash programming, debug, profiling</li>
+  <li>might provide support for documentation generating tools (Doxygen)</li>
 </ul>
 
 
@@ -566,10 +565,11 @@
   <div class="site-footer">
   <div class="site-footer-links left">
     <ul>
-<li>© 2015 Liviu Ionescu</li>
-<li>Hosted on GitHub</li>
-<li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
+  <li>© 2015 Liviu Ionescu</li>
+  <li>Hosted on GitHub</li>
+  <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS" /></a></li>
 </ul>
+
 
   </div>
   <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
@@ -577,11 +577,11 @@
   </a>
   <div class="site-footer-links right">
     <ul>
-<li><a href="/">Home</a></li>
-<li><a href="/blog/">News</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
-<li><a href="/about/">About</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">News</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+  <li><a href="/about/">About</a></li>
 </ul>
 
   </div>

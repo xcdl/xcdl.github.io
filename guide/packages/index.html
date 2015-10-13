@@ -103,12 +103,13 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/blog/">XCDL News</a></h4>
+      <h4 id="xcdl-newsblog"><a href="/blog/">XCDL News</a></h4>
 
 <ul>
-<li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
-<li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
+  <li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
+  <li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
 </ul>
+
 
     </div>
   </div>
@@ -116,30 +117,28 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/">XCDL Home</a></h4>
+      <h4 id="xcdl-home"><a href="/">XCDL Home</a></h4>
 
-<h4>Component Writer&#39;s Guide</h4>
-
+<h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-<li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
-<li><a href="/guide/packages/">XCDL Packages</a></li>
-<li><a href="/guide/language/">The XCDL Language</a></li>
-<li><a href="/guide/build-process/">The build process</a></li>
+  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/packages/">XCDL Packages</a></li>
+  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
-<h4>Reference</h4>
-
+<h4 id="reference">Reference</h4>
 <ul>
-<li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
 </ul>
 
-<h4>License</h4>
+<h4 id="license">License</h4>
 
 <ul>
-<li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
+  <li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
 </ul>
 
-<h4><a href="/about/">About</a></h4>
+<h4 id="aboutabout"><a href="/about/">About</a></h4>
 
     </div>
   </div>
@@ -155,7 +154,7 @@
 
         
 <h1 class="page-title">XCDL packages</h1>
-<p class="last-modified">Last modified on Mon Oct 12 18:04:29 2015 UTC.</p>
+<p class="last-modified">Last modified on Tue Oct 13 20:46:32 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -249,9 +248,9 @@
 <p>All development tools using XCDL packages include a local component repository. Similarly to the CMSIS Pack repository, this is a local folder structure where all installed packages are located. The component framework comes with an administration tool that allows new packages or new versions of a package to be installed, old packages to be removed, and so on. Each package has its own folder hierarchy within the component repository. Keeping several packages in a single folder is illegal.</p>
 
 <p>To better accommodate the package separation for multi-vendor cases, the local folder hierarchy start with a folder with the vendor/originator name.</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">Packages/
+<code>Packages/
 ├── ARM
 ├── ilg
 ├── Keil
@@ -259,11 +258,11 @@
 ├── lwIP
 └── wolfSSL
 </code></pre>
-</div>
+
 <p>Below each vendor there are hierarchies of packages. Unrelated packages are all stored just below the vendor folder.</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">Packages
+<code>Packages
 ├── ARM
 │   └── CMSIS
 ├── Keil
@@ -284,7 +283,7 @@
 └── wolfSSL
     └── CyaSSL
 </code></pre>
-</div>
+
 <p>After unpacking, the administrative tools change the protection bits of the component files to read/only, to prevent inadvertent changes while using the components.</p>
 
 <h3 id="tocAnchor-1-1-2">Remote/archives repositories</h3>
@@ -305,7 +304,7 @@
 
 <p>For obvious reasons, contrary to the other files in the local repository, these files are not set to read/only.</p>
 
-<p>TODO: define details &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</p>
+<p>TODO: define details »»»»»»»»</p>
 
 <h2 id="tocAnchor-1-6">Repository content brief</h2>
 
@@ -316,9 +315,9 @@
 <p>For repositories of other types, like CMSIS Pack, which do not provide a <em>content.xml</em> file, the component framework provides a specific way of browsing the repository definition files and composing an equivalent <em>content.xml</em>, later cached locally.</p>
 
 <p>An example of such file is presented below:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;root version="1.1"&gt;
   &lt;repository name="Keil"&gt;
@@ -430,20 +429,20 @@
   &lt;/repository&gt;
 &lt;/root&gt;
 </code></pre>
-</div>
+
 <h2 id="tocAnchor-1-7">Package versioning</h2>
 
 <p>Below each package directory there can be one or more version sub-directories, named after the versions. This is a requirement of the component framework: it must be possible for users to install multiple versions of a package and select which one to use for any given application. This has a number of advantages to users: most importantly it allows a single component repository to be shared between multiple users and multiple projects, as required; also it facilitates experiments, for example it is relatively easy to try out the latest version of some package and see if it makes any difference. There is a potential disadvantage in terms of disk space. However since XCDL packages generally consist of source code intended for small embedded systems, and given typical modern disk sizes, keeping a number of different versions of a package installed will usually be acceptable. The administration tool can be used to remove versions that are no longer required.</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">Packages/ilg
+<code>Packages/ilg
 └── xyzw
     ├── 3.20.3
     ├── 3.20.4
     ├── 4.1.0
     └── current
 </code></pre>
-</div>
+
 <p>The version <em>current</em> is special. Typically it corresponds to the very latest version of the package when using Git like local repositories, i.e. versions that were not frozen in a release.</p>
 
 <p>All other subdirectories of a package correspond to specific releases of that package. The component framework allows users to select the particular version of a package they want to use, but by default the most recent one will be used. This requires some rules for ordering version numbers, a difficult task because of the wide variety of ways in which versions can be identified.</p>
@@ -453,28 +452,28 @@
 <p>A typical package contains the following:</p>
 
 <ol>
-<li> Some number of source files (.c/.cpp) and header files (.h). The project artefact (library or executable) will be created using these files. Some source files may serve other purposes, for example to provide a linker script.</li>
-<li> Exported header files which define the interface provided by the package.</li>
-<li> On-line documentation, for example reference pages for each exported function.</li>
-<li> Some number of test cases, shipped in source format, allowing users to check that the package is working as expected on their particular hardware and in their specific configuration.</li>
-<li> One or more CDL scripts describing the package to the configuration system.</li>
+  <li>Some number of source files (.c/.cpp) and header files (.h). The project artefact (library or executable) will be created using these files. Some source files may serve other purposes, for example to provide a linker script.</li>
+  <li>Exported header files which define the interface provided by the package.</li>
+  <li>On-line documentation, for example reference pages for each exported function.</li>
+  <li>Some number of test cases, shipped in source format, allowing users to check that the package is working as expected on their particular hardware and in their specific configuration.</li>
+  <li>One or more CDL scripts describing the package to the configuration system.</li>
 </ol>
 
 <p>It is also conventional to have a per-package <em>ChangeLog</em> file used to keep track of changes to that package. This is especially valuable to end users of the package who may not have convenient access to the source code control system used to manage the master copy of the package, and hence cannot find out easily what has changed. Often it can be very useful to the main developers as well.</p>
 
 <p>Any given packages need not contain all of these. It is compulsory to have at least one XCDL file describing the package, otherwise the component framework would be unable to process it. The name of this file is fixed and the component framework will search for it in two locations, in the following order:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">${package_root}/meta/xcdl.xml
+<code>${package_root}/meta/xcdl.xml
 ${package_root}/xcdl.xml
 </code></pre>
-</div>
+
 <p>Some packages may not have any source code: it is possible to have a package that merely defines a common interface which can then be implemented by several other packages, especially in the context of device drivers; however it is still common to have some code in such packages to avoid replicating shareable code in all of the implementation packages. Similarly it is possible to have a package with no exported header files, just source code that implements an existing interface: for example an ethernet device driver might just implement a standard interface and not provide any additional functionality. Packages do not need to come with any on-line documentation, although this may affect how many people will want to use the package. Much the same applies to per-package test cases.</p>
 
 <p>The component framework has a recommended per-package folder layout which splits the package contents on a functional basis:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">Packages/ilg/Xyzw/current
+<code>Packages/ilg/Xyzw/current
 ├── ChangeLog
 ├── doc
 ├── include
@@ -483,7 +482,7 @@ ${package_root}/xcdl.xml
 ├── src
 └── tests
 </code></pre>
-</div>
+
 <p>For example, if a package has an <em>include</em> sub-folder then the component framework will assume that all header files in and below that folder are <strong>exported header files</strong> and will do the right thing at build time. Similarly if there is <em>doc</em> property indicating the location of on-line documentation then the component framework will first look in the doc sub-folder.</p>
 
 <p>This folder layout is just a guideline, it is not enforced by the component framework. For simple packages it often makes more sense to have all of the files in just one directory. For example a package could just contain the files hello.cpp, hello.h, hello.html and xcdl.xml. By default hello.h will be treated as an exported header file, although this can be overridden with the includeFiles property. Assuming there is a doc property referring to hello.html and there is no doc sub-directory then the tools will search for this file relative to the package’s top-level and everything will just work. Much the same applies to hello.cpp and xcdl.xml.</p>
@@ -513,27 +512,27 @@ ${package_root}/xcdl.xml
 <p>The full build process is moulded after the Eclipse CDT build system. It is described in <a href="/The_build_process" title="wikilink">The build process</a>, but a summary is appropriate here. A build involves several directory structures:</p>
 
 <ol>
-<li> The component repository. This is where all the package source code is held, along with XCDL files, documentation, and so on. For build purposes a component repository is read-only. Application developers will only modify the component repository when installing or removing packages, via the administration tool. Component writers will typically work with Git/local component repositories, which are read/write.</li>
-<li> The local source tree. This is where artefact specific files are located. For Eclipse projects, this is the project folder. The artefacts are built using the source files in this tree and selected source files from the component repository. Upon user request, the component framework tools may copy files from the component repository to the local source tree. Several artefacts can be constructed from one local source tree, usually variants of the same configuration, like Debug/Release, but this is not restricted by the framework, with special care it might be possible to build artefacts for different boards from the same source tree. For a given local source tree there is a single .xcdlconfig.xml file, containing one XCDL configuration for each artefact to be build.</li>
-<li> The build tree. Each configuration has its own build tree. For Eclipse projects, this is the output folder of each Eclipse build configuration. The build tree contains only intermediate files, object files and final artefact, list files, map files, etc. Once a build is complete, the build tree contains no information that is useful for application development and can be wiped, although this would slow down any rebuilds following changes to the configuration.</li>
-<li> An optional install tree, where the newly created artefacts are copied in a custom build step like <em>make install</em>. Eclipse projects do not use such a tree, but leave the artefacts to be used directly from the build tree.</li>
+  <li>The component repository. This is where all the package source code is held, along with XCDL files, documentation, and so on. For build purposes a component repository is read-only. Application developers will only modify the component repository when installing or removing packages, via the administration tool. Component writers will typically work with Git/local component repositories, which are read/write.</li>
+  <li>The local source tree. This is where artefact specific files are located. For Eclipse projects, this is the project folder. The artefacts are built using the source files in this tree and selected source files from the component repository. Upon user request, the component framework tools may copy files from the component repository to the local source tree. Several artefacts can be constructed from one local source tree, usually variants of the same configuration, like Debug/Release, but this is not restricted by the framework, with special care it might be possible to build artefacts for different boards from the same source tree. For a given local source tree there is a single .xcdlconfig.xml file, containing one XCDL configuration for each artefact to be build.</li>
+  <li>The build tree. Each configuration has its own build tree. For Eclipse projects, this is the output folder of each Eclipse build configuration. The build tree contains only intermediate files, object files and final artefact, list files, map files, etc. Once a build is complete, the build tree contains no information that is useful for application development and can be wiped, although this would slow down any rebuilds following changes to the configuration.</li>
+  <li>An optional install tree, where the newly created artefacts are copied in a custom build step like <em>make install</em>. Eclipse projects do not use such a tree, but leave the artefacts to be used directly from the build tree.</li>
 </ol>
 
 <p>When used inside Eclipse, the build process involves the following steps:</p>
 
 <ol>
-<li> Given a configuration, the component framework is responsible for updating the current project to match the definitions in the .xcdlconfig.xml. This extra step is implemented in a custom Eclipse builder, that requires, to be activated, a custom <em>nature</em> to be added to the project. The order of the builders associated to a project is significative, and the XCDL builder must be executed before the CDT builder. The usual case assumes that the actual source files are linked to those in the component repository. If, during the project creation, the user chose to keep local copies of the packs file, these are now copied locally.</li>
-<li> After the source files are linked and all required folders are created, the component framework generates the configuration headers, also in the specific build tree locations.</li>
-<li> The CDT builder is invoked and the library or executable artefact is created in the build tree.</li>
+  <li>Given a configuration, the component framework is responsible for updating the current project to match the definitions in the .xcdlconfig.xml. This extra step is implemented in a custom Eclipse builder, that requires, to be activated, a custom <em>nature</em> to be added to the project. The order of the builders associated to a project is significative, and the XCDL builder must be executed before the CDT builder. The usual case assumes that the actual source files are linked to those in the component repository. If, during the project creation, the user chose to keep local copies of the packs file, these are now copied locally.</li>
+  <li>After the source files are linked and all required folders are created, the component framework generates the configuration headers, also in the specific build tree locations.</li>
+  <li>The CDT builder is invoked and the library or executable artefact is created in the build tree.</li>
 </ol>
 
 <p>When invoked from a command line, the build process involves the following steps:</p>
 
 <ol>
-<li> Given a configuration, the component framework is responsible for creating all the folders required during the build. If these folders already exist then the component framework is responsible for any clean-ups that may be necessary, for example if a package has been removed then all related files should be expunged from the build and install trees. The configuration header files will be generated at this time. Depending on the host environment, the component framework will also generate makefiles or some other way of building the various packages. Every time the configuration is modified this step needs to be repeated, to ensure that all option consequences take effect. Care is taken that this will not result in unnecessary rebuilds.</li>
-<li> The first step in an actual build is to make sure that the install tree contains all exported header files. All compilations will use the install tree’s include directory as one of the places to search for header files.</li>
-<li> All source files relevant to the current configuration get compiled. This involves a set of compiler flags initialized on a per-target basis, with each package being able to modify these flags, and with the ability for the user to override the flags as well. Care has to be taken here to avoid inappropriate target-dependencies in packages that are intended to be portable. The component framework has built-in knowledge of how to handle C, C++ and assembler source files. The <code>&lt;sourceFile&gt;</code> property is used to list the files that should get compiled. All object files end up in the build tree.</li>
-<li> The component framework provides support for custom build steps, using the make_object and make properties. The results of these custom build steps can either be object files that should end up in a library, or other files such as a linker script. It is possible to control the order in which these custom build steps take place, for example it is possible to run a particular build step before any of the compilations happen.</li>
+  <li>Given a configuration, the component framework is responsible for creating all the folders required during the build. If these folders already exist then the component framework is responsible for any clean-ups that may be necessary, for example if a package has been removed then all related files should be expunged from the build and install trees. The configuration header files will be generated at this time. Depending on the host environment, the component framework will also generate makefiles or some other way of building the various packages. Every time the configuration is modified this step needs to be repeated, to ensure that all option consequences take effect. Care is taken that this will not result in unnecessary rebuilds.</li>
+  <li>The first step in an actual build is to make sure that the install tree contains all exported header files. All compilations will use the install tree’s include directory as one of the places to search for header files.</li>
+  <li>All source files relevant to the current configuration get compiled. This involves a set of compiler flags initialized on a per-target basis, with each package being able to modify these flags, and with the ability for the user to override the flags as well. Care has to be taken here to avoid inappropriate target-dependencies in packages that are intended to be portable. The component framework has built-in knowledge of how to handle C, C++ and assembler source files. The <code>&lt;sourceFile&gt;</code> property is used to list the files that should get compiled. All object files end up in the build tree.</li>
+  <li>The component framework provides support for custom build steps, using the make_object and make properties. The results of these custom build steps can either be object files that should end up in a library, or other files such as a linker script. It is possible to control the order in which these custom build steps take place, for example it is possible to run a particular build step before any of the compilations happen.</li>
 </ol>
 
 <h3 id="tocAnchor-1-8-4">Configurable source code</h3>
@@ -542,11 +541,11 @@ ${package_root}/xcdl.xml
 
 <p>The XCDL component framework does have some important implications for the source code: compiler flag dependencies; package interfaces vs. implementations; and how configuration options affect source code.</p>
 
-<h4>Compiler flag dependencies</h4>
+<h4 id="compiler-flag-dependencies">Compiler flag dependencies</h4>
 
 <p>Wherever possible component writers should avoid dependencies on particular compiler flags. Any such dependencies are likely to impact portability. For example, if one package needs to be built in big-endian mode and another package needs to be built in little-endian mode then usually it will not be possible for application developers to use both packages at the same time; in addition the application developer is no longer given a choice in the matter. It is far better for the package source code to adapt the endianness at compile-time, or possibly at run-time although that will involve code-size overheads.</p>
 
-<h4>Package interfaces and implementations</h4>
+<h4 id="package-interfaces-and-implementations">Package interfaces and implementations</h4>
 
 <p>The component framework provides encapsulation at the package level. A package <em>A</em> has no way of accessing the implementation details of another package <em>B</em> at compile-time. In particular, if there is a private header file somewhere in a package’s <em>src</em> sub-folder then this header file is completely invisible to other packages. Any attempts to cheat by using relative pathnames beginning with ../.. are generally doomed to failure because of the presence of package version directories. There are two ways in which one package can affect another: by means of the exported header files, which define a public interface; or via the XCDL scripts.</p>
 
@@ -554,69 +553,75 @@ ${package_root}/xcdl.xml
 
 <p>Very occasionally the inability of one package to see implementation details of another does cause problems. One example occurs in HAL packages, where it may be desirable for the architectural, variant and platform HAL’s to share some information that should not be visible to other packages or to application code. This may be addressed in the future by introducing the concept of friend packages, just as a C++ class can have friend functions and classes which are allowed special access to a class internals. It is not yet clear whether such cases are sufficiently frequent to warrant introducing such a facility.</p>
 
-<h4>Source code and configuration options</h4>
+<h4 id="source-code-and-configuration-options">Source code and configuration options</h4>
 
 <p>Configurability usually involves source code that needs to implement different behavior depending on the settings of configuration options. It is possible to write packages where the only consequence associated with various configuration options is to control what gets built, but this approach is limited and does not allow for fine-grained configurability. There are three main ways in which options could affect source code at build time:</p>
 
 <ol>
-<li><p>The component code can be passed through a suitable preprocessor, either an existing one such as m4 or a new one specially designed with configurability in mind. The original sources would reside in the component repository and the processed sources would reside in the build tree. These processed sources can then be compiled in the usual way.
-This approach has two main advantages. First, it is independent from the programming language used to code the components, provided reasonable precautions are taken to avoid syntax clashes between preprocessor statements and actual code. This would make it easier in future to support languages other than C and C++. Second, configurable code can make use of advanced preprocessing facilities such as loops and recursion.</p>
+  <li>
+    <p>The component code can be passed through a suitable preprocessor, either an existing one such as m4 or a new one specially designed with configurability in mind. The original sources would reside in the component repository and the processed sources would reside in the build tree. These processed sources can then be compiled in the usual way.</p>
 
-<p>The disadvantage is that component writers would have to learn about a new preprocessor and embed appropriate directives in the code. This makes it much more difficult to turn existing code into components, and it involves extra training costs for the component writers. The extra definitions might also confuse document generating utlities like Doxygen.</p></li>
-<li><p>Compiler optimizations can be used to elide code that should not be present, for example:
-<code>
-      ...
-      if (OS_INTEGER_NUMBER_UARTS &gt; 0) {
-        ...
-      }
-      ...
-</code></p></li>
-</ol>
+    <p>This approach has two main advantages. First, it is independent from the programming language used to code the components, provided reasonable precautions are taken to avoid syntax clashes between preprocessor statements and actual code. This would make it easier in future to support languages other than C and C++. Second, configurable code can make use of advanced preprocessing facilities such as loops and recursion.</p>
 
-<p>If the compiler knows that OS_INTEGER_NUMBER_UARTS is the constant number 0 then it is a trivial operation to get rid of the unnecessary code. The component framework still has to define this symbol in a way that is acceptable to the compiler, typically by using a const variable or a preprocessor symbol. In some respects this is a clean approach to configurability, but it has limitations:</p>
-<div class="highlight">
-<pre>
-<code class="language-text" data-lang="text">-   it cannot be used in the declarations of data structures or classes, nor does it provide control over entire functions
--   in addition it may not be immediately obvious that this code is affected by configuration options, which may make it more difficult to understand
--   even if the condition does not evaluate to true, and the optimiser gets rid of the code, it still requires the elided code to be syntactically correct, which sometimes it is not possible, due to missing references.
+    <p>The disadvantage is that component writers would have to learn about a new preprocessor and embed appropriate directives in the code. This makes it much more difficult to turn existing code into components, and it involves extra training costs for the component writers. The extra definitions might also confuse document generating utlities like Doxygen.</p>
+  </li>
+  <li>
+    <p>Compiler optimizations can be used to elide code that should not be present, for example:</p>
+
+    <pre><code>...
+if (OS_INTEGER_NUMBER_UARTS &gt; 0) {
+  ...
+}
+...
 </code></pre>
-</div>
-<ol>
-<li><p>Existing language preprocessors can be used. In the case of C or C++ this would be the standard C preprocessor, and configurable code would contain a number of <code>#ifdef</code> and <code>#if</code> statements.
-```
-    #if defined(OS_DEBUG_INFRA_DEBUG_PRECONDITIONS)
-      ...
-    #endif</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">...
+
+    <p>If the compiler knows that OS_INTEGER_NUMBER_UARTS is the constant number 0 then it is a trivial operation to get rid of the unnecessary code. The component framework still has to define this symbol in a way that is acceptable to the compiler, typically by using a const variable or a preprocessor symbol. In some respects this is a clean approach to configurability, but it has limitations:</p>
+
+    <ul>
+      <li>it cannot be used in the declarations of data structures or classes, nor does it provide control over entire functions</li>
+      <li>in addition it may not be immediately obvious that this code is affected by configuration options, which may make it more difficult to understand</li>
+      <li>even if the condition does not evaluate to true, and the optimiser gets rid of the code, it still requires the elided code to be syntactically correct, which sometimes it is not possible, due to missing references.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Existing language preprocessors can be used. In the case of C or C++ this would be the standard C preprocessor, and configurable code would contain a number of <code>#ifdef</code> and <code>#if</code> statements.</p>
+
+    <pre><code>#if defined(OS_DEBUG_INFRA_DEBUG_PRECONDITIONS)
+  ...
+#endif
+
+...
 
 #if (OS_INTEGER_NUMBER_UARTS &gt; 0)
   ...
 #endif
-</code></pre></div></li>
+</code></pre>
+
+    <p>This approach has the advantage that the C preprocessor is a technology that is both well-understood and widely used. There are also disadvantages: the preprocessing facilities are rather limited; and some people (including ourselves) consider the technology to be ugly, generally decreasing program readability.</p>
+  </li>
 </ol>
 
-<p>This approach has the advantage that the C preprocessor is a technology that is both well-understood and widely used. There are also disadvantages: the preprocessing facilities are rather limited; and some people (including ourselves) consider the technology to be ugly, generally decreasing program readability.</p>
-
-<h4>Preprocessor definitions</h4>
+<h4 id="preprocessor-definitions">Preprocessor definitions</h4>
 
 <p>The current component framework generates configuration header files with C preprocessor <code>#define</code>s for each option (typically, there various properties which can be used to control this). It is up to component writers to decide whether to use preprocessor <code>#ifdef</code> statements or language constructs such as if. At present there is no support for languages which do not involve the C preprocessor.</p>
 
-<h4>C++11 <strong>constexpr</strong></h4>
+<h4 id="c11-constexpr">C++11 <strong>constexpr</strong></h4>
 
 <p>The second type of definitions that the component framework should support are <em>C++11 constexpr</em> definitions. These definitions are the typed equivalent of the preprocessor definitions, but with some significant differences:</p>
 
 <ul>
-<li>  are processed by the compiler, not the preprocessor; this has the advantage of allowing type checks</li>
-<li>  can be grouped in name spaces; this minimise the risk of name clashes</li>
-</ul>
-<div class="highlight">
-<pre>
-<code class="language-text" data-lang="text">    namespace one
-    {
-      constexpr int variable = 1234;
-    }
+  <li>are processed by the compiler, not the preprocessor; this has the advantage of allowing type checks</li>
+  <li>
+    <p>can be grouped in name spaces; this minimise the risk of name clashes</p>
+
+    <pre><code>namespace one
+{
+  constexpr int variable = 1234;
+}
 </code></pre>
-</div>
+  </li>
+</ul>
+
 <p>It is recommended to use constexpr expressions for all options providing values, and limit the use of preprocessor definitions only to control which parts of the code is included, i.e. definitions like <code>#if defined(OS_INCLUDE_SOME_FUNCTIONALITY)</code>.</p>
 
 <p>TODO: add definitions to support constexpr to properties.</p>
@@ -627,39 +632,39 @@ This approach has two main advantages. First, it is independent from the program
 
 <p>Configurability has a number of effects on the way exported header files should be written. There may be configuration options which affect the interface of a package, not just the implementation. It is necessary to worry about nested <code>#include</code>’s and how this affects package and application builds. A special case of this relates to whether or not exported header files should <code>#include</code> configuration headers. These configuration headers are exported, but should only be <code>#include</code>’d when necessary.</p>
 
-<h4>Configurable functionality</h4>
+<h4 id="configurable-functionality">Configurable functionality</h4>
 
 <p>Many configuration options affect only the implementation of a package, not the interface. However some options will affect the interface as well, which means that the options have to be tested in the exported header files. Some implementation choices, for example whether or not a particular function should be inlined, also need to be tested in the header file because of language limitations.</p>
 
 <p>Consider a configuration option OS_INCLUDE_KERNEL_MUTEX_TIMEDLOCK which controls whether or not a function os_mutex_timedlock() is provided. The exported kernel header file <em>os/kernel/kapi.h</em> could contain the following:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">#include &lt;pkgconf/kernel.h&gt;
+<code>#include &lt;pkgconf/kernel.h&gt;
 ...
 #ifdef OS_INCLUDE_KERNEL_MUTEX_TIMEDLOCK
 extern bool os_mutex_timedlock(os_mutex_t*);
 #endif
 </code></pre>
-</div>
+
 <p>This is a correct header file, in that it defines the exact interface provided by the package at all times. However is has a number of implications. First, the header file is now dependent on pkgconf/kernel.h, so any changes to kernel configuration options will cause <em>os/kernel/kapi.h</em> to be out of date, and any source files that use the kernel interface will need rebuilding. This may affect sources in the kernel package, in other packages, and in application source code. Second, if the application makes use of this function somewhere but the application developer has misconfigured the system and disabled this functionality anyway then there will now be a compile-time error when building the application. Note that other packages should not be affected, since they should impose appropriate constraints on OS_INCLUDE_KERNEL_MUTEX_TIMEDLOCK if they use that functionality (although of course some dependencies like this may get missed by component developers).</p>
 
 <p>An alternative approach would be:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">extern bool os_mutex_timedlock(os_mutex_t*);
+<code>extern bool os_mutex_timedlock(os_mutex_t*);
 </code></pre>
-</div>
+
 <p>Effectively the header file is now lying about the functionality provided by the package. The first result is that there is no longer a dependency on the kernel configuration header. The second result is that an application file using the timedlock function will now compile, but the application will fail to link. At this stage the application developer still has to intervene, change the configuration, and rebuild the system. However no application recompilations are necessary, just a relink.</p>
 
 <p>Theoretically it would be possible for a tool to analyze linker errors and suggest possible configuration changes that would resolve the problem, reducing the burden on the application developer. No such tool is planned in the short term.</p>
 
 <p>It is up to component writers to decide which of these two approaches should be preferred. Note that it is not always possible to avoid <code>#include</code>’ing a configuration header file in an exported one, for example an option may affect a data structure rather than just the presence or absence of a function. Issues like this will vary from package to package.</p>
 
-<h4>Nested <code>#include</code>’s</h4>
+<h4 id="nested-includes">Nested <code>#include</code>’s</h4>
 
 <p>As a general rule, unnecessary <code>#include</code>’s should be avoided. A header file should <code>#include</code> only those header files which are absolutely needed for it to define its interface. Any additional <code>#include</code>’s make it more likely that package or application source files become dependent on configuration header files and will get rebuilt unnecessarily when there are minor configuration changes.</p>
 
-<h4>Including configuration headers</h4>
+<h4 id="including-configuration-headers">Including configuration headers</h4>
 
 <p>Exported header files should avoid <code>#include</code>’ing configuration header files unless absolutely necessary, to avoid unnecessary rebuilding of both application code and other packages when there are minor configuration changes. A <code>#include</code> is needed only when a configuration option affects the exported interface, or when it affects some implementation details which is controlled by the header file such as whether or not a particular function gets inlined.</p>
 
@@ -673,25 +678,25 @@ extern bool os_mutex_timedlock(os_mutex_t*);
 
 <p>Packages should normally come with one or more test cases. This allows application developers to verify that a given package works correctly on their particular hardware and in their particular configuration, making it slightly more likely that they will attempt to find bugs in their own code rather than automatically blaming the component writers.</p>
 
-<h4>Google Test</h4>
+<h4 id="google-test">Google Test</h4>
 
 <p>XCDL itself does not include a specific testing infrastructure and tests may use any C/C++ testing infrastructure.</p>
 
 <p>µOS++ fully supports the <a href="http://code.google.com/p/googletest/">Google Test</a> &amp; <a href="http://code.google.com/p/googlemock/">Google Mock</a> testing infrastructure, and XCDL should be able to configure the environment required to run these tests.</p>
 
-<h4>Running tests on the host</h4>
+<h4 id="running-tests-on-the-host">Running tests on the host</h4>
 
 <p>If possible, tests should be written highly portable, and should be able to run on the host, as command line applications returning a non-zero exit code if the test failed.</p>
 
-<h4>Continuous integration</h4>
+<h4 id="continuous-integration">Continuous integration</h4>
 
 <p>XCDL should provide support to collect information about all tests contributed by all packages available in a configuration and run all of them from a scriptable environment, in order to facilitate integration into continuous integration tools like <a href="http://en.wikipedia.org/wiki/Hudson_(software)">Hudson</a>.</p>
 
-<h4>Semihosted tests</h4>
+<h4 id="semihosted-tests">Semihosted tests</h4>
 
 <p>XCDL should also provide support to run the same tests on the actual hardware (or on simulators like QEMU), using the semihosting infrastructure.</p>
 
-<h4>TODO: update XCDL tests definitions</h4>
+<h4 id="todo-update-xcdl-tests-definitions">TODO: update XCDL tests definitions</h4>
 
 <p>At the time of writing the application developer support for building and running test cases via the component framework is under review and likely to change. Currently each eCos test case should consist of a single C or C++ source file that can be compiled with the package’s set of compiler flags and linked like any application program. Each test case should use the testing API defined by the infrastructure. A magically-named calculated configuration option of the form <code>CYGPKG_&lt;PACKAGE-NAME&gt;_TESTS</code> lists the test cases.</p>
 
@@ -710,14 +715,14 @@ extern bool os_mutex_timedlock(os_mutex_t*);
 <p>TODO: update for XCDL, this currently refers to eCos</p>
 
 <ol>
-<li> The data file must be named pkgadd.db and must be located in the root of the tar archive. It must contain data in a format suitable for appending to the eCos repository database (ecos.db). the Section called Updating the ecos.db database in Chapter 3 describes this data format. Note that a database consistency check is performed by the eCos Administration Tool when pkgadd.db has been appended to the database. Any new target entries which refer to unknown packages will be removed at this stage.</li>
-<li> The package source code must be placed in one or more $(package-path)/$(version) directories in the tar archive, where each $(package-path) directory path is specified as the directory attribute of one of the packages entries in pkgadd.db.</li>
-<li> An optional license agreement file named pkgadd.txt may be placed in the root of the tar archive. It should contain text with a maximum line length of 79 characters. If this file exists, the contents will be presented to the user during installation of the package. The eCos Package Administration Tool will then prompt the user with the question "Do you accept all the terms of the preceding license agreement?". The user must respond "yes" to this prompt in order to proceed with the installation.</li>
-<li> Optional template files may be placed in one or more templates/$(template_name) directories in the tar archive. Note that such template files would be appropriate only where the packages to be distributed have a complex dependency relationship with other packages. Typically, a third party package can be simply added to an eCos configuration based on an existing core template and the provision of new templates would not be appropriate. the Section called Templates in Chapter 6 contains more information on templates.</li>
-<li> The distribution file must be given a .epk (not .tar.gz) file extension. The .epk file extension serves to distinguish eCos package distributions files from generic gzipped GNU tar archives. It also discourages users from attempting to extract the package from the archive manually. The file browsing dialog of the eCos Package Administration Tool lists only those files which have a .epk extension.</li>
-<li> No other files should be present in the archive.</li>
-<li> Files in the tar archive may use LF or CRLF line endings interchangably. The eCos Administration Tool ensures that the installed files are given the appropriate host-specific line endings.</li>
-<li> Binary files may be placed in the archive, but the distribution of object code is not recommended. All binary files must be given a .bin suffix in addition to any file extension they may already have. For example, the GIF image file myfile.gif must be named myfile.gif.bin in the archive. The .bin suffix is removed during file extraction and is used to inhibit the manipulation of line endings by the eCos Administration Tool.</li>
+  <li>The data file must be named pkgadd.db and must be located in the root of the tar archive. It must contain data in a format suitable for appending to the eCos repository database (ecos.db). the Section called Updating the ecos.db database in Chapter 3 describes this data format. Note that a database consistency check is performed by the eCos Administration Tool when pkgadd.db has been appended to the database. Any new target entries which refer to unknown packages will be removed at this stage.</li>
+  <li>The package source code must be placed in one or more $(package-path)/$(version) directories in the tar archive, where each $(package-path) directory path is specified as the directory attribute of one of the packages entries in pkgadd.db.</li>
+  <li>An optional license agreement file named pkgadd.txt may be placed in the root of the tar archive. It should contain text with a maximum line length of 79 characters. If this file exists, the contents will be presented to the user during installation of the package. The eCos Package Administration Tool will then prompt the user with the question “Do you accept all the terms of the preceding license agreement?”. The user must respond “yes” to this prompt in order to proceed with the installation.</li>
+  <li>Optional template files may be placed in one or more templates/$(template_name) directories in the tar archive. Note that such template files would be appropriate only where the packages to be distributed have a complex dependency relationship with other packages. Typically, a third party package can be simply added to an eCos configuration based on an existing core template and the provision of new templates would not be appropriate. the Section called Templates in Chapter 6 contains more information on templates.</li>
+  <li>The distribution file must be given a .epk (not .tar.gz) file extension. The .epk file extension serves to distinguish eCos package distributions files from generic gzipped GNU tar archives. It also discourages users from attempting to extract the package from the archive manually. The file browsing dialog of the eCos Package Administration Tool lists only those files which have a .epk extension.</li>
+  <li>No other files should be present in the archive.</li>
+  <li>Files in the tar archive may use LF or CRLF line endings interchangably. The eCos Administration Tool ensures that the installed files are given the appropriate host-specific line endings.</li>
+  <li>Binary files may be placed in the archive, but the distribution of object code is not recommended. All binary files must be given a .bin suffix in addition to any file extension they may already have. For example, the GIF image file myfile.gif must be named myfile.gif.bin in the archive. The .bin suffix is removed during file extraction and is used to inhibit the manipulation of line endings by the eCos Administration Tool.</li>
 </ol>
 
 <h3 id="tocAnchor-1-17-2">Preparing XCDL packages for distribution</h3>
@@ -754,10 +759,11 @@ extern bool os_mutex_timedlock(os_mutex_t*);
   <div class="site-footer">
   <div class="site-footer-links left">
     <ul>
-<li>© 2015 Liviu Ionescu</li>
-<li>Hosted on GitHub</li>
-<li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
+  <li>© 2015 Liviu Ionescu</li>
+  <li>Hosted on GitHub</li>
+  <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS" /></a></li>
 </ul>
+
 
   </div>
   <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
@@ -765,11 +771,11 @@ extern bool os_mutex_timedlock(os_mutex_t*);
   </a>
   <div class="site-footer-links right">
     <ul>
-<li><a href="/">Home</a></li>
-<li><a href="/blog/">News</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
-<li><a href="/about/">About</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">News</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+  <li><a href="/about/">About</a></li>
 </ul>
 
   </div>

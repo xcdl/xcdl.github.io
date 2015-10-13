@@ -103,12 +103,13 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/blog/">XCDL News</a></h4>
+      <h4 id="xcdl-newsblog"><a href="/blog/">XCDL News</a></h4>
 
 <ul>
-<li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
-<li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
+  <li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
+  <li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
 </ul>
+
 
     </div>
   </div>
@@ -116,30 +117,28 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/">XCDL Home</a></h4>
+      <h4 id="xcdl-home"><a href="/">XCDL Home</a></h4>
 
-<h4>Component Writer&#39;s Guide</h4>
-
+<h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-<li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
-<li><a href="/guide/packages/">XCDL Packages</a></li>
-<li><a href="/guide/language/">The XCDL Language</a></li>
-<li><a href="/guide/build-process/">The build process</a></li>
+  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/packages/">XCDL Packages</a></li>
+  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
-<h4>Reference</h4>
-
+<h4 id="reference">Reference</h4>
 <ul>
-<li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
 </ul>
 
-<h4>License</h4>
+<h4 id="license">License</h4>
 
 <ul>
-<li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
+  <li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
 </ul>
 
-<h4><a href="/about/">About</a></h4>
+<h4 id="aboutabout"><a href="/about/">About</a></h4>
 
     </div>
   </div>
@@ -155,7 +154,7 @@
 
         
 <h1 class="page-title">The XCDL language</h1>
-<p class="last-modified">Last modified on Mon Oct 12 17:37:31 2015 UTC.</p>
+<p class="last-modified">Last modified on Tue Oct 13 20:46:32 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -237,9 +236,9 @@
 <p>XCDL originated as a representation in XML of the original eCos CDL definitions, then several changes were performed.</p>
 
 <p>A very simple XCDL file would look like this:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="errors"&gt;
+<code>&lt;package name="errors"&gt;
 
   &lt;display&gt;Common error code support&lt;/display&gt;
   &lt;description&gt;This package contains the common list of error and
@@ -258,15 +257,15 @@
 
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <p>This describes a single package, the error code package, which does not have any sub-components or configuration options. The package has a name, <em>[errors]</em>, which can be referenced in other XCDL files using e.g. <code>&lt;requires&gt;isEnabled('errors')&lt;/requires&gt;</code>. There will also be a <code>#define</code> for this package in a configuration header file. In addition to the package name, this file provides a number of properties for the package as a whole. The <code>&lt;display&gt;</code> property provides a short description. The <code>&lt;description&gt;</code> property involves a rather longer one, for when users need a bit more information. The <code>&lt;sourceFile&gt;</code> and <code>&lt;header*&gt;</code> properties list the consequences of this package at build-time. The package appears to lack any online documentation.</p>
 
 <p>Packages could be even simpler than this. If the package only provides an interface and there are no files to be compiled then there is no need for a compile property. Alternatively if there are no exported header files, or if the exported header files should go to the top-level of the install/include directory, then there is no need for an <code>&lt;generatedFile&gt;</code> property. Strictly speaking the <code>&lt;description&gt;</code> and <code>&lt;display&gt;</code> properties are optional as well, although application developers would not appreciate the resulting lack of information about what the package is supposed to do.</p>
 
 <p>However many packages tend to be a bit more complicated than the error package, containing various subcomponents and configuration options. These are also defined in the XCDL files and in much the same way as the package. For example, the following excerpt comes from the infrastructure package:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;component name="traceBuffer"&gt;
+<code>&lt;component name="traceBuffer"&gt;
 
   &lt;display&gt;Buffered tracing&lt;/display&gt;
   &lt;description&gt;An output module which buffers output from tracing and
@@ -298,15 +297,15 @@
 
 &lt;/component&gt;
 </code></pre>
-</div>
+
 <p>Like a <code>&lt;package&gt;</code>, a <code>&lt;component&gt;</code> has a name and a body. The body contains various properties for that component, and may also contain subcomponents or options. Similarly an <code>&lt;option&gt;</code> has a name and a body of properties. This example lists a number of new properties: <code>&lt;defaultValue&gt;</code>, <code>&lt;activeIf&gt;</code>, <code>&lt;valueType&gt;</code> and <code>&lt;legalValues&gt;</code>. The meaning of most of these should be fairly obvious. The next sections describe the various XCDL objects and properties.</p>
 
 <h2 id="tocAnchor-1-2">XCDL objects</h2>
 
 <p>There are several XCDL-related objects which can occur at the top-level of a XCDL file: <code>&lt;package&gt;</code>, <code>&lt;component&gt;</code>, <code>&lt;option&gt;</code> and <code>&lt;interface&gt;</code>. These correspond to the basic building blocks of the language. All of these take the same basic form:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="..."&gt;
+<code>&lt;package name="..."&gt;
   ...
 &lt;/package&gt;
 
@@ -322,7 +321,7 @@
   ...
 &lt;/interface&gt;
 </code></pre>
-</div>
+
 <p>All objects have a mandatory name and, inside their body, a list of properties and an optional list of children objects. All children names must be unique within a given parent. Addressing objects is similar to addressing files in a file system using forward slash separated paths. Paths may be absolute or relative. In addition relative paths may be incomplete, like <code>isEnabled('traceBuffer/size')</code>, as long as the uniqueness of the sub-path is assured.</p>
 
 <p>The various XCDL objects live in a hierarchy. There is no upper bound on how far components can be nested, but it is rarely necessary to go more than three or four levels deeper than the package level. Since the naming convention used for referring objects incorporates bits of the hierarchy, this has the added advantage of keeping the names down to a more manageable size.</p>
@@ -334,9 +333,9 @@
 <p>By default, an object is placed added to the children list of the top level object defined in the parent folder, so the objects hierarchy follows the file system folders hierarchy, but it is possible to override this using a parent property. This is generally useful for separately distributed packages, to attach in a convenient location in the hierarchy. Components, options and interfaces can also be reparented, but this is less common.</p>
 
 <p>Components can also contain options and other XCDL objects, in fact that is what distinguishes them from options. These can be defined in the body of the <code>&lt;component&gt;</code>:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;component name="stdio"&gt;
+<code>&lt;component name="stdio"&gt;
 
   &lt;generatedDefinition&gt;OS_PACKAGE_LIBC_STDIO&lt;/generatedDefinition&gt;
 
@@ -354,11 +353,11 @@
 
 &lt;/component&gt;
 </code></pre>
-</div>
+
 <p>Nesting options inside the bodies of components like this is fine for simple packages with only a limited number of configuration options, but it becomes unsatisfactory as the number of options increases. Instead it is possible to split the XCDL data into multiple XCDL file, on a per-component basis. The <code>&lt;includeFile&gt;</code> property should be used for this. For example, in the case of the C library all stdio-related configuration options could be put into stdio.xml, and the top-level XCDL file libc.xml would contain the following:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="libc"&gt;
+<code>&lt;package name="libc"&gt;
   ...
   &lt;component name="stdio"&gt;
     ...
@@ -367,7 +366,7 @@
 
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <p>The objects <code>component('floating point')</code> and the <code>option('thread safe streams')</code> can then be placed at the top-level of stdio.xml. It is possible to have some options nested in the body of a <code>&lt;component&gt;</code> object and other options in a separate file accessed by the <code>&lt;includeFile&gt;</code> property. In such a case the nested options would be processed first, and then the other file would be read in. A file specified by a <code>&lt;includeFile&gt;</code> property should only define new options, components or interfaces: it should not contain any additional properties for the current component.</p>
 
 <p>It is possible for a component’s XCDL file to have a sub-component which also has a <code>&lt;includeFile&gt;</code> property, and so on. In practice excessive nesting like this is rarely useful. It is also possible to ignore the XCDL language support for constructing hierarchies automatically and use the parent property explicitly for every single option and component. Again this is not generally useful.</p>
@@ -387,9 +386,9 @@
 <h3 id="tocAnchor-1-3-1">Information-providing properties</h3>
 
 <p>Users can only be expected to manipulate configuration options sensibly if they are given sufficient information about these options. There are three properties which serve to explain an option in plain text: the <code>&lt;display&gt;</code> property gives a textual alias for an option, which is usually more comprehensible than something like <em>[time zones]</em>; the <code>&lt;description&gt;</code> property gives a longer description, typically a paragraph or so; the <code>&lt;doc&gt;</code> property specifies the location of additional online documentation related to a configuration option. In the context of a graphical tool the <code>&lt;display&gt;</code> string will be the primary way for users to identify configuration options; the <description> paragraph will be visible whenever the option is selected; the online documentation will only be accessed when the user explicitly requests it.</description></p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="uitron"&gt;
+<code>&lt;package name="uitron"&gt;
 
   &lt;display&gt;uITRON compatibility layer&lt;/display&gt;
   &lt;description&gt;eCos supports a uITRON Compatibility Layer, providing
@@ -402,7 +401,7 @@
 
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <p>All three properties take a single argument. For display and description this argument is just a string. For doc it should be a pointer to a suitable HTML file, optionally including an anchor within that page. If the directory layout conventions are observed then the component framework will look for the HTML file in the package’s doc subfolder, otherwise the <code>&lt;doc&gt;</code> filename will be treated as relative to the package’s top-level directory.</p>
 
 <h3 id="tocAnchor-1-3-2">The configuration hierarchy</h3>
@@ -410,9 +409,9 @@
 <p>There are two properties related to the hierarchical organization of components and options: <code>&lt;parent&gt;</code> and <code>&lt;includeFile&gt;</code>.</p>
 
 <p>The <code>&lt;parent&gt;</code> property can be used to move a XCDL entity somewhere else in the hierarchy. The most common use is for packages, to avoid having all the packages appear at the top-level of the configuration hierarchy. For example an architectural HAL package such as SH is placed below the common HAL package using a parent property.</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="sh"&gt;
+<code>&lt;package name="sh"&gt;
 
   &lt;display&gt;SH architecture&lt;/display&gt;
 
@@ -420,13 +419,13 @@
   ...
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <p>The <code>&lt;parent&gt;</code> property can also be used in the body of a <code>&lt;component&gt;</code>, <code>&lt;option&gt;</code> or <code>&lt;interface&gt;</code>, but this is less common. However care has to be taken since excessive reparenting can be confusing. Care also has to be taken when reparenting below some other package that may not actually be loaded in a given configuration, since the resulting behavior is undefined.</p>
 
 <p>The <code>&lt;includeFile&gt;</code> property can only be used in the body of a <code>&lt;component&gt;</code> object. The property takes a single filename as argument, and this should be another XCDL file containing additional options, subcomponents and interfaces that should go below the current component in the hierarchy. If the directory layout conventions are observed then the component framework will look for the specified file relative to the meta subdirectory of the package, otherwise the filename will be treated as relative to the package’s top-level directory.</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;component name="stdio"&gt;
+<code>&lt;component name="stdio"&gt;
 
   &lt;display&gt;Standard input/output functions&lt;/display&gt;
   &lt;description&gt;This enables support for standard I/O functions from &lt;stdio.h&gt;.&lt;/description&gt;
@@ -441,20 +440,26 @@
 
 &lt;/component&gt;
 </code></pre>
-</div>
+
 <h3 id="tocAnchor-1-3-3">Value-related properties</h3>
 
 <p>There are seven properties which are related to option values and state: <code>&lt;valueType&gt;</code>, <code>&lt;computed&gt;</code>, <code>&lt;defaultValue&gt;</code>, <code>&lt;legalValues&gt;</code>, <code>&lt;activeIf&gt;</code>, <code>&lt;implements&gt;</code>, and <code>&lt;requires&gt;</code>. More detailed information can be found in the section called Values and Expressions.</p>
 
-<p>In the context of configurability, the concept of an option’s value is somewhat non-trivial. First an option may or may not be loaded: it is possible to build a configuration which has the math library but not the kernel; however the math library’s XCDL file still reference kernel options, for example <em>[libm/threadSafeCompatMode]</em> has a <requires> constraint on <em>[kernel/threadsData]</em>. Even if an option is loaded it may or may not be active, depending on what is happening higher up in the hierarchy: if the C library’s <code>component('libc/stdio')</code> is disabled then some other options such as <code>option('libc/stdio/buffsize')</code> become irrelevant. In addition each option has both a boolean enabled/disabled flag and a data part. For many options only the boolean flag is of interest, while for others only the data part is of interest. The <valuetype> property can be used to control this:</valuetype></requires></p>
+<p>In the context of configurability, the concept of an option’s value is somewhat non-trivial. First an option may or may not be loaded: it is possible to build a configuration which has the math library but not the kernel; however the math library’s XCDL file still reference kernel options, for example <em>[libm/threadSafeCompatMode]</em> has a <requires> constraint on *[kernel/threadsData]*. Even if an option is loaded it may or may not be active, depending on what is happening higher up in the hierarchy: if the C library’s `component('libc/stdio')` is disabled then some other options such as `option('libc/stdio/buffsize')` become irrelevant. In addition each option has both a boolean enabled/disabled flag and a data part. For many options only the boolean flag is of interest, while for others only the data part is of interest. The <valuetype> property can be used to control this:</valuetype></requires></p>
 
 <ul>
-<li><p><code>&lt;valueType&gt;enabled&lt;/valueType&gt;</code> <br />
-This type indicates that neither the boolean nor the data parts are user-modifiable: if active, the option is enabled and the data is always set to true. The most common use for this is to have a component that just acts as a placeholder in the hierarchy, allowing various options to be grouped below it.</p></li>
-<li><p><code>&lt;valueType&gt;none&lt;/valueType&gt;</code> <br />
-This type indicates that only the boolean part is user-modifiable: if active, the option can be enabled/disabled and the data always follow the isEnabled() value. The most common use for this is to have a component that just acts as a placeholder in the hierarchy, allowing various options to be grouped below it. To make the option non user-configurable, use <code>&lt;configurable&gt;false&lt;/configurable&gt;</code>.</p></li>
-<li><p><code>&lt;valueType&gt;bool | int | float | string&lt;/valueType&gt;</code> <br />
-Both the boolean and the data part of the option are user-modifiable. To make the boolean part non user-configurable, use <code>&lt;configurable&gt;false&lt;/configurable&gt;</code>. To make the data part non user-configurable, use <code>&lt;computed&gt;true&lt;/computed&gt;</code>.</p></li>
+  <li>
+    <p><code>&lt;valueType&gt;enabled&lt;/valueType&gt;</code> <br /><br />
+This type indicates that neither the boolean nor the data parts are user-modifiable: if active, the option is enabled and the data is always set to true. The most common use for this is to have a component that just acts as a placeholder in the hierarchy, allowing various options to be grouped below it.</p>
+  </li>
+  <li>
+    <p><code>&lt;valueType&gt;none&lt;/valueType&gt;</code> <br /><br />
+This type indicates that only the boolean part is user-modifiable: if active, the option can be enabled/disabled and the data always follow the isEnabled() value. The most common use for this is to have a component that just acts as a placeholder in the hierarchy, allowing various options to be grouped below it. To make the option non user-configurable, use <code>&lt;configurable&gt;false&lt;/configurable&gt;</code>.</p>
+  </li>
+  <li>
+    <p><code>&lt;valueType&gt;bool \| int \| float \| string&lt;/valueType&gt;</code> <br /><br />
+Both the boolean and the data part of the option are user-modifiable. To make the boolean part non user-configurable, use <code>&lt;configurable&gt;false&lt;/configurable&gt;</code>. To make the data part non user-configurable, use <code>&lt;computed&gt;true&lt;/computed&gt;</code>.</p>
+  </li>
 </ul>
 
 <p>For more details of XCDL flavors and how a flavor affects expression evaluation, and other consequences, see the Section called Values and Expressions.</p>
@@ -464,9 +469,9 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 <p>The <configurable> property can disable the change of the boolean part in the interface, so the option cannot be enabled/disabled by the user.</configurable></p>
 
 <p>The <code>&lt;computed&gt;</code> property can be used for options which should not be user-modifiable, but which instead are fixed by the target hardware or determined from the current values of other options. In general calculated options should be avoided, since they can be confusing to users who need to figure out whether or not a particular option can actually be changed. There are a number of valid uses for calculated options, and quite a few invalid ones as well. The reference packages should be consulted for further details. The property takes an ordinary XCDL expression as argument, for example:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;!-- A constant on some target hardware, perhaps user-modifiable on other targets. --&gt;
+<code>&lt;!-- A constant on some target hardware, perhaps user-modifiable on other targets. --&gt;
 &lt;option name="period"&gt;
 
   &lt;display&gt;Real-time clock period&lt;/display&gt;
@@ -477,13 +482,13 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 
 &lt;/option&gt;
 </code></pre>
-</div>
+
 <p>The <code>&lt;computed&gt;</code> property cannot be used for packages or interfaces. The value of a package always corresponds to the version of that package which is loaded, and this is under user control. Interfaces are implicitly calculated, based on the number of active and enabled implementors.</p>
 
 <p>The <code>&lt;defaultValue&gt;</code> property is similar to <code>&lt;computed&gt;</code>, but only specifies a default value which users can modify. Again this property is not relevant to packages or interfaces. A typical example would be:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;option name="threadSupport"&gt;
+<code>&lt;option name="threadSupport"&gt;
 
   &lt;display&gt;Include GDB multi-threading debug support&lt;/display&gt;
 
@@ -494,11 +499,11 @@ Both the boolean and the data part of the option are user-modifiable. To make th
     ...
 &lt;/option&gt;
 </code></pre>
-</div>
+
 <p>The <code>&lt;legalValues&gt;</code> property imposes a constraint on the possible values of the data part of an option. Hence it is only applicable to options with the data or booldata flavors. It cannot be used for a package since the only valid value for a package is its version number. The arguments to the <legalvalues> property should constitute a XCDL list expression.</legalvalues></p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;component name="libc"&gt;
+<code>&lt;component name="libc"&gt;
 
   ...
 
@@ -514,11 +519,11 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   &lt;/option&gt;
 &lt;/component&gt;
 </code></pre>
-</div>
-<p>The <activeif> property does not relate directly to an option’s value, but rather to its active state. Usually this is controlled via the configuration hierarchy: if the <em>[libc/stdio]</em> component is disabled then all options below it are inactive and do not have any consequences. In some cases the hierarchy does not provide sufficient control, for example an option should only be active if two disjoint sets of conditions are satisfied: the hierarchy could be used for one of these conditions, and an additional <activeif> property could be used for the other one. The arguments to <activeif> should constitute a XCDL goal expression.</activeif></activeif></activeif></p>
-<div class="highlight">
+
+<p>The <activeif> property does not relate directly to an option’s value, but rather to its active state. Usually this is controlled via the configuration hierarchy: if the *[libc/stdio]* component is disabled then all options below it are inactive and do not have any consequences. In some cases the hierarchy does not provide sufficient control, for example an option should only be active if two disjoint sets of conditions are satisfied: the hierarchy could be used for one of these conditions, and an additional <activeif> property could be used for the other one. The arguments to <activeif> should constitute a XCDL goal expression.</activeif></activeif></activeif></p>
+
 <pre>
-<code class="language-text" data-lang="text">&lt;!--  Do not provide extra semaphore debugging if there are no semaphores --&gt;
+<code>&lt;!--  Do not provide extra semaphore debugging if there are no semaphores --&gt;
 &lt;option name="binsem"&gt;
 
   &lt;parent&gt;kernel/instrument&lt;/parent&gt;
@@ -527,11 +532,11 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   ...
 &lt;/option&gt;
 </code></pre>
-</div>
+
 <p>The <code>&lt;implements&gt;</code> property is related to the concept of XCDL interfaces. If an option is active and enabled and it implements a particular interface then it contributes 1 to that interface’s value.</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="edb7xxx"&gt;
+<code>&lt;package name="edb7xxx"&gt;
 
   &lt;parent&gt;net/drivers/eth&lt;/parent&gt;
 
@@ -541,11 +546,11 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   ...
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <p>The <requires> property is used to impose constraints on the user’s choices. For example it is unreasonable to expect the C library to provide thread-safe implementations of certain functions if the underlying kernel support has been disabled, or even if the kernel is not being used at all.</requires></p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;option name="perThreadErrno"&gt;
+<code>&lt;option name="perThreadErrno"&gt;
 
   &lt;parent&gt;libc&lt;/parent&gt;
   &lt;display&gt;Per-thread errno&lt;/display&gt;
@@ -557,24 +562,24 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   ...
 &lt;/option&gt;
 </code></pre>
-</div>
+
 <p>The arguments to the <code>&lt;requires&gt;</code> property should be a XCDL goal expression.</p>
 
 <h3 id="tocAnchor-1-3-4">Generating the configuration header files</h3>
 
 <p>When creating or updating a build tree the component framework will also generate configuration header files, one per package. By default it will generate a <code>#define</code> for each option, component or interface that is active and enabled that defines a <code>&lt;generatedDefinition&gt;</code>. For options with the data or booldata flavors the <code>#define</code> will use the option’s data part, otherwise it will use the constant 1. Typical output would include:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">#define OS_PACKAGE_LIBC_TIME_POSIX (1)
+<code>#define OS_PACKAGE_LIBC_TIME_POSIX (1)
 #define OS_INTEGER_LIBC_TIME_DST_DEFAULT_STATE (-1)
 </code></pre>
-</div>
+
 <p>There are several properties which can be used to control the header file generation process: <code>&lt;generatedFile&gt;</code>, <code>&lt;generatedDefinition&gt;</code>, <code>&lt;valueFormat&gt;</code>.</p>
 
 <p>The component framework will generate a configuration header file based on the <code>&lt;generatedFile&gt;</code> property. If this property is not defined for the current object, the <code>&lt;parent&gt;</code> property is used.</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="sparclite"&gt;
+<code>&lt;package name="sparclite"&gt;
 
   &lt;display&gt;SPARClite architecture&lt;/display&gt;
 
@@ -585,17 +590,17 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   ...
 &lt;/package&gt;
 </code></pre>
-</div>
-<p>The <code>&lt;valueFormat&gt;</code> property can be used to control how the value part of the default <code>#define</code> gets formatted. For example a format string of "0x%04x" could be used to generate a four-digit hexadecimal number.</p>
+
+<p>The <code>&lt;valueFormat&gt;</code> property can be used to control how the value part of the default <code>#define</code> gets formatted. For example a format string of “0x%04x” could be used to generate a four-digit hexadecimal number.</p>
 
 <h3 id="tocAnchor-1-3-5">Controlling what gets built</h3>
 
 <p>There are several properties which affect the build process: <code>&lt;sourceFile&gt;</code>.</p>
 
 <p>Most of the source files that go into a package should simply be compiled with the appropriate compiler, selected by the target architecture, and with the appropriate flags, with an additional set defined by the target hardware and possible modifications on a per-package basis. The <code>&lt;sourceFile&gt;</code> property is used to list these source files:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="errors"&gt;
+<code>&lt;package name="errors"&gt;
 
   &lt;display&gt;Common error code support&lt;/display&gt;
 
@@ -603,13 +608,13 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   ...
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <p>The arguments to the <code>&lt;sourceFile&gt;</code> property should be one source file. Typically most of the sources will be needed for the package as a whole, and hence they will be listed in several <code>&lt;sourceFile&gt;</code> properties in the object body. Some sources may be specific to particular configuration options, in other words there is no point in compiling them unless that option is enabled, in which case the sources should be listed in a compile property in the corresponding <code>&lt;option&gt;</code>, <code>&lt;component&gt;</code> or <code>&lt;interface&gt;</code> body.</p>
 
 <p>Some packages may have more complicated build requirements, for example they may involve a special target such as a linker script which should not end up in the usual library, or they may involve special build steps for generating an object file. The <make> and <make_object> properties provide support for such requirements, for example:</make_object></make></p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="am33"&gt;
+<code>&lt;package name="am33"&gt;
 
   &lt;display&gt;MN10300 AM33 variant&lt;/display&gt;
   &lt;parent&gt;hal/mn10300&lt;/parent&gt;
@@ -622,15 +627,15 @@ Both the boolean and the data part of the option are user-modifiable. To make th
     &lt;a href='https://github.com/rm' class='user-mention'&gt;@rm&lt;/a&gt; target.tmp&lt;/make&gt;
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <p>(not implemented)</p>
 
 <p>For full details of custom build steps and the build process generally, see <a href="/The_build_process" title="wikilink">The build process</a>.</p>
 
 <p>The <code>&lt;generatedFile&gt;</code> property relates to an object’s exported header files. To avoid any mistakes, this property must be explicitly defined:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="infra"&gt;
+<code>&lt;package name="infra"&gt;
 
   &lt;display&gt;Infrastructure&lt;/display&gt;
 
@@ -638,15 +643,15 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   ...
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <p>The various header definition exported by the infrastructure, will now end up in the os/infra.h folder.</p>
 
 <h3 id="tocAnchor-1-3-6">Miscellaneous properties</h3>
 
 <p>The <code>&lt;hardware&gt;</code> property is only relevant to packages. Some packages such as device drivers and HAL packages are hardware-specific, and generally it makes no sense to add such packages to a configuration unless the corresponding hardware is present on your target system. Typically hardware package selection happens automatically when you select your target. The <code>&lt;hardware&gt;</code> property should be used to identify a hardware-specific package, and does not take any arguments.</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="mips"&gt;
+<code>&lt;package name="mips"&gt;
 
   &lt;display&gt;MIPS architecture&lt;/display&gt;
 
@@ -656,7 +661,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   ...
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <h2 id="tocAnchor-1-10">Option naming convention</h2>
 
 <p>TBD</p>
@@ -674,10 +679,10 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 <p>There are four factors which go into an option’s value:</p>
 
 <ol>
-<li> An option is part of a package that may or may not be loaded</li>
-<li> If the parent package is loaded, the option may or may not be active</li>
-<li> Even if the option is active, it may or may not be enabled</li>
-<li> If the option is in a loaded package, is active and enabled, then it will have some associated data which constitutes its value.</li>
+  <li>An option is part of a package that may or may not be loaded</li>
+  <li>If the parent package is loaded, the option may or may not be active</li>
+  <li>Even if the option is active, it may or may not be enabled</li>
+  <li>If the option is in a loaded package, is active and enabled, then it will have some associated data which constitutes its value.</li>
 </ol>
 
 <h3 id="tocAnchor-1-12-1">Is the option <strong>loaded</strong>?</h3>
@@ -689,9 +694,9 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 <p>Any options which are not in the current configuration are handled as follows:</p>
 
 <ol>
-<li> Any references to that option will evaluate to 0/false, so <code>valueOf('...') == 0/false</code>, <code>isLoaded('...') == false</code>, <code>isActive('...') == false</code>, <code>isEnabled('...') == false</code>.</li>
-<li> An option that is not loaded has no consequences on the build process. It cannot directly result in any <code>#define</code>’s in a configuration header file, nor in any files being compiled. This is only reasonable: if the option is not loaded then the component framework has no way of knowing about any compile or similar properties. An option that is not loaded can have indirect consequences by being referenced in XCDL expressions.</li>
-<li> An option that is not loaded cannot impose any constraints on the rest of the configuration. Again this is the only reasonable behavior: if the option is not loaded then any associated requires or <code>&lt;legalValues&gt;</code> properties will not be known.</li>
+  <li>Any references to that option will evaluate to 0/false, so <code>valueOf('...') == 0/false</code>, <code>isLoaded('...') == false</code>, <code>isActive('...') == false</code>, <code>isEnabled('...') == false</code>.</li>
+  <li>An option that is not loaded has no consequences on the build process. It cannot directly result in any <code>#define</code>’s in a configuration header file, nor in any files being compiled. This is only reasonable: if the option is not loaded then the component framework has no way of knowing about any compile or similar properties. An option that is not loaded can have indirect consequences by being referenced in XCDL expressions.</li>
+  <li>An option that is not loaded cannot impose any constraints on the rest of the configuration. Again this is the only reasonable behavior: if the option is not loaded then any associated requires or <code>&lt;legalValues&gt;</code> properties will not be known.</li>
 </ol>
 
 <h3 id="tocAnchor-1-12-2">Is the option <strong>active</strong>?</h3>
@@ -703,11 +708,11 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 <p>The active or inactive state of an option may affect other packages. For example a package may use the sprintf() function and require support for floating point conversions, a constraint that is not satisfied if the relevant option is inactive. It is necessary to define exactly what it means for an option to be inactive:</p>
 
 <ol>
-<li> An option is inactive if its parent is either inactive or disabled. For example if <code>component('libc/stdio')</code> is disabled then all the options and sub-components become inactive; since <code>component('libc/stdio/floating point')</code> is now inactive, <code>component('libc/stdio/floating point/printf')</code> is inactive as well.</li>
-<li> Options may also be inactive as a result of an <code>&lt;activeIf&gt;</code> property. This is useful if a particular option is only relevant if two or more disjoint sets of conditions need to be satisfied, since the hierarchical structure can only cope with at most one such set.</li>
-<li> If an option is inactive then any references to that option in XCDL expressions will evaluate to 0/false. So <code>valueOf('...') == 0/false</code>, <code>isActive('...') == false</code>, <code>isEnabled('...') == false</code>.</li>
-<li> An option that is inactive has no consequences on the build process. No <code>#define</code> will be generated. Any compile or similar properties will be ignored.</li>
-<li> An option that is inactive cannot impose any constraints on the rest of the configuration. For example <code>option('libc/stdio/floating point/printf')</code> has a dependency <code>&lt;requires&gt;isEnabled('libm')&lt;/requires&gt;</code>, but if all of the stdio functionality is disabled then this constraint is ignored (although of course there may be other packages which have a dependency on <code>package('libm')</code>).</li>
+  <li>An option is inactive if its parent is either inactive or disabled. For example if <code>component('libc/stdio')</code> is disabled then all the options and sub-components become inactive; since <code>component('libc/stdio/floating point')</code> is now inactive, <code>component('libc/stdio/floating point/printf')</code> is inactive as well.</li>
+  <li>Options may also be inactive as a result of an <code>&lt;activeIf&gt;</code> property. This is useful if a particular option is only relevant if two or more disjoint sets of conditions need to be satisfied, since the hierarchical structure can only cope with at most one such set.</li>
+  <li>If an option is inactive then any references to that option in XCDL expressions will evaluate to 0/false. So <code>valueOf('...') == 0/false</code>, <code>isActive('...') == false</code>, <code>isEnabled('...') == false</code>.</li>
+  <li>An option that is inactive has no consequences on the build process. No <code>#define</code> will be generated. Any compile or similar properties will be ignored.</li>
+  <li>An option that is inactive cannot impose any constraints on the rest of the configuration. For example <code>option('libc/stdio/floating point/printf')</code> has a dependency <code>&lt;requires&gt;isEnabled('libm')&lt;/requires&gt;</code>, but if all of the stdio functionality is disabled then this constraint is ignored (although of course there may be other packages which have a dependency on <code>package('libm')</code>).</li>
 </ol>
 
 <h3 id="tocAnchor-1-12-3">Is the option <strong>enabled</strong>? What is the option value?</h3>
@@ -717,62 +722,62 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 <p>In XCDL the value of an option consists of two parts. There is a boolean part, controlling whether or not the option is enabled, that can be accessed with <code>isEnabled('...')</code>. There is also a data part, providing additional information and accessed with <code>valueOf('...')</code>. For most options one of these parts is fixed, as controlled by the option’s <code>&lt;valueType&gt;</code> property:</p>
 
 <table>
-<thead>
-<tr>
-<th>valueType</th>
-<th>isEnabled()</th>
-<th>valueOf() when enabled</th>
-<th>valueOf() when disabled</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>enabled</td>
-<td>isActive()</td>
-<td>isEnabled(), not modifiable</td>
-<td>false</td>
-</tr>
-<tr>
-<td>none</td>
-<td>User-modifiable</td>
-<td>isEnabled(), not modifiable</td>
-<td>false</td>
-</tr>
-<tr>
-<td>bool</td>
-<td>User-modifiable</td>
-<td>User-modifiable</td>
-<td>false</td>
-</tr>
-<tr>
-<td>int</td>
-<td>User-modifiable</td>
-<td>User-modifiable</td>
-<td>0</td>
-</tr>
-<tr>
-<td>float</td>
-<td>User-modifiable</td>
-<td>User-modifiable</td>
-<td>0.0</td>
-</tr>
-<tr>
-<td>string</td>
-<td>User-modifiable</td>
-<td>User-modifiable</td>
-<td>"" (empty)</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>valueType</th>
+      <th>isEnabled()</th>
+      <th>valueOf() when enabled</th>
+      <th>valueOf() when disabled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>enabled</td>
+      <td>isActive()</td>
+      <td>isEnabled(), not modifiable</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>none</td>
+      <td>User-modifiable</td>
+      <td>isEnabled(), not modifiable</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>bool</td>
+      <td>User-modifiable</td>
+      <td>User-modifiable</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>int</td>
+      <td>User-modifiable</td>
+      <td>User-modifiable</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>float</td>
+      <td>User-modifiable</td>
+      <td>User-modifiable</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>string</td>
+      <td>User-modifiable</td>
+      <td>User-modifiable</td>
+      <td>”” (empty)</td>
+    </tr>
+  </tbody>
 </table>
 
 <p>The effects of the boolean and data parts are as follows:</p>
 
 <ol>
-<li> If an option is inactive, or disabled by the user, in other words if the boolean part is false, then <code>isEnabled('...') == false</code> and <code>valueOf('...')</code> is 0/false/"". The data part is not relevant. The type <em>enabled</em> specify that the option is always enabled, and the user cannot disable it.</li>
-<li> If an option is enabled then any references to <code>valueOf('...')</code> in XCDL expressions will evaluate to the option’s data part, user-modifiable or fixed. For type <em>enabled</em>, this data part is fixed to the constant <em>true</em>. For type <em>none</em>, or when the type is not defined, <code>valueOf('...')</code> will return <code>isEnabled('...')</code>, modifiable by the user.</li>
-<li> If a component or package is disabled then all sub-components and options immediately below it in the hierarchy are inactive. By a process of recursion this will affect all the nodes in the subtree.</li>
-<li> If an option is disabled then it can impose no constraints on the rest of the configuration, in particular <code>&lt;requires&gt;</code> and <code>&lt;legalValues&gt;</code> properties will be ignored. If an option is enabled then its constraints should be satisfied, or the component framework will report various conflicts. Note that the <code>&lt;legalValues&gt;</code> constraint only applies to the data part of the option’s value, so it is only useful with the <em>int, float, string</em> types. Options with type <em>enabled</em> are always enabled so their constraints always have to be satisfied (assuming the option is active).</li>
-<li> If an option is disabled then it has no direct consequences at build-time, in particular <code>&lt;generatedDefinition&gt;</code> and <code>&lt;sourceFile&gt;</code> properties will be ignored: no <code>#define</code> will be generated, no files will get compiled, and so on. If an option is active and enabled then all the consequences take effect. The option name and data part are used to generate the <code>#define</code> in the appropriate configuration header file, subject to various properties such as <code>&lt;valueFormat&gt;</code>, but the data part has no other effects on the build system.</li>
+  <li>If an option is inactive, or disabled by the user, in other words if the boolean part is false, then <code>isEnabled('...') == false</code> and <code>valueOf('...')</code> is 0/false/””. The data part is not relevant. The type <em>enabled</em> specify that the option is always enabled, and the user cannot disable it.</li>
+  <li>If an option is enabled then any references to <code>valueOf('...')</code> in XCDL expressions will evaluate to the option’s data part, user-modifiable or fixed. For type <em>enabled</em>, this data part is fixed to the constant <em>true</em>. For type <em>none</em>, or when the type is not defined, <code>valueOf('...')</code> will return <code>isEnabled('...')</code>, modifiable by the user.</li>
+  <li>If a component or package is disabled then all sub-components and options immediately below it in the hierarchy are inactive. By a process of recursion this will affect all the nodes in the subtree.</li>
+  <li>If an option is disabled then it can impose no constraints on the rest of the configuration, in particular <code>&lt;requires&gt;</code> and <code>&lt;legalValues&gt;</code> properties will be ignored. If an option is enabled then its constraints should be satisfied, or the component framework will report various conflicts. Note that the <code>&lt;legalValues&gt;</code> constraint only applies to the data part of the option’s value, so it is only useful with the <em>int, float, string</em> types. Options with type <em>enabled</em> are always enabled so their constraints always have to be satisfied (assuming the option is active).</li>
+  <li>If an option is disabled then it has no direct consequences at build-time, in particular <code>&lt;generatedDefinition&gt;</code> and <code>&lt;sourceFile&gt;</code> properties will be ignored: no <code>#define</code> will be generated, no files will get compiled, and so on. If an option is active and enabled then all the consequences take effect. The option name and data part are used to generate the <code>#define</code> in the appropriate configuration header file, subject to various properties such as <code>&lt;valueFormat&gt;</code>, but the data part has no other effects on the build system.</li>
 </ol>
 
 <p>Setting <code>&lt;configurable&gt;false&lt;/configurable&gt;</code> prevents the user to manually change the enable/disable status of an option (the checkbox will be disabled in the interface). Setting the <code>&lt;computed&gt;</code> property prevents the user to manually change the value of an option (the text control will be disabled in the interface).</p>
@@ -782,9 +787,9 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 <h3 id="tocAnchor-1-12-4">Some examples</h3>
 
 <p>The following definitions, can be used to illustrate how values and flavors work in practice:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="libc"&gt;
+<code>&lt;package name="libc"&gt;
   &lt;component name="rand"&gt;
 
     &lt;valueType&gt;none&lt;/valueType&gt;
@@ -815,15 +820,15 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   &lt;/component&gt;
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <h2 id="tocAnchor-1-17">TODO</h2>
 
 <ul>
-<li>  clarify/add support to define library files, linker scripts, header files, include folders</li>
-<li>  clarify the link between XCDL configurations and Eclipse configurations</li>
-<li>  clarify/add support to define the artefact type as library/executable; also consider for static/shared libraries</li>
-<li>  clarify the additional properties needed for <package>, to make it compatible with CMSIS Pack</package></li>
-<li>  clarify/add support to define boards</li>
+  <li>clarify/add support to define library files, linker scripts, header files, include folders</li>
+  <li>clarify the link between XCDL configurations and Eclipse configurations</li>
+  <li>clarify/add support to define the artefact type as library/executable; also consider for static/shared libraries</li>
+  <li>clarify the additional properties needed for <package>, to make it compatible with CMSIS Pack</package></li>
+  <li>clarify/add support to define boards</li>
 </ul>
 
 <h2 id="tocAnchor-1-18">Credits</h2>
@@ -856,10 +861,11 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   <div class="site-footer">
   <div class="site-footer-links left">
     <ul>
-<li>© 2015 Liviu Ionescu</li>
-<li>Hosted on GitHub</li>
-<li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
+  <li>© 2015 Liviu Ionescu</li>
+  <li>Hosted on GitHub</li>
+  <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS" /></a></li>
 </ul>
+
 
   </div>
   <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
@@ -867,11 +873,11 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   </a>
   <div class="site-footer-links right">
     <ul>
-<li><a href="/">Home</a></li>
-<li><a href="/blog/">News</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
-<li><a href="/about/">About</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">News</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+  <li><a href="/about/">About</a></li>
 </ul>
 
   </div>

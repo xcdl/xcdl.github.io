@@ -103,12 +103,13 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/blog/">XCDL News</a></h4>
+      <h4 id="xcdl-newsblog"><a href="/blog/">XCDL News</a></h4>
 
 <ul>
-<li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
-<li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
+  <li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
+  <li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
 </ul>
+
 
     </div>
   </div>
@@ -116,30 +117,28 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/">XCDL Home</a></h4>
+      <h4 id="xcdl-home"><a href="/">XCDL Home</a></h4>
 
-<h4>Component Writer&#39;s Guide</h4>
-
+<h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-<li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
-<li><a href="/guide/packages/">XCDL Packages</a></li>
-<li><a href="/guide/language/">The XCDL Language</a></li>
-<li><a href="/guide/build-process/">The build process</a></li>
+  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/packages/">XCDL Packages</a></li>
+  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
-<h4>Reference</h4>
-
+<h4 id="reference">Reference</h4>
 <ul>
-<li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
 </ul>
 
-<h4>License</h4>
+<h4 id="license">License</h4>
 
 <ul>
-<li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
+  <li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
 </ul>
 
-<h4><a href="/about/">About</a></h4>
+<h4 id="aboutabout"><a href="/about/">About</a></h4>
 
     </div>
   </div>
@@ -197,33 +196,33 @@
 <p>Two candidates for the build systems are considered:</p>
 
 <ul>
-<li>  make</li>
-<li>  something based on Python, like SCons</li>
+  <li>make</li>
+  <li>something based on Python, like SCons</li>
 </ul>
 
 <p><strong>make</strong> pros:</p>
 
 <ul>
-<li>  well-known</li>
-<li>  available on all platforms (separate install on Windows, but available)</li>
+  <li>well-known</li>
+  <li>available on all platforms (separate install on Windows, but available)</li>
 </ul>
 
 <p><strong>make</strong> cons:</p>
 
 <ul>
-<li>  considered not very efficient by some</li>
+  <li>considered not very efficient by some</li>
 </ul>
 
 <p>Python pros:</p>
 
 <ul>
-<li>  extending the build process is very powerful</li>
+  <li>extending the build process is very powerful</li>
 </ul>
 
 <p>Python cons:</p>
 
 <ul>
-<li>  may face acceptance problems, like SCons</li>
+  <li>may face acceptance problems, like SCons</li>
 </ul>
 
 <p>When used only as an internal builder, probably it does not matter how the build is performed. It was easier to start pyXCDL with make files, and performance was not a problem.</p>
@@ -235,8 +234,8 @@
 <p>This is no longer an issue, there are no reasons for not using it.</p>
 
 <ul>
-<li>  the project is new, there is no legacy code (pyXCDL need not be used as is, it can be ported)</li>
-<li>  python3 is available on all platforms</li>
+  <li>the project is new, there is no legacy code (pyXCDL need not be used as is, it can be ported)</li>
+  <li>python3 is available on all platforms</li>
 </ul>
 
 <h2 id="tocAnchor-1-3">Self contained packages vs. recipes</h2>
@@ -244,8 +243,8 @@
 <p>It looks like there are two ways of handling dependencies on external packages:</p>
 
 <ol>
-<li> when xcdl packages are created</li>
-<li> when the user downloads the packages</li>
+  <li>when xcdl packages are created</li>
+  <li>when the user downloads the packages</li>
 </ol>
 
 <p>The initial approach considered that packages contain original code, and their content should be self contained.</p>
@@ -267,9 +266,9 @@
 <p>There are several possibilities to create a package:</p>
 
 <ol>
-<li> original local code: the entire code resides in the project;</li>
-<li> original external code: some code is downloaded from an archive, a repository, in BitBake style; no patches;</li>
-<li> patched external code: the original code resides in a separate branch, merged to the master.</li>
+  <li>original local code: the entire code resides in the project;</li>
+  <li>original external code: some code is downloaded from an archive, a repository, in BitBake style; no patches;</li>
+  <li>patched external code: the original code resides in a separate branch, merged to the master.</li>
 </ol>
 
 <p>In all cases, only a selection of the files are packed in the final package, based on a MANIFEST file.</p>
@@ -281,9 +280,9 @@
 <p>There are 3 different moments when recipes are important:</p>
 
 <ul>
-<li>  when the XCDL package is created;</li>
-<li>  when the XCDL package is installed on the user machine;</li>
-<li>  when components are used to build a library or to be compiled in an application.</li>
+  <li>when the XCDL package is created;</li>
+  <li>when the XCDL package is installed on the user machine;</li>
+  <li>when components are used to build a library or to be compiled in an application.</li>
 </ul>
 
 <p>The package can be create with a simple zip selecting the required files, but can also mean downloading archives or source code, applying patches or generating dynamic content. This mechanism, together with the recipe to put together a collection of packages in a repository, will probably use Maven and be integrated into Eclipse.</p>
@@ -322,10 +321,11 @@
   <div class="site-footer">
   <div class="site-footer-links left">
     <ul>
-<li>© 2015 Liviu Ionescu</li>
-<li>Hosted on GitHub</li>
-<li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
+  <li>© 2015 Liviu Ionescu</li>
+  <li>Hosted on GitHub</li>
+  <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS" /></a></li>
 </ul>
+
 
   </div>
   <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
@@ -333,11 +333,11 @@
   </a>
   <div class="site-footer-links right">
     <ul>
-<li><a href="/">Home</a></li>
-<li><a href="/blog/">News</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
-<li><a href="/about/">About</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">News</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+  <li><a href="/about/">About</a></li>
 </ul>
 
   </div>

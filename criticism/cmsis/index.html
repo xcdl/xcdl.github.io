@@ -103,12 +103,13 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/blog/">XCDL News</a></h4>
+      <h4 id="xcdl-newsblog"><a href="/blog/">XCDL News</a></h4>
 
 <ul>
-<li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
-<li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
+  <li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
+  <li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
 </ul>
+
 
     </div>
   </div>
@@ -116,30 +117,28 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/">XCDL Home</a></h4>
+      <h4 id="xcdl-home"><a href="/">XCDL Home</a></h4>
 
-<h4>Component Writer&#39;s Guide</h4>
-
+<h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-<li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
-<li><a href="/guide/packages/">XCDL Packages</a></li>
-<li><a href="/guide/language/">The XCDL Language</a></li>
-<li><a href="/guide/build-process/">The build process</a></li>
+  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/packages/">XCDL Packages</a></li>
+  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
-<h4>Reference</h4>
-
+<h4 id="reference">Reference</h4>
 <ul>
-<li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
 </ul>
 
-<h4>License</h4>
+<h4 id="license">License</h4>
 
 <ul>
-<li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
+  <li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
 </ul>
 
-<h4><a href="/about/">About</a></h4>
+<h4 id="aboutabout"><a href="/about/">About</a></h4>
 
     </div>
   </div>
@@ -155,7 +154,7 @@
 
         
 <h1 class="page-title">CMSIS Pack remarks and criticism</h1>
-<p class="last-modified">Last modified on Mon Oct 12 17:37:31 2015 UTC.</p>
+<p class="last-modified">Last modified on Tue Oct 13 20:46:32 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -215,10 +214,10 @@
 <a href="#tocAnchor-1-14-1"><span class="tocnumber">3.1</span> <span class="toctext">Non-POSIX paths</span></a>
 </li>
 <li class="toc_level-2 toc_section-16">
-<a href="#tocAnchor-1-14-2"><span class="tocnumber">3.2</span> <span class="toctext"></span></a>
+<a href="#tocAnchor-1-14-2"><span class="tocnumber">3.2</span> <span class="toctext">&lt;books&gt;</span></a>
 </li>
 <li class="toc_level-2 toc_section-17">
-<a href="#tocAnchor-1-14-3"><span class="tocnumber">3.3</span> <span class="toctext"></span></a>
+<a href="#tocAnchor-1-14-3"><span class="tocnumber">3.3</span> <span class="toctext">&lt;algorithm&gt;</span></a>
 </li>
 </ul>
 </li>
@@ -245,17 +244,17 @@
 
 <h3 id="tocAnchor-1-2-2">Non-portable examples</h3>
 
-<p>Apart for µVision users, which do not use Eclipse anyway, with the current version of the CMSIS Packs, the many existing CMSIS examples are... useless, at large. :-(</p>
+<p>Apart for µVision users, which do not use Eclipse anyway, with the current version of the CMSIS Packs, the many existing CMSIS examples are… useless, at large. :-(</p>
 
 <p>The provided examples cannot be used to automatically create ready to build new C/C++ Eclipse projects, requiring many manual configuration changes, usually out of reach for beginners.</p>
 
 <p>For this to be possible, the following (portable) details are required in the definition of an example:</p>
 
 <ul>
-<li>  the list of source files</li>
-<li>  the list of header files</li>
-<li>  the list of include holders</li>
-<li>  an optional list of preprocessor definitions</li>
+  <li>the list of source files</li>
+  <li>the list of header files</li>
+  <li>the list of include holders</li>
+  <li>an optional list of preprocessor definitions</li>
 </ul>
 
 <p>One possible solution would be to define the content of an example as one or more components, with full details regarding the files and include folders, and, instead of mandating the presence of a proprietary project definition, allow each tool to create the project required to build the example.</p>
@@ -311,69 +310,69 @@
 <h3 id="tocAnchor-1-14-1">Non-POSIX paths</h3>
 
 <p>Although the specs allow the use of standard POSIX paths (and, as far as I was told, MDK accepts them), all Keil packages, and all Keil documentation pages, do not miss the opportunity to show their Microsoft-ish origin, and represent all paths using the Windows back-slash separator:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
+<code>&lt;compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
 </code></pre>
-</div>
+
 <p>Perhaps a more visually pleasant solution would have been to use the standard POSIX slash separator:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;compile header="Device/Include/stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
+<code>&lt;compile header="Device/Include/stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
 </code></pre>
-</div>
+
 <h3 id="tocAnchor-1-14-2">
-<books></books>
+<code>&lt;books&gt;</code>
 </h3>
 
 <p>Here is an unfortunate example from the STM32F4-Discovery board:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;book category="overview"  name="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419" title="STM32F4-Discovery Web Page"/&gt;
+<code>&lt;book category="overview"  name="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419" title="STM32F4-Discovery Web Page"/&gt;
 &lt;book category="setup"     name="Documents\DM00037368.pdf" title="Getting Started"/&gt;
 &lt;book category="schematic" name="Documents\stm32f4discovery_sch.zip" title="Schematics"/&gt;
 &lt;book category="manual"    name="Documents\DM00039084.pdf" title="User Manual"/&gt;
 &lt;book category="other"     name="Documents\stm32f4discovery_gerber.zip" title="Gerber Files"/&gt;
 </code></pre>
-</div>
-<p>First, none of the above is actually a book, all are various documentation files (web page, manuals, schematics, etc), so the name <strong><books></books></strong> is poorly chosen.</p>
+
+<p>First, none of the above is actually a book, all are various documentation files (web page, manuals, schematics, etc), so the name <code>&lt;books&gt;</code> is poorly chosen.</p>
 
 <p>Second, the <strong>name</strong> attribute refers to anything else but the document name, which is eventually defined as <strong>title</strong>.</p>
 
 <p>And third, the document location makes no difference between local and remote documents, requiring the inspection of the attribute value to better identify the document.</p>
 
 <p>Perhaps a more appropriate definitions would have been:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;document category="overview"  title="STM32F4-Discovery Web Page" url="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419"/&gt;
+<code>&lt;document category="overview"  title="STM32F4-Discovery Web Page" url="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419"/&gt;
 &lt;document category="setup"     title="Getting Started" file="Documents/DM00037368.pdf"/&gt;
 &lt;document category="schematic" title="Schematics" file="Documents/stm32f4discovery_sch.zip"/&gt;
 &lt;document category="manual"    title="User Manual" file="Documents/DM00039084.pdf"/&gt;
 &lt;document category="other"     title="Gerber Files" file="Documents/stm32f4discovery_gerber.zip"/&gt;
 </code></pre>
-</div>
+
 <h3 id="tocAnchor-1-14-3">
-<algorithm></algorithm>
+<code>&lt;algorithm&gt;</code>
 </h3>
 
 <p>The <strong>name</strong> attribute does not define any name, but a special .FLM file:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
+<code>&lt;algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
 </code></pre>
-</div>
+
 <p>To be consistent with <debug>:</debug></p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;debug      svd="SVD\STM32F41x.svd"/&gt;
+<code>&lt;debug      svd="SVD\STM32F41x.svd"/&gt;
 </code></pre>
-</div>
+
 <p>perhaps a <strong>flm</strong> attribute would have been more appropriate, or at least a generic <strong>file</strong> attribute.</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;algorithm  flm="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
+<code>&lt;algorithm  flm="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
 </code></pre>
-</div>
+
 
 
 
@@ -400,10 +399,11 @@
   <div class="site-footer">
   <div class="site-footer-links left">
     <ul>
-<li>© 2015 Liviu Ionescu</li>
-<li>Hosted on GitHub</li>
-<li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
+  <li>© 2015 Liviu Ionescu</li>
+  <li>Hosted on GitHub</li>
+  <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS" /></a></li>
 </ul>
+
 
   </div>
   <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
@@ -411,11 +411,11 @@
   </a>
   <div class="site-footer-links right">
     <ul>
-<li><a href="/">Home</a></li>
-<li><a href="/blog/">News</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
-<li><a href="/about/">About</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">News</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+  <li><a href="/about/">About</a></li>
 </ul>
 
   </div>

@@ -103,12 +103,13 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/blog/">XCDL News</a></h4>
+      <h4 id="xcdl-newsblog"><a href="/blog/">XCDL News</a></h4>
 
 <ul>
-<li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
-<li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
+  <li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
+  <li><a href="/blog/2015/09/26/github-wiki/">The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</a></li>
 </ul>
+
 
     </div>
   </div>
@@ -116,30 +117,28 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4><a href="/">XCDL Home</a></h4>
+      <h4 id="xcdl-home"><a href="/">XCDL Home</a></h4>
 
-<h4>Component Writer&#39;s Guide</h4>
-
+<h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-<li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
-<li><a href="/guide/packages/">XCDL Packages</a></li>
-<li><a href="/guide/language/">The XCDL Language</a></li>
-<li><a href="/guide/build-process/">The build process</a></li>
+  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/packages/">XCDL Packages</a></li>
+  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
-<h4>Reference</h4>
-
+<h4 id="reference">Reference</h4>
 <ul>
-<li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
 </ul>
 
-<h4>License</h4>
+<h4 id="license">License</h4>
 
 <ul>
-<li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
+  <li><a href="https://www.gnu.org/licenses/gpl.html">GPL</a></li>
 </ul>
 
-<h4><a href="/about/">About</a></h4>
+<h4 id="aboutabout"><a href="/about/">About</a></h4>
 
     </div>
   </div>
@@ -192,8 +191,8 @@
 <p>Some XCDL properties describe the consequences of manipulating configuration options. There are two main types of consequences.</p>
 
 <ul>
-<li>  Typically enabling a configuration option results in one or more <code>#define</code>’s in a configuration header file, and properties that affect this include <code>&lt;generatedHeader&gt;</code>, <code>&lt;generatedDefinition&gt;</code>, <code>&lt;valueFormat&gt;</code> and <code>&lt;childrenGeneratedHeader&gt;</code> (<em>define</em>, <em>define_proc</em> and <em>no_define</em>).</li>
-<li>  Enabling a configuration option can also affect the build process, primarily determining which files are used in the built. Properties related to the build process include <code>&lt;sourceFile&gt;</code> and make.</li>
+  <li>Typically enabling a configuration option results in one or more <code>#define</code>’s in a configuration header file, and properties that affect this include <code>&lt;generatedHeader&gt;</code>, <code>&lt;generatedDefinition&gt;</code>, <code>&lt;valueFormat&gt;</code> and <code>&lt;childrenGeneratedHeader&gt;</code> (<em>define</em>, <em>define_proc</em> and <em>no_define</em>).</li>
+  <li>Enabling a configuration option can also affect the build process, primarily determining which files are used in the built. Properties related to the build process include <code>&lt;sourceFile&gt;</code> and make.</li>
 </ul>
 
 <p>This chapter describes the whole build process, including details such as compiler flags and custom build steps.</p>
@@ -228,24 +227,24 @@
 
 <p>The component framework processes each package in the configuration one at a time. The exact order in which the packages are processed is not defined, so the order in which <code>#define</code>’s will end up in the global pkgconf/system.h header may vary. However for any given configuration the order should remain consistent until packages are added to or removed from the system. This avoids unnecessary changes to the global header file and hence unnecessary rebuilds of the packages and of application code because of header file dependency handling.</p>
 
-<p>Within a given package the various components, options and interfaces will be processed in the order in which they were defined in the corresponding CDL scripts. Typically the data in the configuration headers consists only of a sequence of <code>#define</code>'s so the order in which these are generated is irrelevant, but some properties such as define_proc can be used to add arbitrary data to a configuration header and hence there may be dependencies on the order. It should be noted that re-parenting an option below some other package has no effect on which header file will contain the corresponding <code>#define</code>: the preprocessor directives will always end up in the header file for the package that defines the option, or in the global configuration header.</p>
+<p>Within a given package the various components, options and interfaces will be processed in the order in which they were defined in the corresponding CDL scripts. Typically the data in the configuration headers consists only of a sequence of <code>#define</code>’s so the order in which these are generated is irrelevant, but some properties such as define_proc can be used to add arbitrary data to a configuration header and hence there may be dependencies on the order. It should be noted that re-parenting an option below some other package has no effect on which header file will contain the corresponding <code>#define</code>: the preprocessor directives will always end up in the header file for the package that defines the option, or in the global configuration header.</p>
 
 <p>There are six properties which affect the process of generating header files: define_header, no_define, de- fine_format, define, if_define, and define_proc.</p>
 
 <p>The define_header property can only occur in the body of a cdl_package command and specifies the name of the header file which should contain the package’s configuration data, for example:</p>
-<div class="highlight">
+
 <pre>
-<code class="language-text" data-lang="text">&lt;package name="somePackage"&gt;
+<code>&lt;package name="somePackage"&gt;
     define_header xyzzy.h
 &lt;/package&gt;
 </code></pre>
-</div>
+
 <p>Given such a define_header property the component framework will use the file pkgconf/xyzzy.h for the package’s configuration data. If a package does not have a define_header property then a suitable file name is constructed from the package’s name. This involves:</p>
 
 <ol>
-<li> All characters in the package name up to and including the first underscore are removed. For example CYGPKG_KERNEL is converted to KERNEL, and CYGPKG_HAL_ARM is converted to HAL_ARM.</li>
-<li> Any upper case letters in the resulting string will be converted to lower case, yielding e.g. kernel and hal_arm.</li>
-<li> A .h suffix is appended, yielding e.g. kernel.h and hal_arm.h.</li>
+  <li>All characters in the package name up to and including the first underscore are removed. For example CYGPKG_KERNEL is converted to KERNEL, and CYGPKG_HAL_ARM is converted to HAL_ARM.</li>
+  <li>Any upper case letters in the resulting string will be converted to lower case, yielding e.g. kernel and hal_arm.</li>
+  <li>A .h suffix is appended, yielding e.g. kernel.h and hal_arm.h.</li>
 </ol>
 
 <p>Because of the naming restrictions on configuration options, this should result in a valid filename. There is a small possibility of a file name class, for example CYGPKG_PLUGH and CYGPKG_plugh would both end up trying to use the same header file pkgconf/plugh.h, but the use of lower case letters for package names violates the naming conventions. It is not legal to use the define_header property to put the configuration data for several packages in a single header file. The resulting behaviour is undefined.</p>
@@ -292,10 +291,11 @@
   <div class="site-footer">
   <div class="site-footer-links left">
     <ul>
-<li>© 2015 Liviu Ionescu</li>
-<li>Hosted on GitHub</li>
-<li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
+  <li>© 2015 Liviu Ionescu</li>
+  <li>Hosted on GitHub</li>
+  <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS" /></a></li>
 </ul>
+
 
   </div>
   <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
@@ -303,11 +303,11 @@
   </a>
   <div class="site-footer-links right">
     <ul>
-<li><a href="/">Home</a></li>
-<li><a href="/blog/">News</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
-<li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
-<li><a href="/about/">About</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">News</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+  <li><a href="/about/">About</a></li>
 </ul>
 
   </div>
