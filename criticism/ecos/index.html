@@ -121,15 +121,16 @@
 
 <h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/concepts/">XCDL Concepts</a></li>
   <li><a href="/guide/packages/">XCDL Packages</a></li>
-  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/repositories/">XCDL Repositories</a></li>
+  <li><a href="/guide/language/">XCDL Language</a></li>
   <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
 <h4 id="reference">Reference</h4>
 <ul>
-  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/reference/language/">XCDL language</a></li>
 </ul>
 
 <h4 id="license">License</h4>
@@ -154,7 +155,7 @@
 
         
 <h1 class="page-title">eCos CDL remarks and criticism</h1>
-<p class="last-modified">Last modified on Mon Oct 12 17:37:31 2015 UTC.</p>
+<p class="last-modified">Last modified on Thu Oct 15 12:19:14 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -167,22 +168,22 @@
 </div>
 <ul>
 <li class="toc_level-1 toc_section-1">
-<a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">The good parts</span></a>
+<a href="#the-good-parts"><span class="tocnumber">1</span> <span class="toctext">The good parts</span></a>
 </li>
 <li class="toc_level-1 toc_section-2">
-<a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">The bad parts</span></a>
+<a href="#the-bad-parts"><span class="tocnumber">2</span> <span class="toctext">The bad parts</span></a>
 </li>
 <li class="toc_level-1 toc_section-3">
-<a href="#tocAnchor-1-3"><span class="tocnumber">3</span> <span class="toctext">Changes in XCDL</span></a>
+<a href="#changes-in-xcdl"><span class="tocnumber">3</span> <span class="toctext">Changes in XCDL</span></a>
 <ul>
 <li class="toc_level-2 toc_section-4">
-<a href="#tocAnchor-1-3-1"><span class="tocnumber">3.1</span> <span class="toctext">Tcl replaced by XML</span></a>
+<a href="#tcl-replaced-by-xml"><span class="tocnumber">3.1</span> <span class="toctext">Tcl replaced by XML</span></a>
 </li>
 <li class="toc_level-2 toc_section-5">
-<a href="#tocAnchor-1-3-2"><span class="tocnumber">3.2</span> <span class="toctext">Naming scheme shortened</span></a>
+<a href="#naming-scheme-shortened"><span class="tocnumber">3.2</span> <span class="toctext">Naming scheme shortened</span></a>
 </li>
 <li class="toc_level-2 toc_section-6">
-<a href="#tocAnchor-1-3-3"><span class="tocnumber">3.3</span> <span class="toctext">Explicit header file</span></a>
+<a href="#explicit-header-file"><span class="tocnumber">3.3</span> <span class="toctext">Explicit header file</span></a>
 </li>
 </ul>
 </li>
@@ -191,11 +192,11 @@
 </tr>
 </tbody>
 </table>
-</div><h2 id="tocAnchor-1-1">The good parts</h2>
+</div><h2 id="the-good-parts">The good parts</h2>
 
 <p>Developed in the very early 2000 (the manual date is 2001), the eCos CDL was a remarkably innovative solution for its time, not matched even today.</p>
 
-<h2 id="tocAnchor-1-2">The bad parts</h2>
+<h2 id="the-bad-parts">The bad parts</h2>
 
 <p>Although the CDL design was pretty general, being created to support eCos, the CDL was perceived as an eCos specific part, and generally avoided.</p>
 
@@ -207,15 +208,15 @@
   <li>preprocessor only definitions, no direct support for modern solutions like the new C++11 constexpr</li>
 </ul>
 
-<h2 id="tocAnchor-1-3">Changes in XCDL</h2>
+<h2 id="changes-in-xcdl">Changes in XCDL</h2>
 
 <p>XCDL inherits the core concepts from CDL, however some changes were applied.</p>
 
-<h3 id="tocAnchor-1-3-1">Tcl replaced by XML</h3>
+<h3 id="tcl-replaced-by-xml">Tcl replaced by XML</h3>
 
 <p>After a prototyping phase which used Python instead of Tcl, the final format used for the XCDL metadata was settled to XML, with a relatively simple logical structure, an object has a name, a list of string properties and an optional list of children nodes.</p>
 
-<h3 id="tocAnchor-1-3-2">Naming scheme shortened</h3>
+<h3 id="naming-scheme-shortened">Naming scheme shortened</h3>
 
 <p>In CDL, the object names were in fact C preprocessor definitions, and the scope of the names was the configuration tree.</p>
 
@@ -223,7 +224,7 @@
 
 <p>In the XML version of XCDL the naming scheme was shortened, and object names were required to be unique only in the scope of the parent node, similar to files in a folder. Recursively applied, this rule produces unique names as long as the entire path is used (again, similarly to files in a file system).</p>
 
-<h3 id="tocAnchor-1-3-3">Explicit header file</h3>
+<h3 id="explicit-header-file">Explicit header file</h3>
 
 <p>In CDL, by default, the name and location of the generated header file respected some not very obvious rules, with names derived from the long package name. This was perfectly functional, but made things a bit obscure.</p>
 

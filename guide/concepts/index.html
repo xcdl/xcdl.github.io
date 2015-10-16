@@ -27,7 +27,7 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?201510121951" media="screen">
   <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?201510121951" media="print">
 
-  <link rel="canonical" href="http://ilg-ul.github.io/guide/concepts-and-rationals/">
+  <link rel="canonical" href="http://ilg-ul.github.io/guide/concepts/">
 
 
 
@@ -121,15 +121,16 @@
 
 <h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/concepts/">XCDL Concepts</a></li>
   <li><a href="/guide/packages/">XCDL Packages</a></li>
-  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/repositories/">XCDL Repositories</a></li>
+  <li><a href="/guide/language/">XCDL Language</a></li>
   <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
 <h4 id="reference">Reference</h4>
 <ul>
-  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/reference/language/">XCDL language</a></li>
 </ul>
 
 <h4 id="license">License</h4>
@@ -154,7 +155,7 @@
 
         
 <h1 class="page-title">XCDL concepts and rationals</h1>
-<p class="last-modified">Last modified on Tue Oct 13 19:15:56 2015 UTC.</p>
+<p class="last-modified">Last modified on Thu Oct 15 12:19:14 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -167,111 +168,111 @@
 </div>
 <ul>
 <li class="toc_level-1 toc_section-1">
-<a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">Why XCDL?</span></a>
+<a href="#why-xcdl"><span class="tocnumber">1</span> <span class="toctext">Why XCDL?</span></a>
 <ul>
 <li class="toc_level-2 toc_section-2">
-<a href="#tocAnchor-1-1-1"><span class="tocnumber">1.1</span> <span class="toctext">Multi-variant</span></a>
+<a href="#multi-variant"><span class="tocnumber">1.1</span> <span class="toctext">Multi-variant</span></a>
 </li>
 </ul>
 </li>
 <li class="toc_level-1 toc_section-3">
-<a href="#tocAnchor-1-3"><span class="tocnumber">2</span> <span class="toctext">Why manage dependencies?</span></a>
+<a href="#why-manage-dependencies"><span class="tocnumber">2</span> <span class="toctext">Why manage dependencies?</span></a>
 </li>
 <li class="toc_level-1 toc_section-4">
-<a href="#tocAnchor-1-4"><span class="tocnumber">3</span> <span class="toctext">Why configurability?</span></a>
+<a href="#why-configurability"><span class="tocnumber">3</span> <span class="toctext">Why configurability?</span></a>
 <ul>
 <li class="toc_level-2 toc_section-5">
-<a href="#tocAnchor-1-4-1"><span class="tocnumber">3.1</span> <span class="toctext">Reusability</span></a>
+<a href="#reusability"><span class="tocnumber">3.1</span> <span class="toctext">Reusability</span></a>
 </li>
 <li class="toc_level-2 toc_section-6">
-<a href="#tocAnchor-1-4-2"><span class="tocnumber">3.2</span> <span class="toctext">Memory constraints</span></a>
+<a href="#memory-constraints"><span class="tocnumber">3.2</span> <span class="toctext">Memory constraints</span></a>
 </li>
 <li class="toc_level-2 toc_section-7">
-<a href="#tocAnchor-1-4-3"><span class="tocnumber">3.3</span> <span class="toctext">Debugging</span></a>
+<a href="#debugging"><span class="tocnumber">3.3</span> <span class="toctext">Debugging</span></a>
 </li>
 </ul>
 </li>
 <li class="toc_level-1 toc_section-8">
-<a href="#tocAnchor-1-8"><span class="tocnumber">4</span> <span class="toctext">Approaches to configurability</span></a>
+<a href="#approaches-to-configurability"><span class="tocnumber">4</span> <span class="toctext">Approaches to configurability</span></a>
 <ul>
 <li class="toc_level-2 toc_section-9">
-<a href="#tocAnchor-1-8-1"><span class="tocnumber">4.1</span> <span class="toctext">Run-time</span></a>
+<a href="#run-time"><span class="tocnumber">4.1</span> <span class="toctext">Run-time</span></a>
 </li>
 <li class="toc_level-2 toc_section-10">
-<a href="#tocAnchor-1-8-2"><span class="tocnumber">4.2</span> <span class="toctext">Link-time</span></a>
+<a href="#link-time"><span class="tocnumber">4.2</span> <span class="toctext">Link-time</span></a>
 </li>
 <li class="toc_level-2 toc_section-11">
-<a href="#tocAnchor-1-8-3"><span class="tocnumber">4.3</span> <span class="toctext">Compile-time</span></a>
+<a href="#compile-time"><span class="tocnumber">4.3</span> <span class="toctext">Compile-time</span></a>
 </li>
 </ul>
 </li>
 <li class="toc_level-1 toc_section-12">
-<a href="#tocAnchor-1-12"><span class="tocnumber">5</span> <span class="toctext">Terminology</span></a>
+<a href="#terminology"><span class="tocnumber">5</span> <span class="toctext">Terminology</span></a>
 <ul>
 <li class="toc_level-2 toc_section-13">
-<a href="#tocAnchor-1-12-1"><span class="tocnumber">5.1</span> <span class="toctext">Components</span></a>
+<a href="#components"><span class="tocnumber">5.1</span> <span class="toctext">Components</span></a>
 </li>
 <li class="toc_level-2 toc_section-14">
-<a href="#tocAnchor-1-12-2"><span class="tocnumber">5.2</span> <span class="toctext">Packages</span></a>
+<a href="#packages"><span class="tocnumber">5.2</span> <span class="toctext">Packages</span></a>
 </li>
 <li class="toc_level-2 toc_section-15">
-<a href="#tocAnchor-1-12-3"><span class="tocnumber">5.3</span> <span class="toctext">Component framework</span></a>
+<a href="#component-framework"><span class="tocnumber">5.3</span> <span class="toctext">Component framework</span></a>
 </li>
 <li class="toc_level-2 toc_section-16">
-<a href="#tocAnchor-1-12-4"><span class="tocnumber">5.4</span> <span class="toctext">Component repositories</span></a>
+<a href="#component-repositories"><span class="tocnumber">5.4</span> <span class="toctext">Component repositories</span></a>
 </li>
 </ul>
 </li>
 <li class="toc_level-1 toc_section-17">
-<a href="#tocAnchor-1-17"><span class="tocnumber">6</span> <span class="toctext">XCDL metadata</span></a>
+<a href="#xcdl-metadata"><span class="tocnumber">6</span> <span class="toctext">XCDL metadata</span></a>
 <ul>
 <li class="toc_level-2 toc_section-18">
-<a href="#tocAnchor-1-17-1"><span class="tocnumber">6.1</span> <span class="toctext">Options</span></a>
+<a href="#options"><span class="tocnumber">6.1</span> <span class="toctext">Options</span></a>
 </li>
 <li class="toc_level-2 toc_section-19">
-<a href="#tocAnchor-1-17-2"><span class="tocnumber">6.2</span> <span class="toctext">Components</span></a>
+<a href="#components-1"><span class="tocnumber">6.2</span> <span class="toctext">Components</span></a>
 </li>
 <li class="toc_level-2 toc_section-20">
-<a href="#tocAnchor-1-17-3"><span class="tocnumber">6.3</span> <span class="toctext">Packages</span></a>
+<a href="#packages-1"><span class="tocnumber">6.3</span> <span class="toctext">Packages</span></a>
 </li>
 <li class="toc_level-2 toc_section-21">
-<a href="#tocAnchor-1-17-4"><span class="tocnumber">6.4</span> <span class="toctext">Configurations</span></a>
+<a href="#configurations"><span class="tocnumber">6.4</span> <span class="toctext">Configurations</span></a>
 </li>
 <li class="toc_level-2 toc_section-22">
-<a href="#tocAnchor-1-17-5"><span class="tocnumber">6.5</span> <span class="toctext">Targets</span></a>
+<a href="#targets"><span class="tocnumber">6.5</span> <span class="toctext">Targets</span></a>
 </li>
 <li class="toc_level-2 toc_section-23">
-<a href="#tocAnchor-1-17-6"><span class="tocnumber">6.6</span> <span class="toctext">Templates</span></a>
+<a href="#templates"><span class="tocnumber">6.6</span> <span class="toctext">Templates</span></a>
 </li>
 <li class="toc_level-2 toc_section-24">
-<a href="#tocAnchor-1-17-7"><span class="tocnumber">6.7</span> <span class="toctext">Properties</span></a>
+<a href="#properties"><span class="tocnumber">6.7</span> <span class="toctext">Properties</span></a>
 </li>
 <li class="toc_level-2 toc_section-25">
-<a href="#tocAnchor-1-17-8"><span class="tocnumber">6.8</span> <span class="toctext">Consequences</span></a>
+<a href="#consequences"><span class="tocnumber">6.8</span> <span class="toctext">Consequences</span></a>
 </li>
 <li class="toc_level-2 toc_section-26">
-<a href="#tocAnchor-1-17-9"><span class="tocnumber">6.9</span> <span class="toctext">Constraints</span></a>
+<a href="#constraints"><span class="tocnumber">6.9</span> <span class="toctext">Constraints</span></a>
 </li>
 <li class="toc_level-2 toc_section-27">
-<a href="#tocAnchor-1-17-10"><span class="tocnumber">6.10</span> <span class="toctext">Conflicts</span></a>
+<a href="#conflicts"><span class="tocnumber">6.10</span> <span class="toctext">Conflicts</span></a>
 </li>
 </ul>
 </li>
 <li class="toc_level-1 toc_section-28">
-<a href="#tocAnchor-1-28"><span class="tocnumber">7</span> <span class="toctext">Credits</span></a>
+<a href="#credits"><span class="tocnumber">7</span> <span class="toctext">Credits</span></a>
 </li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-</div><h2 id="tocAnchor-1-1">Why XCDL?</h2>
+</div><h2 id="why-xcdl">Why XCDL?</h2>
 
 <p>As the complexity of embedded system grows, it is more and more difficult to manage the complexity of putting together multiple components with lots of dependencies and configuration options.</p>
 
 <p>To address this problem, XCDL defines and implements a component framework, as a collection of tools specifically designed to support <strong>multi-variant cross-building embedded system images</strong> based on reusable components. This component framework is extensible, allowing additional components to be added to the build system at any time.</p>
 
-<h3 id="tocAnchor-1-1-1">Multi-variant</h3>
+<h3 id="multi-variant">Multi-variant</h3>
 
 <p>In the XCDL context, <em>multi-variant</em> covers the following:</p>
 
@@ -284,41 +285,41 @@
   <li>multiple build platforms (like OS X, GNU/Linux, Windows)</li>
 </ul>
 
-<h2 id="tocAnchor-1-3">Why manage dependencies?</h2>
+<h2 id="why-manage-dependencies">Why manage dependencies?</h2>
 
 <p>Automatic dependencies management is the first and foremost feature of the XCDL component framework.</p>
 
 <p>Properly defined components, with accurate dependencies, allow to automatically create projects with all required source files and headers, and with all required compile and link options properly set. For example if a configuration refers to the STM32F4-DISCOVERY board, this will refer to the STM32F407VG processor, which will refer to the STM32F4 startup code, which will refer to the CMSIS core code, so all required pieces will fit together without user intervention.</p>
 
-<h2 id="tocAnchor-1-4">Why configurability?</h2>
+<h2 id="why-configurability">Why configurability?</h2>
 
 <p>The XCDL component framework places a great deal of emphasis on configurability.</p>
 
-<h3 id="tocAnchor-1-4-1">Reusability</h3>
+<h3 id="reusability">Reusability</h3>
 
 <p>The fundamental goal is to allow large parts of embedded applications to be constructed from generic reusable software components, which need to be adjusted to fit together and to meet existing constraints.</p>
 
-<h3 id="tocAnchor-1-4-2">Memory constraints</h3>
+<h3 id="memory-constraints">Memory constraints</h3>
 
 <p>Many embedded applications have to work with limited memory, to keep down manufacturing costs. The component framework must allow users to configure the components so that any unnecessary functionality gets removed, for RAM (and sometimes Flash) usage to be kept to a minimum.</p>
 
-<h3 id="tocAnchor-1-4-3">Debugging</h3>
+<h3 id="debugging">Debugging</h3>
 
 <p>Embedded systems tend to be difficult to debug. The reusable components can provide debugging assistance in various ways. Allowing users to control which debugging features are enabled for any given application build is very desirable.</p>
 
-<h2 id="tocAnchor-1-8">Approaches to configurability</h2>
+<h2 id="approaches-to-configurability">Approaches to configurability</h2>
 
 <p>The purpose of configurability is to control the behavior of components and the relationships between components. The component writer includes as many different behaviours as possible, but has no way of knowing in advance exactly how a particular component will end up being used. When an application uses a component there must be some way of specifying the desired behavior.</p>
 
-<h3 id="tocAnchor-1-8-1">Run-time</h3>
+<h3 id="run-time">Run-time</h3>
 
 <p>One way to control the behavior is at <strong>run time</strong>. There is of course a major disadvantage in terms of the size of the final application image: the code that gets linked with the application has to provide support for all possible behavior cases, even if the application does not require it.</p>
 
-<h3 id="tocAnchor-1-8-2">Link-time</h3>
+<h3 id="link-time">Link-time</h3>
 
 <p>Another approach is to control the behavior at <strong>link time</strong>, typically by using inheritance in an object-oriented language and linking only one instance of the implementation.</p>
 
-<h3 id="tocAnchor-1-8-3">Compile-time</h3>
+<h3 id="compile-time">Compile-time</h3>
 
 <p>The XCDL component framework allows the behavior of components to be controlled at an even earlier time: when the component source code gets compiled.</p>
 
@@ -328,15 +329,15 @@
 
 <p>There will be times when run-time selection of behavior is desirable: for example an application may need to be able to change the baud rate of a serial line, and the system must then provide a way of doing this at run-time. There will also be times when link-time selection is desirable.</p>
 
-<h2 id="tocAnchor-1-12">Terminology</h2>
+<h2 id="terminology">Terminology</h2>
 
 <p>The XCDL component architecture involves a number of key concepts, presented below.</p>
 
-<h3 id="tocAnchor-1-12-1">Components</h3>
+<h3 id="components">Components</h3>
 
 <p>A <strong>component</strong> is a generic unit of functionality, usually containing a number of related files and configuration data. More details in the Components sub-section below.</p>
 
-<h3 id="tocAnchor-1-12-2">Packages</h3>
+<h3 id="packages">Packages</h3>
 
 <p>A <strong>package</strong> is the unit of distribution of components. It includes one or more related components.</p>
 
@@ -347,16 +348,16 @@
   <li>exported header files which define the interface provided by the package</li>
   <li>on-line documentation, for example reference pages for each exported function</li>
   <li>some number of test cases, shipped in source format, allowing users to check that the package is working as expected on their particular hardware and in their specific configuration</li>
-  <li>one or more XCDL files describing the package to the configuration tools.</li>
+  <li>one or more XCDL metadata files describing the package to the configuration tools.</li>
 </ul>
 
-<p>Not all packages need to contain all of these. For example some packages such as device drivers may not provide a new interface, instead they just provide another implementation of an existing interface. However all packages must contain at least one XCDL file that describes the package to the configuration tools.</p>
+<p>Not all packages need to contain all of these. For example some packages such as device drivers may not provide a new interface, instead they just provide another implementation of an existing interface. However <strong>all packages must contain at least one XCDL metadata file</strong> that describes the package to the configuration tools.</p>
 
 <p>It is possible to create a binary distribution file for a package containing all of the source code, header files, documentation, and other relevant files.</p>
 
-<p>More details in the Packages section below.</p>
+<p>More details in the Packages section below and in the separate <a href="/guide/packages/">XCDL Packages</a> section.</p>
 
-<h3 id="tocAnchor-1-12-3">Component framework</h3>
+<h3 id="component-framework">Component framework</h3>
 
 <p>The expression <strong>component framework</strong> is used to describe the collection of tools that allow application developers to configure a build system and manage a collection of components (usually organised in one or more component repositories).</p>
 
@@ -368,7 +369,7 @@
 
 <p>The reference implementation will include one or more Eclipse plug-ins as graphical configuration tools, and one or more command line tools for non graphical environments.</p>
 
-<h3 id="tocAnchor-1-12-4">Component repositories</h3>
+<h3 id="component-repositories">Component repositories</h3>
 
 <p>Generally a <strong>component repository</strong> is a managed collection of packages.</p>
 
@@ -390,7 +391,7 @@
 
 <p>Usually component writers install packages by cloning one or more Git repositories (one main repository with multiple submodules linked to it, one for each package).</p>
 
-<h2 id="tocAnchor-1-17">XCDL metadata</h2>
+<h2 id="xcdl-metadata">XCDL metadata</h2>
 
 <p>The configuration tools require information about the various options provided by each package, their consequences and constraints, and other properties such as the location of online documentation. This information has to be provided in the form of <strong>XCDL</strong> metadata files. XCDL is short for <strong>eXtensible Component Definition Language</strong>, and is specifically designed as a way of describing configuration options.</p>
 
@@ -400,7 +401,7 @@
 
 <p>Each XCDL object has a number of specific properties, to define the source files, various configuration details, build settings, dependencies, etc.</p>
 
-<h3 id="tocAnchor-1-17-1">Options</h3>
+<h3 id="options">Options</h3>
 
 <p>The <strong>option</strong> is the basic unit of configurability.</p>
 
@@ -430,7 +431,7 @@
 
 <p>Active options can be <em>enabled/disabled</em> by users, usually via a graphical tool. Simple options are boolean, and the enable/disable status is also the value associated with them. More complex options can have different types, and values according to these types.</p>
 
-<h3 id="tocAnchor-1-17-2">Components</h3>
+<h3 id="components-1">Components</h3>
 
 <p>A <strong>component</strong> is a unit of functionality such as a particular RTOS scheduler or a device driver for a specific device. A component is also a configuration option in that users may want to enable or disable all the functionality of a component. For example, if a particular device on the target hardware is not going to be used by the application, directly or indirectly, then there is no point in having a device driver for it. Furthermore disabling the device driver should reduce the memory requirements for both code and data.</p>
 
@@ -446,11 +447,11 @@
 
 <p>Active components can be <em>enabled/disabled</em> by users, usually via a graphical tool, similar to options. More complex options can have different types, and values according to these types.</p>
 
-<h3 id="tocAnchor-1-17-3">Packages</h3>
+<h3 id="packages-1">Packages</h3>
 
 <p>A package is a special type of component. Specifically, a package is the unit of distribution of components.</p>
 
-<p>If the package is distributed as a binary file, it can be installed (added to the components repository) using the appropriate tool. Afterwards it is possible to uninstall that package, or to install a later version.</p>
+<p>If the package is distributed as a binary file, it can be unpacked and installed (added to the components repository) using the appropriate tool. Afterwards it is possible to uninstall that package, or to install a later version.</p>
 
 <h4 id="loadedunloaded">Loaded/unloaded</h4>
 
@@ -460,7 +461,7 @@
 
 <h4 id="versioning">Versioning</h4>
 
-<p>In addition, it is also possible to select the particular version of a package that should be loaded. Multiple versions of a package must be available to the component framework at the same time.</p>
+<p>For repeatability reasons it is required for some packages to depend on a specific version of a package. For this to work it must be possible to select the particular version of a package that should be loaded. Since multiple different packages may depend each on a different versions of a package, multiple versions of the same package must be available to the component framework at the same time.</p>
 
 <h4 id="hierarchy-2">Hierarchy</h4>
 
@@ -470,35 +471,35 @@
 
 <p>The core distribution may come with a number of packages such as CMSIS, startup files, the RTOS, debug infrastructure. Other packages such as network stacks can come from various different sources and can be installed alongside the core distribution upon request.</p>
 
-<h3 id="tocAnchor-1-17-4">Configurations</h3>
+<h3 id="configurations">Configurations</h3>
 
 <p>A <strong>configuration</strong> is a persistent collection of user choices, applied on top of a collection of choices made by the component designer. The various tools that make up the component framework deal with configurations. Users can create a new configuration, manage a configuration, and use a configuration to generate a build tree prior to building an artefact (application or library). A configuration includes details such as which packages are loaded, plus finer-grained information such as which options in those packages have been enabled or disabled by the user and what values were assigned to typed versions.</p>
 
-<h3 id="tocAnchor-1-17-5">Targets</h3>
+<h3 id="targets">Targets</h3>
 
 <p>The <strong>target</strong> is the specific piece of hardware on which the application is expected to run. This may be an off-the-shelf evaluation board, a piece of custom hardware intended for a specific application, or it could be something like a simulator or a synthetic platform. One of the steps when creating a new configuration is the need to select the target. The component framework will map this on to a set of packages that are used to populate the configuration, typically specific startup files, device driver packages, and in addition it may cause certain options to be changed from their default settings to something more appropriate for the specified target.</p>
 
-<h3 id="tocAnchor-1-17-6">Templates</h3>
+<h3 id="templates">Templates</h3>
 
 <p>A <strong>template</strong> is a partial configuration, aimed at providing users with an appropriate starting point. XCDL repositories should be shipped with a small number of templates, which correspond closely to common ways of using them.</p>
 
 <p>There is a minimal template which provides very little functionality, just enough to bootstrap the hardware and then jump directly to the application code. The default template adds additional functionality, for example it causes a RTOS and various library packages to be used as well. Creating a new configuration typically involves specifying a template as well as a target, resulting in a configuration that can be built and linked with the application code and that will run on the actual hardware. It is then possible to fine-tune configuration options to produce something that better matches the specific requirements of the application.</p>
 
-<h3 id="tocAnchor-1-17-7">Properties</h3>
+<h3 id="properties">Properties</h3>
 
 <p>The component framework needs a certain amount of information about each XCDL object. For example it needs to know what the legal values are, what the default should be, where to find the on-line documentation if the user needs to consult that in order to make a decision, and so on. These are all <strong>properties</strong> of the object. Every object (including components and packages) consists of a name and a set of properties.</p>
 
-<h3 id="tocAnchor-1-17-8">Consequences</h3>
+<h3 id="consequences">Consequences</h3>
 
 <p>As in real life, choices must have consequences. For example for some configurations the main end product is an executable, for others a library, so the consequences of a user choice must affect the build process. This happens in two main ways. First, options can affect which files get built and end up in the executable or library. Second, details of the current option settings get written into various configuration header files using C preprocessor <code>#define</code> directives, and package source code can <code>#include</code> these configuration headers and adapt accordingly. This allows options to affect a package at a very fine grain, at the level of individual lines in a source file if desired. There may be other consequences as well, for example there are options to control the compiler flags that get used during the build process.</p>
 
-<h3 id="tocAnchor-1-17-9">Constraints</h3>
+<h3 id="constraints">Constraints</h3>
 
 <p>Configuration choices are not independent. The C library can provide thread-safe implementations of functions like <code>rand()</code>, but only if the RTOS provides support for per-thread data. This is a constraint: the C library option has a requirement on the RTOS. A typical configuration involves a considerable number of constraints, of varying complexity: many constraints are straightforward, <em>option A requires option B</em>, or <em>option C precludes option D</em>. Other constraints can be more complicated, for example <em>option E may require the presence of a RTOS scheduler</em> but does not care whether it is the bitmap scheduler, the mlqueue scheduler, or something else.</p>
 
 <p>Another type of constraint involves the values that can be used for certain options. For example there is a RTOS option related to the number of scheduling levels, and there is a legal values constraint on this option: specifying zero or a negative number for the number of scheduling levels makes no sense.</p>
 
-<h3 id="tocAnchor-1-17-10">Conflicts</h3>
+<h3 id="conflicts">Conflicts</h3>
 
 <p>As the user manipulates options it is possible to end up with an invalid configuration, where one or more constraints are not satisfied. For example if RTOS per-thread data is disabled but the C library’s thread-safety options are left enabled then there are unsatisfied constraints, also known as <strong>conflicts</strong>. Such conflicts will be reported by the configuration tools. The presence of some conflicts may prevent users from building the project, but some may not, and in these cases the consequences are undefined: there may be compile-time failures, there may be link-time failures, the application may completely fail to run, or the application may run most of the time but once in a while there will be a strange failure… Typically users will want to resolve all conflicts before continuing.</p>
 
@@ -506,7 +507,7 @@
 
 <p>To make things easier for the user, the configuration tools contain an inference engine. This can examine a conflict in a particular configuration and try to figure out some way of resolving the conflict. Depending on the particular tool being used, the inference engine may get invoked automatically at certain times or the user may need to invoke it explicitly. Also depending on the tool, the inference engine may apply any solutions it finds automatically or it may request user confirmation.</p>
 
-<h2 id="tocAnchor-1-28">Credits</h2>
+<h2 id="credits">Credits</h2>
 
 <p>The initial content of this page was based on <em>Chapter 1. Overview</em> of <em>The eCos Component Writer’s Guide</em>, by Bart Veer and John Dallaway, published in 2001.</p>
 
@@ -518,7 +519,7 @@
 
 
 <ul class="share-buttons">
-  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/guide/concepts-and-rationals/" data-layout="button"></div></li>
+  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/guide/concepts/" data-layout="button"></div></li>
   <li><div class="tw-share-button"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div></li>
 </ul>
 

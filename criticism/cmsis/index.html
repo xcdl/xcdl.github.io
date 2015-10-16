@@ -121,15 +121,16 @@
 
 <h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/concepts/">XCDL Concepts</a></li>
   <li><a href="/guide/packages/">XCDL Packages</a></li>
-  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/repositories/">XCDL Repositories</a></li>
+  <li><a href="/guide/language/">XCDL Language</a></li>
   <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
 <h4 id="reference">Reference</h4>
 <ul>
-  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/reference/language/">XCDL language</a></li>
 </ul>
 
 <h4 id="license">License</h4>
@@ -154,7 +155,7 @@
 
         
 <h1 class="page-title">CMSIS Pack remarks and criticism</h1>
-<p class="last-modified">Last modified on Tue Oct 13 20:46:32 2015 UTC.</p>
+<p class="last-modified">Last modified on Thu Oct 15 12:19:14 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -167,57 +168,57 @@
 </div>
 <ul>
 <li class="toc_level-1 toc_section-1">
-<a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">The good parts</span></a>
+<a href="#the-good-parts"><span class="tocnumber">1</span> <span class="toctext">The good parts</span></a>
 </li>
 <li class="toc_level-1 toc_section-2">
-<a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">The bad parts</span></a>
+<a href="#the-bad-parts"><span class="tocnumber">2</span> <span class="toctext">The bad parts</span></a>
 <ul>
 <li class="toc_level-2 toc_section-3">
-<a href="#tocAnchor-1-2-1"><span class="tocnumber">2.1</span> <span class="toctext">Excessively complicated design</span></a>
+<a href="#excessively-complicated-design"><span class="tocnumber">2.1</span> <span class="toctext">Excessively complicated design</span></a>
 </li>
 <li class="toc_level-2 toc_section-4">
-<a href="#tocAnchor-1-2-2"><span class="tocnumber">2.2</span> <span class="toctext">Non-portable examples</span></a>
+<a href="#non-portable-examples"><span class="tocnumber">2.2</span> <span class="toctext">Non-portable examples</span></a>
 </li>
 <li class="toc_level-2 toc_section-5">
-<a href="#tocAnchor-1-2-3"><span class="tocnumber">2.3</span> <span class="toctext">Lack of GCC assembly files</span></a>
+<a href="#lack-of-gcc-assembly-files"><span class="tocnumber">2.3</span> <span class="toctext">Lack of GCC assembly files</span></a>
 </li>
 <li class="toc_level-2 toc_section-6">
-<a href="#tocAnchor-1-2-4"><span class="tocnumber">2.4</span> <span class="toctext">Lack of linker scripts</span></a>
+<a href="#lack-of-linker-scripts"><span class="tocnumber">2.4</span> <span class="toctext">Lack of linker scripts</span></a>
 </li>
 <li class="toc_level-2 toc_section-7">
-<a href="#tocAnchor-1-2-5"><span class="tocnumber">2.5</span> <span class="toctext">Simplistic repository index</span></a>
+<a href="#simplistic-repository-index"><span class="tocnumber">2.5</span> <span class="toctext">Simplistic repository index</span></a>
 </li>
 <li class="toc_level-2 toc_section-8">
-<a href="#tocAnchor-1-2-6"><span class="tocnumber">2.6</span> <span class="toctext">Low configurability features</span></a>
+<a href="#low-configurability-features"><span class="tocnumber">2.6</span> <span class="toctext">Low configurability features</span></a>
 </li>
 <li class="toc_level-2 toc_section-9">
-<a href="#tocAnchor-1-2-7"><span class="tocnumber">2.7</span> <span class="toctext">Fixed file naming schemes</span></a>
+<a href="#fixed-file-naming-schemes"><span class="tocnumber">2.7</span> <span class="toctext">Fixed file naming schemes</span></a>
 </li>
 <li class="toc_level-2 toc_section-10">
-<a href="#tocAnchor-1-2-8"><span class="tocnumber">2.8</span> <span class="toctext">Fixed object hierarchies</span></a>
+<a href="#fixed-object-hierarchies"><span class="tocnumber">2.8</span> <span class="toctext">Fixed object hierarchies</span></a>
 </li>
 <li class="toc_level-2 toc_section-11">
-<a href="#tocAnchor-1-2-9"><span class="tocnumber">2.9</span> <span class="toctext">No package dependencies</span></a>
+<a href="#no-package-dependencies"><span class="tocnumber">2.9</span> <span class="toctext">No package dependencies</span></a>
 </li>
 <li class="toc_level-2 toc_section-12">
-<a href="#tocAnchor-1-2-10"><span class="tocnumber">2.10</span> <span class="toctext">Windows only tools</span></a>
+<a href="#windows-only-tools"><span class="tocnumber">2.10</span> <span class="toctext">Windows only tools</span></a>
 </li>
 <li class="toc_level-2 toc_section-13">
-<a href="#tocAnchor-1-2-11"><span class="tocnumber">2.11</span> <span class="toctext">No special support for tests</span></a>
+<a href="#no-special-support-for-tests"><span class="tocnumber">2.11</span> <span class="toctext">No special support for tests</span></a>
 </li>
 </ul>
 </li>
 <li class="toc_level-1 toc_section-14">
-<a href="#tocAnchor-1-14"><span class="tocnumber">3</span> <span class="toctext">PDSC schema oddities</span></a>
+<a href="#pdsc-schema-oddities"><span class="tocnumber">3</span> <span class="toctext">PDSC schema oddities</span></a>
 <ul>
 <li class="toc_level-2 toc_section-15">
-<a href="#tocAnchor-1-14-1"><span class="tocnumber">3.1</span> <span class="toctext">Non-POSIX paths</span></a>
+<a href="#non-posix-paths"><span class="tocnumber">3.1</span> <span class="toctext">Non-POSIX paths</span></a>
 </li>
 <li class="toc_level-2 toc_section-16">
-<a href="#tocAnchor-1-14-2"><span class="tocnumber">3.2</span> <span class="toctext">&lt;books&gt;</span></a>
+<a href="#books"><span class="tocnumber">3.2</span> <span class="toctext">&lt;books&gt;</span></a>
 </li>
 <li class="toc_level-2 toc_section-17">
-<a href="#tocAnchor-1-14-3"><span class="tocnumber">3.3</span> <span class="toctext">&lt;algorithm&gt;</span></a>
+<a href="#algorithm"><span class="tocnumber">3.3</span> <span class="toctext">&lt;algorithm&gt;</span></a>
 </li>
 </ul>
 </li>
@@ -226,23 +227,23 @@
 </tr>
 </tbody>
 </table>
-</div><h2 id="tocAnchor-1-1">The good parts</h2>
+</div><h2 id="the-good-parts">The good parts</h2>
 
 <p>CMSIS Pack is an important step forward towards the standardisation of ARM Cortex-M system software, hardware description and documentation.</p>
 
 <p>It provides silicon vendors with a great method to describe their chips in a structured way, from the full list of device names down to register level. These are all very useful information, since they are the basis for advanced tools, like project creation wizards (requiring the actual list of available devices and their associated header files and build details) and debugger register viewers (requiring detailed knowledge on the actual peripherals available in a chip variant and their full register definitions, down to bit level).</p>
 
-<h2 id="tocAnchor-1-2">The bad parts</h2>
+<h2 id="the-bad-parts">The bad parts</h2>
 
 <p>The advantage of being a great tool for silicon vendors is probably its worse disadvantage, since (at least the current version, v1.3) CMSIS Pack seems intended mainly to silicon vendors, and not to general software distribution (like eCos CDL).</p>
 
 <p>The second major disadvantage (partly understandable by its origins) is the deep bias towards µVision, a proprietary tool by Keil, which limits (and sometime even voids) its usefulness in open environments, like GCC and Eclipse.</p>
 
-<h3 id="tocAnchor-1-2-1">Excessively complicated design</h3>
+<h3 id="excessively-complicated-design">Excessively complicated design</h3>
 
 <p>Apparently started as a µVision feature, and, as such, inheriting µVision oddities, the CMSIS Pack design evolved unevenly in different directions, and lacking the elegance of a consistent design, up to a point where it can even be considered overengineered.</p>
 
-<h3 id="tocAnchor-1-2-2">Non-portable examples</h3>
+<h3 id="non-portable-examples">Non-portable examples</h3>
 
 <p>Apart for µVision users, which do not use Eclipse anyway, with the current version of the CMSIS Packs, the many existing CMSIS examples are… useless, at large. :-(</p>
 
@@ -261,19 +262,19 @@
 
 <p>Hopefully future CMSIS Pack versions will be improved, to make the examples more portable and available for Eclipse/GCC based tools.</p>
 
-<h3 id="tocAnchor-1-2-3">Lack of GCC assembly files</h3>
+<h3 id="lack-of-gcc-assembly-files">Lack of GCC assembly files</h3>
 
 <p>At the date of writing this, only a very few packages were updated to include the GCC assembly startup files (.S), so most of the packages are not yet ready for inclusion in projects built with GCC.</p>
 
-<h3 id="tocAnchor-1-2-4">Lack of linker scripts</h3>
+<h3 id="lack-of-linker-scripts">Lack of linker scripts</h3>
 
 <p>Not only that GCC support in the CMSIS Packs is scarce, but the linker scripts are completely missing.</p>
 
-<h3 id="tocAnchor-1-2-5">Simplistic repository index</h3>
+<h3 id="simplistic-repository-index">Simplistic repository index</h3>
 
 <p>The recommended method to access the packages from a web site is via a very simple index, plus the full package description. This method generates a lot of network traffic, and parsing the very large xml files, containing full device descriptions only to get a summary of the package is wasteful.</p>
 
-<h3 id="tocAnchor-1-2-6">Low configurability features</h3>
+<h3 id="low-configurability-features">Low configurability features</h3>
 
 <p>Compared to eCos, CMSIS Pack addresses only a very limited range of configurability options, generating a single, fixed name, header file (RTE_Config.h) generally intended to inform the source code only if a package is present or not, and does not go deeper, at component level.</p>
 
@@ -281,33 +282,33 @@
 
 <p>Although functional, these additional definitions may interfere with embedded documentation, like Doxygen, further reducing the files readability.</p>
 
-<h3 id="tocAnchor-1-2-7">Fixed file naming schemes</h3>
+<h3 id="fixed-file-naming-schemes">Fixed file naming schemes</h3>
 
 <p>CMSIS Pack requires the package files to follow a very rigid naming scheme: VENDOR.PACKNAME.VERSION.pack, and also requires the presence of a description file, named VENDOR.PACKNAME.pdsc to be present both inside the archive and on the server where the package is published.</p>
 
-<h3 id="tocAnchor-1-2-8">Fixed object hierarchies</h3>
+<h3 id="fixed-object-hierarchies">Fixed object hierarchies</h3>
 
 <p>Actually the CMSIS components are not really organised hierarchically, they are just tagged with various attributes, like class, group, subgroup, variant, version, and referring to them requires all relevant attributes.</p>
 
 <p>Also packages have a flat structure, there are no methods to define hierarchies of packages.</p>
 
-<h3 id="tocAnchor-1-2-9">No package dependencies</h3>
+<h3 id="no-package-dependencies">No package dependencies</h3>
 
 <p>Packages are currently fully independent, and there are no dependencies between them, so if a package requires another package, the second one also needs to be manually installed, there is no way to chain install all required packages.</p>
 
-<h3 id="tocAnchor-1-2-10">Windows only tools</h3>
+<h3 id="windows-only-tools">Windows only tools</h3>
 
 <p>The package validation tool, and all other provided tools are non portable, and run only on Windows.</p>
 
-<h3 id="tocAnchor-1-2-11">No special support for tests</h3>
+<h3 id="no-special-support-for-tests">No special support for tests</h3>
 
 <p>Although tests might be considered a special genre of examples, building and running tests usually requires more details to be configured.</p>
 
 <p>eCos CDL encourages to define tests for each package, and provides an automated mechanism to build and run all available tests at once.</p>
 
-<h2 id="tocAnchor-1-14">PDSC schema oddities</h2>
+<h2 id="pdsc-schema-oddities">PDSC schema oddities</h2>
 
-<h3 id="tocAnchor-1-14-1">Non-POSIX paths</h3>
+<h3 id="non-posix-paths">Non-POSIX paths</h3>
 
 <p>Although the specs allow the use of standard POSIX paths (and, as far as I was told, MDK accepts them), all Keil packages, and all Keil documentation pages, do not miss the opportunity to show their Microsoft-ish origin, and represent all paths using the Windows back-slash separator:</p>
 
@@ -321,7 +322,7 @@
 <code>&lt;compile header="Device/Include/stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
 </code></pre>
 
-<h3 id="tocAnchor-1-14-2">
+<h3 id="books">
 <code>&lt;books&gt;</code>
 </h3>
 
@@ -351,7 +352,7 @@
 &lt;document category="other"     title="Gerber Files" file="Documents/stm32f4discovery_gerber.zip"/&gt;
 </code></pre>
 
-<h3 id="tocAnchor-1-14-3">
+<h3 id="algorithm">
 <code>&lt;algorithm&gt;</code>
 </h3>
 

@@ -121,15 +121,16 @@
 
 <h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/concepts/">XCDL Concepts</a></li>
   <li><a href="/guide/packages/">XCDL Packages</a></li>
-  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/repositories/">XCDL Repositories</a></li>
+  <li><a href="/guide/language/">XCDL Language</a></li>
   <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
 <h4 id="reference">Reference</h4>
 <ul>
-  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/reference/language/">XCDL language</a></li>
 </ul>
 
 <h4 id="license">License</h4>
@@ -167,62 +168,62 @@
 </div>
 <ul>
 <li class="toc_level-1 toc_section-1">
-<a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">Language overview</span></a>
+<a href="#language-overview"><span class="tocnumber">1</span> <span class="toctext">Language overview</span></a>
 </li>
 <li class="toc_level-1 toc_section-2">
-<a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">XCDL objects</span></a>
+<a href="#xcdl-objects"><span class="tocnumber">2</span> <span class="toctext">XCDL objects</span></a>
 </li>
 <li class="toc_level-1 toc_section-3">
-<a href="#tocAnchor-1-3"><span class="tocnumber">3</span> <span class="toctext">XCDL properties</span></a>
+<a href="#xcdl-properties"><span class="tocnumber">3</span> <span class="toctext">XCDL properties</span></a>
 <ul>
 <li class="toc_level-2 toc_section-4">
-<a href="#tocAnchor-1-3-1"><span class="tocnumber">3.1</span> <span class="toctext">Information-providing properties</span></a>
+<a href="#information-providing-properties"><span class="tocnumber">3.1</span> <span class="toctext">Information-providing properties</span></a>
 </li>
 <li class="toc_level-2 toc_section-5">
-<a href="#tocAnchor-1-3-2"><span class="tocnumber">3.2</span> <span class="toctext">The configuration hierarchy</span></a>
+<a href="#the-configuration-hierarchy"><span class="tocnumber">3.2</span> <span class="toctext">The configuration hierarchy</span></a>
 </li>
 <li class="toc_level-2 toc_section-6">
-<a href="#tocAnchor-1-3-3"><span class="tocnumber">3.3</span> <span class="toctext">Value-related properties</span></a>
+<a href="#value-related-properties"><span class="tocnumber">3.3</span> <span class="toctext">Value-related properties</span></a>
 </li>
 <li class="toc_level-2 toc_section-7">
-<a href="#tocAnchor-1-3-4"><span class="tocnumber">3.4</span> <span class="toctext">Generating the configuration header files</span></a>
+<a href="#generating-the-configuration-header-files"><span class="tocnumber">3.4</span> <span class="toctext">Generating the configuration header files</span></a>
 </li>
 <li class="toc_level-2 toc_section-8">
-<a href="#tocAnchor-1-3-5"><span class="tocnumber">3.5</span> <span class="toctext">Controlling what gets built</span></a>
+<a href="#controlling-what-gets-built"><span class="tocnumber">3.5</span> <span class="toctext">Controlling what gets built</span></a>
 </li>
 <li class="toc_level-2 toc_section-9">
-<a href="#tocAnchor-1-3-6"><span class="tocnumber">3.6</span> <span class="toctext">Miscellaneous properties</span></a>
+<a href="#miscellaneous-properties"><span class="tocnumber">3.6</span> <span class="toctext">Miscellaneous properties</span></a>
 </li>
 </ul>
 </li>
 <li class="toc_level-1 toc_section-10">
-<a href="#tocAnchor-1-10"><span class="tocnumber">4</span> <span class="toctext">Option naming convention</span></a>
+<a href="#option-naming-convention"><span class="tocnumber">4</span> <span class="toctext">Option naming convention</span></a>
 </li>
 <li class="toc_level-1 toc_section-11">
-<a href="#tocAnchor-1-11"><span class="tocnumber">5</span> <span class="toctext">Values and expressions</span></a>
+<a href="#values-and-expressions"><span class="tocnumber">5</span> <span class="toctext">Values and expressions</span></a>
 </li>
 <li class="toc_level-1 toc_section-12">
-<a href="#tocAnchor-1-12"><span class="tocnumber">6</span> <span class="toctext">Option values</span></a>
+<a href="#option-values"><span class="tocnumber">6</span> <span class="toctext">Option values</span></a>
 <ul>
 <li class="toc_level-2 toc_section-13">
-<a href="#tocAnchor-1-12-1"><span class="tocnumber">6.1</span> <span class="toctext">Is the option loaded?</span></a>
+<a href="#is-the-option-loaded"><span class="tocnumber">6.1</span> <span class="toctext">Is the option loaded?</span></a>
 </li>
 <li class="toc_level-2 toc_section-14">
-<a href="#tocAnchor-1-12-2"><span class="tocnumber">6.2</span> <span class="toctext">Is the option active?</span></a>
+<a href="#is-the-option-active"><span class="tocnumber">6.2</span> <span class="toctext">Is the option active?</span></a>
 </li>
 <li class="toc_level-2 toc_section-15">
-<a href="#tocAnchor-1-12-3"><span class="tocnumber">6.3</span> <span class="toctext">Is the option enabled? What is the option value?</span></a>
+<a href="#is-the-option-enabled-what-is-the-option-value"><span class="tocnumber">6.3</span> <span class="toctext">Is the option enabled? What is the option value?</span></a>
 </li>
 <li class="toc_level-2 toc_section-16">
-<a href="#tocAnchor-1-12-4"><span class="tocnumber">6.4</span> <span class="toctext">Some examples</span></a>
+<a href="#some-examples"><span class="tocnumber">6.4</span> <span class="toctext">Some examples</span></a>
 </li>
 </ul>
 </li>
 <li class="toc_level-1 toc_section-17">
-<a href="#tocAnchor-1-17"><span class="tocnumber">7</span> <span class="toctext">TODO</span></a>
+<a href="#todo"><span class="tocnumber">7</span> <span class="toctext">TODO</span></a>
 </li>
 <li class="toc_level-1 toc_section-18">
-<a href="#tocAnchor-1-18"><span class="tocnumber">8</span> <span class="toctext">Credits</span></a>
+<a href="#credits"><span class="tocnumber">8</span> <span class="toctext">Credits</span></a>
 </li>
 </ul>
 </td>
@@ -231,7 +232,7 @@
 </table>
 </div><p>The XCDL definitions are a key part of the XCDL component framework. All packages must come with at least one XCDL file, to describe that package to the framework. The information in that file includes details of all the configuration options and how to build the package. Implementing a new component or turning some existing code into an XCDL component always involves writing corresponding XCDL. This chapter provides a description of the XCDL language. Detailed information on specific parts of the language can be found in <a href="/The_XCDL_language_specification" title="wikilink">The XCDL language specification</a>.</p>
 
-<h2 id="tocAnchor-1-1">Language overview</h2>
+<h2 id="language-overview">Language overview</h2>
 
 <p>XCDL originated as a representation in XML of the original eCos CDL definitions, then several changes were performed.</p>
 
@@ -300,7 +301,7 @@
 
 <p>Like a <code>&lt;package&gt;</code>, a <code>&lt;component&gt;</code> has a name and a body. The body contains various properties for that component, and may also contain subcomponents or options. Similarly an <code>&lt;option&gt;</code> has a name and a body of properties. This example lists a number of new properties: <code>&lt;defaultValue&gt;</code>, <code>&lt;activeIf&gt;</code>, <code>&lt;valueType&gt;</code> and <code>&lt;legalValues&gt;</code>. The meaning of most of these should be fairly obvious. The next sections describe the various XCDL objects and properties.</p>
 
-<h2 id="tocAnchor-1-2">XCDL objects</h2>
+<h2 id="xcdl-objects">XCDL objects</h2>
 
 <p>There are several XCDL-related objects which can occur at the top-level of a XCDL file: <code>&lt;package&gt;</code>, <code>&lt;component&gt;</code>, <code>&lt;option&gt;</code> and <code>&lt;interface&gt;</code>. These correspond to the basic building blocks of the language. All of these take the same basic form:</p>
 
@@ -371,7 +372,7 @@
 
 <p>It is possible for a component’s XCDL file to have a sub-component which also has a <code>&lt;includeFile&gt;</code> property, and so on. In practice excessive nesting like this is rarely useful. It is also possible to ignore the XCDL language support for constructing hierarchies automatically and use the parent property explicitly for every single option and component. Again this is not generally useful.</p>
 
-<h2 id="tocAnchor-1-3">XCDL properties</h2>
+<h2 id="xcdl-properties">XCDL properties</h2>
 
 <p>Each package, component, option, and interface has a list of string properties, which provide the component framework with information about how to handle each option. For example there is a property for a descriptive text message which can be displayed to a user who is trying to figure out just what effect manipulating the option would have on the target application. There is another property for the default value, for example whether a particular option should be enabled or disabled by default.</p>
 
@@ -383,7 +384,7 @@
 
 <p>This section lists the various properties, grouped by purpose. Each property also has a full reference page in <a href="/The_XCDL_language_specification" title="wikilink">The XCDL language specification</a>. Properties related to values and expressions are described in more detail in the Section called Values and Expressions. Properties related to header file generation and to the build process are described in <a href="/The_build_process" title="wikilink">The build process</a>.</p>
 
-<h3 id="tocAnchor-1-3-1">Information-providing properties</h3>
+<h3 id="information-providing-properties">Information-providing properties</h3>
 
 <p>Users can only be expected to manipulate configuration options sensibly if they are given sufficient information about these options. There are three properties which serve to explain an option in plain text: the <code>&lt;display&gt;</code> property gives a textual alias for an option, which is usually more comprehensible than something like <em>[time zones]</em>; the <code>&lt;description&gt;</code> property gives a longer description, typically a paragraph or so; the <code>&lt;doc&gt;</code> property specifies the location of additional online documentation related to a configuration option. In the context of a graphical tool the <code>&lt;display&gt;</code> string will be the primary way for users to identify configuration options; the <description> paragraph will be visible whenever the option is selected; the online documentation will only be accessed when the user explicitly requests it.</description></p>
 
@@ -404,7 +405,7 @@
 
 <p>All three properties take a single argument. For display and description this argument is just a string. For doc it should be a pointer to a suitable HTML file, optionally including an anchor within that page. If the directory layout conventions are observed then the component framework will look for the HTML file in the package’s doc subfolder, otherwise the <code>&lt;doc&gt;</code> filename will be treated as relative to the package’s top-level directory.</p>
 
-<h3 id="tocAnchor-1-3-2">The configuration hierarchy</h3>
+<h3 id="the-configuration-hierarchy">The configuration hierarchy</h3>
 
 <p>There are two properties related to the hierarchical organization of components and options: <code>&lt;parent&gt;</code> and <code>&lt;includeFile&gt;</code>.</p>
 
@@ -441,7 +442,7 @@
 &lt;/component&gt;
 </code></pre>
 
-<h3 id="tocAnchor-1-3-3">Value-related properties</h3>
+<h3 id="value-related-properties">Value-related properties</h3>
 
 <p>There are seven properties which are related to option values and state: <code>&lt;valueType&gt;</code>, <code>&lt;computed&gt;</code>, <code>&lt;defaultValue&gt;</code>, <code>&lt;legalValues&gt;</code>, <code>&lt;activeIf&gt;</code>, <code>&lt;implements&gt;</code>, and <code>&lt;requires&gt;</code>. More detailed information can be found in the section called Values and Expressions.</p>
 
@@ -565,7 +566,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 
 <p>The arguments to the <code>&lt;requires&gt;</code> property should be a XCDL goal expression.</p>
 
-<h3 id="tocAnchor-1-3-4">Generating the configuration header files</h3>
+<h3 id="generating-the-configuration-header-files">Generating the configuration header files</h3>
 
 <p>When creating or updating a build tree the component framework will also generate configuration header files, one per package. By default it will generate a <code>#define</code> for each option, component or interface that is active and enabled that defines a <code>&lt;generatedDefinition&gt;</code>. For options with the data or booldata flavors the <code>#define</code> will use the option’s data part, otherwise it will use the constant 1. Typical output would include:</p>
 
@@ -593,7 +594,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 
 <p>The <code>&lt;valueFormat&gt;</code> property can be used to control how the value part of the default <code>#define</code> gets formatted. For example a format string of “0x%04x” could be used to generate a four-digit hexadecimal number.</p>
 
-<h3 id="tocAnchor-1-3-5">Controlling what gets built</h3>
+<h3 id="controlling-what-gets-built">Controlling what gets built</h3>
 
 <p>There are several properties which affect the build process: <code>&lt;sourceFile&gt;</code>.</p>
 
@@ -646,7 +647,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 
 <p>The various header definition exported by the infrastructure, will now end up in the os/infra.h folder.</p>
 
-<h3 id="tocAnchor-1-3-6">Miscellaneous properties</h3>
+<h3 id="miscellaneous-properties">Miscellaneous properties</h3>
 
 <p>The <code>&lt;hardware&gt;</code> property is only relevant to packages. Some packages such as device drivers and HAL packages are hardware-specific, and generally it makes no sense to add such packages to a configuration unless the corresponding hardware is present on your target system. Typically hardware package selection happens automatically when you select your target. The <code>&lt;hardware&gt;</code> property should be used to identify a hardware-specific package, and does not take any arguments.</p>
 
@@ -662,11 +663,11 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 &lt;/package&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-10">Option naming convention</h2>
+<h2 id="option-naming-convention">Option naming convention</h2>
 
 <p>TBD</p>
 
-<h2 id="tocAnchor-1-11">Values and expressions</h2>
+<h2 id="values-and-expressions">Values and expressions</h2>
 
 <p>It is fairly reasonable to expect that enabling or disabling a configuration option such as <code>option('kernel/threads data')</code> in some way affects its value. This will have an effect on any expressions that reference this option such as <code>&lt;requires&gt;option('kernel/threads data')&lt;/requires&gt;</code>. It will also affect the consequences of that option: how it affects the build process and what happens to any constraints that <code>option('kernel/threads data')</code> may impose (as opposed to constraints on this option imposed by others).</p>
 
@@ -674,7 +675,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 
 <p>In XCDL things are not so straightforward.</p>
 
-<h2 id="tocAnchor-1-12">Option values</h2>
+<h2 id="option-values">Option values</h2>
 
 <p>There are four factors which go into an option’s value:</p>
 
@@ -685,7 +686,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   <li>If the option is in a loaded package, is active and enabled, then it will have some associated data which constitutes its value.</li>
 </ol>
 
-<h3 id="tocAnchor-1-12-1">Is the option <strong>loaded</strong>?</h3>
+<h3 id="is-the-option-loaded">Is the option <strong>loaded</strong>?</h3>
 
 <p>At any one time a configuration will contain only a subset of all possible packages. In fact it is impossible to combine certain packages in a single configuration. For example architectural HAL packages should contain a set of options defining endianness, the sizes of basic data types and so on (many of which will of course be constant for any given architecture). Any attempt to load two architectural HAL packages into a configuration will fail because of the resulting name clash. Since XCDL expressions can reference options in other packages, and often need to do so, it is essential to define the resulting behaviour.</p>
 
@@ -699,7 +700,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   <li>An option that is not loaded cannot impose any constraints on the rest of the configuration. Again this is the only reasonable behavior: if the option is not loaded then any associated requires or <code>&lt;legalValues&gt;</code> properties will not be known.</li>
 </ol>
 
-<h3 id="tocAnchor-1-12-2">Is the option <strong>active</strong>?</h3>
+<h3 id="is-the-option-active">Is the option <strong>active</strong>?</h3>
 
 <p>The next issue to consider is whether or not a particular option is active. Configuration options are organized in a hierarchy of components and sub-components. For example the C library package contains a <code>component('libc/stdio')</code> containing all the options related to standard I/O. If a user disables the component as a whole then all the options below it become inactive: it makes no sense to disable all stdio functionality and then manipulate the buffer sizes.</p>
 
@@ -715,7 +716,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   <li>An option that is inactive cannot impose any constraints on the rest of the configuration. For example <code>option('libc/stdio/floating point/printf')</code> has a dependency <code>&lt;requires&gt;isEnabled('libm')&lt;/requires&gt;</code>, but if all of the stdio functionality is disabled then this constraint is ignored (although of course there may be other packages which have a dependency on <code>package('libm')</code>).</li>
 </ol>
 
-<h3 id="tocAnchor-1-12-3">Is the option <strong>enabled</strong>? What is the option value?</h3>
+<h3 id="is-the-option-enabled-what-is-the-option-value">Is the option <strong>enabled</strong>? What is the option value?</h3>
 
 <p>The majority of configuration options are boolean in nature, so the user can either enable or disable some functionality. Some options are different. For example <code>valueOf('libc/stdio/bufsize')</code> is a number, and <code>valueOf('libc/stdio/default console')</code> is a string corresponding to a device name. XCDL has to cope with this variety, and define the exact behavior of the system in terms of constraints and build-time consequences.</p>
 
@@ -784,7 +785,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 
 <p>By default all options and components have the type <em>none</em>: most options are simple selections, so making this the default allows for slightly more compact XCDL files. Packages have the type <em>string</em>, where the data part always corresponds to the version of the package that is loaded into the configuration: changing this value corresponds to unloading the old version and loading in a different one.</p>
 
-<h3 id="tocAnchor-1-12-4">Some examples</h3>
+<h3 id="some-examples">Some examples</h3>
 
 <p>The following definitions, can be used to illustrate how values and flavors work in practice:</p>
 
@@ -821,7 +822,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 &lt;/package&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-17">TODO</h2>
+<h2 id="todo">TODO</h2>
 
 <ul>
   <li>clarify/add support to define library files, linker scripts, header files, include folders</li>
@@ -831,7 +832,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   <li>clarify/add support to define boards</li>
 </ul>
 
-<h2 id="tocAnchor-1-18">Credits</h2>
+<h2 id="credits">Credits</h2>
 
 <p>The initial content of this page was based on <em>Chapter 3. The CDL Language</em> of <em>The eCos Component Writer’s Guide</em>, by Bart Veer and John Dallaway, published in 2001.</p>
 

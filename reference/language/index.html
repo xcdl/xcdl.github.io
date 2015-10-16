@@ -7,10 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <title>The XCDL definitions reference</title>
+  <title>The XCDL language reference</title>
   <meta name="description" content="The eXtensible Component Definition Language.">
 
-  <meta property="og:title" content="The XCDL definitions reference" />
+  <meta property="og:title" content="The XCDL language reference" />
   <meta property="og:site_name" content="XCDL" />
 
   <link rel="alternate" type="application/rss+xml" title="XCDL" href="/feed.xml" />
@@ -27,7 +27,7 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?201510121951" media="screen">
   <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?201510121951" media="print">
 
-  <link rel="canonical" href="http://ilg-ul.github.io/guide/definitions-reference/">
+  <link rel="canonical" href="http://ilg-ul.github.io/reference/language/">
 
 
 
@@ -121,15 +121,16 @@
 
 <h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-  <li><a href="/guide/concepts-and-rationals/">XCDL Concepts and Rationals</a></li>
+  <li><a href="/guide/concepts/">XCDL Concepts</a></li>
   <li><a href="/guide/packages/">XCDL Packages</a></li>
-  <li><a href="/guide/language/">The XCDL Language</a></li>
+  <li><a href="/guide/repositories/">XCDL Repositories</a></li>
+  <li><a href="/guide/language/">XCDL Language</a></li>
   <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
 <h4 id="reference">Reference</h4>
 <ul>
-  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
+  <li><a href="/reference/language/">XCDL language</a></li>
 </ul>
 
 <h4 id="license">License</h4>
@@ -153,8 +154,8 @@
       <div class="site-content">
 
         
-<h1 class="page-title">The XCDL definitions reference</h1>
-<p class="last-modified">Last modified on Tue Oct 13 20:46:32 2015 UTC.</p>
+<h1 class="page-title">The XCDL language reference</h1>
+<p class="last-modified">Last modified on Thu Oct 15 12:19:15 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -167,96 +168,96 @@
 </div>
 <ul>
 <li class="toc_level-1 toc_section-1">
-<a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a>
+<a href="#introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a>
 </li>
 <li class="toc_level-1 toc_section-2">
-<a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">Mandatory properties</span></a>
+<a href="#mandatory-properties"><span class="tocnumber">2</span> <span class="toctext">Mandatory properties</span></a>
 </li>
 <li class="toc_level-1 toc_section-3">
-<a href="#tocAnchor-1-3"><span class="tocnumber">3</span> <span class="toctext">The &lt;option&gt; object</span></a>
+<a href="#the-option-object"><span class="tocnumber">3</span> <span class="toctext">The &lt;option&gt; object</span></a>
 </li>
 <li class="toc_level-1 toc_section-4">
-<a href="#tocAnchor-1-4"><span class="tocnumber">4</span> <span class="toctext">The &lt;component&gt; object</span></a>
+<a href="#the-component-object"><span class="tocnumber">4</span> <span class="toctext">The &lt;component&gt; object</span></a>
 </li>
 <li class="toc_level-1 toc_section-5">
-<a href="#tocAnchor-1-5"><span class="tocnumber">5</span> <span class="toctext">The &lt;package&gt; object</span></a>
+<a href="#the-package-object"><span class="tocnumber">5</span> <span class="toctext">The &lt;package&gt; object</span></a>
 </li>
 <li class="toc_level-1 toc_section-6">
-<a href="#tocAnchor-1-6"><span class="tocnumber">6</span> <span class="toctext">The &lt;repository&gt; object</span></a>
+<a href="#the-repository-object"><span class="tocnumber">6</span> <span class="toctext">The &lt;repository&gt; object</span></a>
 </li>
 <li class="toc_level-1 toc_section-7">
-<a href="#tocAnchor-1-7"><span class="tocnumber">7</span> <span class="toctext">The &lt;interface&gt; object</span></a>
+<a href="#the-interface-object"><span class="tocnumber">7</span> <span class="toctext">The &lt;interface&gt; object</span></a>
 </li>
 <li class="toc_level-1 toc_section-8">
-<a href="#tocAnchor-1-8"><span class="tocnumber">8</span> <span class="toctext">The &lt;toolchain&gt; object</span></a>
+<a href="#the-toolchain-object"><span class="tocnumber">8</span> <span class="toctext">The &lt;toolchain&gt; object</span></a>
 </li>
 <li class="toc_level-1 toc_section-9">
-<a href="#tocAnchor-1-9"><span class="tocnumber">9</span> <span class="toctext">The &lt;configuration&gt; object</span></a>
+<a href="#the-configuration-object"><span class="tocnumber">9</span> <span class="toctext">The &lt;configuration&gt; object</span></a>
 </li>
 <li class="toc_level-1 toc_section-10">
-<a href="#tocAnchor-1-10"><span class="tocnumber">10</span> <span class="toctext">The &lt;activeIf&gt; property</span></a>
+<a href="#the-activeif-property"><span class="tocnumber">10</span> <span class="toctext">The &lt;activeIf&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-11">
-<a href="#tocAnchor-1-11"><span class="tocnumber">11</span> <span class="toctext">The &lt;category&gt; property</span></a>
+<a href="#the-category-property"><span class="tocnumber">11</span> <span class="toctext">The &lt;category&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-12">
-<a href="#tocAnchor-1-12"><span class="tocnumber">12</span> <span class="toctext">The &lt;childrenGeneratedFile&gt; property</span></a>
+<a href="#the-childrengeneratedfile-property"><span class="tocnumber">12</span> <span class="toctext">The &lt;childrenGeneratedFile&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-13">
-<a href="#tocAnchor-1-13"><span class="tocnumber">13</span> <span class="toctext">The &lt;computed&gt; property</span></a>
+<a href="#the-computed-property"><span class="tocnumber">13</span> <span class="toctext">The &lt;computed&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-14">
-<a href="#tocAnchor-1-14"><span class="tocnumber">14</span> <span class="toctext">The &lt;configurable&gt; property</span></a>
+<a href="#the-configurable-property"><span class="tocnumber">14</span> <span class="toctext">The &lt;configurable&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-15">
-<a href="#tocAnchor-1-15"><span class="tocnumber">15</span> <span class="toctext">The &lt;defaultEnable&gt; property</span></a>
+<a href="#the-defaultenable-property"><span class="tocnumber">15</span> <span class="toctext">The &lt;defaultEnable&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-16">
-<a href="#tocAnchor-1-16"><span class="tocnumber">16</span> <span class="toctext">The &lt;defaultValue&gt; property</span></a>
+<a href="#the-defaultvalue-property"><span class="tocnumber">16</span> <span class="toctext">The &lt;defaultValue&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-17">
-<a href="#tocAnchor-1-17"><span class="tocnumber">17</span> <span class="toctext">The &lt;generatedDefinition&gt; property</span></a>
+<a href="#the-generateddefinition-property"><span class="tocnumber">17</span> <span class="toctext">The &lt;generatedDefinition&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-18">
-<a href="#tocAnchor-1-18"><span class="tocnumber">18</span> <span class="toctext">The &lt;generatedFile&gt; property</span></a>
+<a href="#the-generatedfile-property"><span class="tocnumber">18</span> <span class="toctext">The &lt;generatedFile&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-19">
-<a href="#tocAnchor-1-19"><span class="tocnumber">19</span> <span class="toctext">The &lt;implements&gt; property</span></a>
+<a href="#the-implements-property"><span class="tocnumber">19</span> <span class="toctext">The &lt;implements&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-20">
-<a href="#tocAnchor-1-20"><span class="tocnumber">20</span> <span class="toctext">The &lt;includeXcdl&gt; property</span></a>
+<a href="#the-includexcdl-property"><span class="tocnumber">20</span> <span class="toctext">The &lt;includeXcdl&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-21">
-<a href="#tocAnchor-1-21"><span class="tocnumber">21</span> <span class="toctext">The &lt;legalValues&gt; property</span></a>
+<a href="#the-legalvalues-property"><span class="tocnumber">21</span> <span class="toctext">The &lt;legalValues&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-22">
-<a href="#tocAnchor-1-22"><span class="tocnumber">22</span> <span class="toctext">The &lt;parent&gt; property</span></a>
+<a href="#the-parent-property"><span class="tocnumber">22</span> <span class="toctext">The &lt;parent&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-23">
-<a href="#tocAnchor-1-23"><span class="tocnumber">23</span> <span class="toctext">The &lt;requires&gt; property</span></a>
+<a href="#the-requires-property"><span class="tocnumber">23</span> <span class="toctext">The &lt;requires&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-24">
-<a href="#tocAnchor-1-24"><span class="tocnumber">24</span> <span class="toctext">The &lt;sourceFile&gt; property</span></a>
+<a href="#the-sourcefile-property"><span class="tocnumber">24</span> <span class="toctext">The &lt;sourceFile&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-25">
-<a href="#tocAnchor-1-25"><span class="tocnumber">25</span> <span class="toctext">The &lt;valueType&gt; property</span></a>
+<a href="#the-valuetype-property"><span class="tocnumber">25</span> <span class="toctext">The &lt;valueType&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-26">
-<a href="#tocAnchor-1-26"><span class="tocnumber">26</span> <span class="toctext">The &lt;valueFormat&gt; property</span></a>
+<a href="#the-valueformat-property"><span class="tocnumber">26</span> <span class="toctext">The &lt;valueFormat&gt; property</span></a>
 </li>
 <li class="toc_level-1 toc_section-27">
-<a href="#tocAnchor-1-27"><span class="tocnumber">27</span> <span class="toctext">Credits</span></a>
+<a href="#credits"><span class="tocnumber">27</span> <span class="toctext">Credits</span></a>
 </li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-</div><h2 id="tocAnchor-1-1">Introduction</h2>
+</div><h2 id="introduction">Introduction</h2>
 
 <p>This chapter contains reference information for the main XCDL objects <code>&lt;option&gt;</code>, <code>&lt;component&gt;</code>, <code>&lt;package&gt;</code>; and <code>&lt;interface&gt;</code>, followed by the various properties such as <code>&lt;activeIf&gt;</code> and <code>&lt;sourceFile&gt;</code> in alphabetical order.</p>
 
-<h2 id="tocAnchor-1-2">Mandatory properties</h2>
+<h2 id="mandatory-properties">Mandatory properties</h2>
 
 <p>All hierarchical objects must have the following properties defined:</p>
 
@@ -271,7 +272,7 @@
   <li><code>&lt;description&gt;...&lt;/description&gt;</code> - a long, comprehensive description of the object, to be used as reference by the user during the configuration process.</li>
 </ul>
 
-<h2 id="tocAnchor-1-3">The <code>&lt;option&gt;</code> object</h2>
+<h2 id="the-option-object">The <code>&lt;option&gt;</code> object</h2>
 
 <h3 id="purpose">Purpose</h3>
 
@@ -358,7 +359,7 @@
 &lt;/option&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-4">The <code>&lt;component&gt;</code> object</h2>
+<h2 id="the-component-object">The <code>&lt;component&gt;</code> object</h2>
 
 <h3 id="purpose-1">Purpose</h3>
 
@@ -454,7 +455,7 @@
 &lt;/component&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-5">The <code>&lt;package&gt;</code> object</h2>
+<h2 id="the-package-object">The <code>&lt;package&gt;</code> object</h2>
 
 <h3 id="purpose-2">Purpose</h3>
 
@@ -545,7 +546,7 @@
 &lt;/package&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-6">The <code>&lt;repository&gt;</code> object</h2>
+<h2 id="the-repository-object">The <code>&lt;repository&gt;</code> object</h2>
 
 <h3 id="purpose-3">Purpose</h3>
 
@@ -637,7 +638,7 @@
 &lt;/repository&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-7">The <code>&lt;interface&gt;</code> object</h2>
+<h2 id="the-interface-object">The <code>&lt;interface&gt;</code> object</h2>
 
 <h3 id="purpose-4">Purpose</h3>
 
@@ -739,7 +740,7 @@
 &lt;/interface&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-8">The <code>&lt;toolchain&gt;</code> object</h2>
+<h2 id="the-toolchain-object">The <code>&lt;toolchain&gt;</code> object</h2>
 
 <h3 id="purpose-5">Purpose</h3>
 
@@ -804,7 +805,7 @@
 
 <p>TBD</p>
 
-<h2 id="tocAnchor-1-9">The <code>&lt;configuration&gt;</code> object</h2>
+<h2 id="the-configuration-object">The <code>&lt;configuration&gt;</code> object</h2>
 
 <h3 id="purpose-6">Purpose</h3>
 
@@ -850,7 +851,7 @@
 
 <p>TBD</p>
 
-<h2 id="tocAnchor-1-10">The <code>&lt;activeIf&gt;</code> property</h2>
+<h2 id="the-activeif-property">The <code>&lt;activeIf&gt;</code> property</h2>
 
 <h3 id="purpose-7">Purpose</h3>
 
@@ -939,7 +940,7 @@
 &lt;/option&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-11">The <code>&lt;category&gt;</code> property</h2>
+<h2 id="the-category-property">The <code>&lt;category&gt;</code> property</h2>
 
 <h3 id="purpose-8">Purpose</h3>
 
@@ -992,7 +993,7 @@
 
 <p>TBD</p>
 
-<h2 id="tocAnchor-1-12">The <code>&lt;childrenGeneratedFile&gt;</code> property</h2>
+<h2 id="the-childrengeneratedfile-property">The <code>&lt;childrenGeneratedFile&gt;</code> property</h2>
 
 <h3 id="purpose-9">Purpose</h3>
 
@@ -1030,7 +1031,7 @@
 
 <p>TBD</p>
 
-<h2 id="tocAnchor-1-13">The <code>&lt;computed&gt;</code> property</h2>
+<h2 id="the-computed-property">The <code>&lt;computed&gt;</code> property</h2>
 
 <h3 id="purpose-10">Purpose</h3>
 
@@ -1107,7 +1108,7 @@
 &lt;/option&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-14">The <code>&lt;configurable&gt;</code> property</h2>
+<h2 id="the-configurable-property">The <code>&lt;configurable&gt;</code> property</h2>
 
 <h3 id="purpose-11">Purpose</h3>
 
@@ -1147,7 +1148,7 @@
 
 <p>TBD</p>
 
-<h2 id="tocAnchor-1-15">The <code>&lt;defaultEnable&gt;</code> property</h2>
+<h2 id="the-defaultenable-property">The <code>&lt;defaultEnable&gt;</code> property</h2>
 
 <h3 id="purpose-12">Purpose</h3>
 
@@ -1189,7 +1190,7 @@
 
 <p>TBD</p>
 
-<h2 id="tocAnchor-1-16">The <code>&lt;defaultValue&gt;</code> property</h2>
+<h2 id="the-defaultvalue-property">The <code>&lt;defaultValue&gt;</code> property</h2>
 
 <h3 id="purpose-13">Purpose</h3>
 
@@ -1248,7 +1249,7 @@
 &lt;/option&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-17">The <code>&lt;generatedDefinition&gt;</code> property</h2>
+<h2 id="the-generateddefinition-property">The <code>&lt;generatedDefinition&gt;</code> property</h2>
 
 <h3 id="purpose-14">Purpose</h3>
 
@@ -1302,7 +1303,7 @@
 
 <p>TBD</p>
 
-<h2 id="tocAnchor-1-18">The <code>&lt;generatedFile&gt;</code> property</h2>
+<h2 id="the-generatedfile-property">The <code>&lt;generatedFile&gt;</code> property</h2>
 
 <h3 id="purpose-15">Purpose</h3>
 
@@ -1351,7 +1352,7 @@
 &lt;/package&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-19">The <code>&lt;implements&gt;</code> property</h2>
+<h2 id="the-implements-property">The <code>&lt;implements&gt;</code> property</h2>
 
 <h3 id="purpose-16">Purpose</h3>
 
@@ -1403,7 +1404,7 @@
 &lt;/option&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-20">The <code>&lt;includeXcdl&gt;</code> property</h2>
+<h2 id="the-includexcdl-property">The <code>&lt;includeXcdl&gt;</code> property</h2>
 
 <h3 id="purpose-17">Purpose</h3>
 
@@ -1456,7 +1457,7 @@
 &lt;/component&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-21">The <code>&lt;legalValues&gt;</code> property</h2>
+<h2 id="the-legalvalues-property">The <code>&lt;legalValues&gt;</code> property</h2>
 
 <h3 id="purpose-18">Purpose</h3>
 
@@ -1517,7 +1518,7 @@
 &lt;/option&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-22">The <code>&lt;parent&gt;</code> property</h2>
+<h2 id="the-parent-property">The <code>&lt;parent&gt;</code> property</h2>
 
 <h3 id="purpose-19">Purpose</h3>
 
@@ -1595,7 +1596,7 @@
 &lt;component&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-23">The <code>&lt;requires&gt;</code> property</h2>
+<h2 id="the-requires-property">The <code>&lt;requires&gt;</code> property</h2>
 
 <h3 id="purpose-20">Purpose</h3>
 
@@ -1648,7 +1649,7 @@
 &lt;/component&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-24">The <code>&lt;sourceFile&gt;</code> property</h2>
+<h2 id="the-sourcefile-property">The <code>&lt;sourceFile&gt;</code> property</h2>
 
 <h3 id="purpose-21">Purpose</h3>
 
@@ -1717,7 +1718,7 @@
 &lt;/package&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-25">The <code>&lt;valueType&gt;</code> property</h2>
+<h2 id="the-valuetype-property">The <code>&lt;valueType&gt;</code> property</h2>
 
 <h3 id="purpose-22">Purpose</h3>
 
@@ -1804,7 +1805,7 @@
 
 <p>TBD</p>
 
-<h2 id="tocAnchor-1-26">The <code>&lt;valueFormat&gt;</code> property</h2>
+<h2 id="the-valueformat-property">The <code>&lt;valueFormat&gt;</code> property</h2>
 
 <h3 id="purpose-23">Purpose</h3>
 
@@ -1863,7 +1864,7 @@
 <code>&lt;valueFormat&gt;(0x%08X)&lt;/valueFormat&gt;
 </code></pre>
 
-<h2 id="tocAnchor-1-27">Credits</h2>
+<h2 id="credits">Credits</h2>
 
 <p>The initial content of this page was based on <em>Chapter 5. CDL Language Specification</em> of <em>The eCos Component Writer’s Guide</em>, by Bart Veer and John Dallaway, published in 2001.</p>
 
@@ -1875,7 +1876,7 @@
 
 
 <ul class="share-buttons">
-  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/guide/definitions-reference/" data-layout="button"></div></li>
+  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/reference/language/" data-layout="button"></div></li>
   <li><div class="tw-share-button"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div></li>
 </ul>
 
