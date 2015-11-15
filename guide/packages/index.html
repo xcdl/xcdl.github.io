@@ -8,12 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>XCDL packages</title>
-  <meta name="description" content="The eXtensible Component Definition Language.">
+  <meta name="description" content="The eXtensible Component Definition Language component framework">
 
   <meta property="og:title" content="XCDL packages" />
-  <meta property="og:site_name" content="XCDL" />
+  <meta property="og:site_name" content="XCDL / xPack" />
 
-  <link rel="alternate" type="application/rss+xml" title="XCDL" href="/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="XCDL / xPack" href="/feed.xml" />
 
 
 
@@ -85,8 +85,8 @@
   <div class="site-header">
   <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
   <div class="site-title">
-    <h1><a href="/">XCDL</a></h1>
-    <p>The eXtensible Component Definition Language.</p>
+    <h1><a href="/">XCDL / xPack</a></h1>
+    <p>The eXtensible Component Definition Language component framework</p>
   </div>
 </div>
 
@@ -103,7 +103,7 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4 id="xcdl-newsblog"><a href="/blog/">XCDL News</a></h4>
+      <h4 id="newsblog"><a href="/blog/">News</a></h4>
 
 <ul>
   <li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
@@ -117,20 +117,20 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4 id="xcdl-home"><a href="/">XCDL Home</a></h4>
+      <h4 id="home"><a href="/">Home</a></h4>
 
 <h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-  <li><a href="/guide/concepts/">XCDL Concepts</a></li>
-  <li><a href="/guide/packages/">XCDL Packages</a></li>
-  <li><a href="/guide/repositories/">XCDL Repositories</a></li>
-  <li><a href="/guide/language/">XCDL Language</a></li>
+  <li><a href="/guide/concepts/">Concepts and rationals</a></li>
+  <li><a href="/guide/packages/">Packages</a></li>
+  <li><a href="/guide/repositories/">Repositories</a></li>
+  <li><a href="/guide/metadata/">Metadata</a></li>
   <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
 <h4 id="reference">Reference</h4>
 <ul>
-  <li><a href="/reference/language/">XCDL language</a></li>
+  <li><a href="/reference/metadata/">Metadata</a></li>
 </ul>
 
 <h4 id="license">License</h4>
@@ -155,7 +155,7 @@
 
         
 <h1 class="page-title">XCDL packages</h1>
-<p class="last-modified">Last modified on Sun Oct 25 09:01:13 2015 UTC.</p>
+<p class="last-modified">Last modified on Sun Nov 15 10:43:31 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -182,84 +182,90 @@
 </ul>
 </li>
 <li class="toc_level-1 toc_section-5">
-<a href="#the-xpackagexml-file"><span class="tocnumber">2</span> <span class="toctext">The .xpackage.xml file</span></a>
+<a href="#the-xpack-file"><span class="tocnumber">2</span> <span class="toctext">The .xpack file</span></a>
 <ul>
 <li class="toc_level-2 toc_section-6">
-<a href="#name"><span class="tocnumber">2.1</span> <span class="toctext">name</span></a>
+<a href="#root-element"><span class="tocnumber">2.1</span> <span class="toctext">root element</span></a>
 </li>
 <li class="toc_level-2 toc_section-7">
-<a href="#description"><span class="tocnumber">2.2</span> <span class="toctext">description</span></a>
+<a href="#name"><span class="tocnumber">2.2</span> <span class="toctext">name</span></a>
 </li>
 <li class="toc_level-2 toc_section-8">
-<a href="#releases"><span class="tocnumber">2.3</span> <span class="toctext">releases</span></a>
+<a href="#description"><span class="tocnumber">2.3</span> <span class="toctext">description</span></a>
 </li>
 <li class="toc_level-2 toc_section-9">
-<a href="#keywords"><span class="tocnumber">2.4</span> <span class="toctext">keywords</span></a>
+<a href="#repository"><span class="tocnumber">2.4</span> <span class="toctext">repository</span></a>
 </li>
 <li class="toc_level-2 toc_section-10">
-<a href="#homepage"><span class="tocnumber">2.5</span> <span class="toctext">homepage</span></a>
+<a href="#releases"><span class="tocnumber">2.5</span> <span class="toctext">releases</span></a>
 </li>
 <li class="toc_level-2 toc_section-11">
-<a href="#bugs"><span class="tocnumber">2.6</span> <span class="toctext">bugs</span></a>
+<a href="#keywords"><span class="tocnumber">2.6</span> <span class="toctext">keywords</span></a>
 </li>
 <li class="toc_level-2 toc_section-12">
-<a href="#license"><span class="tocnumber">2.7</span> <span class="toctext">license</span></a>
+<a href="#homepage"><span class="tocnumber">2.7</span> <span class="toctext">homepage</span></a>
 </li>
 <li class="toc_level-2 toc_section-13">
-<a href="#maintainers"><span class="tocnumber">2.8</span> <span class="toctext">maintainers</span></a>
+<a href="#bugs"><span class="tocnumber">2.8</span> <span class="toctext">bugs</span></a>
 </li>
 <li class="toc_level-2 toc_section-14">
-<a href="#contributors"><span class="tocnumber">2.9</span> <span class="toctext">contributors</span></a>
+<a href="#license"><span class="tocnumber">2.9</span> <span class="toctext">license</span></a>
 </li>
 <li class="toc_level-2 toc_section-15">
-<a href="#repository"><span class="tocnumber">2.10</span> <span class="toctext">repository</span></a>
+<a href="#maintainers"><span class="tocnumber">2.10</span> <span class="toctext">maintainers</span></a>
 </li>
 <li class="toc_level-2 toc_section-16">
-<a href="#dependencies"><span class="tocnumber">2.11</span> <span class="toctext">dependencies</span></a>
+<a href="#contributors"><span class="tocnumber">2.11</span> <span class="toctext">contributors</span></a>
+</li>
+<li class="toc_level-2 toc_section-17">
+<a href="#dependencies"><span class="tocnumber">2.12</span> <span class="toctext">dependencies</span></a>
+</li>
+<li class="toc_level-2 toc_section-18">
+<a href="#ignored"><span class="tocnumber">2.13</span> <span class="toctext">ignored</span></a>
 </li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-17">
+<li class="toc_level-1 toc_section-19">
 <a href="#build"><span class="tocnumber">3</span> <span class="toctext">Build</span></a>
 <ul>
-<li class="toc_level-2 toc_section-18">
+<li class="toc_level-2 toc_section-20">
 <a href="#build-artefact-types"><span class="tocnumber">3.1</span> <span class="toctext">Build artefact types</span></a>
 </li>
-<li class="toc_level-2 toc_section-19">
+<li class="toc_level-2 toc_section-21">
 <a href="#outline-of-the-new-project-process"><span class="tocnumber">3.2</span> <span class="toctext">Outline of the new project process</span></a>
 </li>
-<li class="toc_level-2 toc_section-20">
+<li class="toc_level-2 toc_section-22">
 <a href="#outline-of-the-build-process"><span class="tocnumber">3.3</span> <span class="toctext">Outline of the build process</span></a>
 </li>
-<li class="toc_level-2 toc_section-21">
+<li class="toc_level-2 toc_section-23">
 <a href="#configurable-source-code"><span class="tocnumber">3.4</span> <span class="toctext">Configurable source code</span></a>
 </li>
-<li class="toc_level-2 toc_section-22">
+<li class="toc_level-2 toc_section-24">
 <a href="#exported-header-files"><span class="tocnumber">3.5</span> <span class="toctext">Exported header files</span></a>
 </li>
-<li class="toc_level-2 toc_section-23">
+<li class="toc_level-2 toc_section-25">
 <a href="#package-documentation"><span class="tocnumber">3.6</span> <span class="toctext">Package documentation</span></a>
 </li>
-<li class="toc_level-2 toc_section-24">
+<li class="toc_level-2 toc_section-26">
 <a href="#test-cases"><span class="tocnumber">3.7</span> <span class="toctext">Test cases</span></a>
 </li>
-<li class="toc_level-2 toc_section-25">
+<li class="toc_level-2 toc_section-27">
 <a href="#host-side-support"><span class="tocnumber">3.8</span> <span class="toctext">Host-side support</span></a>
 </li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-26">
+<li class="toc_level-1 toc_section-28">
 <a href="#making-a-package-distribution"><span class="tocnumber">4</span> <span class="toctext">Making a package distribution</span></a>
 <ul>
-<li class="toc_level-2 toc_section-27">
+<li class="toc_level-2 toc_section-29">
 <a href="#the-xcdl-package-distribution-file-format"><span class="tocnumber">4.1</span> <span class="toctext">The XCDL package distribution file format</span></a>
 </li>
-<li class="toc_level-2 toc_section-28">
+<li class="toc_level-2 toc_section-30">
 <a href="#preparing-xcdl-packages-for-distribution"><span class="tocnumber">4.2</span> <span class="toctext">Preparing XCDL packages for distribution</span></a>
 </li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-29">
+<li class="toc_level-1 toc_section-31">
 <a href="#credits"><span class="tocnumber">5</span> <span class="toctext">Credits</span></a>
 </li>
 </ul>
@@ -273,22 +279,22 @@
 
 <h3 id="what-is-a-package">What is a package?</h3>
 
-<p>Inspired from the <a href="https://docs.npmjs.com/misc/developers#what-is-a-package">NPM</a> package definition, an XCDL package is:</p>
+<p>An XCDL package is:</p>
 
 <ol>
-  <li>a folder containing a valid <code>.xpackage.xml</code> file;</li>
+  <li>a folder containing a valid <code>.xpack</code> file;</li>
   <li>a gzipped tarball containing 1);</li>
   <li>a URL that resolves to 2);</li>
   <li>a Git URL that, when cloned, results in 1).</li>
 </ol>
 
-<p>The definition is intentionally Git and JavaScript centric, as these technologies are considered mature and worth considering.</p>
+<p>The definition is inspired from the <a href="https://docs.npmjs.com/misc/developers#what-is-a-package">NPM</a> package definition, and is intentionally Git and JavaScript centric, as these technologies are considered mature and worth considering.</p>
 
-<p>Although the XCDL language will probably remain based on XML, equivalent definitions can be expressed in JSON, and compatibility with JSON is considered a kind of validation that the definitions are simple and consistent.</p>
+<p>Although the XCDL language will probably remain based on XML, equivalent definitions can be expressed in JSON, and maintaining compatibility with JSON is considered a kind of validation that the definitions are simple and consistent.</p>
 
 <h3 id="package-contents">Package contents</h3>
 
-<p>In addition to the <code>.xpackage.xml</code> metadata file, a typical package contains the following:</p>
+<p>In addition to the <code>.xpack</code> metadata file, a typical package contains the following:</p>
 
 <ul>
   <li>some number of source files (.c/.cpp) and header files (.h). The project artefact (library or executable) will be created using these files. Some source files may serve other purposes, for example to provide a linker script;</li>
@@ -310,8 +316,8 @@
 
 <pre>
 <code>Packages/ilg/xyzw/current
-├── .xpackage.xml
-├── .xpackignore
+├── .xpack
+├── .xcdl
 ├── ChangeLog
 ├── README.md
 ├── doc
@@ -322,9 +328,21 @@
 
 <p>For example, if a package has an <code>include</code> sub-folder then the component framework will assume that all header files in and below that folder are <strong>exported header files</strong> and will do the right thing at build time. Similarly if there is <em>doc</em> property indicating the location of online documentation then the component framework will first look in the <code>doc</code> subfolder.</p>
 
-<p>Except for the name and location of the <code>.xpackage.xml</code> file, this folder layout is just a guideline, it is not enforced by the component framework. For simple packages it often makes more sense to have all of the files in just one directory. For example a package could just contain the files hello.cpp, hello.h, hello.html. By default hello.h will be treated as an exported header file, although this can be overridden with the includeFiles property. Assuming there is a doc property referring to hello.html and there is no doc sub-directory then the tools will search for this file relative to the package’s top-level and everything will just work. Much the same applies to hello.cpp.</p>
+<p>Except for the name and location of the <code>.xpack</code> file, this folder layout is just a guideline, it is not enforced by the component framework. For simple packages it often makes more sense to have all of the files in just one directory. For example a package could just contain the files hello.cpp, hello.h, hello.html. By default hello.h will be treated as an exported header file, although this can be overridden with the includeFiles property. Assuming there is a doc property referring to hello.html and there is no doc sub-directory then the tools will search for this file relative to the package’s top-level and everything will just work. Much the same applies to hello.cpp.</p>
 
-<h2 id="the-xpackagexml-file">The <code>.xpackage.xml</code> file</h2>
+<h2 id="the-xpack-file">The <code>.xpack</code> file</h2>
+
+<h3 id="root-element">root element</h3>
+
+<p>The root element for <code>.xpack</code> files is <code>package</code>:</p>
+
+<pre>
+<code>&lt;?xml version="1.0" encoding="UTF-8" standalone="no" ?&gt;
+
+&lt;package&gt;
+  ..
+&lt;/package&gt;
+</code></pre>
 
 <h3 id="name">
 <code>name</code>
@@ -337,15 +355,19 @@
 <p>The XML syntax:</p>
 
 <pre>
-<code>&lt;package name="parent/string"&gt;
-  ...
-&lt;/package&gt;
+<code>&lt;name&gt;"parent/string"&lt;/name&gt;
 </code></pre>
 
 <p>The JSON Syntax (string):</p>
 
 <pre>
 <code>"name": "string"
+</code></pre>
+
+<p>Example:</p>
+
+<pre>
+<code>&lt;name&gt;/ilg/STM32/F4/HAL&lt;/name&gt;
 </code></pre>
 
 <h3 id="description">
@@ -369,9 +391,42 @@
 <p>Example:</p>
 
 <pre>
-<code>&lt;package name="/ilg/STM32/F4/HAL"&gt;
-  &lt;description&gt;The STM32F4 HAL library.&lt;/description&gt;
-&lt;/package&gt;
+<code>&lt;description&gt;The STM32F4 HAL library.&lt;/description&gt;
+</code></pre>
+
+<h3 id="repository">
+<code>repository</code>
+</h3>
+
+<p>The place where the package repository is located. This is helpful for people who want to contribute.</p>
+
+<p>The XML syntax:</p>
+
+<pre>
+<code>&lt;repository&gt;
+  &lt;type&gt;string&lt;/type&gt;
+  &lt;url&gt;string&lt;/url&gt;
+&lt;/repository&gt;
+</code></pre>
+
+<p>The JSON syntax (array of objects):</p>
+
+<pre>
+<code>"repository": {
+  "type": "string",
+  "url": "string"
+}
+</code></pre>
+
+<p>Support for the <code>git</code> type is mandatory. Other types, like <code>svn</code>, might be added later.</p>
+
+<p>Example:</p>
+
+<pre>
+<code>&lt;repository&gt;
+  &lt;type&gt;git&lt;/type&gt;
+  &lt;url&gt;https://github.com/xpacks/arm-cmsis-core.git&lt;/url&gt;
+&lt;/repository&gt;
 </code></pre>
 
 <h3 id="releases">
@@ -409,6 +464,13 @@
   }
 ]
 </code></pre>
+
+<p>TODO:</p>
+
+<ul>
+  <li>archiveUrl</li>
+  <li>repository tag</li>
+</ul>
 
 <h3 id="keywords">
 <code>keywords</code>
@@ -585,41 +647,6 @@
 ]
 </code></pre>
 
-<h3 id="repository">
-<code>repository</code>
-</h3>
-
-<p>The place where the pacakge repository is located. This is helpful for people who want to contribute.</p>
-
-<p>The XML syntax:</p>
-
-<pre>
-<code>&lt;repository&gt;
-  &lt;type&gt;string&lt;/type&gt;
-  &lt;url&gt;string&lt;/url&gt;
-&lt;/repository&gt;
-</code></pre>
-
-<p>The JSON syntax (array of objects):</p>
-
-<pre>
-<code>"repository": {
-  "type": "string",
-  "url": "string"
-}
-</code></pre>
-
-<p>Support for the <code>git</code> type string is mandatory. Other types, like <code>svn</code>, might be added.</p>
-
-<p>Example:</p>
-
-<pre>
-<code>&lt;repository&gt;
-  &lt;type&gt;git&lt;/type&gt;
-  &lt;url&gt;https://github.com/xpacks/arm-cmsis-core.git&lt;/url&gt;
-&lt;/repository&gt;
-</code></pre>
-
 <h3 id="dependencies">
 <code>dependencies</code>
 </h3>
@@ -675,15 +702,48 @@
 <p>Example:</p>
 
 <pre>
-<code>&lt;package name="/ilg/stm32/f4/cmsis"&gt;
+<code>&lt;package&gt;
+  &lt;name&gt;/ilg/stm32/f4/cmsis&lt;/name&gt;
   ...
   &lt;dependencies&gt;
-    &lt;package name="arm/cmsis"&gt;
-      &lt;version&gt;&amp;gt;=4.4.0&lt;/version&gt;
-    &lt;/package&gt;
+  &lt;package name="arm/cmsis"&gt;
+    &lt;version&gt;&amp;gt;=4.4.0&lt;/version&gt;
+  &lt;/package&gt;
   &lt;/dependencies&gt;
   ...
 &lt;/package&gt;
+</code></pre>
+
+<h3 id="ignored">
+<code>ignored</code>
+</h3>
+
+<p>The <code>ignored</code> is used to keep stuff out of the binary package. It uses the same syntax as <code>.gitignore</code> to exclude files when creating the binary archive.</p>
+
+<p>The XML syntax:</p>
+
+<pre>
+<code>&lt;ignored&gt;
+  &lt;path&gt;string&lt;/path&gt;
+  ...
+&lt;/ignored&gt;
+</code></pre>
+
+<p>The JSON syntax (array of strings):</p>
+
+<pre>
+<code>"ignored": [
+  "string",
+  ...
+]
+</code></pre>
+
+<p>Example:</p>
+
+<pre>
+<code>&lt;ignored&gt;
+  &lt;path&gt;/.settings/&lt;/path&gt;
+&lt;/ignored&gt;
 </code></pre>
 
 <hr />
@@ -742,7 +802,7 @@
 
 <h3 id="configurable-source-code">Configurable source code</h3>
 
-<p>All packages should be totally portable to all target hardware (with the obvious exceptions of HAL and device driver packages). They should also be totally bug-free, require the absolute minimum amount of code and data space, be so efficient that cpu time usage is negligible, and provide lots of configuration options so that application developers have full control over the behavior. The configuration options are optional only if a package can meet the requirements of every potential application without any overheads. It is not the purpose of this guide to explain how to achieve all of these requirements.</p>
+<p>All packages should be totally portable to all target hardware (with the obvious exceptions of HAL and device driver packages). They should also be totally bug-free, require the absolute minimum amount of code and data space, be so efficient that cpu time usage is negligible, and provide lots of configuration options so that application developers have full control over the behaviour. The configuration options are optional only if a package can meet the requirements of every potential application without any overheads. It is not the purpose of this guide to explain how to achieve all of these requirements.</p>
 
 <p>The XCDL component framework does have some important implications for the source code: compiler flag dependencies; package interfaces vs. implementations; and how configuration options affect source code.</p>
 
@@ -760,7 +820,7 @@
 
 <h4 id="source-code-and-configuration-options">Source code and configuration options</h4>
 
-<p>Configurability usually involves source code that needs to implement different behavior depending on the settings of configuration options. It is possible to write packages where the only consequence associated with various configuration options is to control what gets built, but this approach is limited and does not allow for fine-grained configurability. There are three main ways in which options could affect source code at build time:</p>
+<p>Configurability usually involves source code that needs to implement different behaviour depending on the settings of configuration options. It is possible to write packages where the only consequence associated with various configuration options is to control what gets built, but this approach is limited and does not allow for fine-grained configurability. There are three main ways in which options could affect source code at build time:</p>
 
 <ol>
   <li>

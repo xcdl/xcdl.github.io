@@ -7,13 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <title>The XCDL language reference</title>
-  <meta name="description" content="The eXtensible Component Definition Language.">
+  <title>The XCDL metadata reference</title>
+  <meta name="description" content="The eXtensible Component Definition Language component framework">
 
-  <meta property="og:title" content="The XCDL language reference" />
-  <meta property="og:site_name" content="XCDL" />
+  <meta property="og:title" content="The XCDL metadata reference" />
+  <meta property="og:site_name" content="XCDL / xPack" />
 
-  <link rel="alternate" type="application/rss+xml" title="XCDL" href="/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="XCDL / xPack" href="/feed.xml" />
 
 
 
@@ -27,7 +27,7 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?201510121951" media="screen">
   <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?201510121951" media="print">
 
-  <link rel="canonical" href="http://ilg-ul.github.io/reference/language/">
+  <link rel="canonical" href="http://ilg-ul.github.io/reference/metadata/">
 
 
 
@@ -85,8 +85,8 @@
   <div class="site-header">
   <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
   <div class="site-title">
-    <h1><a href="/">XCDL</a></h1>
-    <p>The eXtensible Component Definition Language.</p>
+    <h1><a href="/">XCDL / xPack</a></h1>
+    <p>The eXtensible Component Definition Language component framework</p>
   </div>
 </div>
 
@@ -103,7 +103,7 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4 id="xcdl-newsblog"><a href="/blog/">XCDL News</a></h4>
+      <h4 id="newsblog"><a href="/blog/">News</a></h4>
 
 <ul>
   <li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
@@ -117,20 +117,20 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4 id="xcdl-home"><a href="/">XCDL Home</a></h4>
+      <h4 id="home"><a href="/">Home</a></h4>
 
 <h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-  <li><a href="/guide/concepts/">XCDL Concepts</a></li>
-  <li><a href="/guide/packages/">XCDL Packages</a></li>
-  <li><a href="/guide/repositories/">XCDL Repositories</a></li>
-  <li><a href="/guide/language/">XCDL Language</a></li>
+  <li><a href="/guide/concepts/">Concepts and rationals</a></li>
+  <li><a href="/guide/packages/">Packages</a></li>
+  <li><a href="/guide/repositories/">Repositories</a></li>
+  <li><a href="/guide/metadata/">Metadata</a></li>
   <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
 <h4 id="reference">Reference</h4>
 <ul>
-  <li><a href="/reference/language/">XCDL language</a></li>
+  <li><a href="/reference/metadata/">Metadata</a></li>
 </ul>
 
 <h4 id="license">License</h4>
@@ -154,8 +154,8 @@
       <div class="site-content">
 
         
-<h1 class="page-title">The XCDL language reference</h1>
-<p class="last-modified">Last modified on Sun Oct 25 08:59:27 2015 UTC.</p>
+<h1 class="page-title">The XCDL metadata reference</h1>
+<p class="last-modified">Last modified on Sun Nov 15 10:43:31 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -1079,7 +1079,7 @@
     <p>On some target hardware a particular feature may be user-configurable, while on other targets it is fixed. For example some processors can operate in either big-endian or little-endian mode, while other processors do not provide any choice. It is possible to have an option OS_BOOL_BIGENDIAN which is calculated in some architectural HAL packages but user-modifiable in others.</p>
   </li>
   <li>
-    <p>Computed objects can provide an alternative way for one package to affect the behavior of another one. Suppose a package may provide two possible implementations, a preferred one involving self-modifying code and a slower alternative. If the system involves a ROM bootstrap then the slower alternative must be used, but it would be inappropriate to modify the startup option in every HAL to impose constraints on this package. Instead it is possible to have a calculated option whose value is <code>{ OS_HAL_STARTUP == "ROM" }</code>, and which has appropriate consequences. Arguably this is a spurious example, and it should be a user choice whether or not to use self-modifying code with a defaultValue based on OS_HAL_STARTUP, but that is for the component writer to decide.</p>
+    <p>Computed objects can provide an alternative way for one package to affect the behaviour of another one. Suppose a package may provide two possible implementations, a preferred one involving self-modifying code and a slower alternative. If the system involves a ROM bootstrap then the slower alternative must be used, but it would be inappropriate to modify the startup option in every HAL to impose constraints on this package. Instead it is possible to have a calculated option whose value is <code>{ OS_HAL_STARTUP == "ROM" }</code>, and which has appropriate consequences. Arguably this is a spurious example, and it should be a user choice whether or not to use self-modifying code with a defaultValue based on OS_HAL_STARTUP, but that is for the component writer to decide.</p>
   </li>
   <li>
     <p>Sometimes it should be possible to perform a particular test at compile-time, for example by using a C/C++ preprocessor <code>#if</code> construct. However the preprocessor has only limited functionality, for example it cannot perform string comparisons. XCDL expressions are more powerful.</p>
@@ -1876,7 +1876,7 @@
 
 
 <ul class="share-buttons">
-  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/reference/language/" data-layout="button"></div></li>
+  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/reference/metadata/" data-layout="button"></div></li>
   <li><div class="tw-share-button"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div></li>
 </ul>
 

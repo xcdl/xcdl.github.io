@@ -8,12 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>CMSIS Pack remarks and criticism</title>
-  <meta name="description" content="The eXtensible Component Definition Language.">
+  <meta name="description" content="The eXtensible Component Definition Language component framework">
 
   <meta property="og:title" content="CMSIS Pack remarks and criticism" />
-  <meta property="og:site_name" content="XCDL" />
+  <meta property="og:site_name" content="XCDL / xPack" />
 
-  <link rel="alternate" type="application/rss+xml" title="XCDL" href="/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="XCDL / xPack" href="/feed.xml" />
 
 
 
@@ -85,8 +85,8 @@
   <div class="site-header">
   <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
   <div class="site-title">
-    <h1><a href="/">XCDL</a></h1>
-    <p>The eXtensible Component Definition Language.</p>
+    <h1><a href="/">XCDL / xPack</a></h1>
+    <p>The eXtensible Component Definition Language component framework</p>
   </div>
 </div>
 
@@ -103,7 +103,7 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4 id="xcdl-newsblog"><a href="/blog/">XCDL News</a></h4>
+      <h4 id="newsblog"><a href="/blog/">News</a></h4>
 
 <ul>
   <li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
@@ -117,20 +117,20 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4 id="xcdl-home"><a href="/">XCDL Home</a></h4>
+      <h4 id="home"><a href="/">Home</a></h4>
 
 <h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-  <li><a href="/guide/concepts/">XCDL Concepts</a></li>
-  <li><a href="/guide/packages/">XCDL Packages</a></li>
-  <li><a href="/guide/repositories/">XCDL Repositories</a></li>
-  <li><a href="/guide/language/">XCDL Language</a></li>
+  <li><a href="/guide/concepts/">Concepts and rationals</a></li>
+  <li><a href="/guide/packages/">Packages</a></li>
+  <li><a href="/guide/repositories/">Repositories</a></li>
+  <li><a href="/guide/metadata/">Metadata</a></li>
   <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
 <h4 id="reference">Reference</h4>
 <ul>
-  <li><a href="/reference/language/">XCDL language</a></li>
+  <li><a href="/reference/metadata/">Metadata</a></li>
 </ul>
 
 <h4 id="license">License</h4>
@@ -155,7 +155,7 @@
 
         
 <h1 class="page-title">CMSIS Pack remarks and criticism</h1>
-<p class="last-modified">Last modified on Sun Oct 25 08:55:04 2015 UTC.</p>
+<p class="last-modified">Last modified on Sun Nov 15 10:43:31 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -237,7 +237,7 @@
 
 <p>The advantage of being a great tool for silicon vendors is probably its worse disadvantage, since (at least the current version, v1.3) CMSIS Pack seems intended mainly to silicon vendors, and not to general software distribution (like eCos CDL).</p>
 
-<p>The second major disadvantage (partly understandable by its origins) is the deep bias towards µVision, a proprietary tool by Keil, which limits (and sometime even voids) its usefulness in open environments, like GCC and Eclipse.</p>
+<p>The second major disadvantage (partly understandable by its origins) is the deep bias towards µVision, a proprietary tool by Keil, which limits (and sometimes even voids) its usefulness in open environments, like GCC and Eclipse.</p>
 
 <h3 id="excessively-complicated-design">Excessively complicated design</h3>
 

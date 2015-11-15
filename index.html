@@ -7,13 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <title>Welcome to XCDL!</title>
-  <meta name="description" content="The eXtensible Component Definition Language.">
+  <title>The XCDL component framework</title>
+  <meta name="description" content="The eXtensible Component Definition Language component framework">
 
-  <meta property="og:title" content="Welcome to XCDL!" />
-  <meta property="og:site_name" content="XCDL" />
+  <meta property="og:title" content="The XCDL component framework" />
+  <meta property="og:site_name" content="XCDL / xPack" />
 
-  <link rel="alternate" type="application/rss+xml" title="XCDL" href="/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="XCDL / xPack" href="/feed.xml" />
 
 
 
@@ -85,8 +85,8 @@
   <div class="site-header">
   <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
   <div class="site-title">
-    <h1><a href="/">XCDL</a></h1>
-    <p>The eXtensible Component Definition Language.</p>
+    <h1><a href="/">XCDL / xPack</a></h1>
+    <p>The eXtensible Component Definition Language component framework</p>
   </div>
 </div>
 
@@ -103,7 +103,7 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4 id="xcdl-newsblog"><a href="/blog/">XCDL News</a></h4>
+      <h4 id="newsblog"><a href="/blog/">News</a></h4>
 
 <ul>
   <li><a href="/blog/2015/10/12/github-pages/">The GitHub Wiki content was migrated to GitHub Pages</a></li>
@@ -117,20 +117,20 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4 id="xcdl-home"><a href="/">XCDL Home</a></h4>
+      <h4 id="home"><a href="/">Home</a></h4>
 
 <h4 id="component-writers-guide">Component Writer’s Guide</h4>
 <ul>
-  <li><a href="/guide/concepts/">XCDL Concepts</a></li>
-  <li><a href="/guide/packages/">XCDL Packages</a></li>
-  <li><a href="/guide/repositories/">XCDL Repositories</a></li>
-  <li><a href="/guide/language/">XCDL Language</a></li>
+  <li><a href="/guide/concepts/">Concepts and rationals</a></li>
+  <li><a href="/guide/packages/">Packages</a></li>
+  <li><a href="/guide/repositories/">Repositories</a></li>
+  <li><a href="/guide/metadata/">Metadata</a></li>
   <li><a href="/guide/build-process/">The build process</a></li>
 </ul>
 
 <h4 id="reference">Reference</h4>
 <ul>
-  <li><a href="/reference/language/">XCDL language</a></li>
+  <li><a href="/reference/metadata/">Metadata</a></li>
 </ul>
 
 <h4 id="license">License</h4>
@@ -154,13 +154,19 @@
       <div class="site-content">
 
         
-<h1 class="page-title">Welcome to XCDL!</h1>
-<p class="last-modified">Last modified on Sun Oct 25 09:02:36 2015 UTC.</p>
+<h1 class="page-title">The XCDL component framework</h1>
+<p class="last-modified">Last modified on Sun Nov 15 10:43:31 2015 UTC.</p>
 
 
 <h2 id="introduction">Introduction</h2>
 
-<p>The <a href="https://github.com/xcdl">XCDL project</a> defines an <strong>eXtensible Component Definition Language</strong> (CDL) and implements tools to configure and build complex, package based, multi-variant (multi-architecture, multi-board, multi-toolchain) embedded projects. It is inspired by eCos CDL and also plans to incorporate some ARM CMSIS Pack concepts. The primary projects to benefit from XCDL are <a href="http://micro-os-plus.livius.net/">µOS++ IIIe</a> (as content for the components), <a href="https://github.com/xpacks">xPacks</a> (as repository for packs) and <a href="http://gnuarmeclipse.github.io/">GNU ARM Eclipse</a>  (as graphical tools to manage the components).</p>
+<p>The <a href="https://github.com/xcdl">XCDL project</a> defines and implements a component framework, as a set of metadata and a collection of tools specifically designed to configure and build complex, package based, multi-variant (multi-architecture, multi-board, multi-toolchain) embedded projects. It is inspired by eCos CDL and also incorporates some ARM CMSIS Pack concepts. The primary projects to benefit from XCDL are:</p>
+
+<ul>
+  <li><a href="https://github.com/xpacks">xPacks</a> (as repository for packages/components)</li>
+  <li><a href="http://micro-os-plus.livius.net/">µOS++ IIIe</a> (as content for the components)</li>
+  <li><a href="http://gnuarmeclipse.github.io/">GNU ARM Eclipse</a>  (as graphical tools to manage the components).</li>
+</ul>
 
 <p>This project is hosted on <a href="https://github.com/xcdl">GitHub</a>.</p>
 
@@ -179,9 +185,10 @@
 <h2 id="component-writers-guide">Component Writer’s Guide</h2>
 
 <ul>
-  <li><a href="/guide/concepts/">XCDL concepts and rationals</a></li>
-  <li><a href="/guide/packages/">XCDL packages</a></li>
-  <li><a href="/guide/language/">The XCDL language</a></li>
+  <li><a href="/guide/concepts/">Concepts and rationals</a></li>
+  <li><a href="/guide/packages/">Packages</a></li>
+  <li><a href="/guide/repositories/">Repositories</a></li>
+  <li><a href="/guide/metadata/">Metadata</a></li>
   <li><a href="/guide/build-process/">The build process</a> (not yet updated for XCDL)</li>
   <li>The XCDL graphical tools</li>
 </ul>
@@ -189,8 +196,8 @@
 <h2 id="reference">Reference</h2>
 
 <ul>
-  <li><a href="/guide/definitions-reference/">The XCDL definitions reference</a></li>
-  <li>The XCDL command line tools reference</li>
+  <li><a href="/reference/metadata/">Metadata</a></li>
+  <li><a href="/reference/commands/">command line tools</a> (work in progress)</li>
 </ul>
 
 <h2 id="srs">SRS</h2>
@@ -252,6 +259,7 @@
   <li><a href="https://maven.apache.org/">Apache Maven</a> (written in Java, XML configuration files)</li>
   <li><a href="http://scons.org/">SCons</a> (configuration files are Python scripts)</li>
   <li><a href="https://github.com/ruby/rake">RAKE - Ruby Make</a> (tasks and dependencies in Ruby)</li>
+  <li><a href="http://buildr.apache.org">builds</a> - Apache Buildr is a build system for Java-based applications</li>
   <li><a href="https://gradle.org/">Gradle</a> (written in Groovy)</li>
   <li><a href="http://www.cmake.org/">CMake</a> (written in C++; uses native builders like make)</li>
   <li><a href="https://github.com/waf-project/waf">Waf</a> (a build tool written in Python)</li>
@@ -265,6 +273,19 @@
 <ul>
   <li><a href="http://hudson-ci.org/">Hudson</a> (the original Sun project, donated by Oracle to the Eclipse Foundation)</li>
   <li><a href="http://jenkins-ci.org/">Jenkins</a> (the more active fork, backed by the project creator)</li>
+</ul>
+
+<h2 id="javascript-resources">JavaScript resources</h2>
+
+<ul>
+  <li><a href="http://www.amazon.com/JavaScript-Definitive-Guide-Activate-Guides/dp/0596805527/">Book: JavaScript: The Definitive Guide (6th Edition) by David Flanagan</a></li>
+  <li><a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742/">Book: JavaScript: The Good Parts by Douglas Crockford</a></li>
+  <li><a href="http://www.crockford.com/javascript/">Crockford JavaScript</a>
+    <ul>
+      <li><a href="http://www.crockford.com/javascript/private.html">Private Members in JavaScript</a></li>
+      <li><a href="http://javascript.crockford.com/inheritance.html">Classical Inheritance in JavaScript</a></li>
+    </ul>
+  </li>
 </ul>
 
 
