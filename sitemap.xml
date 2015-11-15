@@ -17,6 +17,10 @@
     <lastmod>2015-10-12T17:37:31+00:00</lastmod>
   </url>
   <url>
+    <loc>http://ilg-ul.github.io/guide/build/</loc>
+    <lastmod>2015-11-15T22:53:57+00:00</lastmod>
+  </url>
+  <url>
     <loc>http://ilg-ul.github.io/criticism/cmsis/</loc>
     <lastmod>2015-11-15T10:43:31+00:00</lastmod>
   </url>
@@ -26,7 +30,7 @@
   </url>
   <url>
     <loc>http://ilg-ul.github.io/guide/concepts/</loc>
-    <lastmod>2015-11-15T21:47:24+00:00</lastmod>
+    <lastmod>2015-11-15T22:53:57+00:00</lastmod>
   </url>
   <url>
     <loc>http://ilg-ul.github.io/criticism/ecos/</loc>
@@ -34,7 +38,7 @@
   </url>
   <url>
     <loc>http://ilg-ul.github.io/</loc>
-    <lastmod>2015-11-15T21:46:34+00:00</lastmod>
+    <lastmod>2015-11-15T22:53:57+00:00</lastmod>
   </url>
   <url>
     <loc>http://ilg-ul.github.io/blog/</loc>
@@ -50,11 +54,15 @@
   </url>
   <url>
     <loc>http://ilg-ul.github.io/guide/packages/</loc>
-    <lastmod>2015-11-15T10:43:31+00:00</lastmod>
+    <lastmod>2015-11-15T22:53:57+00:00</lastmod>
   </url>
   <url>
     <loc>http://ilg-ul.github.io/work/preprocessor/</loc>
     <lastmod>2015-10-12T17:37:31+00:00</lastmod>
+  </url>
+  <url>
+    <loc>http://ilg-ul.github.io/guide/rationals/</loc>
+    <lastmod>2015-11-15T22:53:57+00:00</lastmod>
   </url>
   <url>
     <loc>http://ilg-ul.github.io/guide/repositories/</loc>
