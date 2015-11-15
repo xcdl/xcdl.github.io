@@ -155,7 +155,7 @@
 
         
 <h1 class="page-title">XCDL concepts and rationals</h1>
-<p class="last-modified">Last modified on Sun Nov 15 10:47:04 2015 UTC.</p>
+<p class="last-modified">Last modified on Sun Nov 15 21:47:24 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -303,7 +303,7 @@
 
 <h3 id="rationals">Rationals</h3>
 
-<p>XCDL was designed beacause:</p>
+<p>XCDL was designed because:</p>
 
 <ul>
   <li>
@@ -333,14 +333,14 @@
 <ol>
   <li>add metadata to tell what other packages are required, which are the source folders, the include folders, and the custom compile options;</li>
   <li>add metadata to group source files in related components, structured in a virtual hierarchy, with dependencies and conditions when these components are active/enabled;</li>
-  <li>add metadata to define configuration options, also to be shown as nodes in the virtual hierarchy, with dependencies and formulas to compute option values with knowledge about the entire build environment</li>
-  <li>add metadata and templates to dynamically generate source files with content adapted to various configuration selections adn options.</li>
+  <li>add metadata to define configuration options, also to be shown as nodes in the virtual hierarchy, with dependencies and formulas to compute option values with knowledge about the entire build environment;</li>
+  <li>add metadata and templates to dynamically generate source files with content adapted to various configuration selections and options.</li>
   <li>possibly more!</li>
 </ol>
 
 <h2 id="why-xcdl-the-long-version">Why XCDL? (the long version)</h2>
 
-<p>As the complexity of embedded system grows, it is more and more difficult to manage the complexity of putting together multiple components with lots of dependencies and configuration options.</p>
+<p>As the complexity of embedded system grows, it is more and more difficult to put together multiple components with lots of dependencies and configuration options.</p>
 
 <p>To address this problem, XCDL defines and implements a component framework, as a set of metadata and a collection of tools specifically designed to support <strong>multi-variant cross-building embedded system images</strong> based on reusable components. This component framework is extensible, allowing additional components to be added to the build system at any time.</p>
 
@@ -354,7 +354,7 @@
   <li>multiple processor architectures (like ARM Cortex-M), with multiple sub-architectures (like M3, M4, M0), multiple manufacturer families (like STM32F1, STM32F4), multiple sub-families (like STM32F10x Connectivity Line) and multiple devices (like ST STM32F107VG);</li>
   <li>as an extension to architectures, synthetic architectures, like POSIX, can also be considered targets, mainly used to run test cases;</li>
   <li>multiple hardware platforms (boards, board revisions);</li>
-  <li>multiple synthetic run POSIX platforms (like OS X, GNU/Linux, MSYS2 under Windows);</li>
+  <li>multiple synthetic POSIX platforms (like OS X, GNU/Linux, MSYS2 under Windows);</li>
   <li>multiple toolchains (like GCC, LLVM clang)</li>
   <li>multiple build platforms (like OS X, GNU/Linux, Windows)</li>
 </ul>
@@ -455,7 +455,7 @@
 
 <p>Physically a component repository is a hierarchy of folders, with folders usually directly mapping the hierarchy of packages.</p>
 
-<p>The component framework includes tools that allows new packages or new versions of a package to be installed, old packages to be removed, and so on. The component repository includes special files, maintained by the administration tool, which contain details of the various registered packages.</p>
+<p>The component framework includes tools that allow new packages or new versions of a package to be installed, old packages to be removed, and so on. The component repository includes special files, maintained by the administration tool, which contain details of the various registered packages.</p>
 
 <h4 id="read-only">Read-only</h4>
 
@@ -623,7 +623,7 @@
 
 <h4 id="hierarchy-2">Hierarchy</h4>
 
-<p>Components may contain further configuration objects. In the case of a device driver, there may be options to control the exact behaviour of that driver. These will of course be irrelevant if the driver as a whole is disabled. More generally options and components live in a hierarchy, where any component or package can contain options specific to that component and further sub-components.</p>
+<p>Components may contain further configuration objects. In the case of a device driver, there may be options to control the exact behaviour of that driver. These will of course be irrelevant if the driver as a whole is disabled. More generally, options and components live in a hierarchy, where any component or package can contain options specific to that component and further sub-components.</p>
 
 <h4 id="activeinactive-1">Active/inactive</h4>
 
@@ -667,7 +667,7 @@
 
 <p>Packages maintain a dependencies list; <em>loading</em> a package also means loading all dependent packages, recursively.</p>
 
-<p>Selecting which packages are loaded is the first step of the configuration wizard, as a mandatory step to select the target processor and possibly board.</p>
+<p>Selecting which packages are loaded is the first step of the configuration wizard, as a mandatory step to select the target processor and possibly the target board.</p>
 
 <h4 id="versioning">Versioning</h4>
 
@@ -693,7 +693,7 @@
 
 <p>A <strong>template</strong> is a partial configuration, aimed at providing users with an appropriate starting point. XCDL/xPack repositories should be shipped with a small number of templates, which correspond closely to common ways of using them.</p>
 
-<p>There is a minimal template which provides very little functionality, just enough to bootstrap the hardware and then jump directly to the application code. The default template adds additional functionality, for example it causes a RTOS and various library packages to be used as well. Creating a new configuration typically involves specifying a template as well as a target, resulting in a configuration that can be built and linked with the application code and that will run on the actual hardware. It is then possible to fine-tune configuration options to produce something that better matches the specific requirements of the application.</p>
+<p>There is a minimal template which provides very little functionality, just enough to bootstrap the hardware and then jump directly to the application code. The default template adds more functionality, for example it causes an RTOS and various library packages to be used as well. Creating a new configuration typically involves specifying a template as well as a target, resulting in a configuration that can be built and linked with the application code and that will run on the actual hardware. It is then possible to fine-tune configuration options to produce something that better matches the specific requirements of the application.</p>
 
 <h3 id="properties">Properties</h3>
 
@@ -705,9 +705,9 @@
 
 <h3 id="constraints">Constraints</h3>
 
-<p>Configuration choices are not independent. The C library can provide thread-safe implementations of functions like <code>rand()</code>, but only if the RTOS provides support for per-thread data. This is a constraint: the C library option has a requirement on the RTOS. A typical configuration involves a considerable number of constraints, of varying complexity: many constraints are straightforward, <em>option A requires option B</em>, or <em>option C precludes option D</em>. Other constraints can be more complicated, for example <em>option E may require the presence of a RTOS scheduler</em> but does not care whether it is the bitmap scheduler, the mlqueue scheduler, or something else.</p>
+<p>Configuration choices are not independent. The C library can provide thread-safe implementations of functions like <code>rand()</code>, but only if the RTOS provides support for per-thread data. This is a constraint: the C library option has a requirement on the RTOS. A typical configuration involves a considerable number of constraints, of varying complexity: many constraints are straightforward, <em>option A requires option B</em>, or <em>option C precludes option D</em>. Other constraints can be more complicated, for example <em>option E may require the presence of an RTOS scheduler</em> but does not care whether it is the bitmap scheduler, the mlqueue scheduler, or something else.</p>
 
-<p>Another type of constraint involves the values that can be used for certain options. For example there is a RTOS option related to the number of scheduling levels, and there is a legal values constraint on this option: specifying zero or a negative number for the number of scheduling levels makes no sense.</p>
+<p>Another type of constraint involves the values that can be used for certain options. For example there is an RTOS option related to the number of scheduling levels, and there is a legal values constraint on this option: specifying zero or a negative number for the number of scheduling levels makes no sense.</p>
 
 <h3 id="conflicts">Conflicts</h3>
 
