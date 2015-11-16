@@ -157,7 +157,7 @@
 
         
 <h1 class="page-title">XCDL rationals</h1>
-<p class="last-modified">Last modified on Sun Nov 15 22:53:57 2015 UTC.</p>
+<p class="last-modified">Last modified on Mon Nov 16 09:31:57 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -184,48 +184,51 @@
 <li class="toc_level-2 toc_section-5">
 <a href="#compliance-levels"><span class="tocnumber">1.4</span> <span class="toctext">Compliance levels</span></a>
 </li>
+<li class="toc_level-2 toc_section-6">
+<a href="#benefits"><span class="tocnumber">1.5</span> <span class="toctext">Benefits</span></a>
+</li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-6">
+<li class="toc_level-1 toc_section-7">
 <a href="#why-xcdl-the-long-version"><span class="tocnumber">2</span> <span class="toctext">Why XCDL? (the long version)</span></a>
 <ul>
-<li class="toc_level-2 toc_section-7">
+<li class="toc_level-2 toc_section-8">
 <a href="#multi-variant"><span class="tocnumber">2.1</span> <span class="toctext">Multi-variant</span></a>
 </li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-8">
+<li class="toc_level-1 toc_section-9">
 <a href="#why-manage-dependencies"><span class="tocnumber">3</span> <span class="toctext">Why manage dependencies?</span></a>
 </li>
-<li class="toc_level-1 toc_section-9">
+<li class="toc_level-1 toc_section-10">
 <a href="#why-configurability"><span class="tocnumber">4</span> <span class="toctext">Why configurability?</span></a>
 <ul>
-<li class="toc_level-2 toc_section-10">
+<li class="toc_level-2 toc_section-11">
 <a href="#reusability"><span class="tocnumber">4.1</span> <span class="toctext">Reusability</span></a>
 </li>
-<li class="toc_level-2 toc_section-11">
+<li class="toc_level-2 toc_section-12">
 <a href="#memory-constraints"><span class="tocnumber">4.2</span> <span class="toctext">Memory constraints</span></a>
 </li>
-<li class="toc_level-2 toc_section-12">
+<li class="toc_level-2 toc_section-13">
 <a href="#debugging"><span class="tocnumber">4.3</span> <span class="toctext">Debugging</span></a>
 </li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-13">
+<li class="toc_level-1 toc_section-14">
 <a href="#approaches-to-configurability"><span class="tocnumber">5</span> <span class="toctext">Approaches to configurability</span></a>
 <ul>
-<li class="toc_level-2 toc_section-14">
+<li class="toc_level-2 toc_section-15">
 <a href="#run-time"><span class="tocnumber">5.1</span> <span class="toctext">Run-time</span></a>
 </li>
-<li class="toc_level-2 toc_section-15">
+<li class="toc_level-2 toc_section-16">
 <a href="#link-time"><span class="tocnumber">5.2</span> <span class="toctext">Link-time</span></a>
 </li>
-<li class="toc_level-2 toc_section-16">
+<li class="toc_level-2 toc_section-17">
 <a href="#compile-time"><span class="tocnumber">5.3</span> <span class="toctext">Compile-time</span></a>
 </li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-17">
+<li class="toc_level-1 toc_section-18">
 <a href="#credits"><span class="tocnumber">6</span> <span class="toctext">Credits</span></a>
 </li>
 </ul>
@@ -241,7 +244,7 @@
 
 <h3 id="rationals">Rationals</h3>
 
-<p>XCDL was designed because:</p>
+<p>Simple reasons behind the XCDL component framework design:</p>
 
 <ul>
   <li>
@@ -269,12 +272,31 @@
 <p>There may be multiple compliance levels, from simple to complex, each adding more metadata for supporting more functionality:</p>
 
 <ol>
-  <li>add metadata to tell what other packages are required, which are the source folders, the include folders, and the custom compile options;</li>
+  <li>pack the sources into an archive and add a minimal package metadata, to define dependencies on other packages;</li>
+  <li>add metadata to define which are the source folders, the include folders, and the custom compile options;</li>
   <li>add metadata to group source files in related components, structured in a virtual hierarchy, with dependencies and conditions when these components are active/enabled;</li>
   <li>add metadata to define configuration options, also to be shown as nodes in the virtual hierarchy, with dependencies and formulas to compute option values with knowledge about the entire build environment;</li>
-  <li>add metadata and templates to dynamically generate source files with content adapted to various configuration selections and options.</li>
+  <li>add metadata and templates to dynamically generate source files with content adapted to various configuration selections and options;</li>
   <li>possibly more!</li>
 </ol>
+
+<h3 id="benefits">Benefits</h3>
+
+<p>The main beneficiaries of the XCDL component framework are software developers, and benefits are multifold, during the project creation, during project lifecycle, and improved testability.</p>
+
+<h4 id="simplified-project-creation">Simplified project creation</h4>
+
+<p>With proper metadata available, project creation is reduced to several clicks to select the main characteristics of the project; all required files will be pulled in by the dependencies, and all the usual project settings (source folders, include folders, compile options) will be automatically set by the XCDL project wizard.</p>
+
+<h4 id="simplified-updates-management">Simplified updates management</h4>
+
+<p>If, during the lifetime of the project, other features that were not initially selected are needed (for example more device drivers, more application libraries, etc), the developer can invoke the XCDL project wizard and enable/disable further components and change any options; in the end the wizard will recompute all dependencies and update the project to use the new definitions.</p>
+
+<p>The same is true when new package versions are released (for example STM releases a new version of the HAL for the STM32F4 family and the stm32f4-hal xPack is updated); the developer can choose to stick to a given version, or upgrade to the latest version; the wizard will recompute all dependencies and update the project to use the new definitions.</p>
+
+<h4 id="improved-testability">Improved testability</h4>
+
+<p>With all metadata available in the packages, and the full configuration also saved as metadata, it is very easy to recreate the project from a script, and integrate the project build into a Continuous Integration systems (like Travis CI, or Jenkins/Hudson), greatly simplifying the definition and use of unit tests.</p>
 
 <h2 id="why-xcdl-the-long-version">Why XCDL? (the long version)</h2>
 
