@@ -157,7 +157,7 @@
 
         
 <h1 class="page-title">eCos CDL remarks and criticism</h1>
-<p class="last-modified">Last modified on Sun Oct 25 08:55:04 2015 UTC.</p>
+<p class="last-modified">Last modified on Mon Nov 16 13:57:31 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -179,7 +179,7 @@
 <a href="#changes-in-xcdl"><span class="tocnumber">3</span> <span class="toctext">Changes in XCDL</span></a>
 <ul>
 <li class="toc_level-2 toc_section-4">
-<a href="#tcl-replaced-by-xml"><span class="tocnumber">3.1</span> <span class="toctext">Tcl replaced by XML</span></a>
+<a href="#tcl-replaced-by-json--javascript"><span class="tocnumber">3.1</span> <span class="toctext">Tcl replaced by JSON &amp; JavaScript</span></a>
 </li>
 <li class="toc_level-2 toc_section-5">
 <a href="#naming-scheme-shortened"><span class="tocnumber">3.2</span> <span class="toctext">Naming scheme shortened</span></a>
@@ -202,7 +202,7 @@
 
 <p>Although the CDL design was pretty general, being created to support eCos, the CDL was perceived as an eCos specific part, and generally avoided.</p>
 
-<p>Another important issue was the complexity of the CDL scripts, and to some (including myself) the Tcl syntax of the scripts, a bit outdated in the world of XML configuration files.</p>
+<p>Another important issue was the complexity of the CDL scripts, and to some (including myself) the Tcl syntax of the scripts, a bit outdated in the world of JSON/YML.</p>
 
 <p>Other issues:</p>
 
@@ -214,9 +214,9 @@
 
 <p>XCDL inherits the core concepts from CDL, however some changes were applied.</p>
 
-<h3 id="tcl-replaced-by-xml">Tcl replaced by XML</h3>
+<h3 id="tcl-replaced-by-json--javascript">Tcl replaced by JSON &amp; JavaScript</h3>
 
-<p>After a prototyping phase which used Python instead of Tcl, the final format used for the XCDL metadata was settled to XML, with a relatively simple logical structure, an object has a name, a list of string properties and an optional list of children nodes.</p>
+<p>After a prototyping phase which used Python instead of Tcl, the final format used for the XCDL metadata was settled to JSON, with its simple logical structure, a node has a name, a list of properties and an optional array of children nodes.</p>
 
 <h3 id="naming-scheme-shortened">Naming scheme shortened</h3>
 
@@ -224,7 +224,7 @@
 
 <p>The first step to separate the node names from the preprocessor definitions was attempted in the Python implementation of XCDL, where separate IDs were used. This solution was perfectly functional, but since the IDs were expected to be unique in the entire object space, they were quite long and hard to handle, not to mention that they were not at all fit to be represented in a graphical user interface.</p>
 
-<p>In the XML version of XCDL the naming scheme was shortened, and object names were required to be unique only in the scope of the parent node, similar to files in a folder. Recursively applied, this rule produces unique names as long as the entire path is used (again, similarly to files in a file system).</p>
+<p>In the JSON version of XCDL the naming scheme was shortened, and object names were required to be unique only in the scope of the parent node, similar to files in a folder. Recursively applied, this rule produces unique names as long as the entire path is used (again, similarly to files in a file system).</p>
 
 <h3 id="explicit-header-file">Explicit header file</h3>
 
