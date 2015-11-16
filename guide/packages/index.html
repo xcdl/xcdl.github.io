@@ -157,7 +157,7 @@
 
         
 <h1 class="page-title">XCDL packages</h1>
-<p class="last-modified">Last modified on Sun Nov 15 22:53:57 2015 UTC.</p>
+<p class="last-modified">Last modified on Mon Nov 16 11:34:18 2015 UTC.</p>
 
 
 <div id="toc-container">
@@ -184,10 +184,10 @@
 </ul>
 </li>
 <li class="toc_level-1 toc_section-5">
-<a href="#the-xpack-file"><span class="tocnumber">2</span> <span class="toctext">The .xpack file</span></a>
+<a href="#the-xpackjson-file"><span class="tocnumber">2</span> <span class="toctext">The .xpack.json file</span></a>
 <ul>
 <li class="toc_level-2 toc_section-6">
-<a href="#root-element"><span class="tocnumber">2.1</span> <span class="toctext">root element</span></a>
+<a href="#schema"><span class="tocnumber">2.1</span> <span class="toctext">$schema</span></a>
 </li>
 <li class="toc_level-2 toc_section-7">
 <a href="#name"><span class="tocnumber">2.2</span> <span class="toctext">name</span></a>
@@ -222,24 +222,24 @@
 <li class="toc_level-2 toc_section-17">
 <a href="#dependencies"><span class="tocnumber">2.12</span> <span class="toctext">dependencies</span></a>
 </li>
-<li class="toc_level-2 toc_section-18">
-<a href="#ignored"><span class="tocnumber">2.13</span> <span class="toctext">ignored</span></a>
-</li>
 </ul>
 </li>
+<li class="toc_level-1 toc_section-18">
+<a href="#the-xpackignore-file"><span class="tocnumber">3</span> <span class="toctext">The .xpackignore file</span></a>
+</li>
 <li class="toc_level-1 toc_section-19">
-<a href="#making-a-package-distribution"><span class="tocnumber">3</span> <span class="toctext">Making a package distribution</span></a>
+<a href="#making-a-package-binary-distribution"><span class="tocnumber">4</span> <span class="toctext">Making a package binary distribution</span></a>
 <ul>
 <li class="toc_level-2 toc_section-20">
-<a href="#the-xcdl-package-distribution-file-format"><span class="tocnumber">3.1</span> <span class="toctext">The XCDL package distribution file format</span></a>
+<a href="#the-binary-distribution-format"><span class="tocnumber">4.1</span> <span class="toctext">The binary distribution format</span></a>
 </li>
 <li class="toc_level-2 toc_section-21">
-<a href="#preparing-xcdl-packages-for-distribution"><span class="tocnumber">3.2</span> <span class="toctext">Preparing XCDL packages for distribution</span></a>
+<a href="#preparing-packages-for-distribution"><span class="tocnumber">4.2</span> <span class="toctext">Preparing packages for distribution</span></a>
 </li>
 </ul>
 </li>
 <li class="toc_level-1 toc_section-22">
-<a href="#credits"><span class="tocnumber">4</span> <span class="toctext">Credits</span></a>
+<a href="#credits"><span class="tocnumber">5</span> <span class="toctext">Credits</span></a>
 </li>
 </ul>
 </td>
@@ -252,10 +252,10 @@
 
 <h3 id="what-is-a-package">What is a package?</h3>
 
-<p>An XCDL package is:</p>
+<p>An XCDL/xPack package is:</p>
 
 <ol>
-  <li>a folder containing a valid <code>.xpack</code> file;</li>
+  <li>a folder containing a valid <code>.xpack.json</code> file;</li>
   <li>a gzipped tarball containing 1);</li>
   <li>a URL that resolves to 2);</li>
   <li>a Git URL that, when cloned, results in 1).</li>
@@ -263,18 +263,18 @@
 
 <p>The definition is inspired from the <a href="https://docs.npmjs.com/misc/developers#what-is-a-package">NPM</a> package definition, and is intentionally Git and JavaScript centric, as these technologies are considered mature and worth considering.</p>
 
-<p>Although the XCDL language will probably remain based on XML, equivalent definitions can be expressed in JSON, and maintaining compatibility with JSON is considered a kind of validation that the definitions are simple and consistent.</p>
+<p>Since the external representation of the XCDL metadata will probably remain based on JSON, the documentation will use this syntax.</p>
 
 <h3 id="package-contents">Package contents</h3>
 
-<p>In addition to the <code>.xpack</code> metadata file, a typical package contains the following:</p>
+<p>In addition to the <code>.xpack.json</code> metadata file, a typical package contains the following:</p>
 
 <ul>
   <li>some number of source files (.c/.cpp) and header files (.h). The project artefact (library or executable) will be created using these files. Some source files may serve other purposes, for example to provide a linker script;</li>
   <li>exported header files which define the interface provided by the package;</li>
   <li>online documentation, for example reference pages for each exported function;</li>
   <li>some number of test cases, shipped in source format, allowing users to check that the package is working as expected on their particular hardware and in their specific configuration;</li>
-  <li>other XCDL metadata files describing the package to the configuration system.</li>
+  <li>other XCDL metadata files describing the package to the component framework.</li>
 </ul>
 
 <p>It is also conventional to have a per-package <code>ChangeLog</code> file used to keep track of changes to that package. This is especially valuable to end users of the package who may not have convenient access to the source code control system used to manage the master copy of the package, and hence cannot find out easily what has changed. Often it can be very useful to the main developers as well.</p>
@@ -289,8 +289,8 @@
 
 <pre>
 <code>Packages/ilg/xyzw/current
-├── .xpack
-├── .xcdl
+├── .xpack.json
+├── .xcdl.json
 ├── ChangeLog
 ├── README.md
 ├── doc
@@ -301,37 +301,33 @@
 
 <p>For example, if a package has an <code>include</code> sub-folder then the component framework will assume that all header files in and below that folder are <strong>exported header files</strong> and will do the right thing at build time. Similarly if there is <em>doc</em> property indicating the location of online documentation then the component framework will first look in the <code>doc</code> subfolder.</p>
 
-<p>Except for the name and location of the <code>.xpack</code> file, this folder layout is just a guideline, it is not enforced by the component framework. For simple packages it often makes more sense to have all of the files in just one directory. For example a package could just contain the files hello.cpp, hello.h, hello.html. By default hello.h will be treated as an exported header file, although this can be overridden with the includeFiles property. Assuming there is a doc property referring to hello.html and there is no doc sub-directory then the tools will search for this file relative to the package’s top-level and everything will just work. Much the same applies to hello.cpp.</p>
+<p>Except for the name and location of the <code>.xpack.json</code> file, this folder layout is just a guideline, it is not enforced by the component framework. For simple packages it often makes sense to have all of the files in just one directory. For example a package could just contain the files hello.cpp, hello.h, hello.html. By default hello.h will be treated as an exported header file, although this can be overridden with the includeFiles property. Assuming there is a doc property referring to hello.html and there is no doc sub-directory then the tools will search for this file relative to the package’s top-level and everything will just work. Much the same applies to hello.cpp.</p>
 
-<h2 id="the-xpack-file">The <code>.xpack</code> file</h2>
+<h2 id="the-xpackjson-file">The <code>.xpack.json</code> file</h2>
 
-<h3 id="root-element">root element</h3>
+<h3 id="schema">
+<code>$schema</code>
+</h3>
 
-<p>The root element for <code>.xpack</code> files is <code>package</code>:</p>
+<p>To facilitate versioning and validation, all XCDL .json files are fully defined by a schema file.</p>
+
+<p>The current schema for the <code>.xpack.json</code> file is:</p>
 
 <pre>
-<code>&lt;?xml version="1.0" encoding="UTF-8" standalone="no" ?&gt;
-
-&lt;package&gt;
-  ..
-&lt;/package&gt;
+<code>"$schema": "http://xcdl.github.io/schemas/xpack-1-1.json",
 </code></pre>
+
+<p>The full and up-to-date definition of this schema is available from the separate <a href="http://xcdl.github.io/schemas/">Schemas</a> repository.</p>
 
 <h3 id="name">
 <code>name</code>
 </h3>
 
-<p>A string that, together with the <code>parent</code>, must uniquely identify the project node in the local repository hierarchy. It does not need to match the GitHub repository name, althought usually it is closely related.</p>
+<p>A string that must uniquely identify the project node in the local repository hierarchy. It does not need to match the GitHub repository name, althought usually it is closely related.</p>
 
 <p>The parent path must have at least one level, and generally defines the originator of the package (user or organization).</p>
 
-<p>The XML syntax:</p>
-
-<pre>
-<code>&lt;name&gt;"parent/string"&lt;/name&gt;
-</code></pre>
-
-<p>The JSON Syntax (string):</p>
+<p>Syntax (string):</p>
 
 <pre>
 <code>"name": "string"
@@ -340,22 +336,16 @@
 <p>Example:</p>
 
 <pre>
-<code>&lt;name&gt;/ilg/STM32/F4/HAL&lt;/name&gt;
+<code>"name": "/ilg/ARM/CMSIS"
 </code></pre>
 
 <h3 id="description">
 <code>description</code>
 </h3>
 
-<p>A paragraph with a reasonably detailed description of the package.</p>
+<p>A paragraph with a reasonably detailed description of the package. As a regular paragraph, it must end with dot.</p>
 
-<p>The XML syntax:</p>
-
-<pre>
-<code>&lt;description&gt;long string&lt;/description&gt;
-</code></pre>
-
-<p>The JSON Syntax (string):</p>
+<p>Syntax (string):</p>
 
 <pre>
 <code>"description": "long string"
@@ -364,7 +354,7 @@
 <p>Example:</p>
 
 <pre>
-<code>&lt;description&gt;The STM32F4 HAL library.&lt;/description&gt;
+<code>"description": "CMSIS (Cortex Microcontroller Software Interface Standard)."
 </code></pre>
 
 <h3 id="repository">
@@ -373,19 +363,11 @@
 
 <p>The place where the package repository is located. This is helpful for people who want to contribute.</p>
 
-<p>The XML syntax:</p>
+<p>Syntax (array of objects):</p>
 
 <pre>
-<code>&lt;repository&gt;
-  &lt;type&gt;string&lt;/type&gt;
-  &lt;url&gt;string&lt;/url&gt;
-&lt;/repository&gt;
-</code></pre>
-
-<p>The JSON syntax (array of objects):</p>
-
-<pre>
-<code>"repository": {
+<code>"repository":
+{
   "type": "string",
   "url": "string"
 }
@@ -396,10 +378,11 @@
 <p>Example:</p>
 
 <pre>
-<code>&lt;repository&gt;
-  &lt;type&gt;git&lt;/type&gt;
-  &lt;url&gt;https://github.com/xpacks/arm-cmsis-core.git&lt;/url&gt;
-&lt;/repository&gt;
+<code>"repository":
+{
+    "type": "git",
+    "url": "https://github.com/xpacks/arm-cmsis.git"
+}
 </code></pre>
 
 <h3 id="releases">
@@ -408,42 +391,55 @@
 
 <p>The list, in reverse order, of all versions of the package publicly released.</p>
 
-<p>The XML syntax:</p>
-
-<pre>
-<code>&lt;releases&gt;
-  &lt;release name="semver"&gt;
-    &lt;description&gt;long string&lt;/description&gt;
-    &lt;date&gt;iso-date&lt;/date&gt;
-    &lt;properties&gt;
-      &lt;property name="string"&gt;value&lt;/string&gt;
-      ...
-    &lt;/properties&gt;
-  &lt;/release&gt;
-&lt;/releases&gt;
-</code></pre>
-
-<p>The JSON syntax (array of objects):</p>
+<p>Syntax (array of objects):</p>
 
 <pre>
 <code>"releases": [
   {
-    "name": "semver",
+    "version": "semver",
     "description": "long string",
     "date": "iso-date",
-    "property1": "value1",
-    "property2": "value2",
-    ...
+    "archives": [
+        "url": "string"
+    ],
+
+    "repository":
+    {
+        "type": "git",
+        "url": "string",
+        "tag": "string"
+    }
+  },
+  {
+      ...
   }
 ]
 </code></pre>
 
-<p>TODO:</p>
+<p>The <code>archives</code> array define an ordered list of locations where the binary package can be downloaded from.</p>
 
-<ul>
-  <li>archiveUrl</li>
-  <li>repository tag</li>
-</ul>
+<p>The inner <code>repository</code> object defines the location where the release sources are available; only the <code>tag</code> property is mandatory; if this location is identical with the top definition, the <code>type</code> and <code>url</code> properties may be ommited.</p>
+
+<p>Example:</p>
+
+<pre>
+<code>"releases": [
+    {
+        "version": "4.5.0",
+        "description": "- CMSIS-Core     4.30.0  ...",
+        "date": "2015-11-12",
+        "archives": [
+            "http://gnuarmeclipse.sourceforge.net/xpacks/arm-cmsis/4.5.0.zip",
+            "https://github.com/xpacks/arm-cmsis/archive/4.5.0.zip"
+        ],
+
+        "repository":
+        {
+            "tag": "4.5.0"
+        }
+    }
+],
+</code></pre>
 
 <h3 id="keywords">
 <code>keywords</code>
@@ -451,17 +447,7 @@
 
 <p>An array of strings, intended to help searches identify a package.</p>
 
-<p>The XML syntax:</p>
-
-<pre>
-<code>&lt;keywords&gt;
-  &lt;keyword&gt;string1&lt;/keyword&gt;
-  &lt;keyword&gt;string2&lt;/keyword&gt;
-  ...
-&lt;/keywords&gt;
-</code></pre>
-
-<p>The JSON syntax (array of strings):</p>
+<p>Syntax (array of strings):</p>
 
 <pre>
 <code>"keywords": [
@@ -471,22 +457,32 @@
 ]
 </code></pre>
 
+<p>Example:</p>
+
+<pre>
+<code>"keywords": [
+    "ARM",
+    "CMSIS",
+    "Cortex-M"
+],
+</code></pre>
+
 <h3 id="homepage">
 <code>homepage</code>
 </h3>
 
 <p>The full URL to the project home page, either a separate web or a GitHub/SourceForge/etc project page.</p>
 
-<p>The XML syntax:</p>
+<p>Syntax (string):</p>
 
 <pre>
-<code>&lt;homepage&gt;url&lt;/homepage&gt;
+<code>"homepage": "string"
 </code></pre>
 
-<p>The JSON syntax (string):</p>
+<p>Example:</p>
 
 <pre>
-<code>"homepage": "url"
+<code>"homepage": "https://github.com/xpacks/arm-cmsis",
 </code></pre>
 
 <h3 id="bugs">
@@ -495,30 +491,27 @@
 
 <p>The full URL to the project’s issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.</p>
 
-<p>The XML syntax:</p>
+<p>Syntax (object):</p>
 
 <pre>
-<code>&lt;bugs&gt;
-  &lt;url&gt;string&lt;/url&gt;
-  &lt;email&gt;string&lt;/email&gt;
-&lt;/bugs&gt;
-</code></pre>
-
-<p>The JSON syntax (object):</p>
-
-<pre>
-<code>"bugs": {
-  "url": "string",
-  "email": "string"
-}
+<code>"bugs": [
+    {
+        "description": "string"
+        "url": "string",
+        "email": "string"
+    }
+]
 </code></pre>
 
 <p>Example:</p>
 
 <pre>
-<code>&lt;bugs&gt;
-  &lt;url&gt;https://github.com/gnuarmeclipse/plug-ins/issues/1&lt;/url&gt;
-&lt;/bugs&gt;
+<code>"bugs": [
+    {
+        "description": "All issues."
+        "url": "https://github.com/xpacks/arm-cmsis/issues"
+    }
+],
 </code></pre>
 
 <h3 id="license">
@@ -527,13 +520,7 @@
 
 <p>A string identifying the license for the package, so that people know how they are permitted to use it.</p>
 
-<p>The XML syntax:</p>
-
-<pre>
-<code>&lt;license&gt;string&lt;/license&gt;
-</code></pre>
-
-<p>The JSON syntax (string):</p>
+<p>Syntax (string):</p>
 
 <pre>
 <code>"license": "string"
@@ -544,41 +531,30 @@
 <p>If the package is licensed under multiple common licenses, use an <a href="http://npmjs.com/package/spdx">SPDX license expression syntax version 2.0</a> string, like this:</p>
 
 <pre>
-<code>&lt;license&gt;(ISC OR GPL-3.0)&lt;/license&gt;
+<code>"license": "(ISC OR GPL-3.0)"
 </code></pre>
 
 <p>If the license hasn’t been assigned an SPDX identifier, or if it is a custom license, use the following valid SPDX expression:</p>
 
 <pre>
-<code>&lt;license&gt;SEE LICENSE IN filename&lt;/license&gt;
+<code>"license": "SEE LICENSE IN filename"
 </code></pre>
 
-<p>Then include a file named <code>filename</code> at the top level of the package.</p>
+<p>Then include a file named <code>filename</code> at the <strong>top</strong> level of the package.</p>
 
 <p>Finally, if you do not wish to grant others the right to use a private or unpublished package under any terms, use:</p>
 
 <pre>
-<code>&lt;license&gt;UNLICENSED&lt;/license&gt;
+<code>"license": "UNLICENSED"
 </code></pre>
 
 <h3 id="maintainers">
 <code>maintainers</code>
 </h3>
 
-<p>The maintainers are the persons who maintain the package (may be different from the persons who created the source files packaged in the package). The first maintainer is the person who created the package. The array extends at the end.</p>
+<p>The maintainers are the persons who maintain the package (may be different from the persons who created the source files packaged in the package). The first maintainer is the person who created the package. The array extends at the bottom.</p>
 
-<p>The XML syntax:</p>
-
-<pre>
-<code>&lt;maintainers&gt;
-  &lt;maintainer name="string"&gt;
-    &lt;email&gt;string&lt;/string&gt;
-    &lt;url&gt;string&lt;/url&gt;
-  &lt;/maintainer&gt;
-&lt;/maintainers&gt;
-</code></pre>
-
-<p>The JSON syntax (array of objects):</p>
+<p>Syntax (array of objects):</p>
 
 <pre>
 <code>"maintainers": [
@@ -590,25 +566,25 @@
 ]
 </code></pre>
 
+<p>Example:</p>
+
+<pre>
+<code>"maintainers": [
+    {
+        "name": "Liviu Ionescu",
+        "email": "ilg@livius.net",
+        "url": "http://liviusdotnet.worldpress.com"
+    }
+],
+</code></pre>
+
 <h3 id="contributors">
 <code>contributors</code>
 </h3>
 
-<p>The contributors are the persons who contributed to the content of the package. The first contributor is the person who created the source files available in the package. The array extends at the end.</p>
+<p>The contributors are the persons/organisations who contributed to the content of the package. The first contributor is the person who created the source files available in the package. The array extends at the bottom.</p>
 
-<p>The XML syntax:</p>
-
-<pre>
-<code>&lt;contributors&gt;
-  &lt;contributor name="string"&gt;
-    &lt;email&gt;string&lt;/string&gt;
-    &lt;url&gt;string&lt;/url&gt;
-  &lt;/contributor&gt;
-  ...
-&lt;/contributors&gt;
-</code></pre>
-
-<p>The JSON syntax (array of objects):</p>
+<p>Syntax (array of objects):</p>
 
 <pre>
 <code>"contributors": [
@@ -620,29 +596,38 @@
 ]
 </code></pre>
 
+<p>Example:</p>
+
+<pre>
+<code>"contributors": [
+    {
+        "name": "ARM"
+    },
+
+    {
+        "name": "Liviu Ionescu",
+        "email": "ilg@livius.net",
+        "url": "http://liviusdotnet.worldpress.com"
+    }
+],
+</code></pre>
+
 <h3 id="dependencies">
 <code>dependencies</code>
 </h3>
 
-<p>Dependencies are specified in a simple object that maps a package name to a version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.</p>
+<p>Dependencies are specified in an array of objects that maps a package name to a version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.</p>
 
-<p>The XML syntax:</p>
-
-<pre>
-<code>&lt;dependencies&gt;
-  &lt;package name="string"&gt;
-    &lt;version&gt;string&lt;/version&gt;
-  &lt;/package&gt;
-&lt;/dependencies&gt;
-</code></pre>
-
-<p>The JSON syntax (object):</p>
+<p>Syntax (array of objects):</p>
 
 <pre>
-<code>"dependencies": {
-  "string": "string",
+<code>"dependencies": [
+    {
+        "name": "string",
+        "version": "string"
+    },
   ...
-}
+]
 </code></pre>
 
 <p>The syntax for the version string is based on <a href="http://semver.org/">semver</a>, with the following expressions (inspired from NPM):</p>
@@ -675,72 +660,49 @@
 <p>Example:</p>
 
 <pre>
-<code>&lt;package&gt;
-  &lt;name&gt;/ilg/stm32/f4/cmsis&lt;/name&gt;
-  ...
-  &lt;dependencies&gt;
-  &lt;package name="arm/cmsis"&gt;
-    &lt;version&gt;&amp;gt;=4.4.0&lt;/version&gt;
-  &lt;/package&gt;
-  &lt;/dependencies&gt;
-  ...
-&lt;/package&gt;
-</code></pre>
+<code>"dependencies": [
+    {
+        "name": "ilg/STM32",
+        "version": "&gt;=1.1.1"
+    },
 
-<h3 id="ignored">
-<code>ignored</code>
-</h3>
-
-<p>The <code>ignored</code> is used to keep stuff out of the binary package. It uses the same syntax as <code>.gitignore</code> to exclude files when creating the binary archive.</p>
-
-<p>The XML syntax:</p>
-
-<pre>
-<code>&lt;ignored&gt;
-  &lt;path&gt;string&lt;/path&gt;
-  ...
-&lt;/ignored&gt;
-</code></pre>
-
-<p>The JSON syntax (array of strings):</p>
-
-<pre>
-<code>"ignored": [
-  "string",
-  ...
+    {
+        "name": "ilg/ARM/CMSIS",
+        "version": "&gt;=4.4.0"
+    }
 ]
 </code></pre>
 
-<p>Example:</p>
+<h2 id="the-xpackignore-file">The <code>.xpackignore</code> file</h2>
 
-<pre>
-<code>&lt;ignored&gt;
-  &lt;path&gt;/.settings/&lt;/path&gt;
-&lt;/ignored&gt;
-</code></pre>
+<p>The <code>.xpackignore</code> file is used to keep stuff out of the binary package. Unlike <code>git</code>, the XCDL tools look for this file only in the package root folder.</p>
 
-<h2 id="making-a-package-distribution">Making a package distribution</h2>
+<p>The syntax follow the same pattern rules as .gitignore files:</p>
 
-<p>Developers of new XCDL packages are advised to distribute their packages in the form of XCDL package distribution files. Packages distributed in this format may be added to existing XCDL component repositories in a robust manner using the Package Administration Tool. This chapter describes the format of package distribution files and details how to prepare an eCos package for distribution in this format.</p>
+<ul>
+  <li>blank lines or lines starting with # are ignored;</li>
+  <li>standard glob patterns work;</li>
+  <li>patterns ending with a forward slash / specify a directory;</li>
+  <li>patterns starting it with an exclamation point ! specify a negation.</li>
+</ul>
 
-<h3 id="the-xcdl-package-distribution-file-format">The XCDL package distribution file format</h3>
+<h2 id="making-a-package-binary-distribution">Making a package binary distribution</h2>
 
-<p>XCDL package distribution files are zipped archives which contain both the source code for one or more XCDL packages and a data file containing package information to be added to the component repository content list. The distribution files are subject to the following rules:</p>
+<p>Developers of XCDL packages are advised to distribute their packages in the form of XCDL binary files. Packages distributed in this format may be added to existing XCDL component repositories in a robust manner using the package administration tools. This chapter describes the format of package distribution files and details how to prepare an XCDL package for distribution in this format.</p>
 
-<p>TODO: update for XCDL, this currently refers to eCos</p>
+<h3 id="the-binary-distribution-format">The binary distribution format</h3>
+
+<p>XCDL package distribution files are zipped archives which contain both the source code and metadata. The distribution files are subject to the following rules:</p>
 
 <ol>
-  <li>The data file must be named pkgadd.db and must be located in the root of the tar archive. It must contain data in a format suitable for appending to the eCos repository database (ecos.db). the Section called Updating the ecos.db database in Chapter 3 describes this data format. Note that a database consistency check is performed by the eCos Administration Tool when pkgadd.db has been appended to the database. Any new target entries which refer to unknown packages will be removed at this stage.</li>
-  <li>The package source code must be placed in one or more $(package-path)/$(version) directories in the tar archive, where each $(package-path) directory path is specified as the directory attribute of one of the packages entries in pkgadd.db.</li>
-  <li>An optional license agreement file named pkgadd.txt may be placed in the root of the tar archive. It should contain text with a maximum line length of 79 characters. If this file exists, the contents will be presented to the user during installation of the package. The eCos Package Administration Tool will then prompt the user with the question “Do you accept all the terms of the preceding license agreement?”. The user must respond “yes” to this prompt in order to proceed with the installation.</li>
-  <li>Optional template files may be placed in one or more templates/$(template_name) directories in the tar archive. Note that such template files would be appropriate only where the packages to be distributed have a complex dependency relationship with other packages. Typically, a third party package can be simply added to an eCos configuration based on an existing core template and the provision of new templates would not be appropriate. the Section called Templates in Chapter 6 contains more information on templates.</li>
-  <li>The distribution file must be given a .epk (not .tar.gz) file extension. The .epk file extension serves to distinguish eCos package distributions files from generic gzipped GNU tar archives. It also discourages users from attempting to extract the package from the archive manually. The file browsing dialog of the eCos Package Administration Tool lists only those files which have a .epk extension.</li>
-  <li>No other files should be present in the archive.</li>
-  <li>Files in the tar archive may use LF or CRLF line endings interchangably. The eCos Administration Tool ensures that the installed files are given the appropriate host-specific line endings.</li>
-  <li>Binary files may be placed in the archive, but the distribution of object code is not recommended. All binary files must be given a .bin suffix in addition to any file extension they may already have. For example, the GIF image file myfile.gif must be named myfile.gif.bin in the archive. The .bin suffix is removed during file extraction and is used to inhibit the manipulation of line endings by the eCos Administration Tool.</li>
+  <li>A metadata file must be named <code>.xpack.json</code> and must be located in the root of the archive.</li>
+  <li>The package source code must be placed in one or more folders.</li>
+  <li>An optional license agreement file named LICENSE.txt, or LICENSE may be placed in the root of the archive.</li>
+  <li>Files in the archive must use LF line endings.</li>
+  <li>Binary files may be placed in the archive, but the distribution of object code is not recommended.</li>
 </ol>
 
-<h3 id="preparing-xcdl-packages-for-distribution">Preparing XCDL packages for distribution</h3>
+<h3 id="preparing-packages-for-distribution">Preparing packages for distribution</h3>
 
 <p>TODO: define the procedure to pack the content of a package folder to an archive.</p>
 
