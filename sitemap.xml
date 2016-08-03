@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>http://ilg-ul.github.io/blog/2015/10/12/github-pages/</loc>
-    <lastmod>2015-10-12T17:37:31+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/blog/2015/09/26/github-wiki/</loc>
-    <lastmod>2015-10-12T11:37:51+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/about/</loc>
-    <lastmod>2015-10-12T18:05:38+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/guide/build-process/</loc>
-    <lastmod>2015-10-12T17:37:31+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/guide/build/</loc>
-    <lastmod>2015-11-15T22:53:57+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/criticism/cmsis/</loc>
-    <lastmod>2015-11-16T13:57:31+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/reference/commands/</loc>
-    <lastmod>2015-11-15T10:43:31+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/guide/concepts/</loc>
-    <lastmod>2015-11-15T22:53:57+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/criticism/ecos/</loc>
-    <lastmod>2015-11-16T13:57:31+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/</loc>
-    <lastmod>2015-11-16T13:56:51+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/blog/</loc>
-    <lastmod>2015-10-12T11:37:51+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/guide/metadata/</loc>
-    <lastmod>2015-11-16T11:41:30+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/reference/metadata/</loc>
-    <lastmod>2015-11-16T11:41:30+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/guide/packages/</loc>
-    <lastmod>2015-11-16T11:34:18+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/work/preprocessor/</loc>
-    <lastmod>2015-10-12T17:37:31+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/guide/rationals/</loc>
-    <lastmod>2015-11-16T09:31:57+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/guide/repositories/</loc>
-    <lastmod>2015-10-25T09:01:58+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/work/scratchpad/</loc>
-    <lastmod>2015-10-25T08:55:57+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/srs/</loc>
-    <lastmod>2015-10-12T11:37:51+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/test/</loc>
-    <lastmod>2015-10-25T08:55:33+00:00</lastmod>
-  </url>
-  <url>
-    <loc>http://ilg-ul.github.io/criticism/xcdl/</loc>
-    <lastmod>2015-11-16T13:57:31+00:00</lastmod>
-  </url>
+<url>
+<loc>http://ilg-ul.github.io/blog/2015/10/12/github-pages/</loc>
+<lastmod>2015-10-12T17:37:31+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/blog/2015/09/26/github-wiki/</loc>
+<lastmod>2015-10-12T11:37:51+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/about/</loc>
+<lastmod>2015-10-12T18:05:38+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/guide/build-process/</loc>
+<lastmod>2015-10-12T17:37:31+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/guide/build/</loc>
+<lastmod>2015-11-15T22:53:57+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/criticism/cmsis/</loc>
+<lastmod>2015-11-16T13:57:31+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/reference/commands/</loc>
+<lastmod>2015-11-15T10:43:31+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/guide/concepts/</loc>
+<lastmod>2015-11-15T22:53:57+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/criticism/ecos/</loc>
+<lastmod>2015-11-16T13:57:31+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/</loc>
+<lastmod>2015-11-16T13:56:51+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/blog/</loc>
+<lastmod>2015-10-12T11:37:51+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/guide/metadata/</loc>
+<lastmod>2015-11-16T11:41:30+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/reference/metadata/</loc>
+<lastmod>2015-11-16T11:41:30+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/guide/packages/</loc>
+<lastmod>2015-11-16T11:34:18+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/work/preprocessor/</loc>
+<lastmod>2015-10-12T17:37:31+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/guide/rationals/</loc>
+<lastmod>2015-11-16T09:31:57+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/guide/repositories/</loc>
+<lastmod>2015-10-25T09:01:58+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/work/scratchpad/</loc>
+<lastmod>2015-10-25T08:55:57+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/srs/</loc>
+<lastmod>2015-10-12T11:37:51+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/test/</loc>
+<lastmod>2015-10-25T08:55:33+00:00</lastmod>
+</url>
+<url>
+<loc>http://ilg-ul.github.io/criticism/xcdl/</loc>
+<lastmod>2015-11-16T13:57:31+00:00</lastmod>
+</url>
 </urlset>

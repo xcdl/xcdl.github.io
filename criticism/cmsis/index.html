@@ -314,31 +314,31 @@
 
 <p>Although the specs allow the use of standard POSIX paths (and, as far as I was told, MDK accepts them), all Keil packages, and all Keil documentation pages, do not miss the opportunity to show their Microsoft-ish origin, and represent all paths using the Windows back-slash separator:</p>
 
-<pre>
-<code>&lt;compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
 </code></pre>
+</div>
 
 <p>Perhaps a more visually pleasant solution would have been to use the standard POSIX slash separator:</p>
 
-<pre>
-<code>&lt;compile header="Device/Include/stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;compile header="Device/Include/stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
 </code></pre>
+</div>
 
 <h3 id="books">
-<code>&lt;books&gt;</code>
+<code class="highlighter-rouge">&lt;books&gt;</code>
 </h3>
 
 <p>Here is an unfortunate example from the STM32F4-Discovery board:</p>
 
-<pre>
-<code>&lt;book category="overview"  name="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419" title="STM32F4-Discovery Web Page"/&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;book category="overview"  name="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419" title="STM32F4-Discovery Web Page"/&gt;
 &lt;book category="setup"     name="Documents\DM00037368.pdf" title="Getting Started"/&gt;
 &lt;book category="schematic" name="Documents\stm32f4discovery_sch.zip" title="Schematics"/&gt;
 &lt;book category="manual"    name="Documents\DM00039084.pdf" title="User Manual"/&gt;
 &lt;book category="other"     name="Documents\stm32f4discovery_gerber.zip" title="Gerber Files"/&gt;
 </code></pre>
+</div>
 
-<p>First, none of the above is actually a book, all are various documentation files (web page, manuals, schematics, etc), so the name <code>&lt;books&gt;</code> is poorly chosen.</p>
+<p>First, none of the above is actually a book, all are various documentation files (web page, manuals, schematics, etc), so the name <code class="highlighter-rouge">&lt;books&gt;</code> is poorly chosen.</p>
 
 <p>Second, the <strong>name</strong> attribute refers to anything else but the document name, which is eventually defined as <strong>title</strong>.</p>
 
@@ -346,35 +346,35 @@
 
 <p>Perhaps a more appropriate definitions would have been:</p>
 
-<pre>
-<code>&lt;document category="overview"  title="STM32F4-Discovery Web Page" url="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419"/&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;document category="overview"  title="STM32F4-Discovery Web Page" url="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419"/&gt;
 &lt;document category="setup"     title="Getting Started" file="Documents/DM00037368.pdf"/&gt;
 &lt;document category="schematic" title="Schematics" file="Documents/stm32f4discovery_sch.zip"/&gt;
 &lt;document category="manual"    title="User Manual" file="Documents/DM00039084.pdf"/&gt;
 &lt;document category="other"     title="Gerber Files" file="Documents/stm32f4discovery_gerber.zip"/&gt;
 </code></pre>
+</div>
 
 <h3 id="algorithm">
-<code>&lt;algorithm&gt;</code>
+<code class="highlighter-rouge">&lt;algorithm&gt;</code>
 </h3>
 
 <p>The <strong>name</strong> attribute does not define any name, but a special .FLM file:</p>
 
-<pre>
-<code>&lt;algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
 </code></pre>
+</div>
 
 <p>To be consistent with <debug>:</debug></p>
 
-<pre>
-<code>&lt;debug      svd="SVD\STM32F41x.svd"/&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;debug      svd="SVD\STM32F41x.svd"/&gt;
 </code></pre>
+</div>
 
 <p>perhaps a <strong>flm</strong> attribute would have been more appropriate, or at least a generic <strong>file</strong> attribute.</p>
 
-<pre>
-<code>&lt;algorithm  flm="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;algorithm  flm="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
 </code></pre>
+</div>
 
 
 

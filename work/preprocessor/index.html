@@ -1,28 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <meta charset='utf-8'>
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>XCDL Preprocessor syntax thoughts</title>
   <meta name="description" content="The eXtensible Component Definition Language component framework">
 
-  <meta property="og:title" content="XCDL Preprocessor syntax thoughts" />
-  <meta property="og:site_name" content="XCDL / xPack" />
+  <meta property="og:title" content="XCDL Preprocessor syntax thoughts">
+  <meta property="og:site_name" content="XCDL / xPack">
 
-  <link rel="alternate" type="application/rss+xml" title="XCDL / xPack" href="/feed.xml" />
-
-
+  <link rel="alternate" type="application/rss+xml" title="XCDL / xPack" href="/feed.xml">
 
 
 
 
 
 
-  <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?201510121951" media="screen">
   <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?201510121951" media="print">
@@ -170,61 +171,348 @@
 </div>
 <ul>
 <li class="toc_level-1 toc_section-1">
-<a href="#requirements"><span class="tocnumber">1</span> <span class="toctext">Requirements</span></a>
+<a href="#problem"><span class="tocnumber">1</span> <span class="toctext">Problem</span></a>
 </li>
 <li class="toc_level-1 toc_section-2">
-<a href="#inspiration"><span class="tocnumber">2</span> <span class="toctext">Inspiration</span></a>
+<a href="#requirements"><span class="tocnumber">2</span> <span class="toctext">Requirements</span></a>
 </li>
 <li class="toc_level-1 toc_section-3">
-<a href="#ideas"><span class="tocnumber">3</span> <span class="toctext">Ideas</span></a>
+<a href="#embed-metadata-inside-comments"><span class="tocnumber">3</span> <span class="toctext">Embed metadata inside comments</span></a>
 </li>
 <li class="toc_level-1 toc_section-4">
-<a href="#javascript-implementations"><span class="tocnumber">4</span> <span class="toctext">JavaScript implementations</span></a>
-</li>
-<li class="toc_level-1 toc_section-5">
-<a href="#possible-syntax-solutions"><span class="tocnumber">5</span> <span class="toctext">Possible syntax solutions</span></a>
-</li>
-<li class="toc_level-1 toc_section-6">
-<a href="#javascript"><span class="tocnumber">6</span> <span class="toctext">JavaScript</span></a>
-</li>
-<li class="toc_level-1 toc_section-7">
-<a href="#custom-syntax"><span class="tocnumber">7</span> <span class="toctext">Custom syntax</span></a>
+<a href="#inspiration"><span class="tocnumber">4</span> <span class="toctext">Inspiration</span></a>
 <ul>
+<li class="toc_level-2 toc_section-5">
+<a href="#jekyll"><span class="tocnumber">4.1</span> <span class="toctext">Jekyll</span></a>
+</li>
+<li class="toc_level-2 toc_section-6">
+<a href="#st-cubemx"><span class="tocnumber">4.2</span> <span class="toctext">ST CubeMX</span></a>
+</li>
+<li class="toc_level-2 toc_section-7">
+<a href="#infineon-dave"><span class="tocnumber">4.3</span> <span class="toctext">Infineon DAVE</span></a>
+</li>
 <li class="toc_level-2 toc_section-8">
-<a href="#include-file-name-params-"><span class="tocnumber">7.1</span> <span class="toctext">include file-name [params …]</span></a>
+<a href="#freescale-processor-expert"><span class="tocnumber">4.4</span> <span class="toctext">Freescale Processor Expert</span></a>
 </li>
 </ul>
+</li>
+<li class="toc_level-1 toc_section-9">
+<a href="#scripting-proposal"><span class="tocnumber">5</span> <span class="toctext">Scripting proposal</span></a>
+</li>
+<li class="toc_level-1 toc_section-10">
+<a href="#javascript-implementations"><span class="tocnumber">6</span> <span class="toctext">JavaScript implementations</span></a>
+</li>
+<li class="toc_level-1 toc_section-11">
+<a href="#possible-syntax-solutions"><span class="tocnumber">7</span> <span class="toctext">Possible syntax solutions</span></a>
+</li>
+<li class="toc_level-1 toc_section-12">
+<a href="#javascript"><span class="tocnumber">8</span> <span class="toctext">JavaScript</span></a>
+</li>
+<li class="toc_level-1 toc_section-13">
+<a href="#choices"><span class="tocnumber">9</span> <span class="toctext">Choices</span></a>
+<ul>
+<li class="toc_level-2 toc_section-14">
+<a href="#js-vs-"><span class="tocnumber">9.1</span> <span class="toctext">/*JS vs /*@</span></a>
+</li>
+<li class="toc_level-2 toc_section-15">
+<a href="#vs-shorter-"><span class="tocnumber">9.2</span> <span class="toctext">/*$()*/ vs shorter $()</span></a>
+</li>
+</ul>
+</li>
+<li class="toc_level-1 toc_section-16">
+<a href="#examples"><span class="tocnumber">10</span> <span class="toctext">Examples</span></a>
 </li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-</div><h2 id="requirements">Requirements</h2>
+</div>
+<h2 id="problem">Problem</h2>
+
+<p>Define a template mechanism to generate source files, based on various external definitions.</p>
+
+<h2 id="requirements">Requirements</h2>
 
 <ul>
-  <li>do not interfere with C/C++ preprocessor, so that tools that process C/C++ (like Eclipse style formatter and Doxygen) are not confused; for C/C++, this leads to the solution of making XCDL preprocessor lines C++ comments, starting with <code>//</code>; for other languages a similar comment based syntax should be available</li>
+  <li>interfere as little as possible with the file language</li>
   <li>do not interfere with other tools, like Doxygen</li>
   <li>be relatively simple to process</li>
-  <li>expression syntax must be as standard as possible, preferably close to JavaScript</li>
+  <li>syntax must be as standard as possible</li>
+</ul>
+
+<h2 id="embed-metadata-inside-comments">Embed metadata inside comments</h2>
+
+<p>The natural implementation of the first requirement is similar to that used by Doxygen, i.e. insert the template metadata as standard comments.</p>
+
+<p>This has two major advantages:</p>
+
+<ul>
+  <li>the template files do not introduce a new syntax, but are regular source files, that can be edited with current editors, and do not interfere with syntax colouring;</li>
+  <li>the template files can be reformatted with existing formatters.</li>
 </ul>
 
 <h2 id="inspiration">Inspiration</h2>
 
-<ul>
-  <li>GitHub Jekyll</li>
-  <li>Freescale Processor Expert</li>
-  <li>Infineon DAVE</li>
-  <li>ST CubeMX</li>
-</ul>
+<p>Although there are many other preprocessing solutions, none that I know meets the requirements.</p>
 
-<h2 id="ideas">Ideas</h2>
+<h3 id="jekyll">Jekyll</h3>
 
-<ul>
-  <li>DAVE uses full Groovy scripts as templates; why not use the more standard JavaScript, but with a special syntax to avoid explicit out.print()?</li>
-</ul>
+<p>The <a href="https://jekyllrb.com">Jekyll</a> static web generator uses the <a href="https://shopify.github.io/liquid/">Liquid</a> metadata, which comes in two types: tags (for flow control) and object/filters (for inserting content).</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">%</span><span class="p">}</span><span class="w">
+  </span><span class="err">hello(</span><span class="s2">"{{ user.name }}!"</span><span class="err">);</span><span class="w">
+</span><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">endif</span><span class="w"> </span><span class="err">%</span><span class="p">}</span><span class="w">
+  </span><span class="err">url=</span><span class="s2">"{{ url | append: "</span><span class="err">.html</span><span class="s2">" }}"</span><span class="err">;</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Embedding this into comments would look like this:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>/* {% if user %} */
+  hello("/* {{ user.name }} */!");
+/* {% endif %} */
+  url="/* {{ url | append: ".html" }} */";
+</code></pre>
+</div>
+
+<p>The syntax remains relatively easy to read, but it introduces a new language, that needs to be parsed and processed.</p>
+
+<h3 id="st-cubemx">ST CubeMX</h3>
+
+<p>CubeMX uses <code class="highlighter-rouge">.ftl</code> files with a complex script syntax, that use opening and possibly closing tags (<code class="highlighter-rouge">[if]</code>, <code class="highlighter-rouge">[/if]</code>), and substitutions encoded like macros (<code class="highlighter-rouge">${argument.name}</code>).</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>[#ftl]
+[#-- macro generateConfigModelCode --]
+
+[#macro generateConfigModelCode configModel inst nTab index]
+[#if configModel.methods??] [#-- if the pin configuration contains a list of LibMethods--]
+    [#assign methodList = configModel.methods]
+[#else]
+    [#if configModel.methods??]
+        [#assign methodList = configModel.libMethod]  
+    [/#if]
+[/#if]
+[#assign writeConfigComments=false]
+[#if methodList?? ]
+[#list methodList as method]
+    [#if method.status=="OK"][#assign writeConfigComments=true][/#if]
+[/#list]
+[#if writeConfigComments]
+[#if configModel.comments??] #t#t/**${configModel.comments?replace("#t","#t#t")} #n#t#t*/[/#if]
+[/#if]
+... ${argument.name} ...
+</code></pre>
+</div>
+
+<p>The syntax controls the details of the expansion to the latest details, including generating tabs and new lines (<code class="highlighter-rouge">#t</code>, <code class="highlighter-rouge">#n</code>), so the template file is not really a source file, and embedding the metadata as comments doesn’t make much sense.</p>
+
+<p>If done, it would look like this:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>/*
+[#ftl]
+[#-- macro generateConfigModelCode --]
+
+[#macro generateConfigModelCode configModel inst nTab index]
+[#if configModel.methods??] [#-- if the pin configuration contains a list of LibMethods--]
+    [#assign methodList = configModel.methods]
+[#else]
+    [#if configModel.methods??]
+        [#assign methodList = configModel.libMethod]  
+    [/#if]
+[/#if]
+[#assign writeConfigComments=false]
+[#if methodList?? ]
+[#list methodList as method]
+    [#if method.status=="OK"][#assign writeConfigComments=true][/#if]
+[/#list]
+[#if writeConfigComments]
+[#if configModel.comments??] #t#t/**${configModel.comments?replace("#t","#t#t")} #n#t#t*/[/#if]
+[/#if]
+*/
+... /* ${fargument.name} */ ...
+</code></pre>
+</div>
+
+<p>(The files are in the <code class="highlighter-rouge">db/templates</code> folder; on macOS this is located below <code class="highlighter-rouge">STM32CubeMX.app/Contents/Resources</code>).</p>
+
+<h3 id="infineon-dave">Infineon DAVE</h3>
+
+<p>In DAVE 4 templates are stored as <code class="highlighter-rouge">.tmpl</code> files and use full <a href="http://www.groovy-lang.org">Groovy</a> scripts (which look very familiar to Java programmers).</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>package Model.Common;
+
+out.print("""
+/*******************************************************************************
+ Copyright (c) 2014, Infineon Technologies AG                                 **
+ All rights reserved.                                                         **
+*******************************************************************************/
+
+/*******************************************************************************
+ * @brief This function initializes the Apps Init Functions.
+ *
+ * @param[in]  None
+ *
+ * @return  DAVE_STATUS_t &lt;BR&gt;
+ *
+ * &lt;b&gt;Reentrant: No &lt;/b&gt;&lt;BR&gt;
+ *
+ ******************************************************************************/
+
+DAVE_STATUS_t DAVE_Init(void)
+{
+  DAVE_STATUS_t init_status;
+
+  init_status = DAVE_STATUS_SUCCESS;
+
+ """);
+
+def appsList = daveEnv.project.getTopLevelApps();
+def apps = [];
+def appName
+def instanceLabel
+
+ for (def app : appsList ) {
+ 	 if(app.initProvider) {
+ 		 apps.add(app);
+	 }
+}
+out.print("""     
+
+/** @Initialization of Apps Init Functions */
+
+""");
+ for (def app : apps ) {
+	 appName = app.getClass().getSimpleName()
+	 instanceLabel = app.getInstanceLabel()
+out.print("""
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+    /**  Initialization of ${appName} App instance ${instanceLabel} */
+    init_status = (DAVE_STATUS_t)${appName}_Init(&amp;${instanceLabel});
+  }  
+""");
+
+}
+out.print("""
+
+  return init_status;
+} /**  End of function DAVE_Init */
+""");
+</code></pre>
+</div>
+
+<p>The actual content is included with triple quote strings and substitutions are performed on the way, using the <code class="highlighter-rouge">${appName}</code> syntax.</p>
+
+<p>By using a fully fledged script language, the template engine is very powerful.</p>
+
+<p>Templates can be found in <code class="highlighter-rouge">Infineon\D_LibraryStore_4.1\DeviceFeatures\pack\2.0.0\CE_Templates\TLE</code></p>
+
+<h3 id="freescale-processor-expert">Freescale Processor Expert</h3>
+
+<p>The late Processor Expert is probably the grand-dad of all component code-generating solutions. It was designed as the ultimate solution, and indeed it provides lots of features, but at the cost of a very high complexity. (for an overview, please read this <a href="https://mcuoneclipse.com/2015/10/18/overview-processor-expert/">article</a>).</p>
+
+<p>There are many XML file with lots of definitions.</p>
+
+<p>The templates are <code class="highlighter-rouge">.drv</code> files, and the syntax looks like:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>%-
+%INTERFACE
+%define! Settings Common\FAT_FileSystemSettings.Inc
+%define! Abstract Common\FAT_FileSystemAbstract.Inc
+%include Common\Header.h
+
+#ifndef __%'ModuleName'_H
+#define __%'ModuleName'_H
+
+/* MODULE %ModuleName. */
+/* Wrappers to FatFS types and constants */
+#define %'ModuleName'%.FATFS            FATFS
+#define %'ModuleName'%.DIR              DIR
+#define %'ModuleName'%.FIL              FIL
+#define %'ModuleName'%.FILINFO          FILINFO
+#define %'ModuleName'%.FS_READONLY      _FS_READONLY
+#define %'ModuleName'%.USE_LFN          _USE_LFN
+#define %'ModuleName'%.MAX_LFN          _MAX_LFN
+#define %'ModuleName'%.FS_REENTRANT     _FS_REENTRANT
+#define %'ModuleName'%.MAX_SS           _MAX_SS
+#define %'ModuleName'%.FS_RPATH         _FS_RPATH
+#define %'ModuleName'%.FRESULT          FRESULT
+#define %'ModuleName'%.DRESULT          DRESULT
+
+%ifdef SharedModules
+/* Include shared modules, which are used for whole project */
+  %for var from IncludeSharedModules
+#include "%'var'.h"
+  %endfor
+%endif
+/* Include inherited beans */
+%ifdef InhrSymbolList
+  %for var from InhrSymbolList
+#include "%@%var@ModuleName.h"
+  %endfor
+%endif
+...
+%-************************************************************************************************************
+%-BW_METHOD_BEGIN RenameFile
+%ifdef RenameFile
+%define! ParsrcFileName
+%define! PardstFileName
+%define! Pario
+%define! RetVal
+%include Common\FAT_FileSystemRenameFile.Inc
+/*!
+ * \brief Renames a file
+ * \param[in] srcFileName Source/existing file name
+ * \param[in] dstFileName Destination/new file name
+ * \param[in] io IO handler for output
+ * \return Error code, ERR_OK for success.
+ */
+uint8_t %'ModuleName'%.%RenameFile(const uint8_t *srcFileName, const uint8_t *dstFileName, const %@Shell@'ModuleName'%.StdIOType *io)
+{
+  %'ModuleName'%.FRESULT fres;
+
+  if (%'ModuleName'%.isWriteProtected((uint8_t*)"")) {
+    %@Shell@'ModuleName'%.SendStr((unsigned char*)"disk is write protected!\r\n", io-&gt;stdErr);
+    return ERR_FAILED;
+  }
+  fres = %'ModuleName'%.rename((char*)srcFileName, (char*)dstFileName);
+  if(fres!=FR_OK) {
+    FatFsFResultMsg((unsigned char*)"rename failed", fres, io);
+    return ERR_FAILED;
+  }
+  return ERR_OK;
+}
+
+%endif %- RenameFile
+%-BW_METHOD_END RenameFile
+%-************************************************************************************************************
+</code></pre>
+</div>
+
+<p>The point of Processor Expert is to implement some kind of objects, with each instance fully generated from a template. People I respect consider that once the components are written, using them is quite convenient. The real challenge is to write these components, and this process can be done only with Processor Expert.</p>
+
+<p>The components can be found in the <code class="highlighter-rouge">C:\ProgramData\Processor Expert\PEXDRV_PE5_3</code> folder</p>
+
+<h2 id="scripting-proposal">Scripting proposal</h2>
+
+<p>It looks like using a kind of scripting language is inevitable. Defining a custom one, even inspired by an existing solution, is possible, but implementing it requires significant efforts.</p>
+
+<p>With the omnipresent JavaScript, a better solution might be to implement the scripting part in JavaScript.</p>
+
+<p>The DAVE idea to have the entire template as a script is one option. An even better option would be to generate this script.</p>
+
+<p>So, the main idea is to design things in such a way to allow a relatively simple conversion of the entire template to a JavaScript, and to execute it.</p>
 
 <h2 id="javascript-implementations">JavaScript implementations</h2>
+
+<p>Mature JavaScript implementations are now available for most platforms and languages, for example:</p>
 
 <ul>
   <li><a href="https://github.com/robertkrimen/otto">Go Otto</a></li>
@@ -233,61 +521,81 @@
 
 <h2 id="possible-syntax-solutions">Possible syntax solutions</h2>
 
-<p>JavaScript syntax:</p>
+<p>Assuming the tags need to be encoded as comments, for C/C++ these are two solutions:</p>
 
 <ul>
-  <li><code>//@ ...</code></li>
-  <li><code>//JS ...</code></li>
-  <li><code>//EMEA ...</code></li>
-  <li>~~<code>//! ...</code>~~ conflicts with Doxygen</li>
-  <li>~~<code>//&gt; ...</code>~~ not fortunate, Doxygen use <code>//!&lt;</code></li>
-</ul>
-
-<p>Custom syntax:</p>
-
-<ul>
-  <li><code>//XCDL &lt;a href='https://github.com/if' class='user-mention'&gt;@if&lt;/a&gt;</code></li>
-  <li><code>//@ if</code></li>
-  <li><code>//$ if</code></li>
+  <li>
+<code class="highlighter-rouge">/*JS ... */</code> and <code class="highlighter-rouge">//JS</code>
+</li>
+  <li>
+<code class="highlighter-rouge">/*@ ... */</code> and <code class="highlighter-rouge">//@ ...</code>
+</li>
 </ul>
 
 <h2 id="javascript">JavaScript</h2>
 
-<p>The templates are converted to JavaScript and then interpreted as such.</p>
+<p>With the choice for JavaScript and the requirement that scripts be encoded as comments, the templates can be converted to JavaScript and then interpreted as such.</p>
 
 <p>For example:</p>
 
-<pre>
-<code>//@ if (defined(var)) {
+<div class="highlighter-rouge">
+<pre class="highlight"><code>/*JS if (variable==="value") { */
 ... C/C++ lines ...
-//@ }
+/*JS } */
 </code></pre>
+</div>
 <p>translates into:</p>
 
-<pre>
-<code>if (defined(var)) {
-out.print("... C/C++ lines ...\n");
+<div class="highlighter-rouge">
+<pre class="highlight"><code>if (variable==="value") {
+o("... C/C++ lines ...\n");
 }
 </code></pre>
+</div>
 
-<p>To include another file, and possibly pass some extra definitions:</p>
+<p>where <code class="highlighter-rouge">o()</code> is a function that outputs the string to the destination file.</p>
 
-<pre>
-<code>//@ include("file-name")
-//@ include("file-name", {name:'Ken',address:'secret',unused:true})
+<p>Substitutions are identified and the generated JavaScript code converts the values to strings and outputs them.</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>#define VARIABLE ($(value+1))
 </code></pre>
+</div>
 
-<h2 id="custom-syntax">Custom syntax</h2>
+<p>translates to:
+<code class="highlighter-rouge">
+o("#define VARIABLE (");o(String(value+1));o(")\n");
+</code></p>
 
-<h3 id="include-file-name-params-">include <em>file-name</em> <em>[params …]</em></h3>
-<p>### if <em>expression</em></p>
+<h2 id="choices">Choices</h2>
 
-<p>Examples:</p>
+<h3 id="js-vs-">
+<code class="highlighter-rouge">/*JS</code> vs <code class="highlighter-rouge">/*@</code>
+</h3>
 
-<ul>
-  <li><code>if $(var)</code> - true if variable was defined</li>
-  <li><code>if "..."</code> - true if string is non empty</li>
-</ul>
+<p>Personally I prefer <code class="highlighter-rouge">/*JS</code>, but it is one character longer. The lower case alternative (<code class="highlighter-rouge">/*js</code>) is also possible.</p>
+
+<h3 id="vs-shorter-">
+<code class="highlighter-rouge">/*$()*/</code> vs shorter <code class="highlighter-rouge">$()</code>
+</h3>
+
+<p>The first version seems easier to parse, since it stops at the first occurrence of <code class="highlighter-rouge">)*/</code>, but is longer and is less readable.</p>
+
+<p>The second version is definitely more attractive, but requires a more elaborate parsing of the content. For C/C++, the syntax overlaps a legal expression (<code class="highlighter-rouge">$</code> is a legal identifier, so <code class="highlighter-rouge">$()</code> is actually a function call).</p>
+
+<p>Please note that formatters may add a space in front of the parenthesis (like <code class="highlighter-rouge">$ ()</code>).</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>With these conventions, the above samples would look like:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>/*JS if (defined(user)) { */
+  hello("$(user.name)!");
+/*JS } */
+  url="$(append(url,'.html')";
+</code></pre>
+</div>
 
 
 
@@ -317,7 +625,7 @@ out.print("... C/C++ lines ...\n");
     <ul>
   <li>© 2015 Liviu Ionescu</li>
   <li>Hosted on GitHub</li>
-  <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS" /></a></li>
+  <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
 </ul>
 
 

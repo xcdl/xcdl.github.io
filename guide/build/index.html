@@ -210,7 +210,7 @@
 <ol>
   <li>Given a configuration, the component framework is responsible for creating all the folders required during the build. If these folders already exist then the component framework is responsible for any clean-ups that may be necessary, for example if a package has been removed then all related files should be expunged from the build and install trees. The configuration header files will be generated at this time. Depending on the host environment, the component framework will also generate makefiles or some other way of building the various packages. Every time the configuration is modified this step needs to be repeated, to ensure that all option consequences take effect. Care is taken that this will not result in unnecessary rebuilds.</li>
   <li>The first step in an actual build is to make sure that the install tree contains all exported header files. All compilations will use the install tree’s include directory as one of the places to search for header files.</li>
-  <li>All source files relevant to the current configuration get compiled. This involves a set of compiler flags initialized on a per-target basis, with each package being able to modify these flags, and with the ability for the user to override the flags as well. Care has to be taken here to avoid inappropriate target-dependencies in packages that are intended to be portable. The component framework has built-in knowledge of how to handle C, C++ and assembler source files. The <code>&lt;sourceFile&gt;</code> property is used to list the files that should get compiled. All object files end up in the build tree.</li>
+  <li>All source files relevant to the current configuration get compiled. This involves a set of compiler flags initialized on a per-target basis, with each package being able to modify these flags, and with the ability for the user to override the flags as well. Care has to be taken here to avoid inappropriate target-dependencies in packages that are intended to be portable. The component framework has built-in knowledge of how to handle C, C++ and assembler source files. The <code class="highlighter-rouge">&lt;sourceFile&gt;</code> property is used to list the files that should get compiled. All object files end up in the build tree.</li>
   <li>The component framework provides support for custom build steps, using the make_object and make properties. The results of these custom build steps can either be object files that should end up in a library, or other files such as a linker script. It is possible to control the order in which these custom build steps take place, for example it is possible to run a particular build step before any of the compilations happen.</li>
 </ol>
 
@@ -247,12 +247,13 @@
   <li>
     <p>Compiler optimizations can be used to elide code that should not be present, for example:</p>
 
-    <pre><code>...
+    <div class="highlighter-rouge"><pre class="highlight"><code>...
 if (OS_INTEGER_NUMBER_UARTS &gt; 0) {
   ...
 }
 ...
 </code></pre>
+    </div>
 
     <p>If the compiler knows that OS_INTEGER_NUMBER_UARTS is the constant number 0 then it is a trivial operation to get rid of the unnecessary code. The component framework still has to define this symbol in a way that is acceptable to the compiler, typically by using a const variable or a preprocessor symbol. In some respects this is a clean approach to configurability, but it has limitations:</p>
 
@@ -263,9 +264,9 @@ if (OS_INTEGER_NUMBER_UARTS &gt; 0) {
     </ul>
   </li>
   <li>
-    <p>Existing language preprocessors can be used. In the case of C or C++ this would be the standard C preprocessor, and configurable code would contain a number of <code>#ifdef</code> and <code>#if</code> statements.</p>
+    <p>Existing language preprocessors can be used. In the case of C or C++ this would be the standard C preprocessor, and configurable code would contain a number of <code class="highlighter-rouge">#ifdef</code> and <code class="highlighter-rouge">#if</code> statements.</p>
 
-    <pre><code>#if defined(OS_DEBUG_INFRA_DEBUG_PRECONDITIONS)
+    <div class="highlighter-rouge"><pre class="highlight"><code>#if defined(OS_DEBUG_INFRA_DEBUG_PRECONDITIONS)
   ...
 #endif
 
@@ -275,6 +276,7 @@ if (OS_INTEGER_NUMBER_UARTS &gt; 0) {
   ...
 #endif
 </code></pre>
+    </div>
 
     <p>This approach has the advantage that the C preprocessor is a technology that is both well-understood and widely used. There are also disadvantages: the preprocessing facilities are rather limited; and some people (including ourselves) consider the technology to be ugly, generally decreasing program readability.</p>
   </li>
@@ -282,7 +284,7 @@ if (OS_INTEGER_NUMBER_UARTS &gt; 0) {
 
 <h4 id="preprocessor-definitions">Preprocessor definitions</h4>
 
-<p>The current component framework generates configuration header files with C preprocessor <code>#define</code>s for each option (typically, there various properties which can be used to control this). It is up to component writers to decide whether to use preprocessor <code>#ifdef</code> statements or language constructs such as if. At present there is no support for languages which do not involve the C preprocessor.</p>
+<p>The current component framework generates configuration header files with C preprocessor <code class="highlighter-rouge">#define</code>s for each option (typically, there various properties which can be used to control this). It is up to component writers to decide whether to use preprocessor <code class="highlighter-rouge">#ifdef</code> statements or language constructs such as if. At present there is no support for languages which do not involve the C preprocessor.</p>
 
 <h4 id="c11-constexpr">C++11 <strong>constexpr</strong></h4>
 
@@ -293,15 +295,16 @@ if (OS_INTEGER_NUMBER_UARTS &gt; 0) {
   <li>
     <p>can be grouped in name spaces; this minimise the risk of name clashes</p>
 
-    <pre><code>namespace one
+    <div class="highlighter-rouge"><pre class="highlight"><code>namespace one
 {
   constexpr int variable = 1234;
 }
 </code></pre>
+    </div>
   </li>
 </ul>
 
-<p>It is recommended to use constexpr expressions for all options providing values, and limit the use of preprocessor definitions only to control which parts of the code is included, i.e. definitions like <code>#if defined(OS_INCLUDE_SOME_FUNCTIONALITY)</code>.</p>
+<p>It is recommended to use constexpr expressions for all options providing values, and limit the use of preprocessor definitions only to control which parts of the code is included, i.e. definitions like <code class="highlighter-rouge">#if defined(OS_INCLUDE_SOME_FUNCTIONALITY)</code>.</p>
 
 <p>TODO: add definitions to support constexpr to properties.</p>
 
@@ -309,7 +312,7 @@ if (OS_INTEGER_NUMBER_UARTS &gt; 0) {
 
 <p>A package’s exported header files should specify the interface provided by that package, and avoid any implementation details. However there may be performance or other reasons why implementation details occasionally need to be present in the exported headers.</p>
 
-<p>Configurability has a number of effects on the way exported header files should be written. There may be configuration options which affect the interface of a package, not just the implementation. It is necessary to worry about nested <code>#include</code>’s and how this affects package and application builds. A special case of this relates to whether or not exported header files should <code>#include</code> configuration headers. These configuration headers are exported, but should only be <code>#include</code>’d when necessary.</p>
+<p>Configurability has a number of effects on the way exported header files should be written. There may be configuration options which affect the interface of a package, not just the implementation. It is necessary to worry about nested <code class="highlighter-rouge">#include</code>’s and how this affects package and application builds. A special case of this relates to whether or not exported header files should <code class="highlighter-rouge">#include</code> configuration headers. These configuration headers are exported, but should only be <code class="highlighter-rouge">#include</code>’d when necessary.</p>
 
 <h4 id="configurable-functionality">Configurable functionality</h4>
 
@@ -317,37 +320,37 @@ if (OS_INTEGER_NUMBER_UARTS &gt; 0) {
 
 <p>Consider a configuration option OS_INCLUDE_KERNEL_MUTEX_TIMEDLOCK which controls whether or not a function os_mutex_timedlock() is provided. The exported kernel header file <em>os/kernel/kapi.h</em> could contain the following:</p>
 
-<pre>
-<code>#include &lt;pkgconf/kernel.h&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>#include &lt;pkgconf/kernel.h&gt;
 ...
 #ifdef OS_INCLUDE_KERNEL_MUTEX_TIMEDLOCK
 extern bool os_mutex_timedlock(os_mutex_t*);
 #endif
 </code></pre>
+</div>
 
 <p>This is a correct header file, in that it defines the exact interface provided by the package at all times. However is has a number of implications. First, the header file is now dependent on pkgconf/kernel.h, so any changes to kernel configuration options will cause <em>os/kernel/kapi.h</em> to be out of date, and any source files that use the kernel interface will need rebuilding. This may affect sources in the kernel package, in other packages, and in application source code. Second, if the application makes use of this function somewhere but the application developer has misconfigured the system and disabled this functionality anyway then there will now be a compile-time error when building the application. Note that other packages should not be affected, since they should impose appropriate constraints on OS_INCLUDE_KERNEL_MUTEX_TIMEDLOCK if they use that functionality (although of course some dependencies like this may get missed by component developers).</p>
 
 <p>An alternative approach would be:</p>
 
-<pre>
-<code>extern bool os_mutex_timedlock(os_mutex_t*);
+<div class="highlighter-rouge"><pre class="highlight"><code>extern bool os_mutex_timedlock(os_mutex_t*);
 </code></pre>
+</div>
 
 <p>Effectively the header file is now lying about the functionality provided by the package. The first result is that there is no longer a dependency on the kernel configuration header. The second result is that an application file using the timedlock function will now compile, but the application will fail to link. At this stage the application developer still has to intervene, change the configuration, and rebuild the system. However no application recompilations are necessary, just a relink.</p>
 
 <p>Theoretically it would be possible for a tool to analyze linker errors and suggest possible configuration changes that would resolve the problem, reducing the burden on the application developer. No such tool is planned in the short term.</p>
 
-<p>It is up to component writers to decide which of these two approaches should be preferred. Note that it is not always possible to avoid <code>#include</code>’ing a configuration header file in an exported one, for example an option may affect a data structure rather than just the presence or absence of a function. Issues like this will vary from package to package.</p>
+<p>It is up to component writers to decide which of these two approaches should be preferred. Note that it is not always possible to avoid <code class="highlighter-rouge">#include</code>’ing a configuration header file in an exported one, for example an option may affect a data structure rather than just the presence or absence of a function. Issues like this will vary from package to package.</p>
 
-<h4 id="nested-includes">Nested <code>#include</code>’s</h4>
+<h4 id="nested-includes">Nested <code class="highlighter-rouge">#include</code>’s</h4>
 
-<p>As a general rule, unnecessary <code>#include</code>’s should be avoided. A header file should <code>#include</code> only those header files which are absolutely needed for it to define its interface. Any additional <code>#include</code>’s make it more likely that package or application source files become dependent on configuration header files and will get rebuilt unnecessarily when there are minor configuration changes.</p>
+<p>As a general rule, unnecessary <code class="highlighter-rouge">#include</code>’s should be avoided. A header file should <code class="highlighter-rouge">#include</code> only those header files which are absolutely needed for it to define its interface. Any additional <code class="highlighter-rouge">#include</code>’s make it more likely that package or application source files become dependent on configuration header files and will get rebuilt unnecessarily when there are minor configuration changes.</p>
 
 <h4 id="including-configuration-headers">Including configuration headers</h4>
 
-<p>Exported header files should avoid <code>#include</code>’ing configuration header files unless absolutely necessary, to avoid unnecessary rebuilding of both application code and other packages when there are minor configuration changes. A <code>#include</code> is needed only when a configuration option affects the exported interface, or when it affects some implementation details which is controlled by the header file such as whether or not a particular function gets inlined.</p>
+<p>Exported header files should avoid <code class="highlighter-rouge">#include</code>’ing configuration header files unless absolutely necessary, to avoid unnecessary rebuilding of both application code and other packages when there are minor configuration changes. A <code class="highlighter-rouge">#include</code> is needed only when a configuration option affects the exported interface, or when it affects some implementation details which is controlled by the header file such as whether or not a particular function gets inlined.</p>
 
-<p>There are a couple of ways in which the problem of unnecessary rebuilding could be addressed. The first would require more intelligent handling of header file dependency handling by the tools (especially the compiler) and the build system. This would require changes to various non-XCDL tools. An alternative approach would be to support finer-grained configuration header files, for example there could be a file pkgconf/libc/inline.h controlling which functions should be inlined. This could be achieved by some fairly simple extensions to the component framework, but it makes it more difficult to get the package header files and source code correct: a C preprocessor <code>#ifdef</code> directive does not distinguish between a symbol not being defined because the option is disabled, or the symbol not being defined because the appropriate configuration header file has not been <code>#include</code>’d. It is likely that a cross-referencing tool would have to be developed first to catch problems like this, before the component framework could support finer-grained configuration headers.</p>
+<p>There are a couple of ways in which the problem of unnecessary rebuilding could be addressed. The first would require more intelligent handling of header file dependency handling by the tools (especially the compiler) and the build system. This would require changes to various non-XCDL tools. An alternative approach would be to support finer-grained configuration header files, for example there could be a file pkgconf/libc/inline.h controlling which functions should be inlined. This could be achieved by some fairly simple extensions to the component framework, but it makes it more difficult to get the package header files and source code correct: a C preprocessor <code class="highlighter-rouge">#ifdef</code> directive does not distinguish between a symbol not being defined because the option is disabled, or the symbol not being defined because the appropriate configuration header file has not been <code class="highlighter-rouge">#include</code>’d. It is likely that a cross-referencing tool would have to be developed first to catch problems like this, before the component framework could support finer-grained configuration headers.</p>
 
 <h3 id="package-documentation">Package documentation</h3>
 
@@ -377,7 +380,7 @@ extern bool os_mutex_timedlock(os_mutex_t*);
 
 <h4 id="todo-update-xcdl-tests-definitions">TODO: update XCDL tests definitions</h4>
 
-<p>At the time of writing the application developer support for building and running test cases via the component framework is under review and likely to change. Currently each eCos test case should consist of a single C or C++ source file that can be compiled with the package’s set of compiler flags and linked like any application program. Each test case should use the testing API defined by the infrastructure. A magically-named calculated configuration option of the form <code>CYGPKG_&lt;PACKAGE-NAME&gt;_TESTS</code> lists the test cases.</p>
+<p>At the time of writing the application developer support for building and running test cases via the component framework is under review and likely to change. Currently each eCos test case should consist of a single C or C++ source file that can be compiled with the package’s set of compiler flags and linked like any application program. Each test case should use the testing API defined by the infrastructure. A magically-named calculated configuration option of the form <code class="highlighter-rouge">CYGPKG_&lt;PACKAGE-NAME&gt;_TESTS</code> lists the test cases.</p>
 
 <h3 id="host-side-support">Host-side support</h3>
 

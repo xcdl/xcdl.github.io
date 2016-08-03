@@ -247,7 +247,7 @@
 
 <h3 id="metadata">Metadata</h3>
 
-<p>In the context of XCDL, metadata (generally defined as <em>data about data</em>) is additional data about the software project, to define build settings, dependencies, options, etc. Metadata is stored in various separate files, usually with names starting with dots, like <code>.xcdl.json</code>.</p>
+<p>In the context of XCDL, metadata (generally defined as <em>data about data</em>) is additional data about the software project, to define build settings, dependencies, options, etc. Metadata is stored in various separate files, usually with names starting with dots, like <code class="highlighter-rouge">.xcdl.json</code>.</p>
 
 <h3 id="components">Components</h3>
 
@@ -271,7 +271,7 @@
   <li>one or more XCDL metadata files describing the package to the component framework.</li>
 </ul>
 
-<p>Not all packages need to contain all of these. For example some packages such as device drivers may not provide a new interface, instead they just provide another implementation of an existing interface. However <strong>all packages must contain at least one metadata file</strong> that describes the package to the component framework (a <code>.pdsc</code> file for CMSIS packages or a <code>.xpackage.json</code> and several <code>.xcdl.json</code> files for XCDL/xPack packages).</p>
+<p>Not all packages need to contain all of these. For example some packages such as device drivers may not provide a new interface, instead they just provide another implementation of an existing interface. However <strong>all packages must contain at least one metadata file</strong> that describes the package to the component framework (a <code class="highlighter-rouge">.pdsc</code> file for CMSIS packages or a <code class="highlighter-rouge">.xpackage.json</code> and several <code class="highlighter-rouge">.xcdl.json</code> files for XCDL/xPack packages).</p>
 
 <p>It is possible to create a binary distribution file for a package containing all of the source code, header files, documentation, and other relevant files.</p>
 
@@ -337,46 +337,46 @@
 
 <h4 id="node-name">Node name</h4>
 
-<p>Each node has a property called <code>name</code>. Names are short strings, and must follow the following rules:</p>
+<p>Each node has a property called <code class="highlighter-rouge">name</code>. Names are short strings, and must follow the following rules:</p>
 
 <ul>
   <li>be unique for a given parent</li>
-  <li>be accepted as POSIX file/folder name; this means letters, figures, and very few special characters, like <code>[-_.]</code>; for multi-word names, <code>-</code> (dash) is the preferred separator; <code>.</code> is used in version names.</li>
+  <li>be accepted as POSIX file/folder name; this means letters, figures, and very few special characters, like <code class="highlighter-rouge">[-_.]</code>; for multi-word names, <code class="highlighter-rouge">-</code> (dash) is the preferred separator; <code class="highlighter-rouge">.</code> is used in version names.</li>
 </ul>
 
-<p>Using the JavaScript syntax, the node names are strings, defined with the <code>name</code> property.</p>
+<p>Using the JavaScript syntax, the node names are strings, defined with the <code class="highlighter-rouge">name</code> property.</p>
 
-<pre>
-<code>{
-  name: 'RCC',
-  ...
-}
-</code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">name:</span><span class="w"> </span><span class="err">'RCC',</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
 <p>When used to decorate a GUI, the node name is the string permanently displayed to identify the node.</p>
 
 <h4 id="node-type">Node type</h4>
 
-<p>Each node must have a string property called <code>type</code>.</p>
+<p>Each node must have a string property called <code class="highlighter-rouge">type</code>.</p>
 
 <p>The node type defines the acceptable properties and children.</p>
 
-<p>Some node types, like <code>file</code>, require a second property <code>subType</code> to fully identify the node.</p>
+<p>Some node types, like <code class="highlighter-rouge">file</code>, require a second property <code class="highlighter-rouge">subType</code> to fully identify the node.</p>
 
 <p>When used to decorate a GUI, the node type defines the icon associated with the node.</p>
 
 <h4 id="node-description">Node description</h4>
 
-<p>Each node must have a string property called <code>description</code>. Descriptions are reasonable long strings.</p>
+<p>Each node must have a string property called <code class="highlighter-rouge">description</code>. Descriptions are reasonable long strings.</p>
 
-<pre>
-<code>{
-  name: 'RCC',
-  type: 'component',
-  description: 'Real-Time Clock Control',
-  ...
-}
-</code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">name:</span><span class="w"> </span><span class="err">'RCC',</span><span class="w">
+  </span><span class="err">type:</span><span class="w"> </span><span class="err">'component',</span><span class="w">
+  </span><span class="err">description:</span><span class="w"> </span><span class="err">'Real-Time</span><span class="w"> </span><span class="err">Clock</span><span class="w"> </span><span class="err">Control',</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
 <p>When used to decorate a GUI, the node description is generally shwown as a tooltip, activated when the mouse hovers over the node, or in additional views showing all node details.</p>
 
@@ -384,34 +384,34 @@
 
 <p>If a node has children, they are grouped as an array of objects.</p>
 
-<pre>
-<code>{
-  name: 'HAL',
-  type: 'component',
-  ...
-  nodes: [
-    {
-      name: 'RCC',
-      type: 'component',
-      ...
-    }
-  ]
-}
-</code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">name:</span><span class="w"> </span><span class="err">'HAL',</span><span class="w">
+  </span><span class="err">type:</span><span class="w"> </span><span class="err">'component',</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="err">nodes:</span><span class="w"> </span><span class="err">[</span><span class="w">
+    </span><span class="err">{</span><span class="w">
+      </span><span class="err">name:</span><span class="w"> </span><span class="err">'RCC',</span><span class="w">
+      </span><span class="err">type:</span><span class="w"> </span><span class="err">'component',</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="err">]</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+</div>
 
 <h4 id="xcdl-paths">XCDL paths</h4>
 
 <p>Similar to files in a filesystem, XCDL nodes can be addressed as a sequence of slash separated node names:</p>
 
-<pre>
-<code>/ilg/STM32/STM32F4/HAL/RCC
+<div class="highlighter-rouge"><pre class="highlight"><code>/ilg/STM32/STM32F4/HAL/RCC
 </code></pre>
+</div>
 
 <p>Addressing nodes can be done with:</p>
 
 <ul>
-  <li>complete paths, if they start with <code>/</code>; they are similar to absolute file system paths;</li>
-  <li>incomplete paths, if they do not start with <code>/</code></li>
+  <li>complete paths, if they start with <code class="highlighter-rouge">/</code>; they are similar to absolute file system paths;</li>
+  <li>incomplete paths, if they do not start with <code class="highlighter-rouge">/</code></li>
 </ul>
 
 <p>Incomplete paths are searched:</p>
@@ -539,11 +539,11 @@
 
 <h3 id="consequences">Consequences</h3>
 
-<p>As in real life, choices must have consequences. For example, for some configurations the main end product is an executable, for others a library, so the consequences of a user choice must affect the build process. This happens in two main ways. First, options can affect which files get built and end up in the executable or library. Second, details of the current option settings get written into various configuration header files using C preprocessor <code>#define</code> directives, and package source code can <code>#include</code> these configuration headers and adapt accordingly. This allows options to affect a package at a very fine grain, at the level of individual lines in a source file if desired. There may be other consequences as well, for example there are options to control the compiler flags that get used during the build process.</p>
+<p>As in real life, choices must have consequences. For example, for some configurations the main end product is an executable, for others a library, so the consequences of a user choice must affect the build process. This happens in two main ways. First, options can affect which files get built and end up in the executable or library. Second, details of the current option settings get written into various configuration header files using C preprocessor <code class="highlighter-rouge">#define</code> directives, and package source code can <code class="highlighter-rouge">#include</code> these configuration headers and adapt accordingly. This allows options to affect a package at a very fine grain, at the level of individual lines in a source file if desired. There may be other consequences as well, for example there are options to control the compiler flags that get used during the build process.</p>
 
 <h3 id="constraints">Constraints</h3>
 
-<p>Configuration choices are not independent. The C library can provide thread-safe implementations of functions like <code>rand()</code>, but only if the RTOS provides support for per-thread data. This is a constraint: the C library option has a requirement on the RTOS. A typical configuration involves a considerable number of constraints, of varying complexity: many constraints are straightforward, <em>option A requires option B</em>, or <em>option C precludes option D</em>. Other constraints can be more complicated, for example <em>option E may require the presence of an RTOS scheduler</em> but does not care whether it is the bitmap scheduler, the mlqueue scheduler, or something else.</p>
+<p>Configuration choices are not independent. The C library can provide thread-safe implementations of functions like <code class="highlighter-rouge">rand()</code>, but only if the RTOS provides support for per-thread data. This is a constraint: the C library option has a requirement on the RTOS. A typical configuration involves a considerable number of constraints, of varying complexity: many constraints are straightforward, <em>option A requires option B</em>, or <em>option C precludes option D</em>. Other constraints can be more complicated, for example <em>option E may require the presence of an RTOS scheduler</em> but does not care whether it is the bitmap scheduler, the mlqueue scheduler, or something else.</p>
 
 <p>Another type of constraint involves the values that can be used for certain options. For example there is an RTOS option related to the number of scheduling levels, and there is a legal values constraint on this option: specifying zero or a negative number for the number of scheduling levels makes no sense.</p>
 
