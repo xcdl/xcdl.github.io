@@ -158,7 +158,7 @@
 
         
 <h1 class="page-title">XCDL Preprocessor syntax thoughts</h1>
-<p class="last-modified">Last modified on Mon Oct 12 17:37:31 2015 UTC.</p>
+<p class="last-modified">Last modified on Wed Aug  3 13:19:03 2016 UTC.</p>
 
 
 <div id="toc-container">
@@ -171,7 +171,7 @@
 </div>
 <ul>
 <li class="toc_level-1 toc_section-1">
-<a href="#problem"><span class="tocnumber">1</span> <span class="toctext">Problem</span></a>
+<a href="#challenge"><span class="tocnumber">1</span> <span class="toctext">Challenge</span></a>
 </li>
 <li class="toc_level-1 toc_section-2">
 <a href="#requirements"><span class="tocnumber">2</span> <span class="toctext">Requirements</span></a>
@@ -194,32 +194,38 @@
 <li class="toc_level-2 toc_section-8">
 <a href="#freescale-processor-expert"><span class="tocnumber">4.4</span> <span class="toctext">Freescale Processor Expert</span></a>
 </li>
+<li class="toc_level-2 toc_section-9">
+<a href="#ac6-system-workbench"><span class="tocnumber">4.5</span> <span class="toctext">AC6 System Workbench</span></a>
+</li>
+<li class="toc_level-2 toc_section-10">
+<a href="#eclipse-cdt-template-wizard"><span class="tocnumber">4.6</span> <span class="toctext">Eclipse CDT template wizard</span></a>
+</li>
 </ul>
-</li>
-<li class="toc_level-1 toc_section-9">
-<a href="#scripting-proposal"><span class="tocnumber">5</span> <span class="toctext">Scripting proposal</span></a>
-</li>
-<li class="toc_level-1 toc_section-10">
-<a href="#javascript-implementations"><span class="tocnumber">6</span> <span class="toctext">JavaScript implementations</span></a>
 </li>
 <li class="toc_level-1 toc_section-11">
-<a href="#possible-syntax-solutions"><span class="tocnumber">7</span> <span class="toctext">Possible syntax solutions</span></a>
+<a href="#scripting-proposal"><span class="tocnumber">5</span> <span class="toctext">Scripting proposal</span></a>
 </li>
 <li class="toc_level-1 toc_section-12">
-<a href="#javascript"><span class="tocnumber">8</span> <span class="toctext">JavaScript</span></a>
+<a href="#javascript-implementations"><span class="tocnumber">6</span> <span class="toctext">JavaScript implementations</span></a>
 </li>
 <li class="toc_level-1 toc_section-13">
+<a href="#possible-syntax-solutions"><span class="tocnumber">7</span> <span class="toctext">Possible syntax solutions</span></a>
+</li>
+<li class="toc_level-1 toc_section-14">
+<a href="#javascript"><span class="tocnumber">8</span> <span class="toctext">JavaScript</span></a>
+</li>
+<li class="toc_level-1 toc_section-15">
 <a href="#choices"><span class="tocnumber">9</span> <span class="toctext">Choices</span></a>
 <ul>
-<li class="toc_level-2 toc_section-14">
+<li class="toc_level-2 toc_section-16">
 <a href="#js-vs-"><span class="tocnumber">9.1</span> <span class="toctext">/*JS vs /*@</span></a>
 </li>
-<li class="toc_level-2 toc_section-15">
-<a href="#vs-shorter-"><span class="tocnumber">9.2</span> <span class="toctext">/*$()*/ vs shorter $()</span></a>
+<li class="toc_level-2 toc_section-17">
+<a href="#vs-"><span class="tocnumber">9.2</span> <span class="toctext">$() vs /*$()*/</span></a>
 </li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-16">
+<li class="toc_level-1 toc_section-18">
 <a href="#examples"><span class="tocnumber">10</span> <span class="toctext">Examples</span></a>
 </li>
 </ul>
@@ -228,14 +234,14 @@
 </tbody>
 </table>
 </div>
-<h2 id="problem">Problem</h2>
+<h2 id="challenge">Challenge</h2>
 
-<p>Define a template mechanism to generate source files, based on various external definitions.</p>
+<p>Define a preprocessing mechanism to be used in a wizard to generate source files (mainly C/C++), based on a template and various external definitions.</p>
 
 <h2 id="requirements">Requirements</h2>
 
 <ul>
-  <li>interfere as little as possible with the file language</li>
+  <li>interfere as little as possible with the native file source language</li>
   <li>do not interfere with other tools, like Doxygen</li>
   <li>be relatively simple to process</li>
   <li>syntax must be as standard as possible</li>
@@ -243,7 +249,7 @@
 
 <h2 id="embed-metadata-inside-comments">Embed metadata inside comments</h2>
 
-<p>The natural implementation of the first requirement is similar to that used by Doxygen, i.e. insert the template metadata as standard comments.</p>
+<p>The natural implementation of the first requirement is similar to that used by Doxygen, i.e. insert the preprocessing metadata as standard comments.</p>
 
 <p>This has two major advantages:</p>
 
@@ -254,7 +260,7 @@
 
 <h2 id="inspiration">Inspiration</h2>
 
-<p>Although there are many other preprocessing solutions, none that I know meets the requirements.</p>
+<p>Although there are many other similar solutions, none that I know meets the requirements.</p>
 
 <h3 id="jekyll">Jekyll</h3>
 
@@ -268,7 +274,7 @@
 </span></code></pre>
 </div>
 
-<p>Embedding this into comments would look like this:</p>
+<p>Embedding this metadata into C/C++ comments would look like this:</p>
 
 <div class="highlighter-rouge">
 <pre class="highlight"><code>/* {% if user %} */
@@ -278,7 +284,7 @@
 </code></pre>
 </div>
 
-<p>The syntax remains relatively easy to read, but it introduces a new language, that needs to be parsed and processed.</p>
+<p>The syntax remains relatively easy to read, but the Liquid tags still introduce a new language, that needs to be parsed and processed.</p>
 
 <h3 id="st-cubemx">ST CubeMX</h3>
 
@@ -498,17 +504,27 @@ uint8_t %'ModuleName'%.%RenameFile(const uint8_t *srcFileName, const uint8_t *ds
 
 <p>The point of Processor Expert is to implement some kind of objects, with each instance fully generated from a template. People I respect consider that once the components are written, using them is quite convenient. The real challenge is to write these components, and this process can be done only with Processor Expert.</p>
 
-<p>The components can be found in the <code class="highlighter-rouge">C:\ProgramData\Processor Expert\PEXDRV_PE5_3</code> folder</p>
+<p>The syntax is quite complex, with commands similar to the C preprocessor (<code class="highlighter-rouge">%ifdef name</code>), but also with complex substitutions, like <code class="highlighter-rouge">%@Shell@'ModuleName'%.name(...)</code>.</p>
+
+<p>The components can be found in the <code class="highlighter-rouge">C:\ProgramData\Processor Expert\PEXDRV_PE5_3</code> folder.</p>
+
+<h3 id="ac6-system-workbench">AC6 System Workbench</h3>
+
+<p>The STM32 System Workbench currently does not use templates.</p>
+
+<h3 id="eclipse-cdt-template-wizard">Eclipse CDT template wizard</h3>
+
+<p>The Eclipse CDT template mechanism uses several <em>processes</em>, mainly to copy files to change the project configuration (add symbol definitions, folders, etc). Preprocessing is basic, only macro substitutions.</p>
 
 <h2 id="scripting-proposal">Scripting proposal</h2>
 
-<p>It looks like using a kind of scripting language is inevitable. Defining a custom one, even inspired by an existing solution, is possible, but implementing it requires significant efforts.</p>
+<p>It looks like using some kind of scripting language is inevitable. Defining a custom one, even inspired by an existing solution, is possible, but implementing it requires significant efforts.</p>
 
 <p>With the omnipresent JavaScript, a better solution might be to implement the scripting part in JavaScript.</p>
 
-<p>The DAVE idea to have the entire template as a script is one option. An even better option would be to generate this script.</p>
+<p>The DAVE idea to have the entire template as a script is one option. An even better option seems to be to generate this script.</p>
 
-<p>So, the main idea is to design things in such a way to allow a relatively simple conversion of the entire template to a JavaScript, and to execute it.</p>
+<p>So, the approach used by the XCDL preprocessor is to convert the entire template file into JavaScript, and to execute it.</p>
 
 <h2 id="javascript-implementations">JavaScript implementations</h2>
 
@@ -521,7 +537,7 @@ uint8_t %'ModuleName'%.%RenameFile(const uint8_t *srcFileName, const uint8_t *ds
 
 <h2 id="possible-syntax-solutions">Possible syntax solutions</h2>
 
-<p>Assuming the tags need to be encoded as comments, for C/C++ these are two solutions:</p>
+<p>Assuming the tags will be encoded as comments, for C/C++ two possible solutions are:</p>
 
 <ul>
   <li>
@@ -534,7 +550,7 @@ uint8_t %'ModuleName'%.%RenameFile(const uint8_t *srcFileName, const uint8_t *ds
 
 <h2 id="javascript">JavaScript</h2>
 
-<p>With the choice for JavaScript and the requirement that scripts be encoded as comments, the templates can be converted to JavaScript and then interpreted as such.</p>
+<p>With the choice for JavaScript and the requirement that scripts be encoded as comments, the process to convert the templates to JavaScript is relatively straightforward: pass the tags as-is, and encode each source line in an output call.</p>
 
 <p>For example:</p>
 
@@ -553,7 +569,7 @@ o("... C/C++ lines ...\n");
 </code></pre>
 </div>
 
-<p>where <code class="highlighter-rouge">o()</code> is a function that outputs the string to the destination file.</p>
+<p>where <code class="highlighter-rouge">o(str)</code> is a function that outputs the string to the destination file.</p>
 
 <p>Substitutions are identified and the generated JavaScript code converts the values to strings and outputs them.</p>
 
@@ -562,10 +578,12 @@ o("... C/C++ lines ...\n");
 </code></pre>
 </div>
 
-<p>translates to:
-<code class="highlighter-rouge">
-o("#define VARIABLE (");o(String(value+1));o(")\n");
-</code></p>
+<p>translates to:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>o("#define VARIABLE (");o(String(value+1));o(")\n");
+</code></pre>
+</div>
 
 <h2 id="choices">Choices</h2>
 
@@ -575,25 +593,86 @@ o("#define VARIABLE (");o(String(value+1));o(")\n");
 
 <p>Personally I prefer <code class="highlighter-rouge">/*JS</code>, but it is one character longer. The lower case alternative (<code class="highlighter-rouge">/*js</code>) is also possible.</p>
 
-<h3 id="vs-shorter-">
-<code class="highlighter-rouge">/*$()*/</code> vs shorter <code class="highlighter-rouge">$()</code>
+<h3 id="vs-">
+<code class="highlighter-rouge">$()</code> vs <code class="highlighter-rouge">/*$()*/</code>
 </h3>
 
-<p>The first version seems easier to parse, since it stops at the first occurrence of <code class="highlighter-rouge">)*/</code>, but is longer and is less readable.</p>
+<p>The comment version seems easier to parse, since it stops at the first occurrence of <code class="highlighter-rouge">)*/</code>, but is longer and is less readable.</p>
 
-<p>The second version is definitely more attractive, but requires a more elaborate parsing of the content. For C/C++, the syntax overlaps a legal expression (<code class="highlighter-rouge">$</code> is a legal identifier, so <code class="highlighter-rouge">$()</code> is actually a function call).</p>
+<p>The short version is definitely more attractive, but requires a more elaborate parsing of the content. For C/C++, the syntax overlaps a legal expression (<code class="highlighter-rouge">$</code> is a legal identifier, so <code class="highlighter-rouge">$()</code> is actually a function call).</p>
 
 <p>Please note that formatters may add a space in front of the parenthesis (like <code class="highlighter-rouge">$ ()</code>).</p>
 
 <h2 id="examples">Examples</h2>
 
-<p>With these conventions, the above samples would look like:</p>
+<p>With these conventions, the first sample would look like:</p>
 
 <div class="highlighter-rouge">
-<pre class="highlight"><code>/*JS if (defined(user)) { */
-  hello("$(user.name)!");
-/*JS } */
-  url="$(append(url,'.html')";
+<pre class="highlight"><code>  /*JS if (defined('user')) { */
+  hello ("$(user.name)!");
+  /*JS } */
+  url = "$(url+'.html'))";
+</code></pre>
+</div>
+
+<p>As expected, this is perfectly legal C syntax. The JavaScript code uses a function <code class="highlighter-rouge">defined()</code> that checks if an object is defined, and, if so, expands the <code class="highlighter-rouge">name</code> attribute of this object.</p>
+
+<p>The CubeMX code would probably look easier to read in JavaScript.</p>
+
+<p>The DAVE code, assuming we also have a Groovy parser, would look like:</p>
+
+<div class="highlighter-rouge">
+<pre class="highlight"><code>/*GV package Model.Common; GV*/
+
+/*******************************************************************************
+ Copyright (c) 2014, Infineon Technologies AG                                 **
+ All rights reserved.                                                         **
+*******************************************************************************/
+
+/*******************************************************************************
+ * @brief This function initializes the Apps Init Functions.
+ *
+ * @param[in]  None
+ *
+ * @return  DAVE_STATUS_t &lt;BR&gt;
+ *
+ * &lt;b&gt;Reentrant: No &lt;/b&gt;&lt;BR&gt;
+ *
+ ******************************************************************************/
+
+DAVE_STATUS_t DAVE_Init(void)
+{
+  DAVE_STATUS_t init_status;
+
+  init_status = DAVE_STATUS_SUCCESS;
+
+/*GV
+def appsList = daveEnv.project.getTopLevelApps();
+def apps = [];
+def appName
+def instanceLabel
+
+ for (def app : appsList ) {
+ 	 if(app.initProvider) {
+ 		 apps.add(app);
+	 }
+} GV*/
+
+/** @Initialization of Apps Init Functions */
+
+/*GV for (def app : apps ) {  GV*/
+/*GV   appName = app.getClass().getSimpleName() GV*/
+/*GV 	 instanceLabel = app.getInstanceLabel() GV*/
+  if (init_status == DAVE_STATUS_SUCCESS)
+  {
+    /**  Initialization of $(appName) App instance $(instanceLabel) */
+    init_status = (DAVE_STATUS_t)$(appName)_Init(&amp;$(instanceLabel));
+  }  
+/*GV } GV*/
+
+  return init_status;
+} /**  End of function DAVE_Init */
+
 </code></pre>
 </div>
 
