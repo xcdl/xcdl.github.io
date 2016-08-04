@@ -158,7 +158,7 @@
 
         
 <h1 class="page-title">XCDL Preprocessor syntax thoughts</h1>
-<p class="last-modified">Last modified on Wed Aug  3 13:19:03 2016 UTC.</p>
+<p class="last-modified">Last modified on Wed Aug  3 16:59:10 2016 UTC.</p>
 
 
 <div id="toc-container">
@@ -215,18 +215,7 @@
 <a href="#javascript"><span class="tocnumber">8</span> <span class="toctext">JavaScript</span></a>
 </li>
 <li class="toc_level-1 toc_section-15">
-<a href="#choices"><span class="tocnumber">9</span> <span class="toctext">Choices</span></a>
-<ul>
-<li class="toc_level-2 toc_section-16">
-<a href="#js-vs-"><span class="tocnumber">9.1</span> <span class="toctext">/*JS vs /*@</span></a>
-</li>
-<li class="toc_level-2 toc_section-17">
-<a href="#vs-"><span class="tocnumber">9.2</span> <span class="toctext">$() vs /*$()*/</span></a>
-</li>
-</ul>
-</li>
-<li class="toc_level-1 toc_section-18">
-<a href="#examples"><span class="tocnumber">10</span> <span class="toctext">Examples</span></a>
+<a href="#examples"><span class="tocnumber">9</span> <span class="toctext">Examples</span></a>
 </li>
 </ul>
 </td>
@@ -236,31 +225,33 @@
 </div>
 <h2 id="challenge">Challenge</h2>
 
-<p>Define a preprocessing mechanism to be used in a wizard to generate source files (mainly C/C++), based on a template and various external definitions.</p>
+<p>Define a template based preprocessing mechanism to be used to generate source files in a wizard (mainly C/C++).</p>
 
 <h2 id="requirements">Requirements</h2>
 
 <ul>
   <li>interfere as little as possible with the native file source language</li>
   <li>do not interfere with other tools, like Doxygen</li>
-  <li>be relatively simple to process</li>
+  <li>be as simple as possible to process</li>
   <li>syntax must be as standard as possible</li>
 </ul>
 
 <h2 id="embed-metadata-inside-comments">Embed metadata inside comments</h2>
 
-<p>The natural implementation of the first requirement is similar to that used by Doxygen, i.e. insert the preprocessing metadata as standard comments.</p>
+<p>The natural implementation for the first requirement is similar to that used by Doxygen, i.e. insert the preprocessing metadata as standard comments.</p>
+
+<p>The direct consequence is that the template files are regular source files, they do not introduce a new syntax.</p>
 
 <p>This has two major advantages:</p>
 
 <ul>
-  <li>the template files do not introduce a new syntax, but are regular source files, that can be edited with current editors, and do not interfere with syntax colouring;</li>
+  <li>the template files can be edited with current editors, and do not interfere with syntax colouring;</li>
   <li>the template files can be reformatted with existing formatters.</li>
 </ul>
 
 <h2 id="inspiration">Inspiration</h2>
 
-<p>Although there are many other similar solutions, none that I know meets the requirements.</p>
+<p>Although there are many other similar solutions, none that I know meets the above requirements.</p>
 
 <h3 id="jekyll">Jekyll</h3>
 
@@ -277,10 +268,10 @@
 <p>Embedding this metadata into C/C++ comments would look like this:</p>
 
 <div class="highlighter-rouge">
-<pre class="highlight"><code>/* {% if user %} */
-  hello("/* {{ user.name }} */!");
-/* {% endif %} */
-  url="/* {{ url | append: ".html" }} */";
+<pre class="highlight"><code>//@XCDL {% if user %}
+  hello("{{ user.name }}!");
+//@XCDL {% endif %}
+  url="{{ url | append: ".html" }}";
 </code></pre>
 </div>
 
@@ -288,7 +279,7 @@
 
 <h3 id="st-cubemx">ST CubeMX</h3>
 
-<p>CubeMX uses <code class="highlighter-rouge">.ftl</code> files with a complex script syntax, that use opening and possibly closing tags (<code class="highlighter-rouge">[if]</code>, <code class="highlighter-rouge">[/if]</code>), and substitutions encoded like macros (<code class="highlighter-rouge">${argument.name}</code>).</p>
+<p>CubeMX uses <code class="highlighter-rouge">.ftl</code> files with a complex script syntax, somehow inspired by xml; tags may come in pairs (<code class="highlighter-rouge">[if]</code>, <code class="highlighter-rouge">[/if]</code>), and substitutions are encoded like macros (<code class="highlighter-rouge">${argument.name}</code>).</p>
 
 <div class="highlighter-rouge">
 <pre class="highlight"><code>[#ftl]
@@ -314,35 +305,7 @@
 </code></pre>
 </div>
 
-<p>The syntax controls the details of the expansion to the latest details, including generating tabs and new lines (<code class="highlighter-rouge">#t</code>, <code class="highlighter-rouge">#n</code>), so the template file is not really a source file, and embedding the metadata as comments doesn’t make much sense.</p>
-
-<p>If done, it would look like this:</p>
-
-<div class="highlighter-rouge">
-<pre class="highlight"><code>/*
-[#ftl]
-[#-- macro generateConfigModelCode --]
-
-[#macro generateConfigModelCode configModel inst nTab index]
-[#if configModel.methods??] [#-- if the pin configuration contains a list of LibMethods--]
-    [#assign methodList = configModel.methods]
-[#else]
-    [#if configModel.methods??]
-        [#assign methodList = configModel.libMethod]  
-    [/#if]
-[/#if]
-[#assign writeConfigComments=false]
-[#if methodList?? ]
-[#list methodList as method]
-    [#if method.status=="OK"][#assign writeConfigComments=true][/#if]
-[/#list]
-[#if writeConfigComments]
-[#if configModel.comments??] #t#t/**${configModel.comments?replace("#t","#t#t")} #n#t#t*/[/#if]
-[/#if]
-*/
-... /* ${fargument.name} */ ...
-</code></pre>
-</div>
+<p>The syntax controls the details of the expansion to the latest details, including generating tabs and new lines (<code class="highlighter-rouge">#t</code>, <code class="highlighter-rouge">#n</code>), so the template s are not really source files, and embedding the metadata as comments doesn’t make much sense.</p>
 
 <p>(The files are in the <code class="highlighter-rouge">db/templates</code> folder; on macOS this is located below <code class="highlighter-rouge">STM32CubeMX.app/Contents/Resources</code>).</p>
 
@@ -350,8 +313,8 @@
 
 <p>In DAVE 4 templates are stored as <code class="highlighter-rouge">.tmpl</code> files and use full <a href="http://www.groovy-lang.org">Groovy</a> scripts (which look very familiar to Java programmers).</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>package Model.Common;
+<pre>
+<code class="language-.java">package Model.Common;
 
 out.print("""
 /*******************************************************************************
@@ -411,11 +374,12 @@ out.print("""
 } /**  End of function DAVE_Init */
 """);
 </code></pre>
-</div>
 
 <p>The actual content is included with triple quote strings and substitutions are performed on the way, using the <code class="highlighter-rouge">${appName}</code> syntax.</p>
 
 <p>By using a fully fledged script language, the template engine is very powerful.</p>
+
+<p>However, embedding the C/C++ code as strings in Groovy is quite hard to read.</p>
 
 <p>Templates can be found in <code class="highlighter-rouge">Infineon\D_LibraryStore_4.1\DeviceFeatures\pack\2.0.0\CE_Templates\TLE</code></p>
 
@@ -502,7 +466,7 @@ uint8_t %'ModuleName'%.%RenameFile(const uint8_t *srcFileName, const uint8_t *ds
 </code></pre>
 </div>
 
-<p>The point of Processor Expert is to implement some kind of objects, with each instance fully generated from a template. People I respect consider that once the components are written, using them is quite convenient. The real challenge is to write these components, and this process can be done only with Processor Expert.</p>
+<p>As far as I can tell, Processor Expert implements some kind of objects, named components, described by a template. This template can be instantiated for specific devices, like USART1, USART2, etc. People I respect consider that once the components are written, using them is quite convenient. The real challenge is to write these components, and this process can be done only with Processor Expert.</p>
 
 <p>The syntax is quite complex, with commands similar to the C preprocessor (<code class="highlighter-rouge">%ifdef name</code>), but also with complex substitutions, like <code class="highlighter-rouge">%@Shell@'ModuleName'%.name(...)</code>.</p>
 
@@ -514,21 +478,23 @@ uint8_t %'ModuleName'%.%RenameFile(const uint8_t *srcFileName, const uint8_t *ds
 
 <h3 id="eclipse-cdt-template-wizard">Eclipse CDT template wizard</h3>
 
-<p>The Eclipse CDT template mechanism uses several <em>processes</em>, mainly to copy files to change the project configuration (add symbol definitions, folders, etc). Preprocessing is basic, only macro substitutions.</p>
+<p>The Eclipse CDT template mechanism uses several <em>processes</em>, mainly to copy files and to change the project configuration (add symbol definitions, folders, etc).</p>
+
+<p>Like most other things in Eclipse, the definitions reside in a very verbose xml file. Preprocessing is basic, only macro substitutions. Conditional execution is limited to one level, and the implementation is not very fortunate.</p>
 
 <h2 id="scripting-proposal">Scripting proposal</h2>
 
 <p>It looks like using some kind of scripting language is inevitable. Defining a custom one, even inspired by an existing solution, is possible, but implementing it requires significant efforts.</p>
 
-<p>With the omnipresent JavaScript, a better solution might be to implement the scripting part in JavaScript.</p>
+<p>With the omnipresent JavaScript, a simpler solution might be to implement the scripting part in JavaScript.</p>
 
-<p>The DAVE idea to have the entire template as a script is one option. An even better option seems to be to generate this script.</p>
+<p>The DAVE idea to have the entire template as a script is interesting, but an even better option might be to generate this script.</p>
 
-<p>So, the approach used by the XCDL preprocessor is to convert the entire template file into JavaScript, and to execute it.</p>
+<p>So, the current proposal to be used by the XCDL preprocessor is to convert the entire template file into JavaScript, and to execute it.</p>
 
 <h2 id="javascript-implementations">JavaScript implementations</h2>
 
-<p>Mature JavaScript implementations are now available for most platforms and languages, for example:</p>
+<p>Executing JavaScript inside another program might be a problem, but mature JavaScript implementations are now available for most platforms and languages, for example:</p>
 
 <ul>
   <li><a href="https://github.com/robertkrimen/otto">Go Otto</a></li>
@@ -537,144 +503,278 @@ uint8_t %'ModuleName'%.%RenameFile(const uint8_t *srcFileName, const uint8_t *ds
 
 <h2 id="possible-syntax-solutions">Possible syntax solutions</h2>
 
-<p>Assuming the tags will be encoded as comments, for C/C++ two possible solutions are:</p>
+<p>Assuming the tags will be encoded as comments, the simplest solution would be to prefix the lines with a specific comment:</p>
 
 <ul>
-  <li>
-<code class="highlighter-rouge">/*JS ... */</code> and <code class="highlighter-rouge">//JS</code>
-</li>
-  <li>
-<code class="highlighter-rouge">/*@ ... */</code> and <code class="highlighter-rouge">//@ ...</code>
-</li>
+  <li><code class="highlighter-rouge">//@XCDL</code></li>
 </ul>
+
+<p>To simplify things even further, there should be no other non-spaces before this separator.</p>
 
 <h2 id="javascript">JavaScript</h2>
 
-<p>With the choice for JavaScript and the requirement that scripts be encoded as comments, the process to convert the templates to JavaScript is relatively straightforward: pass the tags as-is, and encode each source line in an output call.</p>
+<p>With the choice for JavaScript and this simple syntax, the process to convert the templates to JavaScript is relatively straightforward: process line by line, identify <code class="highlighter-rouge">//@XCDL</code>, pass the tags as-is, and encode all other source line in an output call.</p>
 
 <p>For example:</p>
 
 <div class="highlighter-rouge">
-<pre class="highlight"><code>/*JS if (variable==="value") { */
+<pre class="highlight"><code>//@XCDL if (variable==="value") {
 ... C/C++ lines ...
-/*JS } */
+//@XCDL }
 </code></pre>
 </div>
 <p>translates into:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>if (variable==="value") {
+<pre>
+<code class="language-.js">if (variable==="value") {
 o("... C/C++ lines ...\n");
 }
 </code></pre>
-</div>
 
 <p>where <code class="highlighter-rouge">o(str)</code> is a function that outputs the string to the destination file.</p>
 
-<p>Substitutions are identified and the generated JavaScript code converts the values to strings and outputs them.</p>
+<p>Substitutions are can be identified and processed by the JavaScript, or can be optimised by generating a JavaScript code that converts the values to strings and outputs them.</p>
 
 <div class="highlighter-rouge">
 <pre class="highlight"><code>#define VARIABLE ($(value+1))
 </code></pre>
 </div>
 
-<p>translates to:</p>
+<p>can be translated to:</p>
 
 <div class="highlighter-rouge">
 <pre class="highlight"><code>o("#define VARIABLE (");o(String(value+1));o(")\n");
 </code></pre>
 </div>
 
-<h2 id="choices">Choices</h2>
-
-<h3 id="js-vs-">
-<code class="highlighter-rouge">/*JS</code> vs <code class="highlighter-rouge">/*@</code>
-</h3>
-
-<p>Personally I prefer <code class="highlighter-rouge">/*JS</code>, but it is one character longer. The lower case alternative (<code class="highlighter-rouge">/*js</code>) is also possible.</p>
-
-<h3 id="vs-">
-<code class="highlighter-rouge">$()</code> vs <code class="highlighter-rouge">/*$()*/</code>
-</h3>
-
-<p>The comment version seems easier to parse, since it stops at the first occurrence of <code class="highlighter-rouge">)*/</code>, but is longer and is less readable.</p>
-
-<p>The short version is definitely more attractive, but requires a more elaborate parsing of the content. For C/C++, the syntax overlaps a legal expression (<code class="highlighter-rouge">$</code> is a legal identifier, so <code class="highlighter-rouge">$()</code> is actually a function call).</p>
-
-<p>Please note that formatters may add a space in front of the parenthesis (like <code class="highlighter-rouge">$ ()</code>).</p>
-
 <h2 id="examples">Examples</h2>
 
 <p>With these conventions, the first sample would look like:</p>
 
 <div class="highlighter-rouge">
-<pre class="highlight"><code>  /*JS if (defined('user')) { */
-  hello ("$(user.name)!");
-  /*JS } */
-  url = "$(url+'.html'))";
+<pre class="highlight"><code>//@XCDL if (defined('user')) {
+hello ("$(user.name)!");
+//@XCDL }
+url = "$(url+'.html'))";
 </code></pre>
 </div>
 
 <p>As expected, this is perfectly legal C syntax. The JavaScript code uses a function <code class="highlighter-rouge">defined()</code> that checks if an object is defined, and, if so, expands the <code class="highlighter-rouge">name</code> attribute of this object.</p>
 
-<p>The CubeMX code would probably look easier to read in JavaScript.</p>
+<p>A more complex example would generate the <code class="highlighter-rouge">main.c</code>/<code class="highlighter-rouge">main.cpp</code> files in the STM32F4 template:</p>
 
-<p>The DAVE code, assuming we also have a Groovy parser, would look like:</p>
+<pre>
+<code class="language-.cpp">//
+// This file is part of the GNU ARM Eclipse distribution.
+// Copyright (c) 2016 Liviu Ionescu.
+//
+// ----------------------------------------------------------------------------
+#include &lt;stdio.h&gt;
+#include "diag/Trace.h"
+//@XCDL 	if (content==="blinky") {
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>/*GV package Model.Common; GV*/
+//@XCDL 		if (fileExtension==="c") {
+#include "Timer.h"
+#include "BlinkLed.h"
+//@XCDL 		} else if (fileExtension==="cpp") {
+#include "Timer.h"
+#include "BlinkLed.h"
+//@XCDL 		} // fileExtension
+//@XCDL 	} // content
 
-/*******************************************************************************
- Copyright (c) 2014, Infineon Technologies AG                                 **
- All rights reserved.                                                         **
-*******************************************************************************/
-
-/*******************************************************************************
- * @brief This function initializes the Apps Init Functions.
- *
- * @param[in]  None
- *
- * @return  DAVE_STATUS_t &lt;BR&gt;
- *
- * &lt;b&gt;Reentrant: No &lt;/b&gt;&lt;BR&gt;
- *
- ******************************************************************************/
-
-DAVE_STATUS_t DAVE_Init(void)
-{
-  DAVE_STATUS_t init_status;
-
-  init_status = DAVE_STATUS_SUCCESS;
-
-/*GV
-def appsList = daveEnv.project.getTopLevelApps();
-def apps = [];
-def appName
-def instanceLabel
-
- for (def app : appsList ) {
- 	 if(app.initProvider) {
- 		 apps.add(app);
-	 }
-} GV*/
-
-/** @Initialization of Apps Init Functions */
-
-/*GV for (def app : apps ) {  GV*/
-/*GV   appName = app.getClass().getSimpleName() GV*/
-/*GV 	 instanceLabel = app.getInstanceLabel() GV*/
-  if (init_status == DAVE_STATUS_SUCCESS)
+// ----------------------------------------------------------------------------
+//
+//@XCDL 	if (content==="blinky") {
+//@XCDL 		if (syscalls==="none") {
+// Standalone $(shortChipFamily) led blink sample (trace via $(trace)).
+// In debug configurations, demonstrate how to print a greeting message
+// on the trace device. In release configurations the message is
+// simply discarded.
+//
+// Then demonstrates how to blink a led with 1 Hz, using a
+// continuous loop and SysTick delays.
+//@XCDL 		} else if (syscalls==="retarget") {
+// $(shortChipFamily) led blink sample (trace via $(trace)).
+// In debug configurations, demonstrate how to print a greeting message
+// on the trace device. In release configurations the message is
+// simply discarded.
+//
+// To demonstrate POSIX retargetting, reroute the STDOUT and STDERR to the
+// trace device and display messages on both of them.
+//
+// Then demonstrates how to blink a led with 1 Hz, using a
+// continuous loop and SysTick delays.
+//
+// On DEBUG, the uptime in seconds is also displayed on the trace device.
+//@XCDL 		} else if (syscalls==="semihosting") {
+// Semihosting $(shortChipFamily) led blink sample (trace via $(trace)).
+// In debug configurations, demonstrate how to print a greeting message
+// on the trace device. In release configurations the message is
+// simply discarded.
+//
+// To demonstrate semihosting, display a message on the standard output
+// and another message on the standard error.
+//
+// Then demonstrates how to blink a led with 1 Hz, using a
+// continuous loop and SysTick delays.
+//
+// On DEBUG, the uptime in seconds is also displayed on the trace device.
+//@XCDL 		} // syscalls
+//@XCDL 	} else if (content==="empty") {
+//@XCDL 		if (syscalls==="none") {
+// Standalone $(shortChipFamily) empty sample (trace via $(trace)).
+//@XCDL 		} else if (syscalls==="retarget") {
+// $(shortChipFamily) empty sample (trace via $(trace)).
+//@XCDL 		} else if (syscalls==="semihosting") {
+// Semihosting $(shortChipFamily) empty sample (trace via $(trace)).
+//@XCDL 		} // syscalls
+//@XCDL 	} // content
+//
+// Trace support is enabled by adding the TRACE macro definition.
+// By default the trace messages are forwarded to the $(trace) output,
+// but can be rerouted to any device or completely suppressed, by
+// changing the definitions required in system/src/diag/trace_impl.c
+// (currently OS_USE_TRACE_ITM, OS_USE_TRACE_SEMIHOSTING_DEBUG/_STDOUT).
+//
+//@XCDL 	if "$(content==="blinky") {
+// The external clock frequency is specified as a preprocessor definition
+// passed to the compiler via a command line option (see the 'C/C++ General' -&gt;
+// 'Paths and Symbols' -&gt; the 'Symbols' tab, if you want to change it).
+// The value selected during project creation was HSE_VALUE=$(hseValue).
+//
+// Note: The default clock settings take the user defined HSE_VALUE and try
+// to reach the maximum possible system clock. For the default 8 MHz input
+// the result is guaranteed, but for other values it might not be possible,
+// so please adjust the PLL settings in system/src/cmsis/system_$(CMSIS_name).c
+//
+//@XCDL		if (fileExtension==="c") {
+// ----- Timing definitions ---------------------------------------------------
+// Keep the LED on for 2/3 of a second.
+#define BLINK_1S_TICKS  (TIMER_FREQUENCY_HZ)
+#define BLINK_ON_TICKS  (TIMER_FREQUENCY_HZ * 2 / 3)
+#define BLINK_OFF_TICKS (TIMER_FREQUENCY_HZ - BLINK_ON_TICKS)
+//@XCDL 		} else if (fileExtension==="cpp") { */
+// Definitions visible only within this translation unit.
+$("namespace")
   {
-    /**  Initialization of $(appName) App instance $(instanceLabel) */
-    init_status = (DAVE_STATUS_t)$(appName)_Init(&amp;$(instanceLabel));
-  }  
-/*GV } GV*/
+	// ----- Timing definitions -----------------------------------------------
 
-  return init_status;
-} /**  End of function DAVE_Init */
+	// Keep the LED on for 2/3 of a second.
+	constexpr Timer::ticks_t BLINK_1S_TICKS = Timer::FREQUENCY_HZ;
+	constexpr Timer::ticks_t BLINK_ON_TICKS = Timer::FREQUENCY_HZ * 2 / 3;
+	constexpr Timer::ticks_t BLINK_OFF_TICKS = Timer::FREQUENCY_HZ - BLINK_ON_TICKS;
+  }
+//@XCDL		} // fileExtension
+//@XCDL	} // content
 
+// ----- main() ---------------------------------------------------------------
+// Sample pragmas to cope with warnings. Please note the related line at
+// the end of this function, used to pop the compiler diagnostics status.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wmissing-declarations"
+#pragma GCC diagnostic ignored "-Wreturn-type"
+
+int
+main (int argc, char* argv[])
+{
+//@XCDL	if (content==="blinky") {
+//@XCDL		if (syscalls==="retarget") {
+  // By customising __initialize_args() it is possible to pass arguments,
+  // for example when running tests with semihosting you can pass various
+  // options to the test.
+  // trace_dump_args(argc, argv);
+//@XCDL		} else if (syscalls==="semihosting") {
+  // Show the program parameters (passed via semihosting).
+  // Output is via the semihosting output channel.
+  trace_dump_args (argc, argv);
+//@XCDL		} // syscalls
+
+  // Send a greeting to the trace device (skipped on Release).
+  trace_puts ("Hello ARM World!");
+
+//@XCDL		if (syscalls==="retarget") {
+  // The standard output and the standard error should be forwarded to
+  // the trace device. For this to work, a redirection in _write.c is
+  // required.
+  // Send a message to the standard output.
+  puts ("Standard output message.");
+
+  // Send a message to the standard error.
+  fprintf (stderr, "Standard error message.\n");
+//@XCDL		} else if (syscalls==="semihosting") {
+  // Send a message to the standard output.
+  puts ("Standard output message.");
+
+  // Send a message to the standard error.
+  fprintf (stderr, "Standard error message.\n");
+//@XCDL		} // syscalls
+
+  // At this stage the system clock should have already been configured
+  // at high speed.
+  trace_printf ("System clock: %u Hz\n", SystemCoreClock);
+
+//@XCDL		if (fileExtension==="c") {
+  timer_start ();
+
+  blink_led_init ();
+
+  uint32_t seconds = 0;
+
+  // Infinite loop
+  for (int i = 0;; i++)
+	{
+	  blink_led_on ();
+	  timer_sleep (i == 0 ? BLINK_1S_TICKS : BLINK_ON_TICKS);
+
+	  blink_led_off ();
+	  timer_sleep (BLINK_OFF_TICKS);
+
+	  ++seconds;
+	  // Count seconds on the trace device.
+	  trace_printf ("Second %u\n", seconds);
+	}
+//@XCDL		} else if (fileExtension==="cpp") {
+  Timer timer;
+  timer.start ();
+
+  BlinkLed blinkLed;
+
+  // Perform all necessary initialisations for the LED.
+  blinkLed.powerUp ();
+
+  uint32_t seconds = 0;
+
+  // Infinite loop
+  for (int i = 0;; i++)
+	{
+	  blinkLed.turnOn ();
+	  timer_sleep (i == 0 ? BLINK_1S_TICKS : BLINK_ON_TICKS);
+
+	  blinkLed.turnOff ();
+	  timer.sleep (BLINK_OFF_TICKS);
+
+	  ++seconds;
+	  // Count seconds on the trace device.
+	  trace_printf ("Second %u\n", seconds);
+	}
+//@XCDL		} // fileExtension
+  // Infinite loop, never return.
+//@XCDL	} else if (content==="empty") {
+  // At this stage the system clock should have already been configured
+  // at high speed.
+  // Infinite loop
+  while (1)
+	{
+	  // Add your code here.
+	}
+//@XCDL	} // content */
+}
+
+#pragma GCC diagnostic pop
+
+// ----------------------------------------------------------------------------
 </code></pre>
-</div>
 
 
 
