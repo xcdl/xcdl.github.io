@@ -103,7 +103,7 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4 id="newsblog"><a href="/blog/">News</a></h4>
+      <h4 id="news"><a href="/blog/">News</a></h4>
 
 <ul>
   <li><a href="/blog/2016/08/04/license-update/">License changed from LGPL to MIT License</a></li>
@@ -142,7 +142,7 @@
   <li><a href="https://opensource.org/licenses/MIT">MIT</a></li>
 </ul>
 
-<h4 id="aboutabout"><a href="/about/">About</a></h4>
+<h4 id="about"><a href="/about/">About</a></h4>
 
     </div>
   </div>
@@ -158,7 +158,7 @@
 
         
 <h1 class="page-title">JavaScript Style Guide</h1>
-<p class="last-modified">Last modified on Tue Sep 20 18:17:10 2016 UTC.</p>
+<p class="last-modified">Last modified on Sat Dec 17 21:50:37 2016 UTC.</p>
 
 
 <div id="toc-container">
@@ -171,35 +171,70 @@
 </div>
 <ul>
 <li class="toc_level-1 toc_section-1">
-<a href="#from-npms-funny-coding-stylehttpsdocsnpmjscommisccoding-style"><span class="tocnumber">1</span> <span class="toctext">From npm’s “funny” coding style</span></a>
-</li>
-<li class="toc_level-1 toc_section-2">
-<a href="#from-nodejs-moduleshttpsnodejsorgdistlatest-v6xdocsapimoduleshtml"><span class="tocnumber">2</span> <span class="toctext">From node.js modules</span></a>
+<a href="#from-npms-funny-coding-style"><span class="tocnumber">1</span> <span class="toctext">From npm’s “funny” coding style</span></a>
 <ul>
+<li class="toc_level-2 toc_section-2">
+<a href="#line-length"><span class="tocnumber">1.1</span> <span class="toctext">Line length</span></a>
+</li>
 <li class="toc_level-2 toc_section-3">
-<a href="#modules"><span class="tocnumber">2.1</span> <span class="toctext">Modules</span></a>
+<a href="#indentation"><span class="tocnumber">1.2</span> <span class="toctext">Indentation</span></a>
 </li>
 <li class="toc_level-2 toc_section-4">
-<a href="#accessing-the-main-module"><span class="tocnumber">2.2</span> <span class="toctext">Accessing the main module</span></a>
+<a href="#curly-braces"><span class="tocnumber">1.3</span> <span class="toctext">Curly braces</span></a>
 </li>
 <li class="toc_level-2 toc_section-5">
-<a href="#caching"><span class="tocnumber">2.3</span> <span class="toctext">Caching</span></a>
+<a href="#semicolons"><span class="tocnumber">1.4</span> <span class="toctext">Semicolons</span></a>
 </li>
 <li class="toc_level-2 toc_section-6">
+<a href="#comma-first"><span class="tocnumber">1.5</span> <span class="toctext">Comma first</span></a>
+</li>
+<li class="toc_level-2 toc_section-7">
+<a href="#quotes"><span class="tocnumber">1.6</span> <span class="toctext">Quotes</span></a>
+</li>
+<li class="toc_level-2 toc_section-8">
+<a href="#whitespaces"><span class="tocnumber">1.7</span> <span class="toctext">Whitespaces</span></a>
+</li>
+<li class="toc_level-2 toc_section-9">
+<a href="#functions"><span class="tocnumber">1.8</span> <span class="toctext">Functions</span></a>
+</li>
+<li class="toc_level-2 toc_section-10">
+<a href="#case-naming-etc"><span class="tocnumber">1.9</span> <span class="toctext">Case, naming, etc</span></a>
+</li>
+<li class="toc_level-2 toc_section-11">
+<a href="#null-undefined-false"><span class="tocnumber">1.10</span> <span class="toctext">null, undefined, false</span></a>
+</li>
+<li class="toc_level-2 toc_section-12">
+<a href="#exceptions"><span class="tocnumber">1.11</span> <span class="toctext">Exceptions</span></a>
+</li>
+</ul>
+</li>
+<li class="toc_level-1 toc_section-13">
+<a href="#from-nodejs-modules"><span class="tocnumber">2</span> <span class="toctext">From node.js modules</span></a>
+<ul>
+<li class="toc_level-2 toc_section-14">
+<a href="#modules"><span class="tocnumber">2.1</span> <span class="toctext">Modules</span></a>
+</li>
+<li class="toc_level-2 toc_section-15">
+<a href="#accessing-the-main-module"><span class="tocnumber">2.2</span> <span class="toctext">Accessing the main module</span></a>
+</li>
+<li class="toc_level-2 toc_section-16">
+<a href="#caching"><span class="tocnumber">2.3</span> <span class="toctext">Caching</span></a>
+</li>
+<li class="toc_level-2 toc_section-17">
 <a href="#the-module-wrapper"><span class="tocnumber">2.4</span> <span class="toctext">The module wrapper</span></a>
 </li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-7">
+<li class="toc_level-1 toc_section-18">
 <a href="#from-understanding-ecmascript-6"><span class="tocnumber">3</span> <span class="toctext">From Understanding ECMAScript 6</span></a>
 <ul>
-<li class="toc_level-2 toc_section-8">
+<li class="toc_level-2 toc_section-19">
 <a href="#block-bindings"><span class="tocnumber">3.1</span> <span class="toctext">Block bindings</span></a>
 </li>
-<li class="toc_level-2 toc_section-9">
-<a href="#functions"><span class="tocnumber">3.2</span> <span class="toctext">Functions</span></a>
+<li class="toc_level-2 toc_section-20">
+<a href="#functions-1"><span class="tocnumber">3.2</span> <span class="toctext">Functions</span></a>
 </li>
-<li class="toc_level-2 toc_section-10">
+<li class="toc_level-2 toc_section-21">
 <a href="#enhanced-object-functionality"><span class="tocnumber">3.3</span> <span class="toctext">Enhanced Object Functionality</span></a>
 </li>
 </ul>
@@ -209,94 +244,126 @@
 </tr>
 </tbody>
 </table>
-</div><h2 id="from-npms-funny-coding-stylehttpsdocsnpmjscommisccoding-style">From <a href="https://docs.npmjs.com/misc/coding-style"><em>npm’s “funny” coding style</em></a></h2>
+</div><h2 id="from-npms-funny-coding-style">From <a href="https://docs.npmjs.com/misc/coding-style"><em>npm’s “funny” coding style</em></a></h2>
+
+<h3 id="line-length">Line length</h3>
+
+<p>Keep lines shorter than <strong>80</strong> characters</p>
+
+<h3 id="indentation">Indentation</h3>
+
+<p>Indentation is <strong>two spaces</strong></p>
+
+<h3 id="curly-braces">Curly braces</h3>
+
+<p>Curly braces belong on the same line</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">f</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">bar</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="semicolons">Semicolons</h3>
+
+<p>Don’t use semicolons, except when required; for example to prevent the expression from being interpreted as a function call or property access, respectively.</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">;(</span><span class="nx">x</span> <span class="o">||</span> <span class="nx">y</span><span class="p">).</span><span class="nx">doSomething</span><span class="p">()</span>
+<span class="p">;[</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">doSomething</span><span class="p">)</span>
+
+</code></pre>
+</div>
+
+<h3 id="comma-first">Comma first</h3>
+
+<p>Put the <strong>comma at the start</strong> of the next line, directly below the token that starts the list</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">magicWords</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">'abracadabra'</span>
+                 <span class="p">,</span> <span class="s1">'gesundheit'</span>
+                 <span class="p">,</span> <span class="s1">'ventrilo'</span>
+                 <span class="p">]</span>
+  <span class="p">,</span> <span class="nx">spells</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">'fireball'</span> <span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">setOnFire</span><span class="p">()</span> <span class="p">}</span>
+             <span class="p">,</span> <span class="s1">'water'</span> <span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">putOut</span><span class="p">()</span> <span class="p">}</span>
+             <span class="p">}</span>
+  <span class="p">,</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="p">,</span> <span class="nx">b</span> <span class="o">=</span> <span class="s1">'abc'</span>
+  <span class="p">,</span> <span class="nx">etc</span>
+  <span class="p">,</span> <span class="nx">somethingElse</span>
+</code></pre>
+</div>
+
+<h3 id="quotes">Quotes</h3>
+
+<p>Use single quotes for strings except to avoid escaping</p>
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">ok</span> <span class="o">=</span> <span class="s1">'String contains "double" quotes'</span>
+<span class="kr">const</span> <span class="nx">alsoOk</span> <span class="o">=</span> <span class="s2">"String contains 'single' quotes or apostrophe"</span>
+<span class="kr">const</span> <span class="nx">paramOk</span> <span class="o">=</span> <span class="err">`</span><span class="nx">Back</span> <span class="nx">quotes</span> <span class="nx">string</span> <span class="kd">with</span> <span class="nx">$</span><span class="p">{</span><span class="nx">parameter</span><span class="p">}</span><span class="err">`</span>
+</code></pre>
+</div>
+
+<h3 id="whitespaces">Whitespaces</h3>
+
+<p>Put a single space in front of <code class="highlighter-rouge">(</code> for anything other than a function call</p>
+
+<h3 id="functions">Functions</h3>
+
+<p>Use named functions.</p>
 
 <ul>
-  <li>keep lines shorter than 80 characters</li>
-  <li>indentation is two spaces</li>
-  <li>curly braces belong on the same line
-    <div class="highlighter-rouge"><pre class="highlight"><code>function () {
-while (foo) {
-  bar()
-}
-}
-</code></pre>
-    </div>
-  </li>
-  <li>don’t use semicolons, except when required
-    <div class="highlighter-rouge"><pre class="highlight"><code>;(x || y).doSomething()
-;[a, b, c].forEach(doSomething)
-for (var i = 0; i &lt; 10; i ++) {
-switch (state) {
-  case 'begin': start(); continue
-  case 'end': finish(); break
-  default: throw new Error('unknown state')
-}
-end()
-}
-</code></pre>
-    </div>
-  </li>
-  <li>put the comma at the start of the next line, directly below the token that starts the list
-    <div class="highlighter-rouge"><pre class="highlight"><code>var magicWords = [ 'abracadabra'
-               , 'gesundheit'
-               , 'ventrilo'
-               ]
-, spells = { 'fireball' : function () { setOnFire() }
-           , 'water' : function () { putOut() }
-           }
-, a = 1
-, b = 'abc'
-, etc
-, somethingElse
-</code></pre>
-    </div>
-  </li>
-  <li>use single quotes for strings except to avoid escaping
-    <div class="highlighter-rouge"><pre class="highlight"><code>var ok = 'String contains "double" quotes'
-var alsoOk = "String contains 'single' quotes or apostrophe"
-</code></pre>
-    </div>
-  </li>
-  <li>put a single space in front of <code class="highlighter-rouge">(</code> for anything other than a function call</li>
-  <li>use named functions</li>
-  <li>always create a new <code class="highlighter-rouge">Error</code> object with your message</li>
+  <li>always create a new <code class="highlighter-rouge">Error</code> object with your message (<code class="highlighter-rouge">new Error('msg')</code>)</li>
   <li>logging is done using the <a href="https://github.com/npm/npmlog"><code class="highlighter-rouge">npmlog</code></a> utility</li>
+</ul>
+
+<h3 id="case-naming-etc">Case, naming, etc</h3>
+
+<ul>
   <li>use <strong>lowerCamelCase</strong> for multiword identifiers when they refer to objects, functions, methods, properties, or anything not specified in this section</li>
   <li>use <strong>UpperCamelCase</strong> for class names (things that you’d pass to “new”)</li>
   <li>use <strong>all-lower-hyphen-css-case</strong> for multiword filenames and config keys</li>
   <li>use named functions, they make stack traces easier to follow</li>
   <li>use <strong>CAPS_SNAKE_CASE</strong> for constants, things that should never change and are rarely used</li>
+</ul>
+
+<h3 id="null-undefined-false">null, undefined, false</h3>
+
+<ul>
   <li>boolean variables and functions should always be either <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code></li>
   <li>when something is intentionally missing or removed, set it to <code class="highlighter-rouge">null</code></li>
   <li>don’t set things to <code class="highlighter-rouge">undefined</code></li>
   <li>boolean objects are verboten</li>
 </ul>
 
-<h2 id="from-nodejs-moduleshttpsnodejsorgdistlatest-v6xdocsapimoduleshtml">From <a href="https://nodejs.org/dist/latest-v6.x/docs/api/modules.html">node.js modules</a></h2>
+<h3 id="exceptions">Exceptions</h3>
+
+<p>When using callbacks, never to ever ever throw anything. It’s worse than useless. Just send the error message back as the first argument to the callback.</p>
+
+<h2 id="from-nodejs-modules">From <a href="https://nodejs.org/dist/latest-v6.x/docs/api/modules.html">node.js modules</a></h2>
 
 <h3 id="modules">Modules</h3>
 
 <p>To add functions and objects to the root of your module, you can add them to the special <code class="highlighter-rouge">exports</code> object:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>const PI = Math.PI
-exports.area = (r) =&gt; PI * r * r
-exports.circumference = (r) =&gt; 2 * PI * r
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">PI</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">area</span> <span class="o">=</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">PI</span> <span class="o">*</span> <span class="nx">r</span> <span class="o">*</span> <span class="nx">r</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">circumference</span> <span class="o">=</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">PI</span> <span class="o">*</span> <span class="nx">r</span>
 </code></pre>
 </div>
 
 <p>If you want the root of your module’s export to be a function (such as a constructor) or if you want to export a complete object in one assignment instead of building it one property at a time, assign it to <code class="highlighter-rouge">module.exports</code> instead of <code class="highlighter-rouge">exports</code>.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>const square = require('./square.js');
-var mySquare = square(2);
-console.log(`The area of my square is ${mySquare.area()}`);
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">square</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./square.js'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">mySquare</span> <span class="o">=</span> <span class="nx">square</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">The</span> <span class="nx">area</span> <span class="nx">of</span> <span class="nx">my</span> <span class="nx">square</span> <span class="nx">is</span> <span class="nx">$</span><span class="p">{</span><span class="nx">mySquare</span><span class="p">.</span><span class="nx">area</span><span class="p">()}</span><span class="err">`</span><span class="p">)</span>
 
-// assigning to exports will not modify module, must use module.exports
-module.exports = (width) =&gt; {
-  return {
-    area: () =&gt; width * width
-  };
-}
+<span class="c1">// assigning to exports will not modify module, must use module.exports</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">width</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">area</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">width</span> <span class="o">*</span> <span class="nx">width</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
@@ -304,7 +371,7 @@ module.exports = (width) =&gt; {
 
 <p>When a file is run directly from Node.js, require.main is set to its module. That means that you can determine whether a file has been run directly by testing</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>require.main === module
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="nx">require</span><span class="p">.</span><span class="nx">main</span> <span class="o">===</span> <span class="nx">module</span>
 </code></pre>
 </div>
 
@@ -317,13 +384,14 @@ module.exports = (width) =&gt; {
 <h3 id="the-module-wrapper">The module wrapper</h3>
 
 <p>Before a module’s code is executed, Node.js will wrap it with a function wrapper that looks like the following:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>(function (exports, require, module, __filename, __dirname) {
-// Your module code actually lives in here
-});
+
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">exports</span><span class="p">,</span> <span class="nx">require</span><span class="p">,</span> <span class="nx">module</span><span class="p">,</span> <span class="nx">__filename</span><span class="p">,</span> <span class="nx">__dirname</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Your module code actually lives in here</span>
+<span class="p">});</span>
 </code></pre>
 </div>
 
-<p>In each module, the module free variable is a reference to the object representing the current module. For convenience, module.exports is also accessible via the exports module-global. module isn’t actually a global but rather local to each module.</p>
+<p>In each module, the module free variable is a reference to the object representing the current module. For convenience, <code class="highlighter-rouge">module.exports</code> is also accessible via the exports module-global. module isn’t actually a global but rather local to each module.</p>
 
 <p>The <code class="highlighter-rouge">module.exports</code> object is created by the Module system. Sometimes this is not acceptable; many want their module to be an instance of some class. To do this, assign the desired export object to <code class="highlighter-rouge">module.exports</code>. Note that assigning the desired object to <code class="highlighter-rouge">exports</code> will simply rebind the local exports variable, which is probably not what you want to do.</p>
 
@@ -339,73 +407,75 @@ module.exports = (width) =&gt; {
 
 <p>Use <code class="highlighter-rouge">const</code> by default, and only use <code class="highlighter-rouge">let</code> when you know a variable’s value needs to change</p>
 
-<h3 id="functions">Functions</h3>
+<h3 id="functions-1">Functions</h3>
 
 <p>Use default parameters.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>function makeRequest(url, timeout = 2000, callback = function() {}) {
-    // the rest of the function
-}
-function add(first, second = getValue(first)) {
-    return first + second;
-}
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">makeRequest</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">timeout</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="nx">callback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{})</span> <span class="p">{</span>
+  <span class="c1">// the rest of the function</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">first</span><span class="p">,</span> <span class="nx">second</span> <span class="o">=</span> <span class="nx">getValue</span><span class="p">(</span><span class="nx">first</span><span class="p">))</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">first</span> <span class="o">+</span> <span class="nx">second</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
 <p>Use <em>rest</em> parameters.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>function pick(object, ...keys) {
-    let result = Object.create(null);
-    for (let i = 0, len = keys.length; i &lt; len; i++) {
-        result[keys[i]] = object[keys[i]];
-}
-    return result;
-}
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">pick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="p">...</span><span class="nx">keys</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">keys</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">result</span><span class="p">[</span><span class="nx">keys</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">object</span><span class="p">[</span><span class="nx">keys</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
 <p>The <code class="highlighter-rouge">Function</code> constructor.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>var add = new Function("first", "second = first",
-                 "return first + second");
-console.log(add(1, 1));     // 2
-console.log(add(1));        // 2
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">add</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">(</span><span class="s2">"first"</span><span class="p">,</span> <span class="s1">'second = first'</span><span class="p">,</span>
+                 <span class="s1">'return first + second'</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>     <span class="c1">// 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>        <span class="c1">// 2</span>
 </code></pre>
 </div>
 
 <p>JavaScript has two different internal-only methods for functions: <code class="highlighter-rouge">[[Call]]</code> and <code class="highlighter-rouge">[[Construct]]</code>. When a function is called without new, the <code class="highlighter-rouge">[[Call]]</code> method is executed, which executes the body of the function as it appears in the code. When a function is called with new, that’s when the <code class="highlighter-rouge">[[Construct]]</code> method
 is called. The <code class="highlighter-rouge">[[Construct]]</code> method is responsible for creating a new object, called the instance, and then executing the function body with this set to the instance. Functions that have a <code class="highlighter-rouge">[[Construct]]</code> method are called constructors.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>function Person(name) {
-    if (this instanceof Person) {
-        this.name = name;
-    } else {
-        throw new Error("You must use new with Person.")
-    }
-}
-var person = new Person("Nicholas");
-var notAPerson = Person.call(person, "Michael");    // works!
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="k">instanceof</span> <span class="nx">Person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'You must use new with Person.'</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'Nicholas'</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">notAPerson</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">person</span><span class="p">,</span> <span class="s1">'Michael'</span><span class="p">)</span>    <span class="c1">// works!</span>
 </code></pre>
 </div>
 
 <p>Block-level functions</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>"use strict";
-if (true) {
-    console.log(typeof doSomething); // throws an error
-    let doSomething = function () {
-        // empty
-    }
-    doSomething();
-}
-console.log(typeof doSomething);
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">doSomething</span><span class="p">)</span> <span class="c1">// throws an error</span>
+  <span class="kd">let</span> <span class="nx">doSomething</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// empty</span>
+  <span class="p">}</span>
+  <span class="nx">doSomething</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">doSomething</span><span class="p">)</span>
 </code></pre>
 </div>
 
-<p>Arrow functions are functions defined with a new syntax that uses an arrow (=&gt;)</p>
+<p>Arrow functions are functions defined with a new syntax that uses an arrow (<code class="highlighter-rouge">=&gt;</code>)</p>
 
 <ul>
-  <li><strong>No this, super, arguments, and new.target bindings</strong> The values of this, super, arguments, and new.target inside the function are defined by the closest containing non-arrow function</li>
+  <li><strong>No this, super, arguments, and new.target bindings</strong> The values of <code class="highlighter-rouge">this</code>, <code class="highlighter-rouge">super</code>, arguments, and new.target inside the function are defined by the closest containing non-arrow function</li>
   <li><strong>Cannot be called with new</strong> Arrow functions do not have a [[Construct]] method and therefore cannot be used as constructors. Arrow functions throw an error when used with new.</li>
   <li><strong>No prototype</strong> Because you can’t use new on an arrow function, there’s no need for a prototype. The prototype property of an arrow function doesn’t exist.</li>
   <li><strong>Can’t change this</strong> The value of this inside the function can’t be changed. It remains the same throughout the entire life cycle of the function.</li>
@@ -413,11 +483,11 @@ console.log(typeof doSomething);
   <li><strong>No duplicate named parameters</strong> Arrow functions cannot have duplicate named parameters in strict or non-strict mode, as opposed to non-arrow functions, which cannot have duplicate named parameters only in strict mode.</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>let sum = (num1, num2) =&gt; num1 + num2;
-// effectively equivalent to:
-let sum = function(num1, num2) {
-    return num1 + num2;
-};
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span>
+<span class="c1">// effectively equivalent to:</span>
+<span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span>
+<span class="p">};</span>
 </code></pre>
 </div>
 

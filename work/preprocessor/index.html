@@ -104,7 +104,7 @@
 
   <div class="custom-sidebar">
     <div class="boxed-group-inner">
-      <h4 id="newsblog"><a href="/blog/">News</a></h4>
+      <h4 id="news"><a href="/blog/">News</a></h4>
 
 <ul>
   <li><a href="/blog/2016/08/04/license-update/">License changed from LGPL to MIT License</a></li>
@@ -143,7 +143,7 @@
   <li><a href="https://opensource.org/licenses/MIT">MIT</a></li>
 </ul>
 
-<h4 id="aboutabout"><a href="/about/">About</a></h4>
+<h4 id="about"><a href="/about/">About</a></h4>
 
     </div>
   </div>
@@ -159,7 +159,7 @@
 
         
 <h1 class="page-title">XCDL templates preprocessor syntax proposal</h1>
-<p class="last-modified">Last modified on Fri Aug  5 16:34:55 2016 UTC.</p>
+<p class="last-modified">Last modified on Sat Dec 17 21:48:57 2016 UTC.</p>
 
 
 <div id="toc-container">
@@ -187,38 +187,41 @@
 <a href="#jekyll"><span class="tocnumber">4.1</span> <span class="toctext">Jekyll</span></a>
 </li>
 <li class="toc_level-2 toc_section-6">
-<a href="#st-cubemx"><span class="tocnumber">4.2</span> <span class="toctext">ST CubeMX</span></a>
+<a href="#jinja2"><span class="tocnumber">4.2</span> <span class="toctext">Jinja2</span></a>
 </li>
 <li class="toc_level-2 toc_section-7">
-<a href="#infineon-dave"><span class="tocnumber">4.3</span> <span class="toctext">Infineon DAVE</span></a>
+<a href="#st-cubemx"><span class="tocnumber">4.3</span> <span class="toctext">ST CubeMX</span></a>
 </li>
 <li class="toc_level-2 toc_section-8">
-<a href="#freescale-processor-expert"><span class="tocnumber">4.4</span> <span class="toctext">Freescale Processor Expert</span></a>
+<a href="#infineon-dave"><span class="tocnumber">4.4</span> <span class="toctext">Infineon DAVE</span></a>
 </li>
 <li class="toc_level-2 toc_section-9">
-<a href="#ac6-system-workbench"><span class="tocnumber">4.5</span> <span class="toctext">AC6 System Workbench</span></a>
+<a href="#freescale-processor-expert"><span class="tocnumber">4.5</span> <span class="toctext">Freescale Processor Expert</span></a>
 </li>
 <li class="toc_level-2 toc_section-10">
-<a href="#eclipse-cdt-template-wizard"><span class="tocnumber">4.6</span> <span class="toctext">Eclipse CDT template wizard</span></a>
+<a href="#ac6-system-workbench"><span class="tocnumber">4.6</span> <span class="toctext">AC6 System Workbench</span></a>
 </li>
 <li class="toc_level-2 toc_section-11">
-<a href="#apache-freemarker"><span class="tocnumber">4.7</span> <span class="toctext">Apache FreeMarker</span></a>
+<a href="#eclipse-cdt-template-wizard"><span class="tocnumber">4.7</span> <span class="toctext">Eclipse CDT template wizard</span></a>
+</li>
+<li class="toc_level-2 toc_section-12">
+<a href="#apache-freemarker"><span class="tocnumber">4.8</span> <span class="toctext">Apache FreeMarker</span></a>
 </li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-12">
+<li class="toc_level-1 toc_section-13">
 <a href="#scripting-proposal"><span class="tocnumber">5</span> <span class="toctext">Scripting proposal</span></a>
 </li>
-<li class="toc_level-1 toc_section-13">
+<li class="toc_level-1 toc_section-14">
 <a href="#javascript-implementations"><span class="tocnumber">6</span> <span class="toctext">JavaScript implementations</span></a>
 </li>
-<li class="toc_level-1 toc_section-14">
+<li class="toc_level-1 toc_section-15">
 <a href="#possible-syntax-solutions"><span class="tocnumber">7</span> <span class="toctext">Possible syntax solutions</span></a>
 </li>
-<li class="toc_level-1 toc_section-15">
+<li class="toc_level-1 toc_section-16">
 <a href="#javascript"><span class="tocnumber">8</span> <span class="toctext">JavaScript</span></a>
 </li>
-<li class="toc_level-1 toc_section-16">
+<li class="toc_level-1 toc_section-17">
 <a href="#examples"><span class="tocnumber">9</span> <span class="toctext">Examples</span></a>
 </li>
 </ul>
@@ -280,6 +283,10 @@
 </div>
 
 <p>The syntax remains relatively easy to read, but the Liquid tags still introduce a new language, that needs to be parsed and processed.</p>
+
+<h3 id="jinja2">Jinja2</h3>
+
+<p>The default syntax of <a href="http://jinja.pocoo.org/docs/dev/">Jinja2</a> matches Django syntax in many ways, and it also very similar to the syntax of <a href="https://shopify.github.io/liquid/">Liquid</a> metadata, so it will not be repeated here.</p>
 
 <h3 id="st-cubemx">ST CubeMX</h3>
 
