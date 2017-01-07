@@ -158,152 +158,184 @@
 
         
 <h1 class="page-title">The commands line reference</h1>
-<p class="last-modified">Last modified on Sun Nov 15 10:43:31 2015 UTC.</p>
+<p class="last-modified">Last modified on Sat Jan  7 08:53:42 2017 UTC.</p>
 
 
-<h2 id="introduction">Introduction</h2>
+<div id="toc-container">
+<table class="toc" id="toc">
+<tbody>
+<tr>
+<td>
+<div id="toctitle">
+<h2>Contents</h2>
+</div>
+<ul>
+<li class="toc_level-1 toc_section-1">
+<a href="#introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a>
+</li>
+<li class="toc_level-1 toc_section-2">
+<a href="#xpack"><span class="tocnumber">2</span> <span class="toctext">xpack</span></a>
+</li>
+<li class="toc_level-1 toc_section-3">
+<a href="#xcdl"><span class="tocnumber">3</span> <span class="toctext">xcdl</span></a>
+</li>
+<li class="toc_level-1 toc_section-4">
+<a href="#xsvd"><span class="tocnumber">4</span> <span class="toctext">xsvd</span></a>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="introduction">Introduction</h2>
 
 <p>This chapter contains reference information for the XCDL / xPack command line applications.</p>
 
 <p>TODO: add/update content</p>
 
-<h3 id="xcdl">xcdl</h3>
-
-<h4 id="make">make</h4>
-
-<p>Perform a sequence of tasks to make something, typically to build an executable.</p>
-
-<p>Originally the command was named <code class="highlighter-rouge">build</code>, but <code class="highlighter-rouge">make</code> seems more generic.</p>
-
-<h4 id="run">run</h4>
-
-<p>Run scripts, similarly to <code class="highlighter-rouge">npm run name</code>. It should allow to pass arguments <code class="highlighter-rouge">npm run name -- 1 2 3</code> and possibly use configs.</p>
-
-<p>Inspired from <a href="https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/">How to Use npm as a Build Tool</a>.</p>
-
-<p>Warning: running scripts on Windows requires attention.</p>
-
-<h3 id="xpack">xpack</h3>
+<h2 id="xpack">xpack</h2>
 
 <p>The <code class="highlighter-rouge">xpack</code> command is the XCDL package manager, equivalent to <code class="highlighter-rouge">npm</code>.</p>
 
 <p>For reference, see <a href="https://docs.npmjs.com">npm</a>.</p>
 
-<h4 id="access">access</h4>
+<h3 id="access">access</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm access</code>.</p>
 
-<h4 id="cache">cache</h4>
+<h3 id="build">build</h3>
+
+<p>Similar to <code class="highlighter-rouge">npm build</code>, but it might have different semantics.</p>
+
+<h3 id="cache">cache</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm cache</code>.</p>
 
-<h4 id="completion">completion</h4>
+<h3 id="completion">completion</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm completion</code>.</p>
 
-<h4 id="config">config</h4>
+<h3 id="config">config</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm config</code>.</p>
 
-<h4 id="deprecate">deprecate</h4>
+<h3 id="deprecate">deprecate</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm deprecate</code>.</p>
 
-<h4 id="dist-tag">dist-tag</h4>
+<h3 id="dist-tag">dist-tag</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm dist-tag</code>.</p>
 
-<h4 id="init">init</h4>
+<h3 id="init">init</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm init</code>.</p>
 
-<h4 id="install">install</h4>
+<h3 id="install">install</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm install</code>.</p>
 
-<h4 id="login">login</h4>
+<h3 id="login">login</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm login</code>.</p>
 
-<h4 id="logout">logout</h4>
+<h3 id="logout">logout</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm logout</code>.</p>
 
-<h4 id="ls">ls</h4>
+<h3 id="ls">ls</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm ls</code>.</p>
 
-<h4 id="owner">owner</h4>
+<h3 id="owner">owner</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm owner</code>.</p>
 
-<h4 id="pack">pack</h4>
+<h3 id="pack">pack</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm pack</code>.</p>
 
-<h4 id="ping">ping</h4>
+<h3 id="ping">ping</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm ping</code>.</p>
 
-<h4 id="publish">publish</h4>
+<h3 id="publish">publish</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm publish</code>.</p>
 
-<h4 id="run-script">run-script</h4>
+<h3 id="run-script">run-script</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm run-script</code>.</p>
 
-<h4 id="search">search</h4>
+<p>Run scripts, similarly to <code class="highlighter-rouge">npm run-script name</code>. It should allow to pass arguments <code class="highlighter-rouge">npm run-script name -- 1 2 3</code> and possibly use configs.</p>
+
+<p>Inspired from <a href="https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/">How to Use npm as a Build Tool</a>.</p>
+
+<p>Warning: running scripts on Windows requires attention.</p>
+
+<h3 id="search">search</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm search</code>.</p>
 
-<h4 id="star">star</h4>
+<h3 id="star">star</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm star</code>.</p>
 
-<h4 id="stars">stars</h4>
+<h3 id="stars">stars</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm stars</code>.</p>
 
-<h4 id="uninstall">uninstall</h4>
+<h3 id="uninstall">uninstall</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm uninstall</code>.</p>
 
-<h4 id="unpublish">unpublish</h4>
+<h3 id="unpublish">unpublish</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm unpublish</code>.</p>
 
-<h4 id="update">update</h4>
+<h3 id="update">update</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm update</code>.</p>
 
-<h4 id="unstar">unstar</h4>
+<h3 id="unstar">unstar</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm unstar</code>.</p>
 
-<h4 id="version">version</h4>
+<h3 id="version">version</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm version</code>.</p>
 
-<h4 id="whoami">whoami</h4>
+<h3 id="whoami">whoami</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm whoami</code>.</p>
 
-<h3 id="xsvd">xsvd</h3>
+<h2 id="xcdl">xcdl</h2>
+
+<p>Commands to manipulate the XCDL metadata.</p>
+
+<p>TODO: define.</p>
+
+<h3 id="make">make</h3>
+
+<p>Possibly a more generic version of <code class="highlighter-rouge">xpack build</code>, if XCDL can be extended with features specific to cmake/autotools/etc.</p>
+
+<p>Perform a sequence of tasks to make something, similar to <code class="highlighter-rouge">make</code>.</p>
+
+<h2 id="xsvd">xsvd</h2>
 
 <p>This group of commands are currently used to generate the files used by GNU ARM Eclipse QEMU.</p>
 
 <p><strong>XSVD</strong> files are the XCDL equivalent of CMSIS SVD files, but in JSON instead of XML.</p>
 
-<h4 id="convert">convert</h4>
+<h3 id="convert">convert</h3>
 
 <p>Convert a CMSIS SVD file to XSVD.</p>
 
-<h4 id="patch">patch</h4>
+<h3 id="patch">patch</h3>
 
 <p>Modify an XSVD file by adding definitions from a patch file.</p>
 
-<h4 id="gen-code">gen-code</h4>
+<h3 id="gen-code">gen-code</h3>
 
 <p>Generate source code for QEMU peripherals.</p>
 
