@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>The commands line reference</title>
-  <meta name="description" content="The eXtensible Component Definition Language component framework">
+  <meta name="description" content="The eXtensible Component Definition Language framework">
 
   <meta property="og:title" content="The commands line reference" />
   <meta property="og:site_name" content="XCDL / xPack" />
@@ -86,7 +86,7 @@
   <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
   <div class="site-title">
     <h1><a href="/">XCDL / xPack</a></h1>
-    <p>The eXtensible Component Definition Language component framework</p>
+    <p>The eXtensible Component Definition Language framework</p>
   </div>
 </div>
 
@@ -165,7 +165,148 @@
 
 <p>This chapter contains reference information for the XCDL / xPack command line applications.</p>
 
-<p>TODO: add more content</p>
+<p>TODO: add/update content</p>
+
+<h3 id="xcdl">xcdl</h3>
+
+<h4 id="make">make</h4>
+
+<p>Perform a sequence of tasks to make something, typically to build an executable.</p>
+
+<p>Originally the command was named <code class="highlighter-rouge">build</code>, but <code class="highlighter-rouge">make</code> seems more generic.</p>
+
+<h4 id="run">run</h4>
+
+<p>Run scripts, similarly to <code class="highlighter-rouge">npm run name</code>. It should allow to pass arguments <code class="highlighter-rouge">npm run name -- 1 2 3</code> and possibly use configs.</p>
+
+<p>Inspired from <a href="https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/">How to Use npm as a Build Tool</a>.</p>
+
+<p>Warning: running scripts on Windows requires attention.</p>
+
+<h3 id="xpack">xpack</h3>
+
+<p>The <code class="highlighter-rouge">xpack</code> command is the XCDL package manager, equivalent to <code class="highlighter-rouge">npm</code>.</p>
+
+<p>For reference, see <a href="https://docs.npmjs.com">npm</a>.</p>
+
+<h4 id="access">access</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm access</code>.</p>
+
+<h4 id="cache">cache</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm cache</code>.</p>
+
+<h4 id="completion">completion</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm completion</code>.</p>
+
+<h4 id="config">config</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm config</code>.</p>
+
+<h4 id="deprecate">deprecate</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm deprecate</code>.</p>
+
+<h4 id="dist-tag">dist-tag</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm dist-tag</code>.</p>
+
+<h4 id="init">init</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm init</code>.</p>
+
+<h4 id="install">install</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm install</code>.</p>
+
+<h4 id="login">login</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm login</code>.</p>
+
+<h4 id="logout">logout</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm logout</code>.</p>
+
+<h4 id="ls">ls</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm ls</code>.</p>
+
+<h4 id="owner">owner</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm owner</code>.</p>
+
+<h4 id="pack">pack</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm pack</code>.</p>
+
+<h4 id="ping">ping</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm ping</code>.</p>
+
+<h4 id="publish">publish</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm publish</code>.</p>
+
+<h4 id="run-script">run-script</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm run-script</code>.</p>
+
+<h4 id="search">search</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm search</code>.</p>
+
+<h4 id="star">star</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm star</code>.</p>
+
+<h4 id="stars">stars</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm stars</code>.</p>
+
+<h4 id="uninstall">uninstall</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm uninstall</code>.</p>
+
+<h4 id="unpublish">unpublish</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm unpublish</code>.</p>
+
+<h4 id="update">update</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm update</code>.</p>
+
+<h4 id="unstar">unstar</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm unstar</code>.</p>
+
+<h4 id="version">version</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm version</code>.</p>
+
+<h4 id="whoami">whoami</h4>
+
+<p>Similar to <code class="highlighter-rouge">npm whoami</code>.</p>
+
+<h3 id="xsvd">xsvd</h3>
+
+<p>This group of commands are currently used to generate the files used by GNU ARM Eclipse QEMU.</p>
+
+<p><strong>XSVD</strong> files are the XCDL equivalent of CMSIS SVD files, but in JSON instead of XML.</p>
+
+<h4 id="convert">convert</h4>
+
+<p>Convert a CMSIS SVD file to XSVD.</p>
+
+<h4 id="patch">patch</h4>
+
+<p>Modify an XSVD file by adding definitions from a patch file.</p>
+
+<h4 id="gen-code">gen-code</h4>
+
+<p>Generate source code for QEMU peripherals.</p>
+
 
 
 
@@ -193,7 +334,7 @@
   <div class="site-footer">
   <div class="site-footer-links left">
     <ul>
-  <li>© 2015 Liviu Ionescu</li>
+  <li>© 2016 Liviu Ionescu</li>
   <li>Hosted on GitHub</li>
   <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS" /></a></li>
 </ul>
