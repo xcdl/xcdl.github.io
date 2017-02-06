@@ -9,12 +9,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>The XCDL metadata</title>
-  <meta name="description" content="The eXtensible Component Definition Language framework">
+  <meta name="description" content="The xPack eXtensible Component Definition Language framework">
 
   <meta property="og:title" content="The XCDL metadata">
-  <meta property="og:site_name" content="XCDL / xPack">
+  <meta property="og:site_name" content="xPack / XCDL">
 
-  <link rel="alternate" type="application/rss+xml" title="XCDL / xPack" href="/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="xPack / XCDL" href="/feed.xml">
 
 
 
@@ -28,7 +28,7 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?201510121951" media="screen">
   <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?201510121951" media="print">
 
-  <link rel="canonical" href="http://ilg-ul.github.io/guide/metadata/">
+  <link rel="canonical" href="/guide/metadata/">
 
 
 
@@ -84,10 +84,10 @@
 }(document, "script", "twitter-wjs"));</script>
 
   <div class="site-header">
-  <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
+  <img alt="Icon" class="site-icon" src="/assets/icons/components.png" height="100" width="100">
   <div class="site-title">
-    <h1><a href="/">XCDL / xPack</a></h1>
-    <p>The eXtensible Component Definition Language framework</p>
+    <h1><a href="/">xPack / XCDL</a></h1>
+    <p>The xPack eXtensible Component Definition Language framework</p>
   </div>
 </div>
 
@@ -159,7 +159,7 @@
 
         
 <h1 class="page-title">The XCDL metadata</h1>
-<p class="last-modified">Last modified on Mon Nov 16 11:41:30 2015 UTC.</p>
+<p class="last-modified">Last modified on Mon Feb  6 16:18:36 2017 UTC.</p>
 
 
 <div id="toc-container">
@@ -396,7 +396,7 @@
 
 <p>Many of the properties can be used in any of <code class="highlighter-rouge">&lt;package&gt;</code>, <code class="highlighter-rouge">&lt;component&gt;</code>, <code class="highlighter-rouge">&lt;option&gt;</code> or <code class="highlighter-rouge">&lt;interface&gt;</code>. Other properties are more specific. The <code class="highlighter-rouge">&lt;includeFile&gt;</code> property is only relevant to <code class="highlighter-rouge">&lt;component&gt;</code> objects. The <code class="highlighter-rouge">&lt;generatedFile&gt;</code>, <code class="highlighter-rouge">&lt;hardware&gt;</code> properties apply to a package as a whole, so can only occur in the body of a <code class="highlighter-rouge">&lt;package&gt;</code> object. The <code class="highlighter-rouge">&lt;computed&gt;</code>, <code class="highlighter-rouge">&lt;defaultValue&gt;</code>, <code class="highlighter-rouge">&lt;legalValues&gt;</code> and <code class="highlighter-rouge">&lt;valueType&gt;</code> properties are not relevant to packages, as will be explained later. The <code class="highlighter-rouge">&lt;computed&gt;</code> and <code class="highlighter-rouge">&lt;defaultValue&gt;</code> properties are also not relevant to interfaces.</p>
 
-<p>This section lists the various properties, grouped by purpose. Each property also has a full reference page in <a href="/The_XCDL_language_specification" title="wikilink">The XCDL language specification</a>. Properties related to values and expressions are described in more detail in the Section called Values and Expressions. Properties related to header file generation and to the build process are described in <a href="/The_build_process" title="wikilink">The build process</a>.</p>
+<p>This section lists the various properties, grouped by purpose. Each property also has a full reference page in <a href="/guide/metadata/">The XCDL language specification</a>. Properties related to values and expressions are described in more detail in the Section called Values and Expressions. Properties related to header file generation and to the build process are described in <a href="/guide/build-process/">The build process</a>.</p>
 
 <h3 id="information-providing-properties">Information-providing properties</h3>
 
@@ -658,7 +658,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 
 <p>(not implemented)</p>
 
-<p>For full details of custom build steps and the build process generally, see <a href="/The_build_process" title="wikilink">The build process</a>.</p>
+<p>For full details of custom build steps and the build process generally, see <a href="/guide/build-process/">The build process</a>.</p>
 
 <p>The <code class="highlighter-rouge">&lt;generatedFile&gt;</code> property relates to an object’s exported header files. To avoid any mistakes, this property must be explicitly defined:</p>
 
@@ -875,7 +875,7 @@ Both the boolean and the data part of the option are user-modifiable. To make th
 
 
 <ul class="share-buttons">
-  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/guide/metadata/" data-layout="button"></div></li>
+  <li><div class="fb-share-button" data-href="/guide/metadata/" data-layout="button"></div></li>
   <li><div class="tw-share-button"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div></li>
 </ul>
 
@@ -893,22 +893,22 @@ Both the boolean and the data part of the option are user-modifiable. To make th
   <div class="site-footer">
   <div class="site-footer-links left">
     <ul>
-  <li>© 2016 Liviu Ionescu</li>
+  <li>© 2017 Liviu Ionescu</li>
   <li>Hosted on GitHub</li>
   <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS"></a></li>
 </ul>
 
 
   </div>
-  <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
+  <a href="https://github.com/xcdl/xcdl-js" aria-label="Homepage">
       <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
   </a>
   <div class="site-footer-links right">
     <ul>
   <li><a href="/">Home</a></li>
   <li><a href="/blog/">News</a></li>
-  <li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
-  <li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-js/releases">Releases</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-js/issues">Support</a></li>
   <li><a href="/about/">About</a></li>
 </ul>
 

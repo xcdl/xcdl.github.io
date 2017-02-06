@@ -8,12 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>XCDL build</title>
-  <meta name="description" content="The eXtensible Component Definition Language framework">
+  <meta name="description" content="The xPack eXtensible Component Definition Language framework">
 
   <meta property="og:title" content="XCDL build" />
-  <meta property="og:site_name" content="XCDL / xPack" />
+  <meta property="og:site_name" content="xPack / XCDL" />
 
-  <link rel="alternate" type="application/rss+xml" title="XCDL / xPack" href="/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="xPack / XCDL" href="/feed.xml" />
 
 
 
@@ -27,7 +27,7 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?201510121951" media="screen">
   <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?201510121951" media="print">
 
-  <link rel="canonical" href="http://ilg-ul.github.io/guide/build/">
+  <link rel="canonical" href="/guide/build/">
 
 
 
@@ -83,10 +83,10 @@
 }(document, "script", "twitter-wjs"));</script>
 
   <div class="site-header">
-  <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
+  <img alt="Icon" class="site-icon" src="/assets/icons/components.png" height="100" width="100">
   <div class="site-title">
-    <h1><a href="/">XCDL / xPack</a></h1>
-    <p>The eXtensible Component Definition Language framework</p>
+    <h1><a href="/">xPack / XCDL</a></h1>
+    <p>The xPack eXtensible Component Definition Language framework</p>
   </div>
 </div>
 
@@ -158,7 +158,7 @@
 
         
 <h1 class="page-title">XCDL build</h1>
-<p class="last-modified">Last modified on Sun Nov 15 22:53:57 2015 UTC.</p>
+<p class="last-modified">Last modified on Mon Feb  6 16:18:36 2017 UTC.</p>
 
 
 <blockquote>
@@ -189,7 +189,7 @@
 
 <h3 id="outline-of-the-build-process">Outline of the build process</h3>
 
-<p>The full build process is moulded after the Eclipse CDT build system. It is described in <a href="/The_build_process" title="wikilink">The build process</a>, but a summary is appropriate here. A build involves several directory structures:</p>
+<p>The full build process is moulded after the Eclipse CDT build system. It is described in <a href="/guide/build-process/">The build process</a>, but a summary is appropriate here. A build involves several directory structures:</p>
 
 <ol>
   <li>The component repository. This is where all the package source code is held, along with XCDL files, documentation, and so on. For build purposes a component repository is read-only. Application developers will only modify the component repository when installing or removing packages, via the administration tool. Component writers will typically work with Git/local component repositories, which are read/write.</li>
@@ -319,7 +319,7 @@ if (OS_INTEGER_NUMBER_UARTS &gt; 0) {
 
 <p>Many configuration options affect only the implementation of a package, not the interface. However some options will affect the interface as well, which means that the options have to be tested in the exported header files. Some implementation choices, for example whether or not a particular function should be inlined, also need to be tested in the header file because of language limitations.</p>
 
-<p>Consider a configuration option OS_INCLUDE_KERNEL_MUTEX_TIMEDLOCK which controls whether or not a function os_mutex_timedlock() is provided. The exported kernel header file <em>os/kernel/kapi.h</em> could contain the following:</p>
+<p>Consider a configuration option <code class="highlighter-rouge">OS_INCLUDE_KERNEL_MUTEX_TIMEDLOCK</code> which controls whether or not a function <code class="highlighter-rouge">os_mutex_timedlock()</code> is provided. The exported kernel header file <code class="highlighter-rouge">os/kernel/kapi.h</code> could contain the following:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>#include &lt;pkgconf/kernel.h&gt;
 ...
@@ -351,7 +351,7 @@ extern bool os_mutex_timedlock(os_mutex_t*);
 
 <p>Exported header files should avoid <code class="highlighter-rouge">#include</code>’ing configuration header files unless absolutely necessary, to avoid unnecessary rebuilding of both application code and other packages when there are minor configuration changes. A <code class="highlighter-rouge">#include</code> is needed only when a configuration option affects the exported interface, or when it affects some implementation details which is controlled by the header file such as whether or not a particular function gets inlined.</p>
 
-<p>There are a couple of ways in which the problem of unnecessary rebuilding could be addressed. The first would require more intelligent handling of header file dependency handling by the tools (especially the compiler) and the build system. This would require changes to various non-XCDL tools. An alternative approach would be to support finer-grained configuration header files, for example there could be a file pkgconf/libc/inline.h controlling which functions should be inlined. This could be achieved by some fairly simple extensions to the component framework, but it makes it more difficult to get the package header files and source code correct: a C preprocessor <code class="highlighter-rouge">#ifdef</code> directive does not distinguish between a symbol not being defined because the option is disabled, or the symbol not being defined because the appropriate configuration header file has not been <code class="highlighter-rouge">#include</code>’d. It is likely that a cross-referencing tool would have to be developed first to catch problems like this, before the component framework could support finer-grained configuration headers.</p>
+<p>There are a couple of ways in which the problem of unnecessary rebuilding could be addressed. The first would require more intelligent handling of header file dependency handling by the tools (especially the compiler) and the build system. This would require changes to various non-XCDL tools. An alternative approach would be to support finer-grained configuration header files, for example there could be a file <code class="highlighter-rouge">pkgconf/libc/inline.h</code> controlling which functions should be inlined. This could be achieved by some fairly simple extensions to the component framework, but it makes it more difficult to get the package header files and source code correct: a C preprocessor <code class="highlighter-rouge">#ifdef</code> directive does not distinguish between a symbol not being defined because the option is disabled, or the symbol not being defined because the appropriate configuration header file has not been <code class="highlighter-rouge">#include</code>’d. It is likely that a cross-referencing tool would have to be developed first to catch problems like this, before the component framework could support finer-grained configuration headers.</p>
 
 <h3 id="package-documentation">Package documentation</h3>
 
@@ -399,7 +399,7 @@ extern bool os_mutex_timedlock(os_mutex_t*);
 
 
 <ul class="share-buttons">
-  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/guide/build/" data-layout="button"></div></li>
+  <li><div class="fb-share-button" data-href="/guide/build/" data-layout="button"></div></li>
   <li><div class="tw-share-button"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div></li>
 </ul>
 
@@ -417,22 +417,22 @@ extern bool os_mutex_timedlock(os_mutex_t*);
   <div class="site-footer">
   <div class="site-footer-links left">
     <ul>
-  <li>© 2016 Liviu Ionescu</li>
+  <li>© 2017 Liviu Ionescu</li>
   <li>Hosted on GitHub</li>
   <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS" /></a></li>
 </ul>
 
 
   </div>
-  <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
+  <a href="https://github.com/xcdl/xcdl-js" aria-label="Homepage">
       <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
   </a>
   <div class="site-footer-links right">
     <ul>
   <li><a href="/">Home</a></li>
   <li><a href="/blog/">News</a></li>
-  <li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
-  <li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-js/releases">Releases</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-js/issues">Support</a></li>
   <li><a href="/about/">About</a></li>
 </ul>
 

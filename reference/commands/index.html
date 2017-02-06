@@ -8,12 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>The commands line reference</title>
-  <meta name="description" content="The eXtensible Component Definition Language framework">
+  <meta name="description" content="The xPack eXtensible Component Definition Language framework">
 
   <meta property="og:title" content="The commands line reference" />
-  <meta property="og:site_name" content="XCDL / xPack" />
+  <meta property="og:site_name" content="xPack / XCDL" />
 
-  <link rel="alternate" type="application/rss+xml" title="XCDL / xPack" href="/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="xPack / XCDL" href="/feed.xml" />
 
 
 
@@ -27,7 +27,7 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?201510121951" media="screen">
   <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?201510121951" media="print">
 
-  <link rel="canonical" href="http://ilg-ul.github.io/reference/commands/">
+  <link rel="canonical" href="/reference/commands/">
 
 
 
@@ -83,10 +83,10 @@
 }(document, "script", "twitter-wjs"));</script>
 
   <div class="site-header">
-  <img class="site-icon" src="/assets/icons/components.png" height="100" width="100">
+  <img alt="Icon" class="site-icon" src="/assets/icons/components.png" height="100" width="100">
   <div class="site-title">
-    <h1><a href="/">XCDL / xPack</a></h1>
-    <p>The eXtensible Component Definition Language framework</p>
+    <h1><a href="/">xPack / XCDL</a></h1>
+    <p>The xPack eXtensible Component Definition Language framework</p>
   </div>
 </div>
 
@@ -158,7 +158,7 @@
 
         
 <h1 class="page-title">The commands line reference</h1>
-<p class="last-modified">Last modified on Sat Jan  7 08:53:42 2017 UTC.</p>
+<p class="last-modified">Last modified on Mon Feb  6 16:18:36 2017 UTC.</p>
 
 
 <div id="toc-container">
@@ -207,6 +207,29 @@
 
 <p>Similar to <code class="highlighter-rouge">npm build</code>, but it might have different semantics.</p>
 
+<div class="highlighter-rouge"><pre class="highlight"><code>xpack build [--target &lt;name&gt;] [--toolchain &lt;name&gt;] [--profile &lt;name&gt;] -- ...
+xpack build --test &lt;name&gt; ... [--target &lt;name&gt;] [--toolchain &lt;name&gt;] [--profile &lt;name&gt;] -- ...
+xpack build --tests -- ...
+</code></pre>
+</div>
+
+<p>Options:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">--target &lt;name&gt;</code>: the target name, like <code class="highlighter-rouge">stm32f4discovery</code>; if missing, the package default target is used;</li>
+  <li><code class="highlighter-rouge">--toolchain &lt;name&gt;</code>: the toolchain name, like <code class="highlighter-rouge">gcc</code>, <code class="highlighter-rouge">clang</code>; if missing, the package default toolchain or the target default toolchain is used;</li>
+  <li><code class="highlighter-rouge">--profile &lt;name&gt;</code>: the profile name, like <code class="highlighter-rouge">debug</code>, <code class="highlighter-rouge">release</code>; if missing, <code class="highlighter-rouge">debug</code> is used</li>
+  <li><code class="highlighter-rouge">--test &lt;name&gt; ...</code>: the list of test names</li>
+  <li><code class="highlighter-rouge">--tests</code>: build all tests, for all targets, toolchains and profiles</li>
+</ul>
+
+<p>The result of the build is a sub-folder under <code class="highlighter-rouge">build</code>, like:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">build/target-toolchain-profile</code>, for application builds;</li>
+  <li><code class="highlighter-rouge">build/test-name-target-toolchain-profile</code>, for tests.</li>
+</ul>
+
 <h3 id="cache">cache</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm cache</code>.</p>
@@ -238,6 +261,12 @@
 <h3 id="login">login</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm login</code>.</p>
+
+<p>Options:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">--dep &lt;url&gt;</code>: force a specific dependency that will override the package dependencies.</li>
+</ul>
 
 <h3 id="logout">logout</h3>
 
@@ -284,6 +313,30 @@
 <h3 id="stars">stars</h3>
 
 <p>Similar to <code class="highlighter-rouge">npm stars</code>.</p>
+
+<h3 id="target">target</h3>
+
+<p>Manage targets.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>xpack target &lt;name&gt;
+xpack target
+</code></pre>
+</div>
+
+<h3 id="test">test</h3>
+
+<p>Run a specific test, or all tests.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>xpack test &lt;name&gt; [--target &lt;name&gt;] [--toolchain &lt;name&gt;] [--profile &lt;name&gt;]
+xpack test
+</code></pre>
+</div>
+
+<h3 id="toolchain">toolchain</h3>
+
+<p>Manage toolchains.</p>
+
+<p>TODO</p>
 
 <h3 id="uninstall">uninstall</h3>
 
@@ -348,7 +401,7 @@
 
 
 <ul class="share-buttons">
-  <li><div class="fb-share-button" data-href="http://ilg-ul.github.io/reference/commands/" data-layout="button"></div></li>
+  <li><div class="fb-share-button" data-href="/reference/commands/" data-layout="button"></div></li>
   <li><div class="tw-share-button"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div></li>
 </ul>
 
@@ -366,22 +419,22 @@
   <div class="site-footer">
   <div class="site-footer-links left">
     <ul>
-  <li>© 2016 Liviu Ionescu</li>
+  <li>© 2017 Liviu Ionescu</li>
   <li>Hosted on GitHub</li>
   <li><a href="/feed.xml"><img src="/assets/images/feed-20.png" alt="RSS" /></a></li>
 </ul>
 
 
   </div>
-  <a href="https://github.com/xcdl/xcdl-go" aria-label="Homepage">
+  <a href="https://github.com/xcdl/xcdl-js" aria-label="Homepage">
       <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
   </a>
   <div class="site-footer-links right">
     <ul>
   <li><a href="/">Home</a></li>
   <li><a href="/blog/">News</a></li>
-  <li><a href="https://github.com/xcdl/xcdl-go/releases">Releases</a></li>
-  <li><a href="https://github.com/xcdl/xcdl-go/issues">Support</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-js/releases">Releases</a></li>
+  <li><a href="https://github.com/xcdl/xcdl-js/issues">Support</a></li>
   <li><a href="/about/">About</a></li>
 </ul>
 

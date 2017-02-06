@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>xPack / XCDL</title>
+    <description>The xPack eXtensible Component Definition Language framework</description>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 06 Feb 2017 19:07:39 +0000</pubDate>
+    <lastBuildDate>Mon, 06 Feb 2017 19:07:39 +0000</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>License changed from LGPL to MIT License</title>
+        <description>&lt;p&gt;To further facilitate the integration of XCDL into other commercial or open source projects, the project license was changed from the copyleft LGPL to the permissive &lt;a href=&quot;https://opensource.org/licenses/MIT&quot;&gt;MIT License&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 04 Aug 2016 09:00:00 +0000</pubDate>
+        <link>/blog/2016/08/04/license-update/</link>
+        <guid isPermaLink="true">/blog/2016/08/04/license-update/</guid>
+        
+        
+        <category>news</category>
+        
+        <category>license</category>
+        
+        <category>MIT</category>
+        
+      </item>
+    
+      <item>
+        <title>The GitHub Wiki content was migrated to GitHub Pages</title>
+        <description>&lt;p&gt;Reaching the limitations of GitHub Wikis, the documentation site was migrated to GitHub Pages.
+For a nice look, several plug-ins are required, so the site needs to be generated off-line.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 12 Oct 2015 12:00:00 +0000</pubDate>
+        <link>/blog/2015/10/12/github-pages/</link>
+        <guid isPermaLink="true">/blog/2015/10/12/github-pages/</guid>
+        
+        
+        <category>news</category>
+        
+        <category>web</category>
+        
+      </item>
+    
+      <item>
+        <title>The XCDL Wiki content was migrated from MediaWiki to GitHub Wiki</title>
+        <description>&lt;p&gt;Based on the general trend towards GitHub, the migration of the XCDL project to
+GitHub continued with the conversion of the MediaWiki pages to markdown, to be
+shown as GitHub Wikis.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 26 Sep 2015 12:00:00 +0000</pubDate>
+        <link>/blog/2015/09/26/github-wiki/</link>
+        <guid isPermaLink="true">/blog/2015/09/26/github-wiki/</guid>
+        
+        
+        <category>news</category>
+        
+        <category>web</category>
+        
+      </item>
+    
+  </channel>
+</rss>
