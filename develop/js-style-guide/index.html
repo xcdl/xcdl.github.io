@@ -158,7 +158,7 @@
 
         
 <h1 class="page-title">JavaScript Style Guide</h1>
-<p class="last-modified">Last modified on Sun Mar 26 12:39:20 2017 UTC.</p>
+<p class="last-modified">Last modified on Sun Mar 26 23:34:36 2017 UTC.</p>
 
 
 <div id="toc-container">
@@ -209,7 +209,7 @@
 </ul>
 </li>
 <li class="toc_level-1 toc_section-13">
-<a href="#from-nodejs-modules"><span class="tocnumber">2</span> <span class="toctext">From node.js modules</span></a>
+<a href="#from-nodejs-modules"><span class="tocnumber">2</span> <span class="toctext">From Node.js modules</span></a>
 <ul>
 <li class="toc_level-2 toc_section-14">
 <a href="#modules"><span class="tocnumber">2.1</span> <span class="toctext">Modules</span></a>
@@ -226,24 +226,27 @@
 </ul>
 </li>
 <li class="toc_level-1 toc_section-18">
-<a href="#from-understanding-ecmascript-6"><span class="tocnumber">3</span> <span class="toctext">From Understanding ECMAScript 6</span></a>
-<ul>
-<li class="toc_level-2 toc_section-19">
-<a href="#block-bindings"><span class="tocnumber">3.1</span> <span class="toctext">Block bindings</span></a>
+<a href="#make-node-exportsimports-look-like-es6-exportsimports"><span class="tocnumber">3</span> <span class="toctext">Make node exports/imports look like ES6 exports/imports</span></a>
 </li>
+<li class="toc_level-1 toc_section-19">
+<a href="#from-understanding-ecmascript-6"><span class="tocnumber">4</span> <span class="toctext">From Understanding ECMAScript 6</span></a>
+<ul>
 <li class="toc_level-2 toc_section-20">
-<a href="#functions-1"><span class="tocnumber">3.2</span> <span class="toctext">Functions</span></a>
+<a href="#block-bindings"><span class="tocnumber">4.1</span> <span class="toctext">Block bindings</span></a>
 </li>
 <li class="toc_level-2 toc_section-21">
-<a href="#enhanced-object-functionality"><span class="tocnumber">3.3</span> <span class="toctext">Enhanced Object Functionality</span></a>
+<a href="#functions-1"><span class="tocnumber">4.2</span> <span class="toctext">Functions</span></a>
+</li>
+<li class="toc_level-2 toc_section-22">
+<a href="#enhanced-object-functionality"><span class="tocnumber">4.3</span> <span class="toctext">Enhanced Object Functionality</span></a>
 </li>
 </ul>
 </li>
-<li class="toc_level-1 toc_section-22">
-<a href="#links-to-other-style-guides"><span class="tocnumber">4</span> <span class="toctext">Links to other style guides</span></a>
-</li>
 <li class="toc_level-1 toc_section-23">
-<a href="#linting-tools"><span class="tocnumber">5</span> <span class="toctext">Linting Tools</span></a>
+<a href="#links-to-other-style-guides"><span class="tocnumber">5</span> <span class="toctext">Links to other style guides</span></a>
+</li>
+<li class="toc_level-1 toc_section-24">
+<a href="#linting-tools"><span class="tocnumber">6</span> <span class="toctext">Linting Tools</span></a>
 </li>
 </ul>
 </td>
@@ -345,7 +348,7 @@
 
 <p>When using callbacks, never to ever ever throw anything. It’s worse than useless. Just send the error message back as the first argument to the callback.</p>
 
-<h2 id="from-nodejs-modules">From <a href="https://nodejs.org/dist/latest-v6.x/docs/api/modules.html">node.js modules</a></h2>
+<h2 id="from-nodejs-modules">From <a href="https://nodejs.org/dist/latest-v6.x/docs/api/modules.html">Node.js modules</a></h2>
 
 <h3 id="modules">Modules</h3>
 
@@ -374,7 +377,7 @@
 
 <h3 id="accessing-the-main-module">Accessing the main module</h3>
 
-<p>When a file is run directly from Node.js, require.main is set to its module. That means that you can determine whether a file has been run directly by testing</p>
+<p>When a file is run directly from Node.js, <code class="highlighter-rouge">require.main</code> is set to its module. That means that you can determine whether a file has been run directly by testing</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">require</span><span class="p">.</span><span class="nx">main</span> <span class="o">===</span> <span class="nx">module</span>
 </code></pre>
@@ -396,7 +399,7 @@
 </code></pre>
 </div>
 
-<p>In each module, the module free variable is a reference to the object representing the current module. For convenience, <code class="highlighter-rouge">module.exports</code> is also accessible via the exports module-global. module isn’t actually a global but rather local to each module.</p>
+<p>In each module, the <code class="highlighter-rouge">module</code> free variable is a reference to the object representing the current module. For convenience, <code class="highlighter-rouge">module.exports</code> is also accessible via the <code class="highlighter-rouge">exports</code> module-global. <code class="highlighter-rouge">module</code> isn’t actually a global but rather local to each module.</p>
 
 <p>The <code class="highlighter-rouge">module.exports</code> object is created by the Module system. Sometimes this is not acceptable; many want their module to be an instance of some class. To do this, assign the desired export object to <code class="highlighter-rouge">module.exports</code>. Note that assigning the desired object to <code class="highlighter-rouge">exports</code> will simply rebind the local exports variable, which is probably not what you want to do.</p>
 
@@ -405,6 +408,27 @@
 <p>The <code class="highlighter-rouge">exports</code> variable that is available within a module starts as a reference to <code class="highlighter-rouge">module.exports</code>. As with any variable, if you assign a new value to it, it is no longer bound to the previous value.</p>
 
 <p>As a guideline, if the relationship between <code class="highlighter-rouge">exports</code> and <code class="highlighter-rouge">module.exports</code> seems like magic to you, ignore <code class="highlighter-rouge">exports</code> and only use <code class="highlighter-rouge">module.exports</code>.</p>
+
+<h2 id="make-node-exportsimports-look-like-es6-exportsimports">Make node exports/imports look like ES6 exports/imports</h2>
+
+<p>In EC6, export/import would look like:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">export</span> <span class="kr">class</span> <span class="nx">WscriptAvoider</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">...</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">WscriptAvoider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'wscript-avoider.js'</span>
+</code></pre>
+</div>
+
+<p>So, to stay close to this syntax, my personal preference for Node.js modules is to preserve the original object, and add members to it, preferably classes, even if they have only static members.</p>
+
+<p>To use them, the syntax is with the explicit classs name:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">WscriptAvoider</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'wscript-avoider'</span><span class="p">).</span><span class="nx">WscriptAvoider</span>
+<span class="nx">WscriptAvoider</span><span class="p">.</span><span class="nx">quitIfWscript</span><span class="p">(</span><span class="nx">appName</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>In case the class is not static, instantiate it as usual.</p>
 
 <h2 id="from-understanding-ecmascript-6">From <em>Understanding ECMAScript 6</em></h2>
 
