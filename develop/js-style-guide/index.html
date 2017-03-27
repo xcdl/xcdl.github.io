@@ -158,7 +158,7 @@
 
         
 <h1 class="page-title">JavaScript Style Guide</h1>
-<p class="last-modified">Last modified on Mon Mar 27 17:57:22 2017 UTC.</p>
+<p class="last-modified">Last modified on Mon Mar 27 19:06:59 2017 UTC.</p>
 
 
 <div id="toc-container">
@@ -285,7 +285,7 @@
 </tr>
 </tbody>
 </table>
-</div><p>The actual style guide used consistently across all xPack JavaScript source files is enforced by using the [Standard JS]((https://standardjs.com) validation tools.</p>
+</div><p>The actual style guide used consistently across all xPack JavaScript source files is enforced by using the <a href="https://standardjs.com">Standard JS</a> validation tools.</p>
 
 <p>In short, the main recommandations are to make the module asyncronous, to use promises (and avoid callbacks), and be sure reentrancy is considered.</p>
 
@@ -482,7 +482,9 @@ is called. The <code class="highlighter-rouge">[[Construct]]</code> method is re
 
 <h3 id="exceptions">Exceptions</h3>
 
-<p>When using callbacks, never to ever ever throw anything. It’s worse than useless. Just send the error message back as the first argument to the callback.</p>
+<p>For the native Node.js callback usage, never to ever ever throw anything. It’s worse than useless. Just send the error message back as the first argument to the callback.</p>
+
+<p>But for the modern ES 6 promise usage, exceptions are fine.</p>
 
 <h2 id="from-nodejs-modules">From <a href="https://nodejs.org/dist/latest-v6.x/docs/api/modules.html">Node.js modules</a></h2>
 
@@ -490,42 +492,41 @@ is called. The <code class="highlighter-rouge">[[Construct]]</code> method is re
 
 <p>Modules are a way of preventing multiple JavaScript units to polute the global namespace.</p>
 
-<p>Objects defined at root level in a module are not global, but belong to the module.</p>
+<p>Objects defined at root level in a module are not global, but belong to the module; the usual name for this is <em>module-global</em>.</p>
 
 <h3 id="caching">Caching</h3>
 
-<p>Modules are cached after the first time they are loaded. This means (among other things) that every call to require(‘foo’) will get exactly the same object returned, if it would resolve to the same file.</p>
+<p>Modules are cached after the first time they are loaded. This means (among other things) that every call to require(‘foo’) will get exactly the same object returned, if it would resolve to the same file. Multiple calls to <code class="highlighter-rouge">require('foo')</code> will not cause the module code to be executed multiple times.</p>
 
-<p>Multiple calls to require(‘foo’) may not cause the module code to be executed multiple times.</p>
+<p>From this point of view, modules behave like <a href="https://en.wikipedia.org/wiki/Singleton_pattern">singletons</a>; they can also be compared to static classes in C++.</p>
 
-<p>From this point of view, modules behave like <a href="https://en.wikipedia.org/wiki/Singleton_pattern">singletons</a>; they can also be compared with static lasses in C++.</p>
-
-<p>Leaving status at the module level can be either a blessing or a curse, depending on the environment used to run the module. In server environments, using module variables is like using static variables in a multi-threaded environment, if not handled correctly it may have unexpected results.</p>
+<p>Leaving status at the module level can be either a blessing or a curse, depending on the environment used to run the module. In server environments, using module-global variables is like using static variables in a multi-threaded environment, if not handled correctly it may have unexpected results.</p>
 
 <h3 id="exports">Exports</h3>
 
-<p>To add functions and objects to the root of your module, you can add them to the special <code class="highlighter-rouge">modules.exports</code> object:</p>
+<p>To make some functions and objects visible outside the module, you can add them as properties to the special <code class="highlighter-rouge">modules.exports</code> object:</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">PI</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">area</span> <span class="o">=</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">PI</span> <span class="o">*</span> <span class="nx">r</span> <span class="o">*</span> <span class="nx">r</span>
-<span class="nx">modules</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">circumference</span> <span class="o">=</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">PI</span> <span class="o">*</span> <span class="nx">r</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">circumference</span> <span class="o">=</span> <span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">PI</span> <span class="o">*</span> <span class="nx">r</span>
 </code></pre>
 </div>
 
-<p>If you want the root of your module’s export to be a function (such as a constructor) or if you want to export a complete object in one assignment instead of building it one property at a time, assign it to <code class="highlighter-rouge">module.exports</code> instead of <code class="highlighter-rouge">exports</code> (ilg: not recommended).</p>
+<p>Although you can rewrite the <code class="highlighter-rouge">module.export</code> to be a sinle function (such as a constructor), still prefer to add them as properties to the object and refer to them explicitly in the <code class="highlighter-rouge">require()</code> line:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">square</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./square.js'</span><span class="p">)</span>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">square</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./square.js'</span><span class="p">).</span><span class="nx">square</span>
 <span class="kr">const</span> <span class="nx">mySquare</span> <span class="o">=</span> <span class="nx">square</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">The</span> <span class="nx">area</span> <span class="nx">of</span> <span class="nx">my</span> <span class="nx">square</span> <span class="nx">is</span> <span class="nx">$</span><span class="p">{</span><span class="nx">mySquare</span><span class="p">.</span><span class="nx">area</span><span class="p">()}</span><span class="err">`</span><span class="p">)</span>
 
-<span class="c1">// assigning to exports will not modify module, must use module.exports</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">width</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">area</span> <span class="o">=</span> <span class="p">(</span><span class="nx">width</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">{</span>
     <span class="na">area</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">width</span> <span class="o">*</span> <span class="nx">width</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 </div>
+
+<p>If you want to export a complete object in one assignment instead of building it one property at a time, assign it to <code class="highlighter-rouge">module.exports</code>.</p>
 
 <h3 id="accessing-the-main-module">Accessing the main module</h3>
 
@@ -552,7 +553,7 @@ is called. The <code class="highlighter-rouge">[[Construct]]</code> method is re
 
 <p>In each module, the <code class="highlighter-rouge">module</code> variable is a reference to the object representing the current module. <code class="highlighter-rouge">module</code> isn’t actually a global but rather local to each module.</p>
 
-<p>The <code class="highlighter-rouge">module.exports</code> object is created by the Module system. Sometimes this is not acceptable; many want their module to be an instance of some class. To do this, assign the desired export object to <code class="highlighter-rouge">module.exports</code> (ilg: not recommended).</p>
+<p>The <code class="highlighter-rouge">module.exports</code> object is created by the Module system. Sometimes this is not acceptable; many want their module to be an object of their own. To do this, assign the desired export object to <code class="highlighter-rouge">module.exports</code>.</p>
 
 <p>For convenience, <code class="highlighter-rouge">module.exports</code> is also accessible via the <code class="highlighter-rouge">exports</code> module-global. Note that assigning a value to <code class="highlighter-rouge">exports</code> will simply rebind the local exports variable, which is probably not what you want to do; if the relationship between <code class="highlighter-rouge">exports</code> and <code class="highlighter-rouge">module.exports</code> seems like magic to you, ignore <code class="highlighter-rouge">exports</code> and only use <code class="highlighter-rouge">module.exports</code>.</p>
 
@@ -560,7 +561,7 @@ is called. The <code class="highlighter-rouge">[[Construct]]</code> method is re
 
 <h3 id="global-objects">Global objects</h3>
 
-<p>These objects are available in all modules. (see Node.js <a href="https://nodejs.org/api/globals.html">Globals</a>)</p>
+<p>These are really objects, available in all modules. (see Node.js <a href="https://nodejs.org/api/globals.html">Globals</a>)</p>
 
 <ul>
   <li><code class="highlighter-rouge">global</code></li>
@@ -591,15 +592,15 @@ is called. The <code class="highlighter-rouge">[[Construct]]</code> method is re
 
 <h3 id="use-asyncawait-for-anynchronous-calls">Use async/await for anynchronous calls</h3>
 
-<p>Once <code class="highlighter-rouge">async</code>/<code class="highlighter-rouge">await</code> became standard, and the V8 engine supports them, there is no reason for not using them.</p>
+<p>Once <code class="highlighter-rouge">async</code>/<code class="highlighter-rouge">await</code> became standard, and the V8 engine added support for them, there is no reason for not using <code class="highlighter-rouge">async</code>/<code class="highlighter-rouge">await</code>.</p>
 
 <p>Wrap old legacy code using callbacks into promises and execute them with <code class="highlighter-rouge">await</code>.</p>
 
 <h3 id="use-static-class-members-instead-of-variables-at-module-level">Use static class members instead of variables at module level</h3>
 
-<p>Modules are singletons; using module variables is like using static variables in a multi-threaded environment; they may provide a way of sharing common data between multiple instances of objects created inside the same module, but if not handled correctly it may have unexpected results.</p>
+<p>Modules are singletons; using module variables is like using static variables in a multi-threaded environment; they may provide a way of sharing common data between multiple instances of objects created inside the same module, but if not handled correctly this may have unexpected results.</p>
 
-<p>The general recommendation is to make the modules reentrant. In practical terms, <strong>do not</strong> use module variables at all; make the module export a class, and create instances of it whenever needed; for sharing data between instances, use static class members.</p>
+<p>The general recommendation is to make the modules reentrant. In practical terms, <strong>do not</strong> use module-global variables at all; make the module export a class, and create instances of it whenever needed; for sharing data between instances, use static class members.</p>
 
 <h3 id="do-not-restrict-export-to-a-single-function-or-class">Do not restrict export to a single function or class</h3>
 
@@ -613,7 +614,7 @@ is called. The <code class="highlighter-rouge">[[Construct]]</code> method is re
 </code></pre>
 </div>
 
-<p>Apart from being unnamed, returning a single function prevents future extensions, for example exporting a second function from the module would mandate all modules that refer to the first function via <code class="highlighter-rouge">require()</code> to be updated to <code class="highlighter-rouge">require().func1</code>, which may cause many headaches to developers.</p>
+<p>Apart from being unnamed, returning a single function prevents future extensions, for example exporting a second function from the same module would mandate all modules that use the first function via <code class="highlighter-rouge">require()</code> to be updated to <code class="highlighter-rouge">require().func1</code>, which may cause many headaches to developers.</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">func1</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="sr">/</span><span class="se">[\u</span><span class="sr">001b</span><span class="se">\u</span><span class="sr">009b</span><span class="se">][</span><span class="sr">[()#;?</span><span class="se">]</span><span class="sr">*</span><span class="se">(?:[</span><span class="sr">0-9</span><span class="se">]{1,4}(?:</span><span class="sr">;</span><span class="se">[</span><span class="sr">0-9</span><span class="se">]{0,4})</span><span class="sr">*</span><span class="se">)?[</span><span class="sr">0-9A-ORZcf-nqry=&gt;&lt;</span><span class="se">]</span><span class="sr">/g</span><span class="p">;</span>
@@ -624,13 +625,13 @@ is called. The <code class="highlighter-rouge">[[Construct]]</code> method is re
 </code></pre>
 </div>
 
-<p>The recommendation is to always return functions or preferably classes as members of the <code class="highlighter-rouge">module.exports</code> object, and get them individually by name.</p>
+<p>The recommendation is to always return functions or preferably classes as properties of the <code class="highlighter-rouge">module.exports</code> object, and get them individually by name.</p>
 
 <h3 id="prefer-static-classes-to-group-methods">Prefer static classes to group methods</h3>
 
 <p>Prepare your module to export multiple functions, grouped by functionality either by a parent object, or, even better, by classes with static members.</p>
 
-<p>Addint new exports will change the interface incrementaly, minimising the risk to break backward compatibility.</p>
+<p>Adding new exports will only change the interface incrementaly, minimising the risk to break backward compatibility.</p>
 
 <h2 id="make-node-exportsimports-look-like-es6-exportsimports">Make node exports/imports look like ES6 exports/imports</h2>
 
@@ -642,7 +643,7 @@ is called. The <code class="highlighter-rouge">[[Construct]]</code> method is re
 </code></pre>
 </div>
 
-<p>So, to stay close to this syntax, my personal preference for Node.js modules is to preserve the original <code class="highlighter-rouge">module.exports</code> object, and add members to it, preferably classes, even if they have only static members.</p>
+<p>So, to stay close to this syntax, the recommendation is to preserve the original <code class="highlighter-rouge">module.exports</code> object, and add properties to it, preferably classes, even if they have only static members.</p>
 
 <p>To import them, the syntax uses the explicit classs name:</p>
 
@@ -685,7 +686,7 @@ is called. The <code class="highlighter-rouge">[[Construct]]</code> method is re
 <p>Prefered (used automatically by Standard):</p>
 
 <ul>
-  <li><a href="http://eslint.org/">ESLint</a></li>
+  <li><a href="http://eslint.org/">ESLint</a>, but indirectly via the ‘Standard JS’ tools.</li>
 </ul>
 
 <p>Other links:</p>
