@@ -158,7 +158,7 @@
 
         
 <h1 class="page-title">JavaScript Style Guide</h1>
-<p class="last-modified">Last modified on Mon Mar 27 19:23:18 2017 UTC.</p>
+<p class="last-modified">Last modified on Mon Mar 27 19:46:14 2017 UTC.</p>
 
 
 <div id="toc-container">
@@ -285,9 +285,20 @@
 </tr>
 </tbody>
 </table>
-</div><p>The actual style guide used consistently across all xPack JavaScript source files is enforced by using the <a href="https://standardjs.com">Standard JS</a> validation tools.</p>
+</div><p>After many years dealing with style guides for various languages, the conclusion is that the style itself is less important than applying it consistently.</p>
 
-<p>In short, the main recommandations are to make the module asyncronous, to use promises (and avoid callbacks), and be sure reentrancy is considered.</p>
+<p>So, for the xPack JavaScript source files to be consistent, the first requirement is to pass the <a href="https://standardjs.com">Standard JS</a> validation tools.</p>
+
+<p>After this, the main recommendations are:</p>
+
+<ul>
+  <li>use the <strong>ECMAScript 6</strong> specifications (ES 6),</li>
+  <li>if the module does something reasonably complex, the module public functions <strong>must be asyncronous</strong>,</li>
+  <li>asynchronous functions must <strong>use promises</strong> (and definitely <strong>avoid callbacks</strong>),</li>
+  <li><strong>reentrancy</strong> should be seriously considered (avoid module-global variables).</li>
+</ul>
+
+<div style="clear: both;"></div>
 
 <h2 id="from-understanding-ecmascript-6">From <em>Understanding ECMAScript 6</em></h2>
 
