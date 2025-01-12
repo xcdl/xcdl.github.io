@@ -161,76 +161,7 @@
 <p class="last-modified">Last modified on Mon Nov 16 13:57:31 2015 UTC.</p>
 
 
-<div id="toc-container">
-<table class="toc" id="toc">
-<tbody>
-<tr>
-<td>
-<div id="toctitle">
-<h2>Contents</h2>
-</div>
-<ul>
-<li class="toc_level-1 toc_section-1">
-<a href="#the-good-parts"><span class="tocnumber">1</span> <span class="toctext">The good parts</span></a>
-</li>
-<li class="toc_level-1 toc_section-2">
-<a href="#the-bad-parts"><span class="tocnumber">2</span> <span class="toctext">The bad parts</span></a>
-<ul>
-<li class="toc_level-2 toc_section-3">
-<a href="#excessively-complicated-design"><span class="tocnumber">2.1</span> <span class="toctext">Excessively complicated design</span></a>
-</li>
-<li class="toc_level-2 toc_section-4">
-<a href="#non-portable-examples"><span class="tocnumber">2.2</span> <span class="toctext">Non-portable examples</span></a>
-</li>
-<li class="toc_level-2 toc_section-5">
-<a href="#lack-of-gcc-assembly-files"><span class="tocnumber">2.3</span> <span class="toctext">Lack of GCC assembly files</span></a>
-</li>
-<li class="toc_level-2 toc_section-6">
-<a href="#lack-of-linker-scripts"><span class="tocnumber">2.4</span> <span class="toctext">Lack of linker scripts</span></a>
-</li>
-<li class="toc_level-2 toc_section-7">
-<a href="#simplistic-repository-index"><span class="tocnumber">2.5</span> <span class="toctext">Simplistic repository index</span></a>
-</li>
-<li class="toc_level-2 toc_section-8">
-<a href="#low-configurability-features"><span class="tocnumber">2.6</span> <span class="toctext">Low configurability features</span></a>
-</li>
-<li class="toc_level-2 toc_section-9">
-<a href="#fixed-file-naming-schemes"><span class="tocnumber">2.7</span> <span class="toctext">Fixed file naming schemes</span></a>
-</li>
-<li class="toc_level-2 toc_section-10">
-<a href="#fixed-object-hierarchies"><span class="tocnumber">2.8</span> <span class="toctext">Fixed object hierarchies</span></a>
-</li>
-<li class="toc_level-2 toc_section-11">
-<a href="#no-package-dependencies"><span class="tocnumber">2.9</span> <span class="toctext">No package dependencies</span></a>
-</li>
-<li class="toc_level-2 toc_section-12">
-<a href="#windows-only-tools"><span class="tocnumber">2.10</span> <span class="toctext">Windows only tools</span></a>
-</li>
-<li class="toc_level-2 toc_section-13">
-<a href="#no-special-support-for-tests"><span class="tocnumber">2.11</span> <span class="toctext">No special support for tests</span></a>
-</li>
-</ul>
-</li>
-<li class="toc_level-1 toc_section-14">
-<a href="#pdsc-schema-oddities"><span class="tocnumber">3</span> <span class="toctext">PDSC schema oddities</span></a>
-<ul>
-<li class="toc_level-2 toc_section-15">
-<a href="#non-posix-paths"><span class="tocnumber">3.1</span> <span class="toctext">Non-POSIX paths</span></a>
-</li>
-<li class="toc_level-2 toc_section-16">
-<a href="#books"><span class="tocnumber">3.2</span> <span class="toctext">&lt;books&gt;</span></a>
-</li>
-<li class="toc_level-2 toc_section-17">
-<a href="#algorithm"><span class="tocnumber">3.3</span> <span class="toctext">&lt;algorithm&gt;</span></a>
-</li>
-</ul>
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div><h2 id="the-good-parts">The good parts</h2>
+<h2 id="the-good-parts">The good parts</h2>
 
 <p>CMSIS Pack is an important step forward towards the standardisation of ARM Cortex-M system software, hardware description and documentation.</p>
 
@@ -315,31 +246,26 @@
 
 <p>Although the specs allow the use of standard POSIX paths (and, as far as I was told, MDK accepts them), all Keil packages, and all Keil documentation pages, do not miss the opportunity to show their Microsoft-ish origin, and represent all paths using the Windows back-slash separator:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;compile header="Device\Include\stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
+</code></pre></div></div>
 
 <p>Perhaps a more visually pleasant solution would have been to use the standard POSIX slash separator:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;compile header="Device/Include/stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;compile header="Device/Include/stm32f4xx.h"  define="STM32F40_41xxx"/&gt;
+</code></pre></div></div>
 
-<h3 id="books">
-<code class="highlighter-rouge">&lt;books&gt;</code>
-</h3>
+<h3 id="books"><code class="language-plaintext highlighter-rouge">&lt;books&gt;</code></h3>
 
 <p>Here is an unfortunate example from the STM32F4-Discovery board:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;book category="overview"  name="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419" title="STM32F4-Discovery Web Page"/&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;book category="overview"  name="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419" title="STM32F4-Discovery Web Page"/&gt;
 &lt;book category="setup"     name="Documents\DM00037368.pdf" title="Getting Started"/&gt;
 &lt;book category="schematic" name="Documents\stm32f4discovery_sch.zip" title="Schematics"/&gt;
 &lt;book category="manual"    name="Documents\DM00039084.pdf" title="User Manual"/&gt;
 &lt;book category="other"     name="Documents\stm32f4discovery_gerber.zip" title="Gerber Files"/&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>First, none of the above is actually a book, all are various documentation files (web page, manuals, schematics, etc), so the name <code class="highlighter-rouge">&lt;books&gt;</code> is poorly chosen.</p>
+<p>First, none of the above is actually a book, all are various documentation files (web page, manuals, schematics, etc), so the name <code class="language-plaintext highlighter-rouge">&lt;books&gt;</code> is poorly chosen.</p>
 
 <p>Second, the <strong>name</strong> attribute refers to anything else but the document name, which is eventually defined as <strong>title</strong>.</p>
 
@@ -347,35 +273,29 @@
 
 <p>Perhaps a more appropriate definitions would have been:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;document category="overview"  title="STM32F4-Discovery Web Page" url="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419"/&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;document category="overview"  title="STM32F4-Discovery Web Page" url="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF252419"/&gt;
 &lt;document category="setup"     title="Getting Started" file="Documents/DM00037368.pdf"/&gt;
 &lt;document category="schematic" title="Schematics" file="Documents/stm32f4discovery_sch.zip"/&gt;
 &lt;document category="manual"    title="User Manual" file="Documents/DM00039084.pdf"/&gt;
 &lt;document category="other"     title="Gerber Files" file="Documents/stm32f4discovery_gerber.zip"/&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h3 id="algorithm">
-<code class="highlighter-rouge">&lt;algorithm&gt;</code>
-</h3>
+<h3 id="algorithm"><code class="language-plaintext highlighter-rouge">&lt;algorithm&gt;</code></h3>
 
 <p>The <strong>name</strong> attribute does not define any name, but a special .FLM file:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;algorithm  name="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
+</code></pre></div></div>
 
 <p>To be consistent with <debug>:</debug></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;debug      svd="SVD\STM32F41x.svd"/&gt;
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;debug      svd="SVD\STM32F41x.svd"/&gt;
+</code></pre></div></div>
 
 <p>perhaps a <strong>flm</strong> attribute would have been more appropriate, or at least a generic <strong>file</strong> attribute.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;algorithm  flm="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;algorithm  flm="Flash\STM32F4xx_1024.FLM" start="0x08000000" size="0x100000" default="1"/&gt;
+</code></pre></div></div>
 
 
 

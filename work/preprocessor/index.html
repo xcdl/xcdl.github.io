@@ -1,29 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <meta charset="utf-8">
+  <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>XCDL templates preprocessor syntax proposal</title>
   <meta name="description" content="The xPack eXtensible Component Definition Language framework">
 
-  <meta property="og:title" content="XCDL templates preprocessor syntax proposal">
-  <meta property="og:site_name" content="xPack / XCDL">
+  <meta property="og:title" content="XCDL templates preprocessor syntax proposal" />
+  <meta property="og:site_name" content="xPack / XCDL" />
 
-  <link rel="alternate" type="application/rss+xml" title="xPack / XCDL" href="/feed.xml">
-
-
+  <link rel="alternate" type="application/rss+xml" title="xPack / XCDL" href="/feed.xml" />
 
 
 
 
 
 
-  <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css">
+
+
+  <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" type="text/css" href="/stylesheets/screen.css?20170326122230" media="screen">
   <link rel="stylesheet" type="text/css" href="/stylesheets/print.css?20170326122230" media="print">
@@ -162,74 +161,6 @@
 <p class="last-modified">Last modified on Sat Dec 17 21:48:57 2016 UTC.</p>
 
 
-<div id="toc-container">
-<table class="toc" id="toc">
-<tbody>
-<tr>
-<td>
-<div id="toctitle">
-<h2>Contents</h2>
-</div>
-<ul>
-<li class="toc_level-1 toc_section-1">
-<a href="#challenge"><span class="tocnumber">1</span> <span class="toctext">Challenge</span></a>
-</li>
-<li class="toc_level-1 toc_section-2">
-<a href="#requirements"><span class="tocnumber">2</span> <span class="toctext">Requirements</span></a>
-</li>
-<li class="toc_level-1 toc_section-3">
-<a href="#embed-metadata-inside-comments"><span class="tocnumber">3</span> <span class="toctext">Embed metadata inside comments</span></a>
-</li>
-<li class="toc_level-1 toc_section-4">
-<a href="#inspiration"><span class="tocnumber">4</span> <span class="toctext">Inspiration</span></a>
-<ul>
-<li class="toc_level-2 toc_section-5">
-<a href="#jekyll"><span class="tocnumber">4.1</span> <span class="toctext">Jekyll</span></a>
-</li>
-<li class="toc_level-2 toc_section-6">
-<a href="#jinja2"><span class="tocnumber">4.2</span> <span class="toctext">Jinja2</span></a>
-</li>
-<li class="toc_level-2 toc_section-7">
-<a href="#st-cubemx"><span class="tocnumber">4.3</span> <span class="toctext">ST CubeMX</span></a>
-</li>
-<li class="toc_level-2 toc_section-8">
-<a href="#infineon-dave"><span class="tocnumber">4.4</span> <span class="toctext">Infineon DAVE</span></a>
-</li>
-<li class="toc_level-2 toc_section-9">
-<a href="#freescale-processor-expert"><span class="tocnumber">4.5</span> <span class="toctext">Freescale Processor Expert</span></a>
-</li>
-<li class="toc_level-2 toc_section-10">
-<a href="#ac6-system-workbench"><span class="tocnumber">4.6</span> <span class="toctext">AC6 System Workbench</span></a>
-</li>
-<li class="toc_level-2 toc_section-11">
-<a href="#eclipse-cdt-template-wizard"><span class="tocnumber">4.7</span> <span class="toctext">Eclipse CDT template wizard</span></a>
-</li>
-<li class="toc_level-2 toc_section-12">
-<a href="#apache-freemarker"><span class="tocnumber">4.8</span> <span class="toctext">Apache FreeMarker</span></a>
-</li>
-</ul>
-</li>
-<li class="toc_level-1 toc_section-13">
-<a href="#scripting-proposal"><span class="tocnumber">5</span> <span class="toctext">Scripting proposal</span></a>
-</li>
-<li class="toc_level-1 toc_section-14">
-<a href="#javascript-implementations"><span class="tocnumber">6</span> <span class="toctext">JavaScript implementations</span></a>
-</li>
-<li class="toc_level-1 toc_section-15">
-<a href="#possible-syntax-solutions"><span class="tocnumber">7</span> <span class="toctext">Possible syntax solutions</span></a>
-</li>
-<li class="toc_level-1 toc_section-16">
-<a href="#javascript"><span class="tocnumber">8</span> <span class="toctext">JavaScript</span></a>
-</li>
-<li class="toc_level-1 toc_section-17">
-<a href="#examples"><span class="tocnumber">9</span> <span class="toctext">Examples</span></a>
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
 <h2 id="challenge">Challenge</h2>
 
 <p>Define a template based preprocessing mechanism to be used to generate source files in a wizard (mainly C/C++).</p>
@@ -264,23 +195,19 @@
 
 <p>The <a href="https://jekyllrb.com">Jekyll</a> static web generator uses the <a href="https://shopify.github.io/liquid/">Liquid</a> metadata, which comes in two types: tags (for flow control) and object/filters (for inserting content).</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">%</span><span class="p">}</span><span class="w">
-  </span><span class="err">hello(</span><span class="s2">"{{ user.name }}!"</span><span class="err">);</span><span class="w">
-</span><span class="p">{</span><span class="err">%</span><span class="w"> </span><span class="err">endif</span><span class="w"> </span><span class="err">%</span><span class="p">}</span><span class="w">
-  </span><span class="err">url=</span><span class="s2">"{{ url | append: "</span><span class="err">.html</span><span class="s2">" }}"</span><span class="err">;</span><span class="w">
-</span></code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% if user %}
+  hello("{{ user.name }}!");
+{% endif %}
+  url="{{ url | append: ".html" }}";
+</code></pre></div></div>
 
 <p>Embedding this metadata into C/C++ comments would look like this:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>//@XCDL {% if user %}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//@XCDL {% if user %}
   hello("{{ user.name }}!");
 //@XCDL {% endif %}
   url="{{ url | append: ".html" }}";
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The syntax remains relatively easy to read, but the Liquid tags still introduce a new language, that needs to be parsed and processed.</p>
 
@@ -290,10 +217,9 @@
 
 <h3 id="st-cubemx">ST CubeMX</h3>
 
-<p>CubeMX uses <code class="highlighter-rouge">.ftl</code> files with a complex script syntax, somehow inspired by xml; tags may come in pairs (<code class="highlighter-rouge">[if]</code>, <code class="highlighter-rouge">[/if]</code>), and substitutions are encoded like macros (<code class="highlighter-rouge">${argument.name}</code>).</p>
+<p>CubeMX uses <code class="language-plaintext highlighter-rouge">.ftl</code> files with a complex script syntax, somehow inspired by xml; tags may come in pairs (<code class="language-plaintext highlighter-rouge">[if]</code>, <code class="language-plaintext highlighter-rouge">[/if]</code>), and substitutions are encoded like macros (<code class="language-plaintext highlighter-rouge">${argument.name}</code>).</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>[#ftl]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[#ftl]
 [#-- macro generateConfigModelCode --]
 
 [#macro generateConfigModelCode configModel inst nTab index]
@@ -313,19 +239,17 @@
 [#if configModel.comments??] #t#t/**${configModel.comments?replace("#t","#t#t")} #n#t#t*/[/#if]
 [/#if]
 ... ${argument.name} ...
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>The syntax controls the details of the expansion to the latest details, including generating tabs and new lines (<code class="highlighter-rouge">#t</code>, <code class="highlighter-rouge">#n</code>), so the template s are not really source files, and embedding the metadata as comments doesn’t make much sense.</p>
+<p>The syntax controls the details of the expansion to the latest details, including generating tabs and new lines (<code class="language-plaintext highlighter-rouge">#t</code>, <code class="language-plaintext highlighter-rouge">#n</code>), so the template s are not really source files, and embedding the metadata as comments doesn’t make much sense.</p>
 
-<p>(The files are in the <code class="highlighter-rouge">db/templates</code> folder; on macOS this is located below <code class="highlighter-rouge">STM32CubeMX.app/Contents/Resources</code>).</p>
+<p>(The files are in the <code class="language-plaintext highlighter-rouge">db/templates</code> folder; on macOS this is located below <code class="language-plaintext highlighter-rouge">STM32CubeMX.app/Contents/Resources</code>).</p>
 
 <h3 id="infineon-dave">Infineon DAVE</h3>
 
-<p>In DAVE 4 templates are stored as <code class="highlighter-rouge">.tmpl</code> files and use full <a href="http://www.groovy-lang.org">Groovy</a> scripts (which look very familiar to Java programmers).</p>
+<p>In DAVE 4 templates are stored as <code class="language-plaintext highlighter-rouge">.tmpl</code> files and use full <a href="http://www.groovy-lang.org">Groovy</a> scripts (which look very familiar to Java programmers).</p>
 
-<pre>
-<code class="language-.java">package Model.Common;
+<pre><code class="language-.java">package Model.Common;
 
 out.print("""
 /*******************************************************************************
@@ -386,13 +310,13 @@ out.print("""
 """);
 </code></pre>
 
-<p>The actual content is included with triple quote strings and substitutions are performed on the way, using the <code class="highlighter-rouge">${appName}</code> syntax.</p>
+<p>The actual content is included with triple quote strings and substitutions are performed on the way, using the <code class="language-plaintext highlighter-rouge">${appName}</code> syntax.</p>
 
 <p>By using a fully fledged script language, the template engine is very powerful.</p>
 
 <p>However, embedding the C/C++ code as strings in Groovy is quite hard to read.</p>
 
-<p>Templates can be found in <code class="highlighter-rouge">Infineon\D_LibraryStore_4.1\DeviceFeatures\pack\2.0.0\CE_Templates\TLE</code></p>
+<p>Templates can be found in <code class="language-plaintext highlighter-rouge">Infineon\D_LibraryStore_4.1\DeviceFeatures\pack\2.0.0\CE_Templates\TLE</code></p>
 
 <h3 id="freescale-processor-expert">Freescale Processor Expert</h3>
 
@@ -400,10 +324,9 @@ out.print("""
 
 <p>There are many XML file with lots of definitions.</p>
 
-<p>The templates are <code class="highlighter-rouge">.drv</code> files, and the syntax looks like:</p>
+<p>The templates are <code class="language-plaintext highlighter-rouge">.drv</code> files, and the syntax looks like:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>%-
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%-
 %INTERFACE
 %define! Settings Common\FAT_FileSystemSettings.Inc
 %define! Abstract Common\FAT_FileSystemAbstract.Inc
@@ -474,14 +397,13 @@ uint8_t %'ModuleName'%.%RenameFile(const uint8_t *srcFileName, const uint8_t *ds
 %endif %- RenameFile
 %-BW_METHOD_END RenameFile
 %-************************************************************************************************************
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>As far as I can tell, Processor Expert implements some kind of objects, named components, described by a template. This template can be instantiated for specific devices, like USART1, USART2, etc. People I respect consider that once the components are written, using them is quite convenient. The real challenge is to write these components, and this process can be done only with Processor Expert.</p>
 
-<p>The syntax is quite complex, with commands similar to the C preprocessor (<code class="highlighter-rouge">%ifdef name</code>), but also with complex substitutions, like <code class="highlighter-rouge">%@Shell@'ModuleName'%.name(...)</code>.</p>
+<p>The syntax is quite complex, with commands similar to the C preprocessor (<code class="language-plaintext highlighter-rouge">%ifdef name</code>), but also with complex substitutions, like <code class="language-plaintext highlighter-rouge">%@Shell@'ModuleName'%.name(...)</code>.</p>
 
-<p>The components can be found in the <code class="highlighter-rouge">C:\ProgramData\Processor Expert\PEXDRV_PE5_3</code> folder.</p>
+<p>The components can be found in the <code class="language-plaintext highlighter-rouge">C:\ProgramData\Processor Expert\PEXDRV_PE5_3</code> folder.</p>
 
 <h3 id="ac6-system-workbench">AC6 System Workbench</h3>
 
@@ -499,14 +421,12 @@ uint8_t %'ModuleName'%.%RenameFile(const uint8_t *srcFileName, const uint8_t *ds
 
 <p>The templates are written in FTL (FreeMarket Template Language), which has an XML-like syntax, for example:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>&lt;#if animals.python.protected&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;#if animals.python.protected&gt;
   Pythons are protected animals!
 &lt;/#if&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>Substitutions are encoded as <code class="highlighter-rouge">${...}</code> and the data comes from a data-model which is a collection of Java objects.</p>
+<p>Substitutions are encoded as <code class="language-plaintext highlighter-rouge">${...}</code> and the data comes from a data-model which is a collection of Java objects.</p>
 
 <p>The language has a large number of tags, but it cannot compete with a true scripting language.</p>
 
@@ -536,65 +456,55 @@ uint8_t %'ModuleName'%.%RenameFile(const uint8_t *srcFileName, const uint8_t *ds
 <p>Assuming the tags will be encoded as comments, the simplest solution would be to prefix the lines with a specific comment:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">//@XCDL</code></li>
+  <li><code class="language-plaintext highlighter-rouge">//@XCDL</code></li>
 </ul>
 
 <p>To simplify things even further, there should be no other non-spaces before this separator.</p>
 
 <h2 id="javascript">JavaScript</h2>
 
-<p>With the choice for JavaScript and this simple syntax, the process to convert the templates to JavaScript is relatively straightforward: process line by line, identify <code class="highlighter-rouge">//@XCDL</code>, pass the tags as-is, and encode all other source line in an output call.</p>
+<p>With the choice for JavaScript and this simple syntax, the process to convert the templates to JavaScript is relatively straightforward: process line by line, identify <code class="language-plaintext highlighter-rouge">//@XCDL</code>, pass the tags as-is, and encode all other source line in an output call.</p>
 
 <p>For example:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>//@XCDL if (variable==="value") {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//@XCDL if (variable==="value") {
 ... C/C++ lines ...
 //@XCDL }
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>translates into:</p>
 
-<pre>
-<code class="language-.js">if (variable==="value") {
+<pre><code class="language-.js">if (variable==="value") {
 o("... C/C++ lines ...\n");
 }
 </code></pre>
 
-<p>where <code class="highlighter-rouge">o(str)</code> is a function that outputs the string to the destination file.</p>
+<p>where <code class="language-plaintext highlighter-rouge">o(str)</code> is a function that outputs the string to the destination file.</p>
 
 <p>Substitutions are can be identified and processed by the JavaScript, or can be optimised by generating a JavaScript code that converts the values to strings and outputs them.</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>#define VARIABLE ($(value+1))
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#define VARIABLE ($(value+1))
+</code></pre></div></div>
 
 <p>can be translated to:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>o("#define VARIABLE (");o(String(value+1));o(")\n");
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>o("#define VARIABLE (");o(String(value+1));o(")\n");
+</code></pre></div></div>
 
 <h2 id="examples">Examples</h2>
 
 <p>With these conventions, the first sample would look like:</p>
 
-<div class="highlighter-rouge">
-<pre class="highlight"><code>//@XCDL if (defined('user')) {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//@XCDL if (defined('user')) {
 hello ("$(user.name)!");
 //@XCDL }
 url = "$(url+'.html'))";
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>As expected, this is perfectly legal C syntax. The JavaScript code uses a function <code class="highlighter-rouge">defined()</code> that checks if an object is defined, and, if so, expands the <code class="highlighter-rouge">name</code> attribute of this object.</p>
+<p>As expected, this is perfectly legal C syntax. The JavaScript code uses a function <code class="language-plaintext highlighter-rouge">defined()</code> that checks if an object is defined, and, if so, expands the <code class="language-plaintext highlighter-rouge">name</code> attribute of this object.</p>
 
-<p>A more complex example would generate the <code class="highlighter-rouge">main.c</code>/<code class="highlighter-rouge">main.cpp</code> files in the STM32F4 template:</p>
+<p>A more complex example would generate the <code class="language-plaintext highlighter-rouge">main.c</code>/<code class="language-plaintext highlighter-rouge">main.cpp</code> files in the STM32F4 template:</p>
 
-<pre>
-<code class="language-.cpp">//
+<pre><code class="language-.cpp">//
 // This file is part of the GNU ARM Eclipse distribution.
 // Copyright (c) 2016 Liviu Ionescu.
 //
